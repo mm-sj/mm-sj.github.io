@@ -74,12 +74,13 @@ p { margin: 0; line-height: 1.75; color: var(--ink-2); font-size: 16px; }
 /* project card — 도면 표제란 */
 .sec--card { align-items: center; }
 .card {
+  position: relative;
   width: min(520px, 100%); pointer-events: auto; color: var(--ink);
   background: var(--sheet); border: 1px solid var(--line);
   padding: 0 0 20px; display: grid; gap: 12px;
 
 }
-.card > *:not(.card__block):not(.clip) { margin-inline: 20px; }
+.card > *:not(.card__block):not(.clip):not(.stamp-wrap) { margin-inline: 20px; }
 .card__block { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-bottom: 1px solid var(--line); }
 .card__block span { padding: 9px 12px; font-size: 12.5px; border-right: 1px solid var(--line); min-width: 0; }
 .card__block span:last-child { border-right: 0; }
@@ -186,3 +187,13 @@ p { margin: 0; line-height: 1.75; color: var(--ink-2); font-size: 16px; }
 }
 .modal__nav button:hover { color: var(--ink); background: rgba(22, 25, 28, 0.06); }
 @media (max-width: 640px) { .modal__nav button:first-child { display: none; } }
+
+/* 수상 도장 — 도면 승인 도장처럼 살짝 기울여 찍는다 */
+.stamp-wrap {
+  position: absolute; top: 40px; right: 14px; width: 100px; height: 100px;
+  color: #C8372D; transform: rotate(-13deg); mix-blend-mode: multiply; opacity: 0.92;
+  pointer-events: none; z-index: 1;
+}
+.stamp-wrap svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.card--dark .stamp-wrap { color: #FF7A66; mix-blend-mode: screen; opacity: 0.88; }
+@media (max-width: 860px) { .stamp-wrap { width: 80px; height: 80px; top: 36px; right: 8px; } }

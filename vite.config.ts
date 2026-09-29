@@ -5,4 +5,6 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   base: './',
+  // 모달 iframe(quick/) 캐시 무효화용 빌드 번호
+  define: { __BUILD__: JSON.stringify(Date.now().toString(36)) },
 })

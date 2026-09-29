@@ -23,7 +23,8 @@ export function modalClick(id?: string) {
 }
 
 const base = PROFILE.quick.split('#')[0]
-const SRC = `${base}${base.includes('?') ? '&' : '?'}embed`
+// 배포할 때마다 v가 바뀌어서 브라우저가 예전 문서 페이지를 캐시에서 꺼내 쓰지 않는다
+const SRC = `${base}${base.includes('?') ? '&' : '?'}embed&v=${__BUILD__}`
 
 export function FolioModal() {
   const [mounted, setMounted] = useState(false)

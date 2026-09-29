@@ -16,6 +16,7 @@ export type Project = {
   no: string
   title: string
   award: string
+  stamp: { rank: string; track: string }
   period: string
   team: string
   role: string
@@ -34,6 +35,7 @@ export const PROJECTS: Project[] = [
     no: '01',
     title: 'DocQ',
     award: 'SSAFY 공통 최우수상',
+    stamp: { rank: '최우수상', track: '공통 프로젝트' },
     period: '2026.01 – 02',
     team: '6명 · FE 3',
     role: 'FE · UX 방향 · 3D 에셋',
@@ -53,6 +55,7 @@ export const PROJECTS: Project[] = [
     no: '02',
     title: 'Would You Draw',
     award: 'SSAFY 특화 우수상',
+    stamp: { rank: '우수상', track: '특화 프로젝트' },
     period: '2026.03',
     team: '5명 · FE 2',
     role: 'FE 팀장',
@@ -72,6 +75,7 @@ export const PROJECTS: Project[] = [
     no: '03',
     title: 'Jabis',
     award: 'SSAFY 자율 우수상',
+    stamp: { rank: '우수상', track: '자율 프로젝트' },
     period: '2026.04 – 05',
     team: '5명 · FE 1',
     role: 'FE 전담',

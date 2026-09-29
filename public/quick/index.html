@@ -159,6 +159,12 @@ footer h2{font-size:clamp(24px,3vw,30px)}
   .ts .step{grid-template-columns:1fr;gap:4px}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* 수상 도장 */
+.sheet-body{position:relative}
+.stamp-wrap{position:absolute;top:-30px;right:clamp(16px,3vw,36px);width:112px;height:112px;color:#C8372D;transform:rotate(-13deg);mix-blend-mode:multiply;opacity:.92;pointer-events:none;z-index:1}
+.stamp-wrap svg{display:block;width:100%;height:100%;overflow:visible}
+@media (max-width:720px){.stamp-wrap{width:84px;height:84px;top:-22px}}
 </style>
 
 <script>
@@ -225,6 +231,28 @@ footer h2{font-size:clamp(24px,3vw,30px)}
       <div><span class="k">Award</span><span class="v acc">공통 최우수상</span></div>
     </div>
     <div class="sheet-body">
+      <span class="stamp-wrap" aria-hidden="true"><svg class="stamp-award is-top" viewBox="0 0 120 120" role="img" aria-label="공통 프로젝트 최우수상">
+  <defs>
+    <path id="st-docq-p" d="M60,60 m-45,0 a45,45 0 1,1 90,0 a45,45 0 1,1 -90,0"/>
+    <filter id="st-docq-ink" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="49" result="n"/>
+      <feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -1.3 1.5" result="m"/>
+      <feComposite in="SourceGraphic" in2="m" operator="in" result="t"/>
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="1" seed="3" result="w"/>
+      <feDisplacementMap in="t" in2="w" scale="1.1"/>
+    </filter>
+  </defs>
+  <g filter="url(#st-docq-ink)" fill="currentColor" stroke="currentColor">
+    <circle cx="60" cy="60" r="56" fill="none" stroke-width="3.2"/>
+    <circle cx="60" cy="60" r="37" fill="none" stroke-width="1.2"/>
+    <text font-size="8.6" stroke="none" font-family="'IBM Plex Mono', ui-monospace, monospace" font-weight="500">
+      <textPath href="#st-docq-p" startOffset="0" textLength="280" lengthAdjust="spacing">SSAFY 14TH · AWARD · 2026 · SSAFY 14TH · AWARD · 2026 · </textPath>
+    </text>
+    <text x="60" y="51" text-anchor="middle" font-size="8.5" stroke="none" font-family="'IBM Plex Sans KR', 'Pretendard', sans-serif" font-weight="600">공통 프로젝트</text>
+    <text x="60" y="70" text-anchor="middle" font-size="16.5" stroke="none" font-family="'Hahmlet', serif" font-weight="700">최우수상</text>
+    <text x="60" y="84" text-anchor="middle" font-size="7" stroke="none">★ ★ ★</text>
+  </g>
+</svg></span>
       <div class="sheet-head">
         <div>
           <p class="no">01 — DocQ</p>
@@ -287,6 +315,28 @@ footer h2{font-size:clamp(24px,3vw,30px)}
       <div><span class="k">Award</span><span class="v acc">특화 우수상</span></div>
     </div>
     <div class="sheet-body">
+      <span class="stamp-wrap" aria-hidden="true"><svg class="stamp-award" viewBox="0 0 120 120" role="img" aria-label="특화 프로젝트 우수상">
+  <defs>
+    <path id="st-wyd-p" d="M60,60 m-45,0 a45,45 0 1,1 90,0 a45,45 0 1,1 -90,0"/>
+    <filter id="st-wyd-ink" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="42" result="n"/>
+      <feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -1.3 1.5" result="m"/>
+      <feComposite in="SourceGraphic" in2="m" operator="in" result="t"/>
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="1" seed="3" result="w"/>
+      <feDisplacementMap in="t" in2="w" scale="1.1"/>
+    </filter>
+  </defs>
+  <g filter="url(#st-wyd-ink)" fill="currentColor" stroke="currentColor">
+    <circle cx="60" cy="60" r="56" fill="none" stroke-width="3.2"/>
+    <circle cx="60" cy="60" r="37" fill="none" stroke-width="1.2"/>
+    <text font-size="8.6" stroke="none" font-family="'IBM Plex Mono', ui-monospace, monospace" font-weight="500">
+      <textPath href="#st-wyd-p" startOffset="0" textLength="280" lengthAdjust="spacing">SSAFY 14TH · AWARD · 2026 · SSAFY 14TH · AWARD · 2026 · </textPath>
+    </text>
+    <text x="60" y="51" text-anchor="middle" font-size="8.5" stroke="none" font-family="'IBM Plex Sans KR', 'Pretendard', sans-serif" font-weight="600">특화 프로젝트</text>
+    <text x="60" y="71" text-anchor="middle" font-size="19" stroke="none" font-family="'Hahmlet', serif" font-weight="700">우수상</text>
+    <text x="60" y="84" text-anchor="middle" font-size="7" stroke="none">★ ★</text>
+  </g>
+</svg></span>
       <div class="sheet-head">
         <div>
           <p class="no">02 — Would You Draw</p>
@@ -352,6 +402,28 @@ footer h2{font-size:clamp(24px,3vw,30px)}
       <div><span class="k">Award</span><span class="v acc">자율 우수상</span></div>
     </div>
     <div class="sheet-body">
+      <span class="stamp-wrap" aria-hidden="true"><svg class="stamp-award" viewBox="0 0 120 120" role="img" aria-label="자율 프로젝트 우수상">
+  <defs>
+    <path id="st-jabis-p" d="M60,60 m-45,0 a45,45 0 1,1 90,0 a45,45 0 1,1 -90,0"/>
+    <filter id="st-jabis-ink" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="56" result="n"/>
+      <feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -1.3 1.5" result="m"/>
+      <feComposite in="SourceGraphic" in2="m" operator="in" result="t"/>
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="1" seed="3" result="w"/>
+      <feDisplacementMap in="t" in2="w" scale="1.1"/>
+    </filter>
+  </defs>
+  <g filter="url(#st-jabis-ink)" fill="currentColor" stroke="currentColor">
+    <circle cx="60" cy="60" r="56" fill="none" stroke-width="3.2"/>
+    <circle cx="60" cy="60" r="37" fill="none" stroke-width="1.2"/>
+    <text font-size="8.6" stroke="none" font-family="'IBM Plex Mono', ui-monospace, monospace" font-weight="500">
+      <textPath href="#st-jabis-p" startOffset="0" textLength="280" lengthAdjust="spacing">SSAFY 14TH · AWARD · 2026 · SSAFY 14TH · AWARD · 2026 · </textPath>
+    </text>
+    <text x="60" y="51" text-anchor="middle" font-size="8.5" stroke="none" font-family="'IBM Plex Sans KR', 'Pretendard', sans-serif" font-weight="600">자율 프로젝트</text>
+    <text x="60" y="71" text-anchor="middle" font-size="19" stroke="none" font-family="'Hahmlet', serif" font-weight="700">우수상</text>
+    <text x="60" y="84" text-anchor="middle" font-size="7" stroke="none">★ ★</text>
+  </g>
+</svg></span>
       <div class="sheet-head">
         <div>
           <p class="no">03 — Jabis</p>

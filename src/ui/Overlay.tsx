@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { modalClick } from './Modal'
+import { stampSvg } from './stamp'
 import { PROFILE, PROJECTS, type Project } from '../content'
 import { MODEL_CUBES } from '../scene/layouts'
 
@@ -57,6 +58,7 @@ function ProjectCard({ p, dark }: { p: Project; dark?: boolean }) {
         <span><i>TEAM</i>{p.team}</span>
         <span><i>ROLE</i>{p.role}</span>
       </div>
+      <span className="stamp-wrap" aria-hidden="true" dangerouslySetInnerHTML={{ __html: stampSvg(p.stamp, `st-${p.id}`) }} />
       <p className="award">{p.award}</p>
       <h2 id={`${p.id}-t`}>{p.title}</h2>
       <p className="line">{p.line}</p>
