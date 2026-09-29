@@ -4,7 +4,7 @@
 스크롤을 내리면 **같은 800개의 큐브**가 장면마다 모양을 바꾸며 이야기를 이어갑니다.
 
 - 스택: React 19 · TypeScript · Vite · React Three Fiber · drei (`ScrollControls`, `Line`)
-- 1분 버전(정적 페이지): `public/quick/index.html` → 배포 후 `/quick/`
+- 전체 보기(문서형 정적 페이지): `public/quick/index.html` → 배포 후 `/quick/`
 
 ```bash
 npm install

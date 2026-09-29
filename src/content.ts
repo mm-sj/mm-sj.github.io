@@ -7,7 +7,7 @@ export const PROFILE = {
   role: 'Frontend Developer · Web 3D & Interaction',
   email: 'dhckdals1104@naver.com',
   github: 'https://github.com/mm-sj',
-  // 1분 안에 훑어보는 정적 버전. 배포 시엔 같은 사이트의 quick/ 폴더, 필요하면 VITE_QUICK_URL로 교체
+  // 문서형 정적 버전(전체 보기). 배포 시엔 같은 사이트의 quick/ 폴더, 필요하면 VITE_QUICK_URL로 교체
   quick: QUICK,
 }
 

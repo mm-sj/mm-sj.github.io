@@ -214,7 +214,7 @@ export function Overlay() {
               PDF ↓
             </a>
             <a className="chip chip--solid" href={PROFILE.quick} target="_blank" rel="noopener">
-              1분 버전으로 보기 →
+              포트폴리오 전체 보기 →
             </a>
           </div>
         </div>
