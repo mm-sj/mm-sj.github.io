@@ -73,7 +73,7 @@ const INK = '#16191C'
 const INK2 = '#3A4048'
 const GLASS = '#8C96A0'
 const DIM = '#6B737C'
-const AXIS = '#2446D8'
+const AXIS = '#9AA9D8' // 통심선은 연하게 — 도면의 주인공은 벽이다
 
 /**
  * a→b 선을 막대 큐브로 채운다. 조각끼리 딱 붙어 끊김 없는 선이 된다.
@@ -146,22 +146,32 @@ export function planLayout(): Layout {
     [A.x0, A.z1, -0.3, A.z1], [0.3, A.z1, A.x1, A.z1],
   ], LW.cut)
 
-  // ── 창 (가는 이중선)
-  for (const [x0, x1] of [[-1.2, -0.85], [-0.4, -0.05], [0.3, 1.2]] as const) {
-    line(b, x0, P.z0 - 0.018, x1, P.z0 - 0.018, LW.glass * 0.6, GLASS, 0.2)
-    line(b, x0, P.z0 + 0.018, x1, P.z0 + 0.018, LW.glass * 0.6, GLASS, 0.2)
+  // ── 창 — 벽 두께 안에 벽면선 2줄 + 유리선 1줄, 양끝 문설주. (빈 구멍처럼 보이지 않게)
+  const T = LW.cut / 2
+  const winX = (x0: number, x1: number, z: number) => {
+    line(b, x0, z - T, x1, z - T, LW.thin, INK2, 0.2)
+    line(b, x0, z + T, x1, z + T, LW.thin, INK2, 0.2)
+    line(b, x0, z, x1, z, LW.hair, GLASS, 0.2)
+    line(b, x0, z - T, x0, z + T, LW.thin, INK, 1)
+    line(b, x1, z - T, x1, z + T, LW.thin, INK, 1)
   }
-  for (const [z0, z1, x] of [[-0.55, 0.35, P.x1], [-0.35, 0.55, P.x0]] as const) {
-    line(b, x - 0.018, z0, x - 0.018, z1, LW.glass * 0.6, GLASS, 0.2)
-    line(b, x + 0.018, z0, x + 0.018, z1, LW.glass * 0.6, GLASS, 0.2)
+  const winZ = (z0: number, z1: number, x: number) => {
+    line(b, x - T, z0, x - T, z1, LW.thin, INK2, 0.2)
+    line(b, x + T, z0, x + T, z1, LW.thin, INK2, 0.2)
+    line(b, x, z0, x, z1, LW.hair, GLASS, 0.2)
+    line(b, x - T, z0, x + T, z0, LW.thin, INK, 1)
+    line(b, x - T, z1, x + T, z1, LW.thin, INK, 1)
   }
+  for (const [x0, x1] of [[-1.2, -0.85], [-0.4, -0.05], [0.3, 1.2]] as const) winX(x0, x1, P.z0)
+  winZ(-0.55, 0.35, P.x1)
+  winZ(-0.35, 0.55, P.x0)
 
   // ── 내벽
   walls(b, [
     [-0.15, P.z0, -0.15, -0.55], [-0.15, -0.2, -0.15, 0.3], // 서측 실 경계 (문 자리 비움)
     [P.x0, 0.3, -0.75, 0.3], [-0.45, 0.3, -0.15, 0.3],
-    [0.3, P.z0, 0.3, -0.45], [0.3, -0.45, 1.2, -0.45], // 코어
-    [0.9, P.z0, 0.9, -0.45],
+    [0.3, P.z0, 0.3, -0.45], [0.3, -0.45, 0.45, -0.45], [0.75, -0.45, 0.95, -0.45], [1.15, -0.45, 1.2, -0.45], // 코어 (계단·승강기 출입 자리 비움)
+    [0.9, P.z0, 0.9, -0.45], [1.2, P.z0, 1.2, -0.45],
     [0.75, 0.45, P.x1, 0.45], [0.75, 0.45, 0.75, 0.75], // 동측 실
   ], LW.wall, INK2)
 
@@ -196,24 +206,23 @@ export function planLayout(): Layout {
       b.push([cx, 0.016, z], [0.1, 0.02, 0.1], INK)
     }
 
-  // ── 상부 매스 윤곽 (숨은선, 점선)
-  const hidden = (f: { x0: number; x1: number; z0: number; z1: number }) => {
-    line(b, f.x0, f.z0, f.x1, f.z0, LW.hair, INK2, 0.14, [0.08, 0.05])
-    line(b, f.x1, f.z0, f.x1, f.z1, LW.hair, INK2, 0.14, [0.08, 0.05])
-    line(b, f.x1, f.z1, f.x0, f.z1, LW.hair, INK2, 0.14, [0.08, 0.05])
-    line(b, f.x0, f.z1, f.x0, f.z0, LW.hair, INK2, 0.14, [0.08, 0.05])
-  }
-  hidden(FOOTPRINTS.tower)
-  hidden(FOOTPRINTS.slab)
-
   // ── 통심선 (일점쇄선 느낌의 점선) + 통심 기호(원)
+  // 일점쇄선: 긴 선 - 짧은 점을 반복
+  const chain = (ax: number, az: number, bx: number, bz: number) => {
+    const len = Math.hypot(bx - ax, bz - az)
+    for (let d = 0; d < len; d += 0.3) {
+      const t0 = d / len, t1 = Math.min(1, (d + 0.2) / len), t2 = Math.min(1, (d + 0.24) / len), t3 = Math.min(1, (d + 0.26) / len)
+      line(b, ax + (bx - ax) * t0, az + (bz - az) * t0, ax + (bx - ax) * t1, az + (bz - az) * t1, LW.hair, AXIS, 0.2)
+      if (t2 < 1) line(b, ax + (bx - ax) * t2, az + (bz - az) * t2, ax + (bx - ax) * t3, az + (bz - az) * t3, LW.hair, AXIS, 1)
+    }
+  }
   for (const x of GX) {
-    line(b, x, -2.0, x, 2.45, LW.hair, AXIS, 0.2, [0.22, 0.08])
-    arc(b, x, -2.12, 0.1, 0, Math.PI * 2, LW.hair, AXIS, 10)
+    chain(x, -1.95, x, 2.2)
+    arc(b, x, -2.04, 0.08, 0, Math.PI * 2, LW.hair, AXIS, 10)
   }
   for (const z of GZ) {
-    line(b, -2.45, z, 2.2, z, LW.hair, AXIS, 0.2, [0.22, 0.08])
-    arc(b, -2.57, z, 0.1, 0, Math.PI * 2, LW.hair, AXIS, 10)
+    chain(-2.4, z, 1.8, z)
+    arc(b, -2.49, z, 0.08, 0, Math.PI * 2, LW.hair, AXIS, 10)
   }
 
   // ── 치수선 (상단·좌측) + 틱
@@ -238,7 +247,6 @@ export function planLayout(): Layout {
     line(b, x, 0.62, x + 0.25, 0.62, LW.thin, INK, 1)
     line(b, x + 0.125, 0.62, x + 0.125, 0.5, LW.thin, INK, 1)
   }
-  line(b, -2.05, 0.62, 2.0, 0.62, LW.hair, INK2, 0.2, [0.3, 0.06])
 
   return b.done([0, 0, 0])
 }
