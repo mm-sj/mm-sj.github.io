@@ -188,6 +188,17 @@ footer h2{font-size:clamp(24px,3vw,30px)}
 #wyd .grid-media .media video,#wyd .grid-media .media img{width:100%;height:100%;object-fit:contain}
 #jabis .jabis-more .media{aspect-ratio:16/9;background:#111316}
 #jabis .jabis-more .media video,#jabis .jabis-more .media img{width:100%;height:100%;object-fit:cover}
+.hero-side{justify-self:end;width:min(320px,100%);display:grid;gap:12px}
+.hero-side .portrait{justify-self:stretch;width:100%}
+.hero-side .contact{margin-top:0;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px}
+.hero-side .contact .chip{justify-content:center}
+.hero-side .contact .chip:first-child{grid-column:1/-1}
+.hero{padding-bottom:clamp(16px,3vw,32px)}
+.hero + .skills{margin-top:clamp(16px,3vw,32px)}
+.proj-h{margin-top:clamp(40px,6vw,72px);font-size:clamp(26px,3.4vw,34px)}
+.skills + .index{margin-top:0}
+.proj-h + .index{margin-top:16px}
+@media (max-width:860px){.hero-side{justify-self:start;width:min(240px,100%)}}
 </style>
 
 <script>
@@ -227,6 +238,12 @@ footer h2{font-size:clamp(24px,3vw,30px)}
         <li><span>NOW</span><span>LG전자 K-뉴딜 아카데미 1기 AX 워크플로우 트랙 (2026.08~)</span></li>
         <li><span>AWARDS</span><span>SSAFY 공통 최우수상 · 특화 우수상 · 자율 우수상</span></li>
       </ul>
+    </div>
+    <div class="hero-side">
+      <figure class="portrait">
+        <img src="../assets/portrait.jpg" alt="오창민 프로필 사진" width="600" height="750" loading="eager" decoding="async">
+        <figcaption class="mono">OH CHANGMIN</figcaption>
+      </figure>
       <div class="contact">
         <button class="chip" type="button" data-copy="dhckdals1104@naver.com">dhckdals1104@naver.com</button>
         <a class="chip" href="https://github.com/mm-sj" target="_blank" rel="noopener">github.com/mm-sj ↗</a>
@@ -234,10 +251,6 @@ footer h2{font-size:clamp(24px,3vw,30px)}
       </div>
       <p class="toast" aria-live="polite" id="toast-hero"></p>
     </div>
-    <figure class="portrait">
-      <img src="../assets/portrait.jpg" alt="오창민 프로필 사진" width="600" height="750" loading="eager" decoding="async">
-      <figcaption class="mono">OH CHANGMIN</figcaption>
-    </figure>
   </section>
 
   <section class="skills" id="skills" aria-labelledby="skills-h">
@@ -252,6 +265,7 @@ footer h2{font-size:clamp(24px,3vw,30px)}
     </dl>
   </section>
 
+  <h2 class="proj-h" id="projects">Projects</h2>
   <nav class="index" aria-label="프로젝트 목록">
     <a href="#docq"><span class="mono">01</span><span><span class="t">DocQ</span><span class="d">PDF를 퀴즈로 만들어 함께 푸는 3D 보드게임</span></span><span class="award">공통 최우수상</span></a>
     <a href="#wyd"><span class="mono">02</span><span><span class="t">Would You Draw</span><span class="d">그린 감정이 별이 되어 쌓이는 3D 우주 아카이브</span></span><span class="award">특화 우수상</span></a>
