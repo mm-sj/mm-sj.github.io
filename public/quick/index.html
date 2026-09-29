@@ -175,6 +175,8 @@ footer h2{font-size:clamp(24px,3vw,30px)}
   /* 모달 안에서는 모달 상단 바가 목차 역할을 하므로 자체 상단 바만 숨긴다 */
   .embed .topbar { display: none !important; }
   .embed .hero { padding-top: clamp(24px, 4vw, 48px); }
+  /* 목차에서 Contact를 눌렀을 때도 제목이 맨 위로 오도록 마지막 섹션에 여백 */
+  .embed #contact { min-height: calc(100vh - 24px); box-sizing: border-box; }
 </style>
 </head>
 <body>
