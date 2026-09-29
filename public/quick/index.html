@@ -162,13 +162,13 @@ footer h2{font-size:clamp(24px,3vw,30px)}
 </style>
 
 <script>
-  // ?embed — 인터랙티브 포트폴리오의 모달 안에서 열릴 때: 주소의 #프로젝트 하나만 보여준다
+  // ?embed — 인터랙티브 포트폴리오의 '전체 보기' 모달 안에서 열릴 때
   if (/[?&]embed\b/.test(location.search)) document.documentElement.classList.add('embed')
 </script>
 <style>
-  .embed .topbar, .embed .hero, .embed nav.index, .embed .skills, .embed #contact { display: none !important; }
-  .embed .sheet { display: none; }
-  .embed .sheet.on { display: block; margin-top: clamp(16px, 3vw, 32px); }
+  /* 모달 안에서는 모달 상단 바가 목차 역할을 하므로 자체 상단 바만 숨긴다 */
+  .embed .topbar { display: none !important; }
+  .embed .hero { padding-top: clamp(24px, 4vw, 48px); }
 </style>
 </head>
 <body>
@@ -536,13 +536,6 @@ document.querySelectorAll('[data-copy]').forEach(function(btn){
   }
   requestAnimationFrame(frame);
 })();
-</script>
-<script>
-  if (document.documentElement.classList.contains('embed')) {
-    var el = document.getElementById(location.hash.slice(1)) || document.querySelector('.sheet')
-    el.classList.add('on')
-    window.scrollTo(0, 0)
-  }
 </script>
 </body>
 </html>

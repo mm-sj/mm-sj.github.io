@@ -10,6 +10,7 @@ import { SECTION_COUNT } from './scene/timeline'
 import { Overlay } from './ui/Overlay'
 import { facadeParams } from './store'
 import { PROFILE } from './content'
+import { FolioModal, modalClick } from './ui/Modal'
 
 export default function App() {
   useEffect(() => {
@@ -24,7 +25,7 @@ export default function App() {
     <>
       <header className="topbar">
         <span className="mono">OH CHANGMIN — PORTFOLIO</span>
-        <a className="mono" href={PROFILE.quick} target="_blank" rel="noopener">
+        <a className="mono" href={PROFILE.quick} target="_blank" rel="noopener" onClick={modalClick()}>
           전체 보기 →
         </a>
       </header>
@@ -66,6 +67,7 @@ export default function App() {
         </Suspense>
         <AdaptiveDpr pixelated={false} />
       </Canvas>
+      <FolioModal />
     </>
   )
 }

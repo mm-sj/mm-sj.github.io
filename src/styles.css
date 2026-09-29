@@ -179,3 +179,10 @@ p { margin: 0; line-height: 1.75; color: var(--ink-2); font-size: 16px; }
 @keyframes modal-in { from { opacity: 0; } }
 @keyframes modal-up { from { opacity: 0; transform: translateY(16px); } }
 @media (prefers-reduced-motion: reduce) { .modal, .modal__panel { animation: none; } }
+.modal:not(.is-open) { display: none; }
+.modal__nav { display: flex; flex-wrap: wrap; gap: 4px 2px; min-width: 0; }
+.modal__nav button {
+  border: 0; background: none; padding: 6px 8px; cursor: pointer; color: var(--muted);
+}
+.modal__nav button:hover { color: var(--ink); background: rgba(22, 25, 28, 0.06); }
+@media (max-width: 640px) { .modal__nav button:first-child { display: none; } }

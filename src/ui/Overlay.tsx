@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { createPortal } from 'react-dom'
+import { modalClick } from './Modal'
 import { PROFILE, PROJECTS, type Project } from '../content'
 import { MODEL_CUBES } from '../scene/layouts'
 
@@ -48,48 +48,7 @@ function Clip({ src, poster, label }: { src: string; poster: string; label: stri
   return <video ref={ref} poster={poster} muted loop playsInline preload="none" aria-label={label} />
 }
 
-/** 자세히 보기 — 정적 포트폴리오의 해당 프로젝트만 모달 안에 띄운다 */
-function DetailModal({ p, onClose }: { p: Project; onClose: () => void }) {
-  const closeBtn = useRef<HTMLButtonElement>(null)
-  const [loaded, setLoaded] = useState(false)
-  useEffect(() => {
-    const prev = document.activeElement as HTMLElement | null
-    closeBtn.current?.focus()
-    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && onClose()
-    window.addEventListener('keydown', onKey)
-    return () => {
-      window.removeEventListener('keydown', onKey)
-      prev?.focus?.()
-    }
-  }, [onClose])
-  const [base, hash] = p.detail.split('#')
-  const src = `${base}${base.includes('?') ? '&' : '?'}embed#${hash ?? ''}`
-  return createPortal(
-    <div className="modal" role="dialog" aria-modal="true" aria-label={`${p.title} 자세히 보기`} onClick={onClose}>
-      <div className="modal__panel" onClick={(e) => e.stopPropagation()}>
-        <div className="modal__bar">
-          <span className="mono">
-            SHEET {p.no} / 03 — {p.title}
-          </span>
-          <span className="modal__actions">
-            <a className="mono" href={p.detail} target="_blank" rel="noopener">
-              새 탭 ↗
-            </a>
-            <button ref={closeBtn} type="button" className="modal__close" onClick={onClose} aria-label="닫기">
-              ✕
-            </button>
-          </span>
-        </div>
-        {!loaded && <p className="modal__loading mono">불러오는 중…</p>}
-        <iframe title={`${p.title} 상세`} src={src} onLoad={() => setLoaded(true)} style={{ opacity: loaded ? 1 : 0 }} />
-      </div>
-    </div>,
-    document.body,
-  )
-}
-
 function ProjectCard({ p, dark }: { p: Project; dark?: boolean }) {
-  const [open, setOpen] = useState(false)
   return (
     <article className={`card ${dark ? 'card--dark' : ''}`} aria-labelledby={`${p.id}-t`}>
       <div className="card__block">
@@ -115,12 +74,7 @@ function ProjectCard({ p, dark }: { p: Project; dark?: boolean }) {
           href={p.detail}
           target="_blank"
           rel="noopener"
-          onClick={(e) => {
-            // 새 탭 열기(휠 클릭·Ctrl 클릭)는 그대로 두고, 일반 클릭만 모달로
-            if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return
-            e.preventDefault()
-            setOpen(true)
-          }}
+          onClick={modalClick(p.id)}
         >
           자세히 보기 →
         </a>
@@ -133,7 +87,6 @@ function ProjectCard({ p, dark }: { p: Project; dark?: boolean }) {
           GitHub ↗
         </a>
       </div>
-      {open && <DetailModal p={p} onClose={() => setOpen(false)} />}
     </article>
   )
 }
@@ -213,7 +166,7 @@ export function Overlay() {
             <a className="chip" href="./portfolio.pdf" target="_blank" rel="noopener">
               PDF ↓
             </a>
-            <a className="chip chip--solid" href={PROFILE.quick} target="_blank" rel="noopener">
+            <a className="chip chip--solid" href={PROFILE.quick} target="_blank" rel="noopener" onClick={modalClick()}>
               포트폴리오 전체 보기 →
             </a>
           </div>
