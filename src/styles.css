@@ -197,3 +197,16 @@ p { margin: 0; line-height: 1.75; color: var(--ink-2); font-size: 16px; }
 .stamp-wrap svg { display: block; width: 100%; height: 100%; overflow: visible; }
 .card--dark .stamp-wrap { color: #FF7A66; mix-blend-mode: screen; opacity: 0.88; }
 @media (max-width: 860px) { .stamp-wrap { width: 80px; height: 80px; top: 36px; right: 8px; } }
+
+/* 좁은 화면: 카드를 접어 3D가 보이게 */
+.card__toggle { display: none; }
+@media (max-width: 860px) {
+  .card__toggle { display: inline-flex; }
+  .card:not(.is-open) > .card__block,
+  .card:not(.is-open) > .line,
+  .card:not(.is-open) > .clip,
+  .card:not(.is-open) > .points { display: none; }
+  .card:not(.is-open) { padding-top: 14px; }
+  .card:not(.is-open) .stamp-wrap { top: 6px; right: 8px; width: 66px; height: 66px; margin: 0; }
+  .card:not(.is-open) h2 { padding-right: 64px; }
+}

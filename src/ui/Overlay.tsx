@@ -50,8 +50,10 @@ function Clip({ src, poster, label }: { src: string; poster: string; label: stri
 }
 
 function ProjectCard({ p, dark }: { p: Project; dark?: boolean }) {
+  // 좁은 화면에서는 제목·상·버튼만 보이게 접어 두고, 누르면 펼친다 (넓은 화면에선 항상 펼침)
+  const [open, setOpen] = useState(false)
   return (
-    <article className={`card ${dark ? 'card--dark' : ''}`} aria-labelledby={`${p.id}-t`}>
+    <article className={`card ${dark ? 'card--dark' : ''} ${open ? 'is-open' : ''}`} aria-labelledby={`${p.id}-t`}>
       <div className="card__block">
         <span><i>SHEET</i>{p.no} / 03</span>
         <span><i>PERIOD</i>{p.period}</span>
@@ -71,6 +73,9 @@ function ProjectCard({ p, dark }: { p: Project; dark?: boolean }) {
         ))}
       </ul>
       <div className="links">
+        <button type="button" className="chip card__toggle" aria-expanded={open} onClick={() => setOpen((v) => !v)}>
+          {open ? '접기 ▴' : '펼치기 ▾'}
+        </button>
         <a
           className="chip chip--solid"
           href={p.detail}
