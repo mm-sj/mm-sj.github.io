@@ -182,6 +182,7 @@ footer h2{font-size:clamp(24px,3vw,30px)}
 .tbi svg{width:14px;height:14px;flex:none}
 .tbi .tk-mono{height:14px;min-width:14px;flex:none}
 .tk-desc{display:block;margin-top:6px;font-size:13.5px;color:var(--muted)}
+.skills + .index{margin-top:clamp(40px,6vw,72px)}
 </style>
 
 <script>
@@ -234,12 +235,6 @@ footer h2{font-size:clamp(24px,3vw,30px)}
     </figure>
   </section>
 
-  <nav class="index" aria-label="프로젝트 목록">
-    <a href="#docq"><span class="mono">01</span><span><span class="t">DocQ</span><span class="d">PDF를 퀴즈로 만들어 함께 푸는 3D 보드게임</span></span><span class="award">공통 최우수상</span></a>
-    <a href="#wyd"><span class="mono">02</span><span><span class="t">Would You Draw</span><span class="d">그린 감정이 별이 되어 쌓이는 3D 우주 아카이브</span></span><span class="award">특화 우수상</span></a>
-    <a href="#jabis"><span class="mono">03</span><span><span class="t">Jabis</span><span class="d">양팔 데스크 로봇의 실시간 디지털 트윈 대시보드</span></span><span class="award">자율 우수상</span></a>
-  </nav>
-
   <section class="skills" id="skills" aria-labelledby="skills-h">
     <h2 id="skills-h">Skills</h2>
     <dl>
@@ -251,6 +246,13 @@ footer h2{font-size:clamp(24px,3vw,30px)}
       <div><dt>COLLAB</dt><dd><span class="tks"><span class="tk"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#F03C2E" d="M13.09 23.549a1.54 1.54 0 0 1-2.18 0L.451 13.089a1.54 1.54 0 0 1 0-2.179l7.191-7.19 2.733 2.733a1.85 1.85 0 0 0 .964 2.326v6.66a1.849 1.849 0 1 0 1.54 0V8.957l2.508 2.508a1.85 1.85 0 1 0 1.09-1.09l-2.634-2.634a1.85 1.85 0 0 0-2.378-2.377L8.73 2.63 10.91.451a1.54 1.54 0 0 1 2.179 0l10.459 10.46a1.54 1.54 0 0 1 0 2.179z"/></svg>Git</span><span class="tk"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#0052CC" d="M11.571 11.513H0a5.218 5.218 0 0 0 5.232 5.215h2.13v2.057A5.215 5.215 0 0 0 12.575 24V12.518a1.005 1.005 0 0 0-1.005-1.005zm5.723-5.756H5.736a5.215 5.215 0 0 0 5.215 5.214h2.129v2.058a5.218 5.218 0 0 0 5.215 5.214V6.758a1.001 1.001 0 0 0-1.001-1.001zM23.013 0H11.455a5.215 5.215 0 0 0 5.215 5.215h2.129v2.057A5.215 5.215 0 0 0 24 12.483V1.005A1.001 1.001 0 0 0 23.013 0Z"/></svg>Jira</span><span class="tk"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#F24E1E" d="M15.852 8.981h-4.588V0h4.588c2.476 0 4.49 2.014 4.49 4.49s-2.014 4.491-4.49 4.491zM12.735 7.51h3.117c1.665 0 3.019-1.355 3.019-3.019s-1.355-3.019-3.019-3.019h-3.117V7.51zm0 1.471H8.148c-2.476 0-4.49-2.014-4.49-4.49S5.672 0 8.148 0h4.588v8.981zm-4.587-7.51c-1.665 0-3.019 1.355-3.019 3.019s1.354 3.02 3.019 3.02h3.117V1.471H8.148zm4.587 15.019H8.148c-2.476 0-4.49-2.014-4.49-4.49s2.014-4.49 4.49-4.49h4.588v8.98zM8.148 8.981c-1.665 0-3.019 1.355-3.019 3.019s1.355 3.019 3.019 3.019h3.117V8.981H8.148zM8.172 24c-2.489 0-4.515-2.014-4.515-4.49s2.014-4.49 4.49-4.49h4.588v4.441c0 2.503-2.047 4.539-4.563 4.539zm-.024-7.51a3.023 3.023 0 0 0-3.019 3.019c0 1.665 1.365 3.019 3.044 3.019 1.705 0 3.093-1.376 3.093-3.068v-2.97H8.148zm7.704 0h-.098c-2.476 0-4.49-2.014-4.49-4.49s2.014-4.49 4.49-4.49h.098c2.476 0 4.49 2.014 4.49 4.49s-2.014 4.49-4.49 4.49zm-.097-7.509c-1.665 0-3.019 1.355-3.019 3.019s1.355 3.019 3.019 3.019h.098c1.665 0 3.019-1.355 3.019-3.019s-1.355-3.019-3.019-3.019h-.098z"/></svg>Figma</span><span class="tk"><i class="tk-mono" style="background:#00C4CC;color:#fff" aria-hidden="true">C</i>Canva</span></span></dd></div>
     </dl>
   </section>
+
+  <nav class="index" aria-label="프로젝트 목록">
+    <a href="#docq"><span class="mono">01</span><span><span class="t">DocQ</span><span class="d">PDF를 퀴즈로 만들어 함께 푸는 3D 보드게임</span></span><span class="award">공통 최우수상</span></a>
+    <a href="#wyd"><span class="mono">02</span><span><span class="t">Would You Draw</span><span class="d">그린 감정이 별이 되어 쌓이는 3D 우주 아카이브</span></span><span class="award">특화 우수상</span></a>
+    <a href="#jabis"><span class="mono">03</span><span><span class="t">Jabis</span><span class="d">양팔 데스크 로봇의 실시간 디지털 트윈 대시보드</span></span><span class="award">자율 우수상</span></a>
+  </nav>
+
 
   <!-- ─────────── 01 DocQ ─────────── -->
   <article class="sheet" id="docq">
