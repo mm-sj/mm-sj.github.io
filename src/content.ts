@@ -89,6 +89,6 @@ export const PROJECTS: Project[] = [
     poster: './assets/jabis-dashboard.jpg',
     detail: `${QUICK}#jabis`,
     repo: 'https://github.com/mm-sj/S14P31D101',
-    extra: { label: '시연 영상', href: 'https://www.youtube.com/watch?v=pIx2FC31FqI' },
+    extra: { label: '홍보 영상', href: 'https://www.youtube.com/watch?v=pIx2FC31FqI' },
   },
 ]

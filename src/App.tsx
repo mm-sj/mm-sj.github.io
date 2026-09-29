@@ -26,7 +26,7 @@ export default function App() {
       <header className="topbar">
         <span className="mono">OH CHANGMIN — PORTFOLIO</span>
         <a className="mono" href={PROFILE.quick} target="_blank" rel="noopener" onClick={modalClick()}>
-          전체 보기 →
+          포트폴리오 전체 보기 →
         </a>
       </header>
       <Canvas

@@ -115,7 +115,6 @@ export function Overlay() {
           <p className="lede">모형을 만지던 손으로, 지금은 웹에서 3D를 만지고 있습니다.</p>
           <p className="cue">천천히 스크롤해 보세요 ↓</p>
         </div>
-        <p className="stamp">PLAN — SCALE 1:250</p>
       </section>
 
       {/* 1. 모형 */}
@@ -127,7 +126,7 @@ export function Overlay() {
             건축학을 전공했고, 건축사사무소에서 인턴으로 일하며 모형을 만들고 3D 모델링과 건축물 일러스트를
             맡았습니다.
           </p>
-          <p className="note">이 모형도 큐브 {MODEL_CUBES}개를 한 칸씩 쌓아 만들었습니다. 스크롤하면 이 큐브들이 그대로 다음 장면이 됩니다.</p>
+          <p className="note">이 모형은 큐브 {MODEL_CUBES}개를 쌓아 만들었습니다.</p>
         </div>
       </section>
 
@@ -137,9 +136,9 @@ export function Overlay() {
           <p className="eyebrow">02 · Code</p>
           <h2>지금은 코드로 만듭니다</h2>
           <p>
-            아부다비 알 바르 타워의 차양을 참고해 three.js로 만든 스크린입니다. 커서를 가까이 대 보세요. 주변
-            모듈이 우산처럼 하나씩 열리고, 커서가 떠나면 다시 닫힙니다.
+            아부다비 알 바르 타워의 차양을 참고해 three.js로 만든 스크린입니다.
           </p>
+          <p className="note">커서를 가까이 대 보세요.</p>
         </div>
       </section>
 
@@ -159,7 +158,7 @@ export function Overlay() {
         <div className="txt">
           <img className="contact__photo" src="./assets/portrait.jpg" alt="오창민 프로필 사진" width="96" height="120" loading="lazy" decoding="async" />
           <p className="eyebrow">06 · Contact</p>
-          <h2>Contact</h2>
+          <h2>오창민</h2>
           <ul className="facts">
             <li><i>EDUCATION</i>SSAFY 14기 수료 · 계명대학교 건축학 학사</li>
             <li><i>EXPERIENCE</i>건축사사무소 인턴 — 모형 제작, 3D 모델링</li>
