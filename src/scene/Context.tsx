@@ -11,7 +11,7 @@ import { facadeSlot } from './layouts'
  *  00 도면 : 0.6 모듈 바닥 타일만 얇은 판(모눈)으로 깔린다. 건물과 나무는 아직 보이지 않는다.
  *  01 모형 : 바닥 타일이 두께를 얻어 대지판이 되고, 필지 위로 0.3 모듈 큐브가 한 층씩 쌓이며,
  *            나무가 솟아오른다. (가운데 건물과 같은 0.3 모듈)
- *  02 전환 : 사라지지 않고 가까운 모듈부터 떠올라 파사드 패널 자리로 날아가 합류한다.
+ *  02 전환 : 대지가 바깥쪽부터 아래로 꺼지며 사라진다. (예전엔 모듈이 파사드로 날아가 합류했는데, 화면이 너무 꽉 찼다)
  */
 
 const MOD = 0.3 // 건물 모듈 (가운데 모형과 동일)
@@ -129,6 +129,17 @@ function fly(
   )
   dummy.rotation.set(0, slot.yaw * f, 0)
 }
+/**
+ * 01 → 02: 대지(바닥·주변 건물·나무)가 아래로 꺼지며 사라진다.
+ * 이미 dummy에 놓인 위치·크기를 기준으로 f(0~1)만큼 가라앉히고 작게 만든다.
+ */
+function sink(f: number) {
+  if (f <= 0) return
+  const k = f * f
+  dummy.position.y -= k * 2.6
+  const sc = 1 - ss((f - 0.35) / 0.65)
+  dummy.scale.multiplyScalar(sc + 1e-4)
+}
 const col = new THREE.Color()
 function ss(x: number) {
   const t = Math.min(1, Math.max(0, x))
@@ -173,42 +184,44 @@ export function ModelContext() {
 
     tiles.forEach((t, i) => {
       const ei = ss(e * 1.6 - t.delay * 0.6)
-      const xi = ss(x * 1.7 - t.delay * 0.7) // 가까운 모듈부터 파사드로 날아간다
+      const xi = ss(x * 1.7 - (1 - t.delay) * 0.7) // 바깥쪽부터 꺼진다
       // 도면에서는 보이지 않다가, 솟아나며 두께 0.18의 대지판이 된다 (도로는 살짝 낮게)
       const thick = (t.road ? GROUND_T * 0.7 : GROUND_T) * ei
       const top = -0.001 - (t.road ? GROUND_T * 0.3 * ei : 0)
       const on = ei > 0 ? 1 : 0
-      fly(t.x, top - thick / 2, t.z, TILE * 0.96 * on, thick, TILE * 0.96 * on, slots.tiles[i], xi)
+      fly(t.x, top - thick / 2, t.z, TILE * 0.96 * on, thick, TILE * 0.96 * on, slots.tiles[i], 0)
+      sink(xi)
       dummy.updateMatrix()
       T.setMatrixAt(i, dummy.matrix)
     })
 
     vox.forEach((v, i) => {
       const ei = ss(e * 1.5 - v.delay * 0.5)
-      const xi = ss(x * 1.7 - v.delay * 0.7)
+      const xi = ss(x * 1.7 - (1 - v.delay) * 0.7)
       // 층이 아래부터 차례로 쌓인다. 솟아나기 전에는 완전히 숨긴다 (가로세로도 0)
       const grow = Math.min(1, Math.max(0, ei * v.levels - v.level))
       const h = MOD * 1.004 * grow // 층 사이도 빈틈없이(살짝 겹치게) — 주변 건물은 줄눈 없는 흰 덩어리
       const on = grow > 0 ? 1 : 0
-      fly(v.x, v.level * MOD + h / 2, v.z, MOD * 1.004 * on, h, MOD * 1.004 * on, slots.vox[i], xi)
+      fly(v.x, v.level * MOD + h / 2, v.z, MOD * 1.004 * on, h, MOD * 1.004 * on, slots.vox[i], 0)
+      sink(xi)
       dummy.updateMatrix()
       V.setMatrixAt(i, dummy.matrix)
     })
 
     trees.forEach((t, i) => {
       const ei = ss(e * 1.6 - t.delay * 0.6)
-      const xi = ss(x * 1.7 - t.delay * 0.7)
-      // 솟아나기 전에는 보이지 않고, 자라면서 줄기와 수관이 함께 커진다. 빠질 땐 수관이 파사드로 날아간다
+      const xi = ss(x * 1.7 - (1 - t.delay) * 0.7)
+      // 솟아나기 전에는 보이지 않고, 자라면서 줄기와 수관이 함께 커진다. 빠질 땐 대지와 함께 꺼진다
       const r = t.r * ei
       const hgt = 0.32 * ei
-      fly(t.x, hgt, t.z, r, r, r, slots.trees[i], xi)
-      dummy.scale.setScalar(r * (1 - xi) + 1e-4) // 수관은 늘어나지 않고 동그란 채로 작아지며 합류
+      fly(t.x, hgt, t.z, r, r, r, slots.trees[i], 0)
+      sink(xi)
       dummy.updateMatrix()
       C.setMatrixAt(i, dummy.matrix)
-      const k = 1 - ss(xi * 3) // 줄기는 수관이 떠나자마자 접힌다
-      dummy.position.set(t.x, (hgt / 2) * k, t.z)
-      dummy.scale.set(0.025 * ei * k + 1e-4, hgt * k + 1e-4, 0.025 * ei * k + 1e-4)
+      dummy.position.set(t.x, hgt / 2, t.z)
+      dummy.scale.set(0.025 * ei + 1e-4, hgt + 1e-4, 0.025 * ei + 1e-4)
       dummy.rotation.set(0, 0, 0)
+      sink(xi)
       dummy.updateMatrix()
       K.setMatrixAt(i, dummy.matrix)
     })
