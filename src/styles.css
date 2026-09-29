@@ -272,3 +272,32 @@ p { margin: 0; line-height: 1.75; color: var(--ink-2); font-size: 16px; }
 
 /* 06 연락처 — 3D가 비워진 자리에 카드를 가운데로 */
 .sec--end, .sec.sec--end { justify-content: center; align-items: center; }
+
+/* 첫 화면 스크롤 안내 — 화면 아래 가운데, 스크롤하면 사라짐 */
+.scrollhint {
+  position: fixed; left: 50%; bottom: 26px; transform: translateX(-50%); z-index: 15;
+  display: grid; justify-items: center; gap: 8px; pointer-events: none;
+  color: var(--accent); transition: opacity 0.4s, transform 0.4s;
+}
+.scrollhint.is-hidden { opacity: 0; transform: translate(-50%, 10px); }
+.scrollhint__mouse {
+  position: relative; width: 22px; height: 34px; border: 1.5px solid currentColor; border-radius: 12px;
+}
+.scrollhint__dot {
+  position: absolute; left: 50%; top: 6px; width: 3px; height: 7px; margin-left: -1.5px;
+  border-radius: 2px; background: currentColor; animation: scrollhint 1.6s ease-in-out infinite;
+}
+.scrollhint__label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.24em; }
+@keyframes scrollhint {
+  0% { transform: translateY(0); opacity: 0; }
+  20% { opacity: 1; }
+  70% { transform: translateY(12px); opacity: 0; }
+  100% { transform: translateY(12px); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) { .scrollhint__dot { animation: none; } }
+/* 넓은 화면은 아이콘, 좁은 화면(카드가 아래를 차지)은 글 안내 */
+.cue--narrow { display: none; }
+@media (max-width: 860px) {
+  .scrollhint { display: none; }
+  .cue--narrow { display: block; }
+}

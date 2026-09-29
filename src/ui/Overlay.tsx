@@ -114,7 +114,7 @@ export function Overlay() {
           </h1>
           <p className="lede">모형을 만지던 손으로, 지금은 웹에서 3D를 만지고 있습니다.</p>
           <div className="hero__cta">
-            <p className="cue">천천히 스크롤해 보세요 ↓</p>
+            <p className="cue cue--narrow">천천히 스크롤해 보세요 ↓</p>
             <a className="chip" href={PROFILE.quick} target="_blank" rel="noopener" onClick={modalClick()}>
               포트폴리오 전체 보기 →
             </a>

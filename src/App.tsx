@@ -12,6 +12,7 @@ import { facadeParams } from './store'
 import { PROFILE } from './content'
 import { FolioModal, modalClick } from './ui/Modal'
 import { SectionNav } from './ui/SectionNav'
+import { ScrollHint } from './ui/ScrollHint'
 
 export default function App() {
   useEffect(() => {
@@ -71,6 +72,7 @@ export default function App() {
         <AdaptiveDpr pixelated={false} />
       </Canvas>
       <SectionNav />
+      <ScrollHint />
       <FolioModal />
     </>
   )
