@@ -157,8 +157,8 @@ export function Overlay() {
       {/* 6. 연락처 */}
       <section className="sec sec--end">
         <div className="txt">
-          <p className="eyebrow">Contact</p>
-          <h2>봐 주셔서 감사합니다</h2>
+          <p className="eyebrow">06 · Contact</p>
+          <h2>Contact</h2>
           <ul className="facts">
             <li><i>EDUCATION</i>SSAFY 14기 수료 · 계명대학교 건축학 학사</li>
             <li><i>EXPERIENCE</i>건축사사무소 인턴 — 모형 제작, 3D 모델링</li>
