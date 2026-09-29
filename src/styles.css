@@ -149,3 +149,33 @@ p { margin: 0; line-height: 1.75; color: var(--ink-2); font-size: 16px; }
 .sec--hero .txt { width: min(600px, 100%); }
 .sec--hero h1 { font-size: clamp(32px, 4vw, 52px); white-space: nowrap; }
 @media (max-width: 420px) { .sec--hero h1 { font-size: 30px; } }
+
+/* 자세히 보기 모달 */
+.modal {
+  position: fixed; inset: 0; z-index: 100;
+  display: grid; place-items: center; padding: clamp(12px, 3vw, 40px);
+  background: rgba(16, 18, 20, 0.55); backdrop-filter: blur(3px);
+  animation: modal-in 0.22s ease-out;
+}
+.modal__panel {
+  position: relative; display: flex; flex-direction: column;
+  width: min(1080px, 100%); height: min(88vh, 1000px);
+  background: var(--paper); border: 1px solid rgba(22, 25, 28, 0.16);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.28);
+  animation: modal-up 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.modal__bar {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 10px 12px 10px 18px; border-bottom: 1px solid rgba(22, 25, 28, 0.12);
+}
+.modal__actions { display: flex; align-items: center; gap: 14px; }
+.modal__close {
+  width: 34px; height: 34px; border: 1px solid rgba(22, 25, 28, 0.18); background: #fff;
+  font-size: 14px; color: var(--ink); cursor: pointer;
+}
+.modal__close:hover { background: var(--ink); color: #fff; }
+.modal iframe { flex: 1; width: 100%; border: 0; background: var(--paper); transition: opacity 0.25s; }
+.modal__loading { position: absolute; top: 50%; left: 0; right: 0; text-align: center; }
+@keyframes modal-in { from { opacity: 0; } }
+@keyframes modal-up { from { opacity: 0; transform: translateY(16px); } }
+@media (prefers-reduced-motion: reduce) { .modal, .modal__panel { animation: none; } }
