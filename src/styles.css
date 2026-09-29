@@ -1,0 +1,151 @@
+:root {
+  --paper: #f3f5f4;
+  --sheet: #fbfcfb;
+  --ink: #16191c;
+  --ink-2: #434a52;
+  --muted: #6b737c;
+  --line: #d3d8d6;
+  --accent: #2446d8;
+  --display: 'Hahmlet', 'Noto Serif KR', Georgia, serif;
+  --body: 'IBM Plex Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', system-ui, sans-serif;
+  --mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; margin: 0; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--body);
+  -webkit-font-smoothing: antialiased;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.mono { font-family: var(--mono); font-size: 12px; letter-spacing: 0.06em; color: var(--muted); text-decoration: none; }
+
+.topbar {
+  position: fixed; inset: 0 0 auto 0; z-index: 10;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: calc(env(safe-area-inset-top, 0px) + 16px) clamp(16px, 4vw, 48px) 16px;
+  pointer-events: none; mix-blend-mode: difference;
+}
+.topbar .mono { color: #c9cfcc; pointer-events: auto; }
+
+/* ── overlay sections ── */
+.overlay { width: 100%; }
+.sec {
+  position: relative; height: 100vh; height: 100svh;
+  display: flex; align-items: center;
+  padding: 72px clamp(16px, 5vw, 72px) 48px;
+}
+.txt { width: min(470px, 100%); display: grid; gap: 16px; pointer-events: auto; }
+.eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin: 0; }
+h1, h2 { font-family: var(--display); font-weight: 700; margin: 0; text-wrap: balance; line-height: 1.2; }
+h1 { font-size: clamp(34px, 4.6vw, 58px); }
+h1 .name { display: block; font-size: 0.46em; font-weight: 500; color: var(--ink-2); margin-bottom: 12px; }
+.lede { font-size: 17px; color: var(--ink-2); }
+h2 { font-size: clamp(28px, 3.4vw, 42px); }
+p { margin: 0; line-height: 1.75; color: var(--ink-2); font-size: 16px; }
+.cue { font-family: var(--mono); font-size: 12px; letter-spacing: 0.04em; color: var(--muted); }
+.note { font-size: 14px; color: var(--muted); }
+.stamp {
+  position: absolute; right: clamp(16px, 5vw, 72px); bottom: 32px;
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; color: var(--muted);
+  border: 1px solid var(--line); padding: 6px 10px; background: rgba(251, 252, 251, 0.7);
+}
+
+
+/* chips */
+.links { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--mono); font-size: 12.5px; padding: 8px 12px;
+  border: 1px solid var(--line); background: var(--sheet); color: var(--ink);
+  text-decoration: none; border-radius: 2px; cursor: pointer;
+}
+.chip:hover { border-color: var(--accent); color: var(--accent); }
+.chip--solid { background: var(--ink); color: var(--sheet); border-color: var(--ink); }
+.chip--solid:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
+.copy { display: inline-flex; gap: 8px; align-items: center; }
+.toast { font-family: var(--mono); font-size: 11px; color: var(--accent); }
+
+/* project card — 도면 표제란 */
+.sec--card { align-items: center; }
+.card {
+  width: min(520px, 100%); pointer-events: auto; color: var(--ink);
+  background: var(--sheet); border: 1px solid var(--line);
+  padding: 0 0 20px; display: grid; gap: 12px;
+
+}
+.card > *:not(.card__block):not(.clip) { margin-inline: 20px; }
+.card__block { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-bottom: 1px solid var(--line); }
+.card__block span { padding: 9px 12px; font-size: 12.5px; border-right: 1px solid var(--line); min-width: 0; }
+.card__block span:last-child { border-right: 0; }
+.card__block i { display: block; font-style: normal; font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; color: var(--muted); }
+.award { font-family: var(--mono); font-size: 12px; color: var(--accent); margin-top: 6px; }
+.card h2 { font-size: clamp(28px, 3vw, 38px); }
+.line { font-size: 15px; }
+.clip { margin: 2px 20px 0; background: #e9eceb; border: 1px solid var(--line); }
+.clip video { display: block; width: 100%; height: min(30svh, 290px); object-fit: cover; object-position: top; }
+.points { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+.points li { position: relative; padding-left: 16px; font-size: 14px; line-height: 1.5; color: var(--ink-2); }
+.points li::before { content: ''; position: absolute; left: 0; top: 0.75em; width: 8px; height: 1px; background: var(--accent); }
+
+.card--dark { --sheet: #1b1e22; --ink: #eceeed; --ink-2: #bfc6c4; --muted: #8e9896; --line: #30363a; --accent: #8ea3ff; }
+.card--dark .clip { background: #111316; }
+
+/* end */
+.facts { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; border-top: 1px solid var(--line); padding-top: 14px; }
+.facts li { font-size: 14.5px; color: var(--ink-2); display: grid; grid-template-columns: 96px 1fr; gap: 10px; }
+.facts i { font-style: normal; font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; color: var(--muted); padding-top: 3px; }
+
+@media (max-width: 860px) {
+  .sec { align-items: flex-end; padding-bottom: 28px; }
+  .txt { background: rgba(251, 252, 251, 0.9); backdrop-filter: blur(8px); padding: 18px; border: 1px solid var(--line); }
+  .card { gap: 9px; padding-bottom: 14px; }
+  .card > *:not(.card__block):not(.clip) { margin-inline: 14px; }
+  .clip { margin-inline: 14px; }
+  .clip video { height: 22svh; }
+  .card__block span { padding: 7px 8px; font-size: 11px; }
+  .card__block i { font-size: 9px; }
+  .card h2 { font-size: 26px; }
+  .line { font-size: 13.5px; line-height: 1.55; }
+  .points li { font-size: 13px; white-space: normal; }
+  .facts li { grid-template-columns: 1fr; gap: 0; }
+  .stamp { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  * { scroll-behavior: auto !important; }
+}
+
+.nogl { height: 100%; display: grid; place-content: center; gap: 16px; text-align: center; padding: 24px; }
+
+
+/* 낮은 화면(노트북 등)에서는 카드 설명 한 줄과 영상 높이를 줄여 스크롤바 없이 들어가게 */
+@media (max-height: 760px) and (min-width: 861px) {
+  .card .line { display: none; }
+  .clip video { height: 26svh; }
+  .card { gap: 9px; }
+}
+@media (max-height: 700px) and (max-width: 860px) {
+  .card .line { display: none; }
+  .clip video { height: 18svh; }
+}
+
+/* 3D 위에 얹힌 글이 주변 맥락(건물·나무)에 묻히지 않도록 반투명 판을 깐다 — 첫 화면(도면)은 제외 */
+@media (min-width: 861px) {
+  .sec:not(.sec--hero):not(.sec--card) .txt {
+    background: rgba(243, 245, 244, 0.86);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid var(--line);
+    padding: 24px;
+  }
+}
+
+/* 첫 화면 헤드라인: 세 줄(건축을 전공한 / 프론트엔드 개발자 / 오창민입니다.)로 끊기도록 폭과 크기를 맞춘다 */
+.sec--hero .txt { width: min(600px, 100%); }
+.sec--hero h1 { font-size: clamp(32px, 4vw, 52px); white-space: nowrap; }
+@media (max-width: 420px) { .sec--hero h1 { font-size: 30px; } }

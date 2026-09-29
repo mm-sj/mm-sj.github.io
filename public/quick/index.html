@@ -1,0 +1,523 @@
+<title>오창민 포트폴리오</title>
+<meta name="description" content="웹 3D·인터랙션 프론트엔드 개발자 오창민의 포트폴리오">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@500;700&family=IBM+Plex+Sans+KR:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --paper:#F3F5F4;
+  --sheet:#FBFCFB;
+  --ink:#16191C;
+  --ink-2:#434A52;
+  --muted:#6B737C;
+  --line:#D3D8D6;
+  --line-2:#E4E8E6;
+  --accent:#2446D8;
+  --accent-soft:#E3E8FB;
+  --media-bg:#E9ECEB;
+  --display:"Hahmlet","Noto Serif KR",Georgia,serif;
+  --body:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --maxw:1120px;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#111416;--sheet:#171B1E;--ink:#E8ECEA;--ink-2:#BAC2C0;--muted:#8D9795;
+    --line:#2C3336;--line-2:#22282B;--accent:#7F98FF;--accent-soft:#1E2748;--media-bg:#1D2225;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#111416;--sheet:#171B1E;--ink:#E8ECEA;--ink-2:#BAC2C0;--muted:#8D9795;
+  --line:#2C3336;--line-2:#22282B;--accent:#7F98FF;--accent-soft:#1E2748;--media-bg:#1D2225;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.7;margin:0;padding-inline:clamp(16px,4vw,48px);-webkit-font-smoothing:antialiased;word-break:keep-all;overflow-wrap:break-word}
+a{color:inherit}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+.wrap{max-width:var(--maxw);margin:0 auto}
+.mono{font-family:var(--mono);font-size:12px;letter-spacing:.04em;color:var(--muted)}
+h1,h2,h3{font-family:var(--display);font-weight:700;text-wrap:balance;margin:0;color:var(--ink)}
+p{margin:0}
+
+/* ── top bar ── */
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-block:20px;border-bottom:1px solid var(--line)}
+.topbar nav{display:flex;gap:20px;flex-wrap:wrap}
+.topbar nav a{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-decoration:none;color:var(--ink-2)}
+.topbar nav a:hover{color:var(--accent)}
+
+/* ── hero ── */
+.hero{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(24px,5vw,64px);align-items:center;padding-block:clamp(40px,8vw,88px) clamp(32px,6vw,64px)}
+.hero .role{font-family:var(--mono);font-size:13px;letter-spacing:.08em;color:var(--accent);text-transform:uppercase}
+.hero h1{font-size:clamp(34px,5.4vw,60px);line-height:1.22;margin-top:14px;font-weight:700}
+.hero h1 .name{display:block;font-size:.5em;color:var(--ink-2);font-weight:500;margin-bottom:10px}
+.hero .lead{margin-top:24px;max-width:36em;color:var(--ink-2);font-size:17px}
+.facts{margin-top:28px;display:grid;gap:6px;padding:0;list-style:none}
+.facts li{display:grid;grid-template-columns:88px 1fr;gap:12px;font-size:15px;color:var(--ink-2)}
+.facts li span:first-child{font-family:var(--mono);font-size:12px;color:var(--muted);padding-top:3px;letter-spacing:.04em}
+.contact{margin-top:28px;display:flex;flex-wrap:wrap;gap:10px}
+.chip{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:13px;padding:8px 12px;border:1px solid var(--line);background:var(--sheet);color:var(--ink);text-decoration:none;border-radius:3px;cursor:pointer}
+.chip:hover{border-color:var(--accent);color:var(--accent)}
+button.chip{font:inherit;font-family:var(--mono);font-size:13px}
+
+.model{position:relative;aspect-ratio:1/1;max-width:100%;border:1px solid var(--line);background:var(--sheet)}
+.model canvas{display:block;width:100%;height:100%}
+.model .fallback{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.model .tag{position:absolute;left:12px;bottom:10px;right:12px;display:flex;justify-content:space-between;pointer-events:none}
+
+/* ── index ── */
+.index{border-top:1px solid var(--ink);margin-top:8px}
+.index a{display:grid;grid-template-columns:72px minmax(0,1fr) auto;gap:16px;align-items:baseline;padding-block:18px;border-bottom:1px solid var(--line);text-decoration:none}
+.index a:hover .t{color:var(--accent)}
+.index .t{font-family:var(--display);font-size:clamp(20px,2.6vw,26px);font-weight:700;transition:color .15s}
+.index .d{display:block;font-size:14px;color:var(--muted);margin-top:2px;font-family:var(--body)}
+.award{font-family:var(--mono);font-size:12px;color:var(--accent);white-space:nowrap}
+
+/* ── project sheet ── */
+.sheet{margin-top:clamp(56px,9vw,112px);background:var(--sheet);border:1px solid var(--line)}
+.titleblock{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));border-bottom:1px solid var(--line)}
+.titleblock div{padding:12px 16px;border-right:1px solid var(--line-2);min-width:0}
+.titleblock div:last-child{border-right:0}
+.titleblock .k{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--muted);text-transform:uppercase}
+.titleblock .v{display:block;font-size:14px;margin-top:2px;color:var(--ink)}
+.titleblock .v.acc{color:var(--accent);font-weight:600}
+.sheet-body{padding:clamp(20px,4vw,48px)}
+.sheet-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(20px,4vw,48px);align-items:end}
+.sheet-head .no{font-family:var(--mono);font-size:13px;color:var(--accent);letter-spacing:.06em}
+.sheet-head h2{font-size:clamp(34px,5vw,54px);line-height:1.1;margin-top:6px}
+.sheet-head .one{font-size:17px;color:var(--ink-2);margin-top:10px}
+.sheet-head .why{font-size:15px;color:var(--ink-2)}
+
+figure{margin:0}
+.media{background:var(--media-bg);border:1px solid var(--line-2);overflow:hidden}
+.media video,.media img{display:block;width:100%;height:auto;max-width:100%}
+figcaption{font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:8px;letter-spacing:.02em}
+.lead-media{margin-top:clamp(24px,4vw,40px)}
+.grid-media{display:grid;gap:16px;margin-top:16px}
+.grid-media.c2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.grid-media.c3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.grid-media.c4{grid-template-columns:repeat(4,minmax(0,1fr))}
+
+.cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.35fr);gap:clamp(24px,4vw,56px);margin-top:clamp(32px,5vw,56px)}
+.label{font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:var(--muted);text-transform:uppercase;padding-bottom:10px;border-bottom:1px solid var(--line);margin-bottom:16px}
+.did{list-style:none;padding:0;margin:0;display:grid;gap:14px}
+.did li{font-size:15px;color:var(--ink-2);padding-left:18px;position:relative}
+.did li::before{content:"";position:absolute;left:0;top:.72em;width:8px;height:1px;background:var(--accent)}
+.did b{color:var(--ink);font-weight:600}
+.stack{display:flex;flex-wrap:wrap;gap:6px;margin-top:24px}
+.stack span{font-family:var(--mono);font-size:12px;padding:3px 8px;border:1px solid var(--line);color:var(--ink-2);border-radius:2px}
+
+.ts h3{font-size:22px;line-height:1.35}
+.ts .steps{display:grid;gap:0;margin-top:18px;border-top:1px solid var(--line-2)}
+.ts .step{display:grid;grid-template-columns:64px minmax(0,1fr);gap:16px;padding-block:14px;border-bottom:1px solid var(--line-2)}
+.ts .step .k{font-family:var(--mono);font-size:12px;color:var(--accent);padding-top:3px;letter-spacing:.04em}
+.ts .step p{font-size:15px;color:var(--ink-2)}
+.ts code{font-family:var(--mono);font-size:.86em;background:var(--accent-soft);color:var(--ink);padding:1px 5px;border-radius:2px}
+.sub{margin-top:28px;padding:18px 20px;border:1px dashed var(--line)}
+.sub h4{font-family:var(--body);font-size:15px;font-weight:600;margin:0 0 6px}
+.sub p,.sub li{font-size:14.5px;color:var(--ink-2)}
+.sub ul{margin:6px 0 0;padding-left:18px;display:grid;gap:4px}
+.result{margin-top:clamp(28px,4vw,44px);display:flex;flex-wrap:wrap;gap:12px 32px;padding-top:18px;border-top:1px solid var(--line)}
+.result div{font-size:14px;color:var(--ink-2)}
+.result b{display:block;font-family:var(--display);font-size:22px;color:var(--ink);font-weight:700}
+.linkrow{margin-top:16px;display:flex;flex-wrap:wrap;gap:10px}
+
+/* ── skills / footer ── */
+.skills{margin-top:clamp(56px,9vw,112px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:clamp(24px,4vw,56px)}
+.skills h2{font-size:clamp(26px,3.4vw,34px)}
+.skills dl{margin:0;display:grid;gap:0;border-top:1px solid var(--line)}
+.skills dl div{display:grid;grid-template-columns:140px minmax(0,1fr);gap:16px;padding-block:14px;border-bottom:1px solid var(--line-2)}
+.skills dt{font-family:var(--mono);font-size:12px;color:var(--muted);letter-spacing:.04em;padding-top:3px}
+.skills dd{margin:0;font-size:15px;color:var(--ink-2)}
+footer{margin-top:clamp(56px,9vw,112px);padding-block:32px 48px;border-top:1px solid var(--ink);display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;align-items:baseline}
+footer h2{font-size:clamp(24px,3vw,30px)}
+.toast{font-family:var(--mono);font-size:12px;color:var(--accent);min-height:1.2em}
+
+@media (max-width:860px){
+  .hero{grid-template-columns:1fr}
+  .model{max-width:420px}
+  .sheet-head,.cols,.skills{grid-template-columns:1fr}
+  .titleblock{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .titleblock div:nth-child(3n){border-right:0}
+  .titleblock div:nth-child(-n+3){border-bottom:1px solid var(--line-2)}
+  .grid-media.c4{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:520px){
+  .titleblock{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .titleblock div{border-right:1px solid var(--line-2)!important;border-bottom:1px solid var(--line-2)}
+  .titleblock div:nth-child(2n){border-right:0!important}
+  .grid-media.c2,.grid-media.c3,.grid-media.c4{grid-template-columns:1fr}
+  .index a{grid-template-columns:44px minmax(0,1fr)}
+  .index .award{grid-column:2}
+  .facts li,.skills dl div{grid-template-columns:1fr;gap:0}
+  .ts .step{grid-template-columns:1fr;gap:4px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+  <header class="topbar">
+    <span class="mono">OH CHANGMIN — PORTFOLIO 2026</span>
+    <nav aria-label="섹션">
+      <a href="#docq">01 DocQ</a>
+      <a href="#wyd">02 Would You Draw</a>
+      <a href="#jabis">03 Jabis</a>
+      <a href="#contact">연락처</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div>
+      <p class="role">Frontend Developer · Web 3D &amp; Interaction</p>
+      <h1><span class="name">오창민</span>건축을 전공한 프론트엔드 개발자입니다.</h1>
+      <p class="lead">모형을 만지던 손으로, 지금은 웹에서 3D를 만지고 있습니다. 건축사사무소에서 모형과 3D 모델을 만들다가 화면 위에서 직접 움직이는 공간이 궁금해 개발로 넘어왔습니다. SSAFY 14기에서 Vue와 React로 세 프로젝트의 화면과 3D 연출을 만들었고, 세 프로젝트 모두 상을 받았습니다. 지금은 LG전자 K-뉴딜 아카데미에서 AI로 업무 흐름을 자동화하는 AX 워크플로우를 배우고 있습니다.</p>
+      <ul class="facts">
+        <li><span>EDUCATION</span><span>SSAFY 14기 수료 · 계명대학교 건축학 학사</span></li>
+        <li><span>EXPERIENCE</span><span>건축사사무소 인턴 — 모형 제작, 3D 모델링</span></li>
+        <li><span>NOW</span><span>LG전자 K-뉴딜 아카데미 1기 AX 워크플로우 트랙 (2026.08~)</span></li>
+        <li><span>AWARDS</span><span>SSAFY 공통 최우수상 · 특화 우수상 · 자율 우수상</span></li>
+      </ul>
+      <div class="contact">
+        <button class="chip" type="button" data-copy="dhckdals1104@naver.com">dhckdals1104@naver.com</button>
+        <a class="chip" href="https://github.com/mm-sj" target="_blank" rel="noopener">github.com/mm-sj ↗</a>
+        <a class="chip" href="../portfolio.pdf" target="_blank" rel="noopener">PDF ↓</a>
+      </div>
+      <p class="toast" aria-live="polite" id="toast-hero"></p>
+    </div>
+    <figure class="model" aria-label="마우스에 반응하는 건축 매스 모형">
+      <div class="fallback" id="model-fallback"><span class="mono">MASS MODEL</span></div>
+      <canvas id="mass" aria-hidden="true"></canvas>
+      <div class="tag"><span class="mono">MASS MODEL — THREE.JS</span><span class="mono">DRAG / MOVE</span></div>
+    </figure>
+  </section>
+
+  <nav class="index" aria-label="프로젝트 목록">
+    <a href="#docq"><span class="mono">01</span><span><span class="t">DocQ</span><span class="d">PDF를 퀴즈로 만들어 함께 푸는 3D 보드게임</span></span><span class="award">공통 최우수상</span></a>
+    <a href="#wyd"><span class="mono">02</span><span><span class="t">Would You Draw</span><span class="d">그린 감정이 별이 되어 쌓이는 3D 우주 아카이브</span></span><span class="award">특화 우수상</span></a>
+    <a href="#jabis"><span class="mono">03</span><span><span class="t">Jabis</span><span class="d">양팔 데스크 로봇의 실시간 디지털 트윈 대시보드</span></span><span class="award">자율 우수상</span></a>
+  </nav>
+
+  <!-- ─────────── 01 DocQ ─────────── -->
+  <article class="sheet" id="docq">
+    <div class="titleblock">
+      <div><span class="k">Sheet</span><span class="v">01 / 03</span></div>
+      <div><span class="k">Period</span><span class="v">2026.01.06 – 02.13</span></div>
+      <div><span class="k">Team</span><span class="v">6명 (FE 3)</span></div>
+      <div><span class="k">Role</span><span class="v">FE · UX 방향 · 3D 에셋</span></div>
+      <div><span class="k">Stack</span><span class="v">Vue 3 · Three.js</span></div>
+      <div><span class="k">Award</span><span class="v acc">공통 최우수상</span></div>
+    </div>
+    <div class="sheet-body">
+      <div class="sheet-head">
+        <div>
+          <p class="no">01 — DocQ</p>
+          <h2>DocQ</h2>
+          <p class="one">PDF 문서를 AI가 퀴즈로 바꾸고, 최대 4명이 3D 보드게임으로 푸는 실시간 멀티플레이 서비스</p>
+        </div>
+        <p class="why">'다 읽었다'와 '다 안다'는 다릅니다. 읽은 문서를 제대로 이해했는지 혼자 검증하는 지루한 과정을, 친구와 겨루는 게임으로 바꾸는 것이 목표였습니다. 저는 이 게임이 어떤 모습이고 어떻게 느껴질지를 정하는 역할을 맡았습니다.</p>
+      </div>
+
+      <figure class="lead-media">
+        <div class="media"><video data-src="../assets/docq-main.mp4" poster="../assets/docq-main.jpg" muted loop playsinline preload="none" aria-label="DocQ 메인 화면: 3D 캐러셀과 캐릭터"></video></div>
+        <figcaption>메인 화면 — 3D 캐러셀 메뉴와 GLB 캐릭터 배경</figcaption>
+      </figure>
+      <div class="grid-media c2">
+        <figure><div class="media"><video data-src="../assets/docq-board.mp4" poster="../assets/docq-board.jpg" muted loop playsinline preload="none" aria-label="3D 보드 맵"></video></div><figcaption>Blender로 제작한 보드 맵</figcaption></figure>
+        <figure><div class="media"><video data-src="../assets/docq-roulette.mp4" poster="../assets/docq-roulette.jpg" muted loop playsinline preload="none" aria-label="3D 룰렛"></video></div><figcaption>이동 칸 수를 정하는 3D 룰렛</figcaption></figure>
+        <figure><div class="media"><video data-src="../assets/docq-waiting.mp4" poster="../assets/docq-waiting.jpg" muted loop playsinline preload="none" aria-label="대기실"></video></div><figcaption>대기실 — 캐릭터 선택, PDF 업로드, 채팅 매크로</figcaption></figure>
+        <figure><div class="media"><video data-src="../assets/docq-community.mp4" poster="../assets/docq-community.jpg" muted loop playsinline preload="none" aria-label="커뮤니티"></video></div><figcaption>퀴즈 공유 커뮤니티</figcaption></figure>
+      </div>
+
+      <div class="cols">
+        <div>
+          <p class="label">제가 한 일</p>
+          <ul class="did">
+            <li><b>비주얼·UX 방향 수립.</b> 나무 패널, 파스텔 하늘, 둥근 버튼으로 이어지는 동화 같은 톤을 잡고 화면 전반에 적용했습니다.</li>
+            <li><b>3D 에셋.</b> 가져온 에셋을 Blender로 수정해 보드 맵을 만들고, 캐릭터와 룰렛의 애니메이션 좌표를 다시 설정했습니다.</li>
+            <li><b>메인 화면.</b> CSS 3D 캐러셀 메뉴와, 캐릭터 4종이 동시에 움직이는 Three.js 배경(AnimationMixer)을 구현했습니다.</li>
+            <li><b>게임 밖 화면 전반.</b> 로비, 대기실, 커뮤니티(게시글·댓글 삭제와 확인 모달), 미니게임 UI, 커스텀 커서, BGM, 팀 소개 모달을 만들었습니다.</li>
+          </ul>
+          <div class="stack"><span>Vue 3</span><span>TypeScript</span><span>Pinia</span><span>TailwindCSS</span><span>Three.js</span><span>GSAP</span><span>Blender</span></div>
+        </div>
+        <div class="ts">
+          <p class="label">트러블슈팅</p>
+          <h3>룰렛이 제자리에서 돌지 않고 궤도를 그리며 돌던 문제</h3>
+          <div class="steps">
+            <div class="step"><span class="k">문제</span><p>수정한 룰렛 GLB를 웹에 올리자, 원판이 자기 중심이 아니라 엉뚱한 지점을 축으로 크게 원을 그리며 돌았습니다. Blender를 처음 다뤄 본 상태라 원인을 찾는 데 오래 걸렸습니다.</p></div>
+            <div class="step"><span class="k">원인</span><p>Blender 오브젝트의 원점(Origin)이 원판 중심이 아닌 다른 위치에 있었습니다. Three.js는 오브젝트를 원점 기준으로 회전시키기 때문에, 원점이 어긋나면 회전축도 함께 어긋납니다.</p></div>
+            <div class="step"><span class="k">해결</span><p>Blender에서 원판의 원점을 회전 중심으로 다시 지정하고 변환(Transform)을 적용한 뒤 다시 내보냈습니다. FE에서 모델의 바운딩 박스 중심으로 보정하는 로직과 맞춰 룰렛이 제자리에서 회전하도록 했습니다.</p></div>
+            <div class="step"><span class="k">배운 점</span><p>3D 에셋은 눈에 보이는 모양보다 원점, 축, 스케일 같은 보이지 않는 데이터가 웹에서의 동작을 결정한다는 것을 알게 됐습니다.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="result">
+        <div><b>공통 최우수상</b>SSAFY 14기 공통 프로젝트</div>
+        <div><b>92%</b>팀이 받은 유저 피드백 24건 중 22건 반영</div>
+      </div>
+      <div class="linkrow"><a class="chip" href="https://github.com/mm-sj/S14P11D209" target="_blank" rel="noopener">GitHub 저장소 ↗</a></div>
+    </div>
+  </article>
+
+  <!-- ─────────── 02 WYD ─────────── -->
+  <article class="sheet" id="wyd">
+    <div class="titleblock">
+      <div><span class="k">Sheet</span><span class="v">02 / 03</span></div>
+      <div><span class="k">Period</span><span class="v">2026.03.03 – 03.29</span></div>
+      <div><span class="k">Team</span><span class="v">5명 (FE 2)</span></div>
+      <div><span class="k">Role</span><span class="v">FE 팀장</span></div>
+      <div><span class="k">Stack</span><span class="v">React · R3F</span></div>
+      <div><span class="k">Award</span><span class="v acc">특화 우수상</span></div>
+    </div>
+    <div class="sheet-body">
+      <div class="sheet-head">
+        <div>
+          <p class="no">02 — Would You Draw</p>
+          <h2>Would You Draw</h2>
+          <p class="one">감정을 그림으로 그리면 AI가 해석하고, 그 기록이 별에서 별자리(7일), 은하(30일)로 쌓이는 감정 드로잉 PWA</p>
+        </div>
+        <p class="why">감정을 점수로 매기는 대신, 시간이 지날수록 넓어지는 우주로 보여주고 싶었습니다. FE 팀장으로 우주 씬의 인터랙션과 드로잉 콘텐츠를 맡았습니다.</p>
+      </div>
+
+      <figure class="lead-media">
+        <div class="media"><video data-src="../assets/wyd-universe.mp4" poster="../assets/wyd-universe.jpg" muted loop playsinline preload="none" aria-label="감정 별이 모인 3D 우주 씬"></video></div>
+        <figcaption>감정 기록이 모여 만든 우주 — 은하에서 개별 별까지 카메라가 이어서 이동</figcaption>
+      </figure>
+      <div class="grid-media c2">
+        <figure><div class="media"><video data-src="../assets/wyd-birth.mp4" poster="../assets/wyd-birth.jpg" muted loop playsinline preload="none" aria-label="별 탄생"></video></div><figcaption>새 별과 별자리</figcaption></figure>
+        <figure><div class="media"><video data-src="../assets/wyd-custom.mp4" poster="../assets/wyd-custom.jpg" muted loop playsinline preload="none" aria-label="중심별 커스텀"></video></div><figcaption>중심별 형태·색 커스텀</figcaption></figure>
+        <figure><div class="media"><video data-src="../assets/wyd-tutorial.mp4" poster="../assets/wyd-tutorial.jpg" muted loop playsinline preload="none" aria-label="튜토리얼"></video></div><figcaption>피드백 반영 튜토리얼</figcaption></figure>
+        <figure><div class="media"><video data-src="../assets/wyd-canvas.mp4" poster="../assets/wyd-canvas.jpg" muted loop playsinline preload="none" aria-label="드로잉 캔버스"></video></div><figcaption>드로잉 캔버스 — 커스텀 컬러 팔레트</figcaption></figure>
+      </div>
+
+      <div class="cols">
+        <div>
+          <p class="label">제가 한 일</p>
+          <ul class="did">
+            <li><b>우주 씬 인터랙션.</b> 팀원이 만든 R3F 우주 씬 위에서 별자리 연결 로직, 새 별 탄생 연출, 시네마틱 모드, 패널이 열릴 때 카메라 구도를 옮기는 레이아웃을 맡았습니다.</li>
+            <li><b>드로잉 캔버스.</b> 캔버스를 공통 컴포넌트로 분리하고, HTP 단계별 드로잉, 데일리 자유 드로잉, 명화 색칠, 커스텀 컬러 팔레트를 구현했습니다.</li>
+            <li><b>분석 결과와 커스텀.</b> HTP 분석 결과 UI와, 8가지 형태와 팔레트로 꾸미는 마이페이지 중심별 커스텀을 만들었습니다.</li>
+            <li><b>피드백 대응.</b> 유저 피드백 37건에서 반복된 '직관성·가이드 부족'에 맞춰 튜토리얼과 전역 알림 모달을 넣었습니다.</li>
+          </ul>
+          <div class="stack"><span>React</span><span>TypeScript</span><span>Zustand</span><span>React Three Fiber</span><span>drei</span><span>postprocessing</span><span>Framer Motion</span><span>Canvas API</span></div>
+        </div>
+        <div class="ts">
+          <p class="label">트러블슈팅</p>
+          <h3>저장해도 별이 바로 뜨지 않던 문제 — 낙관적 업데이트</h3>
+          <div class="steps">
+            <div class="step"><span class="k">문제</span><p>그림을 저장한 뒤 AI 분석이 RabbitMQ로 비동기 처리되어, 분석이 끝나기 전까지는 별이 생기지 않았습니다. 저장 직후 우주에 아무 변화가 없어 사용자는 저장이 실패한 것으로 느낄 수 있었습니다.</p></div>
+            <div class="step"><span class="k">해결</span><p>저장 응답을 받는 즉시 임시 별을 만들고 탄생 애니메이션을 재생했습니다. 이후 <code>2 → 5 → 10 → 15 → 20초</code> 간격으로 별 목록을 다시 조회하고, 서버에서 실제 별이 오면 <code>targetId</code>로 임시 별을 대체했습니다. 폴링 중에는 새 폴링을 막아 요청이 겹치지 않게 했습니다.</p></div>
+            <div class="step"><span class="k">배운 점</span><p>비동기 처리가 끝날 때까지 화면이 기다리게 하지 않고, 결과를 먼저 보여준 뒤 나중에 맞추는 방식으로 체감 속도를 바꿀 수 있다는 것을 배웠습니다.</p></div>
+          </div>
+          <div class="sub">
+            <h4>특정 색의 별만 빛나지 않던 문제</h4>
+            <p>사용자가 고른 감정 색으로 별을 그리는데, 일부 색의 별은 Bloom 효과가 나타나지 않았습니다. 같은 발광 강도라도 색마다 휘도가 달라, 휘도가 낮은 색은 Bloom 임계값(<code>1.1</code>)을 넘지 못했기 때문입니다. 임계값을 <code>0.5</code>로 낮추고 반짝임 범위를 넓혀 모든 색이 고르게 빛나도록 했습니다.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="result">
+        <div><b>특화 우수상</b>SSAFY 14기 특화 프로젝트</div>
+        <div><b>37건</b>유저 피드백 수집 → 튜토리얼·캔버스·별 렌더링 개선</div>
+      </div>
+      <div class="linkrow"><a class="chip" href="https://github.com/mm-sj/S14P21D207" target="_blank" rel="noopener">GitHub 저장소 ↗</a></div>
+    </div>
+  </article>
+
+  <!-- ─────────── 03 Jabis ─────────── -->
+  <article class="sheet" id="jabis">
+    <div class="titleblock">
+      <div><span class="k">Sheet</span><span class="v">03 / 03</span></div>
+      <div><span class="k">Period</span><span class="v">2026.04.08 – 05.21</span></div>
+      <div><span class="k">Team</span><span class="v">5명 (FE 1)</span></div>
+      <div><span class="k">Role</span><span class="v">FE 전담</span></div>
+      <div><span class="k">Stack</span><span class="v">React · R3F · URDF</span></div>
+      <div><span class="k">Award</span><span class="v acc">자율 우수상</span></div>
+    </div>
+    <div class="sheet-body">
+      <div class="sheet-head">
+        <div>
+          <p class="no">03 — Jabis</p>
+          <h2>Jabis</h2>
+          <p class="one">음성 명령을 듣고, 책상을 보고, 두 팔로 물건을 집는 Physical AI 데스크 로봇의 웹 대시보드와 디지털 트윈</p>
+        </div>
+        <p class="why">로봇이 지금 무엇을 보고 어떻게 움직이는지 사람이 한눈에 알 수 있어야 했습니다. 팀의 유일한 FE로서, 로봇의 관절·인식·자세 데이터를 실시간으로 받아 3D로 보여주는 대시보드와 디지털 트윈을 맡았습니다.</p>
+      </div>
+
+      <figure class="lead-media">
+        <div class="media"><video data-src="../assets/jabis-dashboard.mp4" poster="../assets/jabis-dashboard.jpg" muted loop playsinline preload="none" aria-label="Jabis 디지털 트윈 대시보드"></video></div>
+        <figcaption>실측 책상(1200 × 600 × 700 mm) 위의 양팔 로봇 디지털 트윈과 인식된 물체의 3D 박스</figcaption>
+      </figure>
+
+      <div class="cols">
+        <div>
+          <p class="label">제가 한 일</p>
+          <ul class="did">
+            <li><b>디지털 트윈.</b> SO-ARM101 URDF를 불러와 양팔 로봇을 실측 책상 GLB 위에 배치하고, WebSocket으로 받은 관절 각도를 실시간으로 반영했습니다.</li>
+            <li><b>인식 결과 시각화.</b> YOLO 인식 결과를 3D 박스로 렌더링하고, MJPEG 카메라 스트림과 시스템 로그, E-Stop을 연결했습니다.</li>
+            <li><b>모드별 대시보드.</b> 집중·게임·영화·외출 모드마다 레이아웃을 바꾸고, 자세 모니터링 차트와 리포트, 졸음 감지 카드를 만들었습니다.</li>
+            <li><b>FE 기반 설계.</b> FE 폴더 구조, FE API 명세, Zustand 스토어와 타입 정의를 세팅했습니다.</li>
+          </ul>
+          <div class="stack"><span>React</span><span>TypeScript</span><span>Vite</span><span>React Three Fiber</span><span>urdf-loader</span><span>Zustand</span><span>WebSocket</span><span>Recharts</span><span>Tailwind · shadcn/ui</span></div>
+        </div>
+        <div class="ts">
+          <p class="label">트러블슈팅</p>
+          <h3>실시간 인식 박스가 깜빡이던 문제 — 렌더링을 React 밖으로</h3>
+          <div class="steps">
+            <div class="step"><span class="k">문제</span><p>탑뷰 카메라의 YOLO 인식 결과(약 5Hz)가 WebSocket으로 들어올 때마다 3D 박스 목록 전체가 다시 렌더링되었습니다. 여기에 YOLO가 한두 프레임씩 물체를 놓치면 박스가 사라졌다 다시 생기면서 화면이 깜빡였습니다.</p></div>
+            <div class="step"><span class="k">해결</span><p>Zustand의 <code>subscribe</code>로 인식 결과를 React 렌더링 밖에서 받아 <code>ref</code>의 Map에 저장했습니다. 박스의 위치와 크기는 <code>useFrame</code> 안에서 lerp로 직접 움직이고, React 리렌더는 새 물체가 생기거나 오래 보이지 않은 물체를 지울 때만 일어나게 했습니다. 마지막 감지 후 박스를 유지하는 시간은 처음 800ms로 두었다가, 실제 로봇에서 YOLO가 놓치는 구간을 보고 2초(5Hz 기준 10프레임)로 늘렸습니다.</p></div>
+            <div class="step"><span class="k">배운 점</span><p>고빈도 실시간 데이터는 React 상태로 흘려보내지 않고, 화면에 필요한 변화만 React에 알리는 편이 낫다는 것을 배웠습니다.</p></div>
+          </div>
+          <div class="sub">
+            <h4>로봇 움직임을 부드럽게 만든 작업</h4>
+            <ul>
+              <li>20Hz로 들어오는 관절 데이터를 60fps 렌더 사이에서 lerp로 보간했습니다.</li>
+              <li>그리퍼 모터 각도를 링키지 관절 각도로 바꾸는 룩업 테이블을 선형 보간했습니다.</li>
+              <li>URDF의 Z-up 좌표계를 Three.js의 Y-up에 맞게 변환했습니다.</li>
+              <li>탑뷰 카메라 bbox의 픽셀 좌표를 책상 평면의 미터 좌표로 바꾸고, 물체 종류별 높이를 추정해 3D 박스를 세웠습니다.</li>
+              <li>조인트 참조를 한 번만 찾아 캐싱하고, 움직이지 않는 책상 메시는 <code>matrixAutoUpdate</code>를 꺼 매 프레임 계산을 줄였습니다.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="result">
+        <div><b>자율 우수상</b>SSAFY 14기 자율 프로젝트</div>
+        <div><b>FE 1인</b>팀 내 유일한 FE로 대시보드·디지털 트윈 담당</div>
+      </div>
+      <div class="linkrow">
+        <a class="chip" href="https://www.youtube.com/watch?v=pIx2FC31FqI" target="_blank" rel="noopener">시연 영상 보기 ↗</a>
+        <a class="chip" href="https://github.com/mm-sj/S14P31D101" target="_blank" rel="noopener">GitHub 저장소 ↗</a>
+      </div>
+    </div>
+  </article>
+
+  <section class="skills" aria-labelledby="skills-h">
+    <h2 id="skills-h">다룰 수 있는 것</h2>
+    <dl>
+      <div><dt>FRONTEND</dt><dd>React, Vue 3, TypeScript, Zustand, Pinia, TailwindCSS — 세 프로젝트에서 실제 서비스 화면 구현</dd></div>
+      <div><dt>WEB 3D</dt><dd>Three.js, React Three Fiber, drei, postprocessing, urdf-loader — GLB 캐릭터 배경, 3D 우주 씬 인터랙션, 로봇 디지털 트윈</dd></div>
+      <div><dt>3D ASSET</dt><dd>Blender — 에셋 수정, 원점·축 정리, GLB 내보내기</dd></div>
+      <div><dt>REALTIME</dt><dd>WebSocket — 로봇 관절·인식·자세 데이터 실시간 연동, 20Hz 데이터의 60fps 보간</dd></div>
+      <div><dt>COLLAB</dt><dd>Git, GitLab, Jira, Figma, Mattermost</dd></div>
+    </dl>
+  </section>
+
+  <footer id="contact">
+    <h2>함께 이야기 나누고 싶습니다.</h2>
+    <div class="contact" style="margin-top:0">
+      <button class="chip" type="button" data-copy="dhckdals1104@naver.com">dhckdals1104@naver.com</button>
+      <a class="chip" href="https://github.com/mm-sj" target="_blank" rel="noopener">github.com/mm-sj ↗</a>
+        <a class="chip" href="../portfolio.pdf" target="_blank" rel="noopener">PDF ↓</a>
+    </div>
+    <p class="toast" aria-live="polite" id="toast-foot"></p>
+  </footer>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+/* copy email */
+document.querySelectorAll('[data-copy]').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    var text=btn.getAttribute('data-copy');
+    var toast=btn.closest('footer')?document.getElementById('toast-foot'):document.getElementById('toast-hero');
+    function done(msg){toast.textContent=msg;setTimeout(function(){toast.textContent=''},2400)}
+    try{
+      navigator.clipboard.writeText(text).then(function(){done('이메일 주소를 복사했습니다.')},function(){sel()});
+    }catch(e){sel()}
+    function sel(){var r=document.createRange();r.selectNodeContents(btn);var s=getSelection();s.removeAllRanges();s.addRange(r);done('주소를 선택했습니다. 복사해서 사용하세요.')}
+  });
+});
+
+/* lazy play videos only while visible */
+(function(){
+  var vids=[].slice.call(document.querySelectorAll('video[data-src]'));
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function load(v){if(!v.src){v.src=v.getAttribute('data-src');}}
+  if(!('IntersectionObserver' in window)){vids.forEach(function(v){load(v);if(!reduce)v.play().catch(function(){})});return;}
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){var v=e.target;
+    if(e.isIntersecting){load(v);if(!reduce){var p=v.play();if(p)p.catch(function(){})}}else{v.pause()}
+  })},{rootMargin:'200px 0px',threshold:0.15});
+  vids.forEach(function(v){io.observe(v)});
+})();
+
+/* hero mass model */
+(function(){
+  var canvas=document.getElementById('mass');
+  if(!window.THREE||!canvas)return;
+  var fb=document.getElementById('model-fallback');
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var renderer;
+  try{renderer=new THREE.WebGLRenderer({canvas:canvas,antialias:true,alpha:true});}catch(e){return;}
+  fb.hidden=true;
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,2));
+  var scene=new THREE.Scene();
+  var cam=new THREE.OrthographicCamera(-1,1,1,-1,0.1,100);
+  cam.position.set(10,9,10);cam.lookAt(0,1.2,0);
+  var css=getComputedStyle(document.documentElement);
+  function col(name){return new THREE.Color(css.getPropertyValue(name).trim()||'#000')}
+  var ink=col('--ink'),acc=col('--accent'),sheet=col('--sheet');
+  var root=new THREE.Group();scene.add(root);
+
+  var faceMat=new THREE.MeshBasicMaterial({color:sheet,polygonOffset:true,polygonOffsetFactor:1,polygonOffsetUnits:1});
+  var lineMat=new THREE.LineBasicMaterial({color:ink,transparent:true,opacity:.85});
+  var accLine=new THREE.LineBasicMaterial({color:acc});
+  function box(w,h,d,x,y,z,accent){
+    var g=new THREE.BoxGeometry(w,h,d);
+    var m=new THREE.Mesh(g,faceMat);m.position.set(x,y+h/2,z);root.add(m);
+    var e=new THREE.LineSegments(new THREE.EdgesGeometry(g),accent?accLine:lineMat);e.position.copy(m.position);root.add(e);
+    return [m,e];
+  }
+  /* site plate */
+  var plate=new THREE.GridHelper(8,16,acc,ink);plate.material.transparent=true;plate.material.opacity=.18;root.add(plate);
+  /* massing: podium + towers + a stepped block */
+  var parts=[];
+  parts.push(box(4.4,.5,3.2,0,0,0,false));
+  parts.push(box(1.4,3.4,1.4,-1.1,.5,-.5,false));
+  parts.push(box(1.2,2.2,1.6,.8,.5,-.4,false));
+  parts.push(box(1.0,1.2,1.0,1.1,2.7,-.6,true));
+  parts.push(box(2.2,.9,1.0,.2,.5,1.0,false));
+  parts.push(box(.8,1.6,.8,-1.4,3.9,-.5,false));
+  /* rise-in offsets */
+  parts.forEach(function(p,i){p.base=p[0].position.y;p.delay=i*0.12;});
+
+  function size(){
+    var w=canvas.clientWidth,h=canvas.clientHeight;if(!w||!h)return;
+    renderer.setSize(w,h,false);
+    var a=w/h,s=4.2;
+    cam.left=-s*a;cam.right=s*a;cam.top=s;cam.bottom=-s;cam.updateProjectionMatrix();
+  }
+  size();addEventListener('resize',size);
+
+  var tx=0,ty=0,rx=0,ry=0,drag=false,lx=0,spin=0;
+  canvas.parentElement.addEventListener('pointermove',function(e){
+    var r=canvas.getBoundingClientRect();
+    tx=((e.clientX-r.left)/r.width-.5);ty=((e.clientY-r.top)/r.height-.5);
+    if(drag){spin+=(e.clientX-lx)*0.01;lx=e.clientX;}
+  });
+  canvas.parentElement.addEventListener('pointerdown',function(e){drag=true;lx=e.clientX;});
+  addEventListener('pointerup',function(){drag=false});
+  canvas.parentElement.addEventListener('pointerleave',function(){tx=0;ty=0});
+
+  var t0=performance.now(),visible=true;
+  new IntersectionObserver(function(es){visible=es[0].isIntersecting}).observe(canvas);
+  function frame(now){
+    requestAnimationFrame(frame);
+    if(!visible)return;
+    var t=(now-t0)/1000;
+    parts.forEach(function(p){
+      var k=reduce?1:Math.min(1,Math.max(0,(t-p.delay)/0.7));
+      var ease=1-Math.pow(1-k,3);
+      var y=p.base+(1-ease)*-1.2;
+      p[0].position.y=y;p[1].position.y=y;
+      p[0].scale.y=p[1].scale.y=Math.max(.001,ease);
+    });
+    if(!reduce&&!drag)spin+=0.0016;
+    rx+=(ty*0.25-rx)*0.06;ry+=(tx*0.6-ry)*0.06;
+    root.rotation.y=spin+ry;root.rotation.x=rx;
+    renderer.render(scene,cam);
+  }
+  requestAnimationFrame(frame);
+})();
+</script>
