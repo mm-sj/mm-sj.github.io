@@ -48,7 +48,8 @@ h1 .name { display: block; font-size: 0.46em; font-weight: 500; color: var(--ink
 .lede { font-size: 17px; color: var(--ink-2); }
 h2 { font-size: clamp(28px, 3.4vw, 42px); }
 p { margin: 0; line-height: 1.75; color: var(--ink-2); font-size: 16px; }
-.cue { font-family: var(--mono); font-size: 12px; letter-spacing: 0.04em; color: var(--muted); }
+.cue { font-family: var(--mono); font-size: 12px; letter-spacing: 0.04em; color: var(--accent); margin: 0; }
+.hero__cta { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
 .note { font-size: 14px; color: var(--muted); }
 .stamp {
   position: absolute; right: clamp(16px, 5vw, 72px); bottom: 32px;
