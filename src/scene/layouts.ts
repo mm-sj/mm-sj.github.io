@@ -472,8 +472,12 @@ export function facadeLayout(target: Layout, _ax: number, _ay: number, _time: nu
 }
 
 /* ───────────────────── 3. DocQ — 보드게임 섬 ───────────────────── */
+/** DocQ 보드 경로(게임 칸) 타일 — 양이 이 위를 깡충깡충 돈다. docqLayout이 채운다 */
+export const DOCQ_PATH: { x: number; z: number; top: number }[] = []
+
 export function docqLayout(): Layout {
   const b = new Builder()
+  DOCQ_PATH.length = 0
   const rnd = rng(7)
   const S = 0.36
   const G = 13
@@ -502,6 +506,7 @@ export function docqLayout(): Layout {
       const c = onPath(gx, gz) ? PATH : water ? WATER : GRASS[Math.floor(rnd() * 3)]
       // 윗면 타일
       b.push([x, top / 2, z], [S * 0.96, top, S * 0.96], c)
+      if (onPath(gx, gz)) DOCQ_PATH.push({ x, z, top })
       // 섬 아랫부분(흙)
       const depth = 0.25 + (6.3 - rr) * 0.09
       b.push([x, -depth / 2, z], [S * 0.96, depth, S * 0.96], rr < 3.5 ? EARTH2 : EARTH)

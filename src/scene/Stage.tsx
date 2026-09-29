@@ -3,7 +3,7 @@ import { useFrame, useThree } from '@react-three/fiber'
 import { useScroll } from '@react-three/drei'
 import * as THREE from 'three'
 import { SECTION_COUNT, sectionBlend, weightOf } from './timeline'
-import { DESK, DETECTIONS, wydLayout } from './layouts'
+import { DESK, DETECTIONS, DOCQ_PATH, docqLayout, wydLayout } from './layouts'
 import { facadeParams, sceneState } from '../store'
 
 /* 장면별 카메라 위치·시점과 배경색 */
@@ -465,5 +465,89 @@ export function ColorStarGlow() {
         toneMapped={false}
       />
     </points>
+  )
+}
+
+/* ─────────── DocQ — 보드 위를 깡충깡충 도는 양 (게임 속 캐릭터 느낌) ─────────── */
+const WOOL = '#F6F3EC'
+const FACE = '#3B3431'
+
+function Sheep() {
+  const parts: { p: [number, number, number]; s: [number, number, number]; c: string }[] = [
+    { p: [0, 0.2, 0], s: [0.3, 0.19, 0.22], c: WOOL }, // 몸통
+    { p: [-0.04, 0.3, 0], s: [0.18, 0.06, 0.16], c: WOOL }, // 등 털
+    { p: [-0.16, 0.23, 0], s: [0.05, 0.07, 0.07], c: WOOL }, // 꼬리
+    { p: [0.18, 0.28, 0], s: [0.12, 0.13, 0.12], c: FACE }, // 머리
+    { p: [0.17, 0.35, 0], s: [0.1, 0.04, 0.13], c: WOOL }, // 앞머리 털
+    { p: [0.15, 0.3, 0.085], s: [0.04, 0.03, 0.07], c: FACE }, // 귀
+    { p: [0.15, 0.3, -0.085], s: [0.04, 0.03, 0.07], c: FACE },
+    { p: [0.245, 0.3, 0.035], s: [0.012, 0.025, 0.025], c: '#FFFFFF' }, // 눈
+    { p: [0.245, 0.3, -0.035], s: [0.012, 0.025, 0.025], c: '#FFFFFF' },
+    { p: [0.09, 0.06, 0.07], s: [0.05, 0.12, 0.05], c: FACE }, // 다리
+    { p: [0.09, 0.06, -0.07], s: [0.05, 0.12, 0.05], c: FACE },
+    { p: [-0.09, 0.06, 0.07], s: [0.05, 0.12, 0.05], c: FACE },
+    { p: [-0.09, 0.06, -0.07], s: [0.05, 0.12, 0.05], c: FACE },
+  ]
+  return (
+    <>
+      {parts.map((b, i) => (
+        <mesh key={i} position={b.p} castShadow>
+          <boxGeometry args={b.s} />
+          <meshStandardMaterial color={b.c} roughness={0.85} />
+        </mesh>
+      ))}
+    </>
+  )
+}
+
+export function DocqSheep() {
+  const scroll = useScroll()
+  const root = useRef<THREE.Group>(null)
+  const body = useRef<THREE.Group>(null)
+  // 경로 타일을 섬 중심 기준 각도 순으로 정렬해 한 바퀴 도는 순서를 만든다
+  const ring = useMemo(() => {
+    if (DOCQ_PATH.length === 0) docqLayout()
+    return [...DOCQ_PATH].sort((a, b) => Math.atan2(a.z, a.x) - Math.atan2(b.z, b.x))
+  }, [])
+  const heading = useRef(0)
+
+  useFrame((state, dt) => {
+    const r = root.current
+    const bd = body.current
+    if (!r || !bd || ring.length < 2) return
+    const w = weightOf(3, scroll.offset, SECTION_COUNT)
+    r.visible = w > 0.02
+    if (!r.visible) return
+    const k = Math.max(0, (w - 0.45) / 0.55)
+    const e = k * k * (3 - 2 * k)
+    r.scale.setScalar(Math.max(0.001, e))
+
+    // 0.55초에 한 칸씩 깡충
+    const t = state.clock.elapsedTime / 0.55
+    const i = Math.floor(t) % ring.length
+    const f = t - Math.floor(t)
+    const a = ring[i]
+    const b = ring[(i + 1) % ring.length]
+    const hop = Math.sin(Math.min(1, f / 0.7) * Math.PI) * 0.16 // 70% 동안 뛰고 30%는 착지해서 쉼
+    const m = Math.min(1, f / 0.7)
+    const ease = m * m * (3 - 2 * m)
+    r.position.set(a.x + (b.x - a.x) * ease, a.top + (b.top - a.top) * ease + hop, a.z + (b.z - a.z) * ease)
+    // 진행 방향을 바라보되 부드럽게 돈다
+    const target = Math.atan2(-(b.z - a.z), b.x - a.x)
+    let dh = target - heading.current
+    dh = Math.atan2(Math.sin(dh), Math.cos(dh))
+    heading.current += dh * Math.min(1, dt * 10)
+    r.rotation.y = heading.current
+    // 착지할 때 살짝 눌렸다 펴지기
+    const squash = f > 0.7 ? 1 - Math.sin(((f - 0.7) / 0.3) * Math.PI) * 0.12 : 1
+    bd.scale.set(1 / Math.sqrt(squash), squash, 1 / Math.sqrt(squash))
+  })
+
+  return (
+    <group ref={root} visible={false}>
+      <group ref={body}>
+        <Sheep />
+      </group>
+    </group>
   )
 }
