@@ -186,6 +186,8 @@ footer h2{font-size:clamp(24px,3vw,30px)}
 /* WYD 갤러리: 원본 비율이 제각각이라(1.5~1.9) 칸 비율을 맞추고 남는 곳은 우주 배경색으로 */
 #wyd .grid-media .media{aspect-ratio:1280/836;background:#07080D}
 #wyd .grid-media .media video,#wyd .grid-media .media img{width:100%;height:100%;object-fit:contain}
+#jabis .jabis-more .media{aspect-ratio:16/9;background:#111316}
+#jabis .jabis-more .media video,#jabis .jabis-more .media img{width:100%;height:100%;object-fit:cover}
 </style>
 
 <script>
@@ -474,6 +476,10 @@ footer h2{font-size:clamp(24px,3vw,30px)}
         <div class="media"><video data-src="../assets/jabis-dashboard.mp4" poster="../assets/jabis-dashboard.jpg" muted loop playsinline preload="none" aria-label="Jabis 디지털 트윈 대시보드"></video></div>
         <figcaption>실측 책상(1200 × 600 × 700 mm) 위의 양팔 로봇 디지털 트윈과 인식된 물체의 3D 박스</figcaption>
       </figure>
+      <div class="grid-media c2 jabis-more">
+        <figure><div class="media"><video data-src="../assets/jabis-robot.mp4" poster="../assets/jabis-robot.jpg" muted loop playsinline preload="none" aria-label="실제 양팔 로봇"></video></div><figcaption>실제 양팔 로봇 — 대시보드의 3D가 따라 움직이는 원본</figcaption></figure>
+        <figure><div class="media"><img src="../assets/jabis-panels.jpg" alt="카메라·텔레메트리 패널" loading="lazy"></div><figcaption>카메라 4대 영상과 양팔 관절 텔레메트리 패널</figcaption></figure>
+      </div>
 
       <div class="cols">
         <div>
