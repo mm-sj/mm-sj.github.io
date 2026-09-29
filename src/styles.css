@@ -220,3 +220,10 @@ p { margin: 0; line-height: 1.75; color: var(--ink-2); font-size: 16px; }
   .card:not(.is-open) .stamp-wrap { top: 6px; right: 8px; width: 66px; height: 66px; margin: 0; }
   .card:not(.is-open) h2 { padding-right: 64px; }
 }
+
+/* 스크롤바 — 기본 회색 막대 대신 얇고 반투명하게 (밝은·어두운 장면 모두에서 튀지 않게) */
+* { scrollbar-width: thin; scrollbar-color: rgba(128, 134, 140, 0.45) transparent; }
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(128, 134, 140, 0.45); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(128, 134, 140, 0.75); }
