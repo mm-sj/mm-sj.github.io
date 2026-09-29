@@ -1,9 +1,9 @@
 import { useEffect, useMemo, useRef } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
-import { Line, useScroll } from '@react-three/drei'
+import { useScroll } from '@react-three/drei'
 import * as THREE from 'three'
 import { SECTION_COUNT, sectionBlend, weightOf } from './timeline'
-import { CONSTELLATIONS, DESK, DETECTIONS, wydLayout } from './layouts'
+import { DESK, DETECTIONS, wydLayout } from './layouts'
 import { facadeParams, sceneState } from '../store'
 
 /* 장면별 카메라 위치·시점과 배경색 */
@@ -105,32 +105,6 @@ export function Lights() {
 }
 
 /* WYD — 별자리 선 */
-export function Constellations() {
-  const scroll = useScroll()
-  const group = useRef<THREE.Group>(null)
-  const lines = useMemo(() => {
-    const L = wydLayout()
-    return CONSTELLATIONS.map((idx) => idx.map((i) => new THREE.Vector3(L.pos[i * 3], L.pos[i * 3 + 1], L.pos[i * 3 + 2])))
-  }, [])
-  useFrame(() => {
-    const w = weightOf(4, scroll.offset, SECTION_COUNT)
-    const g = group.current
-    if (!g) return
-    g.visible = w > 0.02
-    g.traverse((o) => {
-      const m = (o as THREE.Mesh).material as THREE.Material & { opacity?: number }
-      if (m && 'opacity' in m) m.opacity = Math.max(0, (w - 0.8) / 0.2) * 0.85
-    })
-  })
-  return (
-    <group ref={group}>
-      {lines.map((pts, i) => (
-        <Line key={i} points={pts} color="#D6E2FF" lineWidth={1.4} transparent opacity={0} dashed={false} />
-      ))}
-    </group>
-  )
-}
-
 /* ─────────── Jabis — 양팔 로봇과 인식 박스 ─────────── */
 const ARM_BLACK = '#1E2023'
 const ARM_ACCENT = '#6E5BD6'
@@ -322,10 +296,12 @@ function glowTexture(kind: 'halo' | 'spike') {
   return tex
 }
 
+/** 중심별 밝기 — 색 별 번짐은 이 값의 85% */
+const CORE_BRIGHT = 0.7
 const CORE_HALOS = [
-  { size: 0.9, color: '#FFF3DC', alpha: 1 },
-  { size: 2.2, color: '#C9D8FF', alpha: 0.55 },
-  { size: 5.2, color: '#8A7CFF', alpha: 0.22 },
+  { size: 0.9, color: '#FFF3DC', alpha: 1 * CORE_BRIGHT },
+  { size: 2.2, color: '#C9D8FF', alpha: 0.55 * CORE_BRIGHT },
+  { size: 5.2, color: '#8A7CFF', alpha: 0.22 * CORE_BRIGHT },
 ]
 
 export function GalaxyCore() {
@@ -361,10 +337,10 @@ export function GalaxyCore() {
     if (sp) {
       sp.scale.setScalar(Math.max(1e-4, 1.5 * e * pulse))
       const m = sp.material as THREE.SpriteMaterial
-      m.opacity = 0.4 * e
+      m.opacity = 0.4 * CORE_BRIGHT * e
       m.rotation = t * 0.05
     }
-    if (light.current) light.current.intensity = 6 * e * pulse
+    if (light.current) light.current.intensity = 6 * CORE_BRIGHT * e * pulse
   })
 
   return (
@@ -434,4 +410,60 @@ export function PauseWhenModal() {
     return () => window.removeEventListener('folio:modal', on)
   }, [setFrameloop])
   return null
+}
+
+/**
+ * WYD — 감정 색 별마다 번지는 빛(블룸 느낌).
+ * 실제 서비스에서 색마다 밝기가 달라 유독 안 빛나던 별이 있었던 걸 떠올려, 모든 색 별에 같은 세기의 번짐을 준다.
+ * 밝기는 중심별의 85%.
+ */
+export function ColorStarGlow() {
+  const scroll = useScroll()
+  const pts = useRef<THREE.Points>(null)
+  const halo = useMemo(() => glowTexture('halo'), [])
+  const geo = useMemo(() => {
+    const L = wydLayout()
+    const pos: number[] = []
+    const col: number[] = []
+    for (let i = 0; i < L.scl.length / 3; i++) {
+      const k = i * 3
+      const r = L.col[k], g = L.col[k + 1], b = L.col[k + 2]
+      if (L.scl[k] <= 0 || (r > 0.98 && g > 0.98 && b > 0.98)) continue // 흰 별은 제외
+      pos.push(L.pos[k], L.pos[k + 1], L.pos[k + 2])
+      col.push(r, g, b)
+    }
+    const gg = new THREE.BufferGeometry()
+    gg.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3))
+    gg.setAttribute('color', new THREE.Float32BufferAttribute(col, 3))
+    return gg
+  }, [])
+  useFrame((state) => {
+    const p = pts.current
+    if (!p) return
+    const w = weightOf(4, scroll.offset, SECTION_COUNT)
+    p.visible = w > 0.01
+    if (!p.visible) return
+    const e0 = Math.min(1, Math.max(0, (w - 0.35) / 0.65))
+    const e = e0 * e0 * (3 - 2 * e0)
+    const t = state.clock.elapsedTime
+    const m = p.material as THREE.PointsMaterial
+    m.opacity = 0.85 * CORE_BRIGHT * e * (1 + Math.sin(t * 1.7) * 0.08)
+    m.size = 1.1 * (0.6 + 0.4 * e)
+  })
+  return (
+    <points ref={pts} geometry={geo} visible={false}>
+      <pointsMaterial
+        map={halo}
+        vertexColors
+        size={1.1}
+        sizeAttenuation
+        transparent
+        opacity={0}
+        depthWrite={false}
+        depthTest={false}
+        blending={THREE.AdditiveBlending}
+        toneMapped={false}
+      />
+    </points>
+  )
 }

@@ -532,46 +532,9 @@ function wydBase(): Layout {
   return b.done()
 }
 
-/**
- * 별자리 — 서비스에서 일주일치 별 7개가 이어지듯, 모양이 읽히는 별자리 3개를 손으로 배치한다.
- * 은하 원반보다 살짝 위(y≈0.9)에 띄워 팔의 촘촘한 별들과 섞이지 않게 하고,
- * 은하를 이루던 마지막 인덱스들을 가져와 자리를 옮긴다. (예전엔 임의 인덱스를 이어 은하를 가로지르는 긴 선이 생겼다)
- */
-const SHAPES: { at: [number, number, number]; rot: number; s: number; pts: [number, number][]; order: number[] }[] = [
-  // 북두칠성 모양 — 국자 머리를 닫는다
-  { at: [-0.7, 0.9, -2.0], rot: 0.15, s: 0.45, pts: [[0, 0], [0.5, 0.12], [0.95, 0.05], [1.4, 0.25], [1.5, 0.78], [2.05, 0.88], [2.1, 0.36]], order: [0, 1, 2, 3, 4, 5, 6, 3] },
-  // 카시오페이아 W
-  { at: [-1.5, 0.9, 1.1], rot: 0.25, s: 0.45, pts: [[0, 0], [0.45, 0.55], [0.95, 0.12], [1.4, 0.62], [1.9, 0.05]], order: [0, 1, 2, 3, 4] },
-  // 연 모양 + 꼬리
-  { at: [1.1, 0.9, 0.2], rot: -0.9, s: 0.45, pts: [[0, 0], [0.45, 0.4], [0.95, 0.2], [0.62, -0.35], [1.45, 0.55], [1.9, 0.62]], order: [0, 1, 2, 3, 0, 1, 2, 4, 5] },
-]
-
-const CONST_IDX: number[][] = (() => {
-  let next = N - 1
-  return SHAPES.map((sh) => sh.pts.map(() => next--))
-})()
-
-/** 별자리로 이어줄 별 인덱스 (wydLayout의 인덱스, 선을 긋는 순서대로 — 닫힌 모양은 같은 별을 다시 지난다) */
-export const CONSTELLATIONS: number[][] = SHAPES.map((sh, k) => sh.order.map((o) => CONST_IDX[k][o]))
-
+/** 은하 — 흰 별과 감정 색 별. 색 별은 GalaxyCore 옆의 ColorStarGlow가 번지는 빛을 더한다 */
 export function wydLayout(): Layout {
-  const L = wydBase()
-  SHAPES.forEach((sh, k) => {
-    const c = Math.cos(sh.rot)
-    const sn = Math.sin(sh.rot)
-    sh.pts.forEach(([x, z], m) => {
-      const i = CONST_IDX[k][m]
-      const j = i * 3
-      const lx = x * sh.s
-      const lz = z * sh.s
-      L.pos[j] = sh.at[0] + lx * c - lz * sn
-      L.pos[j + 1] = sh.at[1] + (m % 2 ? 0.05 : -0.03)
-      L.pos[j + 2] = sh.at[2] + lx * sn + lz * c
-      L.scl[j] = L.scl[j + 1] = L.scl[j + 2] = 0.075
-      L.col[j] = L.col[j + 1] = L.col[j + 2] = 1
-    })
-  })
-  return L
+  return wydBase()
 }
 
 /* ───────────────────── 5. Jabis — 책상 디지털 트윈 ───────────────────── */
