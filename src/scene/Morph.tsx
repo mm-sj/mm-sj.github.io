@@ -51,6 +51,8 @@ export function Morph() {
   const hit = useMemo(() => new THREE.Vector3(), [])
   const attractor = useRef(sceneState.attractor)
   const goal = useMemo(() => new THREE.Vector2(), [])
+  // 스크롤이 멈춰 있고 파사드 장면이 아니면 800개 행렬을 다시 쓸 필요가 없다
+  const lastKey = useRef('')
 
   // 별(WYD)만 스스로 빛나게: 인스턴스 색을 emissive에 더하는 셰이더 패치
   const material = useMemo(() => {
@@ -100,6 +102,15 @@ export function Morph() {
       }
       facadeLayout(layouts[2], attractor.current.x, attractor.current.y, state.clock.elapsedTime)
     }
+
+    const key = `${a}|${b}|${t.toFixed(4)}`
+    const live = a === 2 || b === 2
+    if (key === lastKey.current && !live) {
+      const w4s = a === 4 ? 1 - t : b === 4 ? t : 0
+      sceneState.glowUniform.value = w4s * 2.4
+      return
+    }
+    lastKey.current = key
 
     const A = layouts[a]
     const B = layouts[b]

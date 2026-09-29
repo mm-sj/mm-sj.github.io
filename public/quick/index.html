@@ -66,6 +66,10 @@ p{margin:0}
 .chip:hover{border-color:var(--accent);color:var(--accent)}
 button.chip{font:inherit;font-family:var(--mono);font-size:13px}
 
+.portrait{margin:0;justify-self:end;width:min(320px,100%);border:1px solid var(--line);background:var(--sheet);padding:10px 10px 8px}
+.portrait img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover}
+.portrait figcaption{margin-top:8px;font-size:11px;letter-spacing:.12em}
+@media (max-width:860px){.portrait{justify-self:start;width:min(240px,70%)}}
 .model{position:relative;aspect-ratio:1/1;max-width:100%;border:1px solid var(--line);background:var(--sheet)}
 .model canvas{display:block;width:100%;height:100%}
 .model .fallback{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
@@ -178,10 +182,7 @@ footer h2{font-size:clamp(24px,3vw,30px)}
   ::-webkit-scrollbar-thumb { background: rgba(128, 134, 140, 0.45); border-radius: 3px; }
   /* 모달 안에서는 모달 상단 바가 목차 역할을 하므로 자체 상단 바만 숨긴다 */
   .embed .topbar { display: none !important; }
-  .embed .hero { padding-top: clamp(24px, 4vw, 48px); grid-template-columns: 1fr; }
-  /* 모달 뒤에 이미 3D 사이트가 있으니 모형은 빼고 소개 글을 넓게 */
-  .embed .hero .model { display: none; }
-  .embed .hero .lead { max-width: 52em; }
+  .embed .hero { padding-top: clamp(24px, 4vw, 48px); }
   /* 목차에서 Contact를 눌렀을 때도 제목이 맨 위로 오도록 마지막 섹션에 여백 */
   .embed #contact { min-height: calc(100vh - 24px); box-sizing: border-box; }
 </style>
@@ -216,10 +217,9 @@ footer h2{font-size:clamp(24px,3vw,30px)}
       </div>
       <p class="toast" aria-live="polite" id="toast-hero"></p>
     </div>
-    <figure class="model" aria-label="마우스에 반응하는 건축 매스 모형">
-      <div class="fallback" id="model-fallback"><span class="mono">MASS MODEL</span></div>
-      <canvas id="mass" aria-hidden="true"></canvas>
-      <div class="tag"><span class="mono">MASS MODEL — THREE.JS</span><span class="mono">DRAG / MOVE</span></div>
+    <figure class="portrait">
+      <img src="../assets/portrait.jpg" alt="오창민 프로필 사진" width="600" height="750" loading="eager" decoding="async">
+      <figcaption class="mono">OH CHANGMIN</figcaption>
     </figure>
   </section>
 
@@ -513,7 +513,6 @@ footer h2{font-size:clamp(24px,3vw,30px)}
   </footer>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
 /* copy email */
 document.querySelectorAll('[data-copy]').forEach(function(btn){
@@ -540,84 +539,6 @@ document.querySelectorAll('[data-copy]').forEach(function(btn){
   vids.forEach(function(v){io.observe(v)});
 })();
 
-/* hero mass model */
-(function(){
-  var canvas=document.getElementById('mass');
-  if(!window.THREE||!canvas)return;
-  var fb=document.getElementById('model-fallback');
-  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var renderer;
-  try{renderer=new THREE.WebGLRenderer({canvas:canvas,antialias:true,alpha:true});}catch(e){return;}
-  fb.hidden=true;
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,2));
-  var scene=new THREE.Scene();
-  var cam=new THREE.OrthographicCamera(-1,1,1,-1,0.1,100);
-  cam.position.set(10,9,10);cam.lookAt(0,1.2,0);
-  var css=getComputedStyle(document.documentElement);
-  function col(name){return new THREE.Color(css.getPropertyValue(name).trim()||'#000')}
-  var ink=col('--ink'),acc=col('--accent'),sheet=col('--sheet');
-  var root=new THREE.Group();scene.add(root);
-
-  var faceMat=new THREE.MeshBasicMaterial({color:sheet,polygonOffset:true,polygonOffsetFactor:1,polygonOffsetUnits:1});
-  var lineMat=new THREE.LineBasicMaterial({color:ink,transparent:true,opacity:.85});
-  var accLine=new THREE.LineBasicMaterial({color:acc});
-  function box(w,h,d,x,y,z,accent){
-    var g=new THREE.BoxGeometry(w,h,d);
-    var m=new THREE.Mesh(g,faceMat);m.position.set(x,y+h/2,z);root.add(m);
-    var e=new THREE.LineSegments(new THREE.EdgesGeometry(g),accent?accLine:lineMat);e.position.copy(m.position);root.add(e);
-    return [m,e];
-  }
-  /* site plate */
-  var plate=new THREE.GridHelper(8,16,acc,ink);plate.material.transparent=true;plate.material.opacity=.18;root.add(plate);
-  /* massing: podium + towers + a stepped block */
-  var parts=[];
-  parts.push(box(4.4,.5,3.2,0,0,0,false));
-  parts.push(box(1.4,3.4,1.4,-1.1,.5,-.5,false));
-  parts.push(box(1.2,2.2,1.6,.8,.5,-.4,false));
-  parts.push(box(1.0,1.2,1.0,1.1,2.7,-.6,true));
-  parts.push(box(2.2,.9,1.0,.2,.5,1.0,false));
-  parts.push(box(.8,1.6,.8,-1.4,3.9,-.5,false));
-  /* rise-in offsets */
-  parts.forEach(function(p,i){p.base=p[0].position.y;p.delay=i*0.12;});
-
-  function size(){
-    var w=canvas.clientWidth,h=canvas.clientHeight;if(!w||!h)return;
-    renderer.setSize(w,h,false);
-    var a=w/h,s=4.2;
-    cam.left=-s*a;cam.right=s*a;cam.top=s;cam.bottom=-s;cam.updateProjectionMatrix();
-  }
-  size();addEventListener('resize',size);
-
-  var tx=0,ty=0,rx=0,ry=0,drag=false,lx=0,spin=0;
-  canvas.parentElement.addEventListener('pointermove',function(e){
-    var r=canvas.getBoundingClientRect();
-    tx=((e.clientX-r.left)/r.width-.5);ty=((e.clientY-r.top)/r.height-.5);
-    if(drag){spin+=(e.clientX-lx)*0.01;lx=e.clientX;}
-  });
-  canvas.parentElement.addEventListener('pointerdown',function(e){drag=true;lx=e.clientX;});
-  addEventListener('pointerup',function(){drag=false});
-  canvas.parentElement.addEventListener('pointerleave',function(){tx=0;ty=0});
-
-  var t0=performance.now(),visible=true;
-  new IntersectionObserver(function(es){visible=es[0].isIntersecting}).observe(canvas);
-  function frame(now){
-    requestAnimationFrame(frame);
-    if(!visible)return;
-    var t=(now-t0)/1000;
-    parts.forEach(function(p){
-      var k=reduce?1:Math.min(1,Math.max(0,(t-p.delay)/0.7));
-      var ease=1-Math.pow(1-k,3);
-      var y=p.base+(1-ease)*-1.2;
-      p[0].position.y=y;p[1].position.y=y;
-      p[0].scale.y=p[1].scale.y=Math.max(.001,ease);
-    });
-    if(!reduce&&!drag)spin+=0.0016;
-    rx+=(ty*0.25-rx)*0.06;ry+=(tx*0.6-ry)*0.06;
-    root.rotation.y=spin+ry;root.rotation.x=rx;
-    renderer.render(scene,cam);
-  }
-  requestAnimationFrame(frame);
-})();
 </script>
 </body>
 </html>

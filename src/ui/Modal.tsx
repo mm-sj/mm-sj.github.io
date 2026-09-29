@@ -7,6 +7,8 @@ import { PROFILE, PROJECTS } from '../content'
  * 한 번 불러온 iframe은 닫아도 유지해서, 다시 열 때 즉시 뜬다.
  */
 const EVENT = 'folio:open'
+/** 모달이 열려 있는 동안 뒤의 3D 렌더링을 멈추기 위한 신호 */
+export const MODAL_STATE = 'folio:modal'
 
 /** 어디서든(Canvas 안 HTML 오버레이 포함) 모달을 연다. id가 없으면 맨 위 */
 export function openFolio(id?: string) {
@@ -58,6 +60,10 @@ export function FolioModal() {
     setOpen(false)
     returnFocus.current?.focus?.()
   }, [])
+
+  useEffect(() => {
+    window.dispatchEvent(new CustomEvent<boolean>(MODAL_STATE, { detail: open }))
+  }, [open])
 
   useEffect(() => {
     if (!open) return

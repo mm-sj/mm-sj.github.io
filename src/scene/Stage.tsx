@@ -1,4 +1,4 @@
-import { useMemo, useRef } from 'react'
+import { useEffect, useMemo, useRef } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
 import { Line, useScroll } from '@react-three/drei'
 import * as THREE from 'three'
@@ -418,5 +418,19 @@ export function ScrollSync() {
       s.delta = 1
     }
   })
+  return null
+}
+
+/**
+ * 전체 보기 모달이 열려 있는 동안은 뒤의 3D가 가려지므로 렌더 루프를 멈춘다.
+ * (모달 안 문서 스크롤과 영상 재생에 GPU를 양보)
+ */
+export function PauseWhenModal() {
+  const setFrameloop = useThree((s) => s.setFrameloop)
+  useEffect(() => {
+    const on = (e: Event) => setFrameloop((e as CustomEvent<boolean>).detail ? 'never' : 'always')
+    window.addEventListener('folio:modal', on)
+    return () => window.removeEventListener('folio:modal', on)
+  }, [setFrameloop])
   return null
 }

@@ -227,3 +227,8 @@ p { margin: 0; line-height: 1.75; color: var(--ink-2); font-size: 16px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: rgba(128, 134, 140, 0.45); border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: rgba(128, 134, 140, 0.75); }
+
+/* 연락처 카드의 프로필 사진 */
+.sec--end .txt { position: relative; }
+.contact__photo { position: absolute; top: 22px; right: 22px; width: 84px; height: 105px; object-fit: cover; margin: 0; border: 1px solid var(--line); background: var(--sheet); padding: 4px; }
+@media (max-width: 860px) { .contact__photo { width: 64px; height: 80px; top: 14px; right: 14px; } }

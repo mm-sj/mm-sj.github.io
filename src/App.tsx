@@ -2,7 +2,7 @@ import { Suspense, useEffect } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { AdaptiveDpr, Scroll, ScrollControls } from '@react-three/drei'
 import { Morph } from './scene/Morph'
-import { CameraRig, ScrollSync, Constellations, FacadeLight, GalaxyCore, JabisRig, Lights, Tilt } from './scene/Stage'
+import { CameraRig, PauseWhenModal, ScrollSync, Constellations, FacadeLight, GalaxyCore, JabisRig, Lights, Tilt } from './scene/Stage'
 import { ModelContext } from './scene/Context'
 import { Mashrabiya } from './scene/Mashrabiya'
 import { ModelSolid } from './scene/ModelSolid'
@@ -31,7 +31,7 @@ export default function App() {
       </header>
       <Canvas
         shadows
-        dpr={[1, 1.75]}
+        dpr={[1, 1.5]}
         camera={{ position: [0.01, 10.5, 1.2], fov: 32, near: 0.1, far: 80 }}
         gl={{ antialias: true, powerPreference: 'high-performance' }}
         performance={{ min: 0.6 }}
@@ -45,6 +45,7 @@ export default function App() {
         }
       >
         <color attach="background" args={['#F3F5F4']} />
+        <PauseWhenModal />
         <Suspense fallback={null}>
           <ScrollControls pages={SECTION_COUNT} damping={0.22}>
             <ScrollSync />

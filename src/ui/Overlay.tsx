@@ -157,6 +157,7 @@ export function Overlay() {
       {/* 6. 연락처 */}
       <section className="sec sec--end">
         <div className="txt">
+          <img className="contact__photo" src="./assets/portrait.jpg" alt="오창민 프로필 사진" width="96" height="120" loading="lazy" decoding="async" />
           <p className="eyebrow">06 · Contact</p>
           <h2>Contact</h2>
           <ul className="facts">
