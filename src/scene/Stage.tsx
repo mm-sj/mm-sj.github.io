@@ -250,18 +250,25 @@ export function Tilt({ children }: { children: React.ReactNode }) {
   const scroll = useScroll()
   const g = useRef<THREE.Group>(null)
   const spin = useRef(0)
+  const lean = useRef({ x: 0, y: 0 })
   useFrame((state, dt) => {
     const grp = g.current
     if (!grp) return
     // 도면(첫 화면)과 파사드에서는 커서 기울기를 끈다 — 도면은 정지된 그림, 파사드는 커서가 끌개라서
     const calm = (1 - sceneState.facadeWeight) * (1 - weightOf(0, scroll.offset, SECTION_COUNT))
     const wyd = weightOf(4, scroll.offset, SECTION_COUNT)
-    spin.current += Math.min(dt, 0.05) * 0.06 * wyd
-    const ty = state.pointer.x * 0.22 * calm + spin.current
-    const tx = -state.pointer.y * 0.07 * calm
+    // 커서 기울기는 부드럽게 따라가고
     const k = Math.min(1, dt * 3)
-    grp.rotation.y += (ty - grp.rotation.y) * k
-    grp.rotation.x += (tx - grp.rotation.x) * k
+    lean.current.y += (state.pointer.x * 0.22 * calm - lean.current.y) * k
+    lean.current.x += (-state.pointer.y * 0.07 * calm - lean.current.x) * k
+    // 은하 회전은 -π~π 안에서만 누적하고 은하 가중치를 곱한다.
+    // 은하를 벗어나면 회전이 0으로 돌아오고, 오래 머물러도 되감기는 반 바퀴를 넘지 않는다.
+    // (예전엔 무한히 누적돼서 은하를 지나간 뒤 다른 장면 모델들이 틀어져 있었다)
+    spin.current += Math.min(dt, 0.05) * 0.06 * wyd
+    if (spin.current > Math.PI) spin.current -= Math.PI * 2
+    if (wyd < 0.001) spin.current = 0
+    grp.rotation.y = lean.current.y + spin.current * wyd
+    grp.rotation.x = lean.current.x
   })
   return <group ref={g}>{children}</group>
 }
@@ -385,4 +392,31 @@ export function GalaxyCore() {
       <pointLight ref={light} color="#DCE4FF" intensity={0} distance={3.5} decay={2} />
     </group>
   )
+}
+
+/**
+ * 스크롤 안정화.
+ * drei ScrollControls는 스크롤 비율을 scrollTop / (scrollHeight - 창 높이)로 계산하는데,
+ * 창을 최소화하는 등 높이가 0이 되면 0으로 나눠 offset이 NaN이 되고, 그 뒤로는 창을 되살려도
+ * NaN에서 벗어나지 못해 스크롤바만 움직이고 화면은 멈춘다.
+ * 이벤트에 기대지 않고 매 프레임 scrollTop을 직접 읽어 동기화하고, 값이 깨지면 바로 복구한다.
+ */
+export function ScrollSync() {
+  const s = useScroll() as ReturnType<typeof useScroll> & { scroll: { current: number } }
+  const size = useThree((st) => st.size)
+  const last = useRef({ w: 0, h: 0 })
+  useFrame(() => {
+    const el = s.el
+    const max = el.scrollHeight - el.clientHeight
+    const target = max > 0 ? Math.min(1, Math.max(0, el.scrollTop / max)) : 0
+    s.scroll.current = target
+    if (!Number.isFinite(s.offset)) s.offset = target
+    if (!Number.isFinite(s.delta)) s.delta = 0
+    // 창 크기가 바뀌면 HTML 오버레이 위치를 한 번 강제로 다시 계산
+    if (last.current.w !== size.width || last.current.h !== size.height) {
+      last.current = { w: size.width, h: size.height }
+      s.delta = 1
+    }
+  })
+  return null
 }
