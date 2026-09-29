@@ -98,7 +98,7 @@ export function Lights() {
       <directionalLight position={[-5, 4, -6]} intensity={0.5} />
       <mesh rotation-x={-Math.PI / 2} position-y={-0.001} receiveShadow>
         <planeGeometry args={[40, 40]} />
-        <shadowMaterial ref={shadow} transparent opacity={0.16} />
+        <shadowMaterial ref={shadow} transparent opacity={0.16} depthWrite={false} />
       </mesh>
     </>
   )
@@ -282,4 +282,107 @@ export function FacadeLight() {
     l.position.set(sceneState.attractor.x, sceneState.attractor.y, 0.9)
   })
   return <pointLight ref={light} color="#9DB6FF" distance={2.6} decay={1.4} intensity={0} />
+}
+
+/* ─────────── WYD — 은하 중심에서 피어나는 별 ─────────── */
+function glowTexture(kind: 'halo' | 'spike') {
+  const S = 256
+  const cv = document.createElement('canvas')
+  cv.width = cv.height = S
+  const g = cv.getContext('2d')!
+  if (kind === 'halo') {
+    const gr = g.createRadialGradient(S / 2, S / 2, 0, S / 2, S / 2, S / 2)
+    gr.addColorStop(0, 'rgba(255,255,255,1)')
+    gr.addColorStop(0.18, 'rgba(255,255,255,0.55)')
+    gr.addColorStop(0.45, 'rgba(255,255,255,0.14)')
+    gr.addColorStop(1, 'rgba(255,255,255,0)')
+    g.fillStyle = gr
+    g.fillRect(0, 0, S, S)
+  } else {
+    // 회절 스파이크: 가운데가 밝고 끝으로 갈수록 가늘게 사라지는 십자
+    for (const horiz of [true, false]) {
+      const gr = horiz ? g.createLinearGradient(0, 0, S, 0) : g.createLinearGradient(0, 0, 0, S)
+      gr.addColorStop(0, 'rgba(255,255,255,0)')
+      gr.addColorStop(0.5, 'rgba(255,255,255,1)')
+      gr.addColorStop(1, 'rgba(255,255,255,0)')
+      g.fillStyle = gr
+      if (horiz) g.fillRect(0, S / 2 - 1.5, S, 3)
+      else g.fillRect(S / 2 - 1.5, 0, 3, S)
+    }
+  }
+  const tex = new THREE.CanvasTexture(cv)
+  tex.colorSpace = THREE.SRGBColorSpace
+  return tex
+}
+
+const CORE_HALOS = [
+  { size: 0.9, color: '#FFF3DC', alpha: 1 },
+  { size: 2.2, color: '#C9D8FF', alpha: 0.55 },
+  { size: 5.2, color: '#8A7CFF', alpha: 0.22 },
+]
+
+export function GalaxyCore() {
+  const scroll = useScroll()
+  const root = useRef<THREE.Group>(null)
+  const core = useRef<THREE.Mesh>(null)
+  const halos = useRef<(THREE.Sprite | null)[]>([])
+  const spikes = useRef<THREE.Sprite>(null)
+  const light = useRef<THREE.PointLight>(null)
+  const halo = useMemo(() => glowTexture('halo'), [])
+  const spike = useMemo(() => glowTexture('spike'), [])
+
+  useFrame((state) => {
+    const r = root.current
+    if (!r) return
+    const w = weightOf(4, scroll.offset, SECTION_COUNT)
+    r.visible = w > 0.01
+    if (!r.visible) return
+    // 장면에 들어오면서 가운데서 피어난다 (별들이 자리 잡는 동안 조금 늦게)
+    const e0 = Math.min(1, Math.max(0, (w - 0.35) / 0.65))
+    const e = e0 * e0 * (3 - 2 * e0)
+    const t = state.clock.elapsedTime
+    const pulse = 1 + Math.sin(t * 1.4) * 0.07 + Math.sin(t * 3.1) * 0.025
+    core.current?.scale.setScalar(Math.max(1e-4, e * (1 + (pulse - 1) * 0.5)))
+    halos.current.forEach((s, i) => {
+      if (!s) return
+      const h = CORE_HALOS[i]
+      const breathe = 1 + (pulse - 1) * (1 + i * 0.8)
+      s.scale.setScalar(Math.max(1e-4, h.size * e * breathe))
+      ;(s.material as THREE.SpriteMaterial).opacity = h.alpha * e
+    })
+    const sp = spikes.current
+    if (sp) {
+      sp.scale.setScalar(Math.max(1e-4, 1.5 * e * pulse))
+      const m = sp.material as THREE.SpriteMaterial
+      m.opacity = 0.4 * e
+      m.rotation = t * 0.05
+    }
+    if (light.current) light.current.intensity = 6 * e * pulse
+  })
+
+  return (
+    <group ref={root} visible={false}>
+      <mesh ref={core}>
+        <sphereGeometry args={[0.14, 32, 16]} />
+        <meshBasicMaterial color="#FFFBF2" toneMapped={false} />
+      </mesh>
+      {CORE_HALOS.map((h, i) => (
+        <sprite key={i} ref={(s) => { halos.current[i] = s }}>
+          <spriteMaterial
+            map={halo}
+            color={h.color}
+            transparent
+            opacity={0}
+            depthWrite={false}
+            blending={THREE.AdditiveBlending}
+            toneMapped={false}
+          />
+        </sprite>
+      ))}
+      <sprite ref={spikes}>
+        <spriteMaterial map={spike} color="#E8EEFF" transparent opacity={0} depthWrite={false} blending={THREE.AdditiveBlending} toneMapped={false} />
+      </sprite>
+      <pointLight ref={light} color="#DCE4FF" intensity={0} distance={3.5} decay={2} />
+    </group>
+  )
 }
