@@ -119,13 +119,13 @@ export function Constellations() {
     g.visible = w > 0.02
     g.traverse((o) => {
       const m = (o as THREE.Mesh).material as THREE.Material & { opacity?: number }
-      if (m && 'opacity' in m) m.opacity = Math.max(0, (w - 0.4) / 0.6) * 0.55
+      if (m && 'opacity' in m) m.opacity = Math.max(0, (w - 0.8) / 0.2) * 0.85
     })
   })
   return (
     <group ref={group}>
       {lines.map((pts, i) => (
-        <Line key={i} points={pts} color="#BFD4FF" lineWidth={1} transparent opacity={0} dashed={false} />
+        <Line key={i} points={pts} color="#D6E2FF" lineWidth={1.4} transparent opacity={0} dashed={false} />
       ))}
     </group>
   )
