@@ -83,17 +83,14 @@ export function FolioModal() {
             <button type="button" className="mono" onClick={() => jump()}>
               처음
             </button>
+            <button type="button" className="mono" onClick={() => jump('skills')}>
+              Skills
+            </button>
             {PROJECTS.map((p) => (
               <button key={p.id} type="button" className="mono" onClick={() => jump(p.id)}>
                 {p.no} {p.title}
               </button>
             ))}
-            <button type="button" className="mono" onClick={() => jump('skills')}>
-              04 Skills
-            </button>
-            <button type="button" className="mono" onClick={() => jump('contact')}>
-              05 Contact
-            </button>
           </nav>
           <span className="modal__actions">
             <a className="mono" href={PROFILE.quick} target="_blank" rel="noopener">
