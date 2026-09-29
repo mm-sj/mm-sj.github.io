@@ -165,16 +165,16 @@ export function Overlay() {
             <li><i>NOW</i>LG전자 K-뉴딜 아카데미 1기 AX 워크플로우 트랙</li>
             <li><i>AWARDS</i>SSAFY 공통 최우수상 · 특화 우수상 · 자율 우수상</li>
           </ul>
-          <div className="links">
+          <div className="links links--contact">
+            <a className="chip chip--solid chip--wide" href={PROFILE.quick} target="_blank" rel="noopener" onClick={modalClick()}>
+              포트폴리오 전체 보기 →
+            </a>
             <Copy text={PROFILE.email} />
             <a className="chip" href={PROFILE.github} target="_blank" rel="noopener">
               GitHub ↗
             </a>
             <a className="chip" href="./portfolio.pdf" target="_blank" rel="noopener">
               PDF ↓
-            </a>
-            <a className="chip chip--solid" href={PROFILE.quick} target="_blank" rel="noopener" onClick={modalClick()}>
-              포트폴리오 전체 보기 →
             </a>
           </div>
         </div>

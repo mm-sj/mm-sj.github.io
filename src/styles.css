@@ -68,8 +68,18 @@ p { margin: 0; line-height: 1.75; color: var(--ink-2); font-size: 16px; }
 .chip:hover { border-color: var(--accent); color: var(--accent); }
 .chip--solid { background: var(--ink); color: var(--sheet); border-color: var(--ink); }
 .chip--solid:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
-.copy { display: inline-flex; gap: 8px; align-items: center; }
+.copy { position: relative; display: inline-flex; }
+.copy .chip { width: 100%; }
 .toast { font-family: var(--mono); font-size: 11px; color: var(--accent); }
+.copy .toast { position: absolute; left: 0; top: calc(100% + 4px); white-space: nowrap; }
+/* 연락처: 위에 주 버튼 한 줄, 아래에 메일·GitHub·PDF 한 줄 */
+.links--contact { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; gap: 8px; align-items: stretch; }
+.links--contact .chip { justify-content: center; }
+.links--contact .chip--wide { grid-column: 1 / -1; padding-block: 12px; }
+@media (max-width: 420px) {
+  .links--contact { grid-template-columns: 1fr 1fr; }
+  .links--contact .copy { grid-column: 1 / -1; }
+}
 
 /* project card — 도면 표제란 */
 .sec--card { align-items: center; }
