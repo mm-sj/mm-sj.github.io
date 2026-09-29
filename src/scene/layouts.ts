@@ -573,3 +573,29 @@ export const DETECTIONS = [
   { label: 'cup', p: [1.0, DESK.h + 0.18, 0.35] as const, s: [0.3, 0.38, 0.3] as const },
   { label: 'box', p: [-1.35, DESK.h + 0.2, 0.5] as const, s: [0.52, 0.46, 0.42] as const },
 ]
+
+/* ───────────────────── 6. 연락처 — 비우기 ───────────────────── */
+/**
+ * Jabis 책상을 이루던 큐브들이 바닥으로 떨어지며 작아져 사라진다.
+ * 위치는 책상 발치의 바닥(y≈0)으로 조금 퍼지게, 크기는 0 — 보간되는 동안 "무너져 내리는" 궤적이 된다.
+ */
+export function endLayout(): Layout {
+  const src = jabisLayout()
+  const out = emptyLayout()
+  const rnd = rng(7)
+  for (let i = 0; i < N; i++) {
+    const j = i * 3
+    const spread = 1.25 + rnd() * 0.35
+    out.pos[j] = src.pos[j] * spread
+    out.pos[j + 1] = 0.02
+    out.pos[j + 2] = src.pos[j + 2] * spread
+    out.rot[j] = src.rot[j]
+    out.rot[j + 1] = src.rot[j + 1] + (rnd() - 0.5) * 1.2
+    out.rot[j + 2] = src.rot[j + 2]
+    out.scl[j] = out.scl[j + 1] = out.scl[j + 2] = 0
+    out.col[j] = src.col[j]
+    out.col[j + 1] = src.col[j + 1]
+    out.col[j + 2] = src.col[j + 2]
+  }
+  return out
+}

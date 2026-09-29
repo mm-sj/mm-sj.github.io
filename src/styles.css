@@ -268,3 +268,6 @@ p { margin: 0; line-height: 1.75; color: var(--ink-2); font-size: 16px; }
   .secnav button { padding: 5px 0; }
   .secnav button.is-active .secnav__bar { width: 20px; }
 }
+
+/* 06 연락처 — 3D가 비워진 자리에 카드를 가운데로 */
+.sec--end, .sec.sec--end { justify-content: center; align-items: center; }

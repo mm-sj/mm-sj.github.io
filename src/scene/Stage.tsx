@@ -14,7 +14,7 @@ const SHOTS: { pos: [number, number, number]; look: [number, number, number]; bg
   { pos: [6.4, 5.4, 6.4], look: [0, -0.2, 0], bg: '#CFE8F5' }, // 3 DocQ: 하늘색 배경의 섬
   { pos: [0.5, 6.4, 5.2], look: [0, 0, 0], bg: '#07080D' }, // 4 WYD: 밤하늘
   { pos: [6.2, 6.0, 6.8], look: [0, 2.6, 0], bg: '#18191C' }, // 5 Jabis: 대시보드 톤
-  { pos: [5.2, 4.2, 6.0], look: [0, 0.9, 0], bg: '#F3F5F4' }, // 6 연락처: 다시 작은 모형
+  { pos: [5.2, 4.2, 6.0], look: [0, 0.9, 0], bg: '#F3F5F4' }, // 6 연락처: 큐브가 바닥으로 흩어진 빈 무대
 ]
 
 export function CameraRig() {

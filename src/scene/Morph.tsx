@@ -3,7 +3,7 @@ import { useFrame, useThree } from '@react-three/fiber'
 import { useScroll } from '@react-three/drei'
 import * as THREE from 'three'
 import {
-  N, type Layout, emptyLayout, planLayout, modelLayout, facadeLayout, docqLayout, wydLayout, jabisLayout,
+  N, type Layout, emptyLayout, planLayout, modelLayout, facadeLayout, docqLayout, wydLayout, jabisLayout, endLayout,
 } from './layouts'
 import { facadeParams, sceneState } from '../store'
 import { SECTION_COUNT, sectionBlend } from './timeline'
@@ -32,7 +32,7 @@ export function Morph() {
       docqLayout(),
       wydLayout(),
       jabisLayout(),
-      modelLayout(0.55, [0, 0, 0]),
+      endLayout(),
     ]
   }, [])
 
