@@ -14,5 +14,6 @@ export const sceneState = {
   attractor: new THREE.Vector2(0.6, 2.2), // 파사드 끌개 위치 (조명·클릭 파동이 함께 쓴다)
   clock: 0, // useFrame의 elapsedTime — 클릭 시각을 3D 시간축에 맞추려고 보관
   facadeWeight: 0,
+  scrollEl: null as HTMLElement | null, // drei ScrollControls의 스크롤 컨테이너 — 섹션 내비게이션이 이동할 때 쓴다
   modelSettled: false, // 01 장면에 멈춰 있는 동안 true — 큐브 대신 합친 덩어리를 보여준다
 }

@@ -407,6 +407,7 @@ export function ScrollSync() {
   const last = useRef({ w: 0, h: 0 })
   useFrame(() => {
     const el = s.el
+    sceneState.scrollEl = el
     const max = el.scrollHeight - el.clientHeight
     const target = max > 0 ? Math.min(1, Math.max(0, el.scrollTop / max)) : 0
     s.scroll.current = target

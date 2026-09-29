@@ -110,7 +110,7 @@ export function Overlay() {
             <br />
             프론트엔드 개발자
             <br />
-            {PROFILE.name}입니다.
+            <span className="name-box">{PROFILE.name}</span>입니다.
           </h1>
           <p className="lede">모형을 만지던 손으로, 지금은 웹에서 3D를 만지고 있습니다.</p>
           <p className="cue">천천히 스크롤해 보세요 ↓</p>
@@ -156,9 +156,13 @@ export function Overlay() {
       {/* 6. 연락처 */}
       <section className="sec sec--end">
         <div className="txt">
-          <img className="contact__photo" src="./assets/portrait.jpg" alt="오창민 프로필 사진" width="96" height="120" loading="lazy" decoding="async" />
-          <p className="eyebrow">06 · Contact</p>
-          <h2>오창민</h2>
+          <div className="contact__head">
+            <div>
+              <p className="eyebrow">06 · Contact</p>
+              <h2>오창민</h2>
+            </div>
+            <img className="contact__photo" src="./assets/portrait.jpg" alt="오창민 프로필 사진" width="600" height="750" loading="lazy" decoding="async" />
+          </div>
           <ul className="facts">
             <li><i>EDUCATION</i>SSAFY 14기 수료 · 계명대학교 건축학 학사</li>
             <li><i>EXPERIENCE</i>건축사사무소 인턴 — 모형 제작, 3D 모델링</li>

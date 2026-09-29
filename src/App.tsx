@@ -11,6 +11,7 @@ import { Overlay } from './ui/Overlay'
 import { facadeParams } from './store'
 import { PROFILE } from './content'
 import { FolioModal, modalClick } from './ui/Modal'
+import { SectionNav } from './ui/SectionNav'
 
 export default function App() {
   useEffect(() => {
@@ -68,6 +69,7 @@ export default function App() {
         </Suspense>
         <AdaptiveDpr pixelated={false} />
       </Canvas>
+      <SectionNav />
       <FolioModal />
     </>
   )

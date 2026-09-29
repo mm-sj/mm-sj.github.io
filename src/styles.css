@@ -228,7 +228,43 @@ p { margin: 0; line-height: 1.75; color: var(--ink-2); font-size: 16px; }
 ::-webkit-scrollbar-thumb { background: rgba(128, 134, 140, 0.45); border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: rgba(128, 134, 140, 0.75); }
 
-/* 연락처 카드의 프로필 사진 */
-.sec--end .txt { position: relative; }
-.contact__photo { position: absolute; top: 22px; right: 22px; width: 84px; height: 105px; object-fit: cover; margin: 0; border: 1px solid var(--line); background: var(--sheet); padding: 4px; }
-@media (max-width: 860px) { .contact__photo { width: 64px; height: 80px; top: 14px; right: 14px; } }
+/* 연락처 카드: 이름 옆에 프로필 사진 */
+.contact__head { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; }
+.contact__photo { flex: none; width: 120px; height: 150px; object-fit: cover; border: 1px solid var(--line); background: var(--sheet); padding: 5px; }
+@media (max-width: 860px) { .contact__photo { width: 92px; height: 115px; } }
+
+/* 첫 화면 이름 강조 — 도면 표제란의 이름 칸처럼 */
+.name-box {
+  display: inline-block; background: var(--ink); color: var(--paper);
+  padding: 0.02em 0.18em 0.06em; margin-right: 0.04em; line-height: 1.1;
+}
+
+/* 오른쪽 섹션 내비게이션 — 현재 장면을 표시하고 누르면 그 장면으로 이동 */
+.secnav {
+  position: fixed; right: 20px; top: 50%; transform: translateY(-50%); z-index: 20;
+  --c: var(--muted); --on: var(--ink);
+  transition: color 0.3s;
+}
+.secnav--dark { --c: rgba(236, 238, 237, 0.55); --on: #eceeed; }
+.secnav ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+.secnav li { display: flex; justify-content: flex-end; }
+.secnav button {
+  display: flex; align-items: center; justify-content: flex-end; gap: 10px;
+  border: 0; background: none; padding: 6px 0; cursor: pointer;
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; color: var(--c);
+}
+.secnav__bar { width: 14px; height: 1px; background: currentColor; transition: width 0.3s; }
+.secnav__label { opacity: 0; transform: translateX(6px); transition: opacity 0.25s, transform 0.25s; white-space: nowrap; }
+.secnav button:hover, .secnav button.is-active { color: var(--on); }
+.secnav button.is-active .secnav__bar { width: 32px; }
+.secnav button.is-active .secnav__label,
+.secnav button:hover .secnav__label,
+.secnav:has(:focus-visible) .secnav__label { opacity: 1; transform: none; }
+.secnav button:focus-visible { outline: 1px solid var(--on); outline-offset: 3px; }
+@media (max-width: 860px) {
+  .secnav { right: 8px; }
+  .secnav__label { display: none; }
+  .secnav__no { display: none; }
+  .secnav button { padding: 5px 0; }
+  .secnav button.is-active .secnav__bar { width: 20px; }
+}
