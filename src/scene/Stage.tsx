@@ -551,3 +551,40 @@ export function DocqSheep() {
     </group>
   )
 }
+
+/**
+ * 로딩 화면을 걷기 전에 모든 재질의 셰이더를 미리 컴파일한다.
+ * 처음 스크롤할 때 각 장면(은하 빛무리, Jabis 로봇 등)이 처음 나타나며 멈칫하던 원인이 셰이더 컴파일이었다.
+ * 숨겨 둔 오브젝트도 컴파일되도록 잠깐 보이게 했다가 되돌린다.
+ */
+export function Warmup() {
+  const { gl, scene, camera } = useThree()
+  useEffect(() => {
+    let cancelled = false
+    const run = async () => {
+      // 레이아웃 계산 등 첫 프레임 작업이 끝나도록 두 프레임 기다린다
+      await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)))
+      const hidden: THREE.Object3D[] = []
+      scene.traverse((o) => {
+        if (!o.visible) {
+          hidden.push(o)
+          o.visible = true
+        }
+      })
+      try {
+        await gl.compileAsync(scene, camera)
+      } catch {
+        /* 컴파일 실패해도 화면은 보여준다 */
+      }
+      hidden.forEach((o) => (o.visible = false))
+      await document.fonts?.ready
+      await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)))
+      if (!cancelled) window.dispatchEvent(new Event('folio:ready'))
+    }
+    run()
+    return () => {
+      cancelled = true
+    }
+  }, [gl, scene, camera])
+  return null
+}
