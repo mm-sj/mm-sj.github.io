@@ -70,6 +70,9 @@ export function CameraRig() {
   return null
 }
 
+/** 터치 기기(휴대폰·태블릿)는 그림자 해상도를 낮춰 GPU 부담을 줄인다 */
+const COARSE = typeof window !== 'undefined' && window.matchMedia?.('(pointer: coarse)').matches
+
 /* 조명 + 그림자 바닥. 어두운 장면에선 바닥 그림자를 지운다 */
 export function Lights() {
   const scroll = useScroll()
@@ -87,7 +90,7 @@ export function Lights() {
         position={[6, 10, 4]}
         intensity={2.2}
         castShadow
-        shadow-mapSize={[2048, 2048]}
+        shadow-mapSize={COARSE ? [1024, 1024] : [2048, 2048]}
         shadow-camera-left={-8}
         shadow-camera-right={8}
         shadow-camera-top={8}

@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 import { modalClick } from './Modal'
 import { stampSvg } from './stamp'
+
+const TOUCH = typeof window !== 'undefined' && window.matchMedia?.('(pointer: coarse)').matches
 import { PROFILE, PROJECTS, type Project } from '../content'
 import { MODEL_CUBES } from '../scene/layouts'
 
@@ -142,7 +144,7 @@ export function Overlay() {
           <p>
             아부다비 알 바르 타워의 차양을 참고해 three.js로 만든 스크린입니다.
           </p>
-          <p className="note">커서를 가까이 대 보세요.</p>
+          <p className="note">{TOUCH ? '화면을 손가락으로 문질러 보세요.' : '커서를 가까이 대 보세요.'}</p>
         </div>
       </section>
 

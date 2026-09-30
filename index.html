@@ -1,11 +1,6 @@
 <!doctype html>
 <html lang="ko">
   <head>
-    <script>
-      // 휴대폰(터치 + 작은 화면)은 3D 대신 정적 버전으로. ?3d 를 붙이면 그대로 3D를 본다
-      window.__PHONE__ = matchMedia('(pointer: coarse)').matches && Math.min(screen.width, screen.height) < 820 && !/[?&]3d\b/.test(location.search)
-      if (window.__PHONE__) location.replace('./quick/')
-    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>오창민 — Web 3D Frontend</title>
