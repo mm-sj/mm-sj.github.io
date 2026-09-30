@@ -114,10 +114,10 @@ export function Overlay() {
           </h1>
           <p className="lede">모형을 만지던 손으로, 지금은 웹에서 3D를 만지고 있습니다.</p>
           <div className="hero__cta">
-            <p className="cue cue--narrow">천천히 스크롤해 보세요 ↓</p>
             <a className="chip" href={PROFILE.quick} target="_blank" rel="noopener" onClick={modalClick()}>
               포트폴리오 전체 보기 →
             </a>
+            <p className="cue">아래로 스크롤해 보세요 ↓</p>
           </div>
         </div>
       </section>
@@ -128,8 +128,7 @@ export function Overlay() {
           <p className="eyebrow">01 · Architecture</p>
           <h2>처음엔 모형을 만들었습니다</h2>
           <p>
-            건축학을 전공했고, 건축사사무소에서 인턴으로 일하며 모형을 만들고 3D 모델링과 건축물 일러스트를
-            맡았습니다.
+            건축학을 전공했고, 4학년 때 건축사사무소 인턴으로 모형 제작과 3D 모델링, 건축물 일러스트를 맡았습니다.
           </p>
           <p className="note">이 모형은 큐브 {MODEL_CUBES}개를 쌓아 만들었습니다.</p>
         </div>
@@ -170,7 +169,7 @@ export function Overlay() {
           </div>
           <ul className="facts">
             <li><i>EDUCATION</i>SSAFY 14기 수료 · 계명대학교 건축학 학사</li>
-            <li><i>EXPERIENCE</i>건축사사무소 인턴 — 모형 제작, 3D 모델링</li>
+            <li><i>EXPERIENCE</i>건축사사무소 인턴 (학부 4학년) — 모형 제작, 3D 모델링</li>
             <li><i>NOW</i>LG전자 K-뉴딜 아카데미 1기 AX 워크플로우 트랙</li>
             <li><i>AWARDS</i>SSAFY 공통 최우수상 · 특화 우수상 · 자율 우수상</li>
           </ul>

@@ -295,9 +295,7 @@ p { margin: 0; line-height: 1.75; color: var(--ink-2); font-size: 16px; }
   100% { transform: translateY(12px); opacity: 0; }
 }
 @media (prefers-reduced-motion: reduce) { .scrollhint__dot { animation: none; } }
-/* 넓은 화면은 아이콘, 좁은 화면(카드가 아래를 차지)은 글 안내 */
-.cue--narrow { display: none; }
+/* 좁은 화면은 카드가 아래를 차지해서 아이콘을 숨기고 글 안내만 */
 @media (max-width: 860px) {
   .scrollhint { display: none; }
-  .cue--narrow { display: block; }
 }
