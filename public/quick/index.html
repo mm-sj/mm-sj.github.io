@@ -4,6 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>오창민 포트폴리오</title>
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mm-sj.github.io/quick/">
+<meta property="og:title" content="오창민 — 건축을 전공한 프론트엔드 개발자">
+<meta property="og:description" content="DocQ · Would You Draw · Jabis — SSAFY 14기 수상 프로젝트 3개">
+<meta property="og:image" content="https://mm-sj.github.io/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="description" content="웹 3D·인터랙션 프론트엔드 개발자 오창민의 포트폴리오">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -576,6 +584,13 @@ document.querySelectorAll('[data-copy]').forEach(function(btn){
   vids.forEach(function(v){io.observe(v)});
 })();
 
+</script>
+<script>
+  // 방문 통계 — 3D 사이트의 모달 안(?embed)에서 열린 건 따로 세지 않는다
+  if (!document.documentElement.classList.contains('embed')) {
+    var g = document.createElement('script'); g.async = true; g.src = '//gc.zgo.at/count.js'
+    g.setAttribute('data-goatcounter', 'https://mm-sj.goatcounter.com/count'); document.body.appendChild(g)
+  }
 </script>
 </body>
 </html>

@@ -40,8 +40,33 @@ export function SectionNav() {
     const el = sceneState.scrollEl
     if (!el) return
     const max = el.scrollHeight - el.clientHeight
-    el.scrollTo({ top: (k / (SECTION_COUNT - 1)) * max, behavior: 'smooth' })
+    const kk = Math.max(0, Math.min(SECTION_COUNT - 1, k))
+    el.scrollTo({ top: (kk / (SECTION_COUNT - 1)) * max, behavior: 'smooth' })
   }
+
+  // 키보드: 클릭하지 않아도 바로 ↓ ↑ / PageDown PageUp / Space / Home End 로 한 섹션씩 이동
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.defaultPrevented || e.altKey || e.ctrlKey || e.metaKey) return
+      if (document.querySelector('.modal.is-open')) return // 전체 보기 모달이 열려 있으면 모달이 스크롤한다
+      const t = e.target as HTMLElement | null
+      if (t && (t.closest('input, textarea, select, [contenteditable]') || ((e.key === ' ' || e.key === 'Enter') && t.closest('a, button')))) return
+      const el = sceneState.scrollEl
+      if (!el) return
+      const max = el.scrollHeight - el.clientHeight
+      const pos = max > 0 ? (el.scrollTop / max) * (SECTION_COUNT - 1) : 0
+      let to: number | null = null
+      if (e.key === 'ArrowDown' || e.key === 'PageDown' || (e.key === ' ' && !e.shiftKey)) to = Math.floor(pos + 0.05) + 1
+      else if (e.key === 'ArrowUp' || e.key === 'PageUp' || (e.key === ' ' && e.shiftKey)) to = Math.ceil(pos - 0.05) - 1
+      else if (e.key === 'Home') to = 0
+      else if (e.key === 'End') to = SECTION_COUNT - 1
+      if (to === null) return
+      e.preventDefault()
+      go(to)
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [])
 
   return (
     <nav className={`secnav ${DARK.has(active) ? 'secnav--dark' : ''}`} aria-label="섹션 이동">
