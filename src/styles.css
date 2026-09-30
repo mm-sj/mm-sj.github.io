@@ -240,34 +240,35 @@ p { margin: 0; line-height: 1.75; color: var(--ink-2); font-size: 16px; }
   padding: 0.02em 0.18em 0.06em; margin-right: 0.04em; line-height: 1.1;
 }
 
-/* 오른쪽 섹션 내비게이션 — 현재 장면을 표시하고 누르면 그 장면으로 이동 */
+/* 상단 섹션 내비게이션 — 현재 장면을 밑줄로 표시하고 누르면 그 장면으로 이동 */
 .secnav {
-  position: fixed; right: 20px; top: 50%; transform: translateY(-50%); z-index: 20;
+  position: fixed; top: 10px; left: 50%; transform: translateX(-50%); z-index: 20;
   --c: var(--muted); --on: var(--ink);
-  transition: color 0.3s;
+  padding: 0 16px; border-radius: 999px;
+  background: rgba(243, 245, 244, 0.72); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  transition: background 0.4s;
 }
-.secnav--dark { --c: rgba(236, 238, 237, 0.55); --on: #eceeed; }
-.secnav ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
-.secnav li { display: flex; justify-content: flex-end; }
+.secnav--dark { --c: rgba(236, 238, 237, 0.6); --on: #eceeed; background: rgba(9, 10, 14, 0.6); }
+.secnav ol { list-style: none; margin: 0; padding: 0; display: flex; gap: clamp(8px, 1.6vw, 22px); }
 .secnav button {
-  display: flex; align-items: center; justify-content: flex-end; gap: 10px;
-  border: 0; background: none; padding: 6px 0; cursor: pointer;
-  font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; color: var(--c);
+  position: relative; display: flex; align-items: baseline; gap: 6px;
+  border: 0; background: none; padding: 6px 0 8px; cursor: pointer;
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; color: var(--c);
+  transition: color 0.25s;
 }
-.secnav__bar { width: 14px; height: 1px; background: currentColor; transition: width 0.3s; }
-.secnav__label { opacity: 0; transform: translateX(6px); transition: opacity 0.25s, transform 0.25s; white-space: nowrap; }
+.secnav__no { font-size: 10px; opacity: 0.8; }
+.secnav__label { white-space: nowrap; }
+.secnav__bar { position: absolute; left: 0; right: 0; bottom: 2px; height: 1px; background: currentColor; transform: scaleX(0); transform-origin: left; transition: transform 0.3s; }
 .secnav button:hover, .secnav button.is-active { color: var(--on); }
-.secnav button.is-active .secnav__bar { width: 32px; }
-.secnav button.is-active .secnav__label,
-.secnav button:hover .secnav__label,
-.secnav:has(:focus-visible) .secnav__label { opacity: 1; transform: none; }
+.secnav button.is-active .secnav__bar { transform: scaleX(1); }
 .secnav button:focus-visible { outline: 1px solid var(--on); outline-offset: 3px; }
+/* 공간이 모자라면 이름은 현재 섹션만 */
+@media (max-width: 1180px) {
+  .secnav button:not(.is-active) .secnav__label { display: none; }
+}
 @media (max-width: 860px) {
-  .secnav { right: 8px; }
+  .secnav { top: 44px; }
   .secnav__label { display: none; }
-  .secnav__no { display: none; }
-  .secnav button { padding: 5px 0; }
-  .secnav button.is-active .secnav__bar { width: 20px; }
 }
 
 /* 06 연락처 — 3D가 비워진 자리에 카드를 가운데로 */
