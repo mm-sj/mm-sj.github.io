@@ -119,9 +119,6 @@ export function Overlay() {
             <a className="chip" href={PROFILE.quick} target="_blank" rel="noopener" onClick={modalClick()}>
               포트폴리오 전체 보기 →
             </a>
-            <a className="chip" href="./design/">
-              UI 디자인 포트폴리오 →
-            </a>
             <p className="cue">아래로 스크롤해 보세요 ↓</p>
           </div>
         </div>
