@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mm-sj.github.io/design/">
+<meta property="og:title" content="오창민 UI 포트폴리오">
+<meta property="og:description" content="DocQ · Jabis · Would You Draw의 화면 규칙, 토큰, 상태 설계">
+<meta property="og:image" content="https://mm-sj.github.io/og.jpg">
+<meta name="description" content="화면의 규칙을 정하고 직접 구현하는 오창민의 UI 디자인 포트폴리오">
+<title>오창민 UI 포트폴리오</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@500;700&family=IBM+Plex+Sans+KR:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Jua&display=swap">
+<style>
+/* 레이아웃: 기존 포트폴리오의 도면 시트 문법을 그대로 쓴다. 프로젝트마다 표제란이 붙은 시트 한 장, 안에서는 화면 → 결정 → 토큰 → 상태 순서 */
+:root{
+  --paper:#F3F5F4;--sheet:#FBFCFB;--ink:#16191C;--ink-2:#434A52;--muted:#6B737C;
+  --line:#D3D8D6;--line-2:#E4E8E6;--accent:#2446D8;--accent-soft:#E3E8FB;--media-bg:#E9ECEB;
+  --display:"Hahmlet","Noto Serif KR",Georgia,serif;
+  --body:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#111416;--sheet:#171B1E;--ink:#E8ECEA;--ink-2:#BAC2C0;--muted:#8D9795;
+    --line:#2C3336;--line-2:#22282B;--accent:#7F98FF;--accent-soft:#1E2748;--media-bg:#1D2225;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#111416;--sheet:#171B1E;--ink:#E8ECEA;--ink-2:#BAC2C0;--muted:#8D9795;
+  --line:#2C3336;--line-2:#22282B;--accent:#7F98FF;--accent-soft:#1E2748;--media-bg:#1D2225;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.7;margin:0;padding-inline:clamp(16px,4vw,48px);-webkit-font-smoothing:antialiased;word-break:keep-all;overflow-wrap:break-word}
+a{color:inherit}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+.wrap{max-width:1120px;margin:0 auto}
+h1,h2,h3,h4{font-family:var(--display);font-weight:700;text-wrap:balance;margin:0;color:var(--ink)}
+p,figure{margin:0}
+.mono{font-family:var(--mono);font-size:12px;letter-spacing:.04em;color:var(--muted)}
+
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:12px 20px;flex-wrap:wrap;padding-block:20px;border-bottom:1px solid var(--line)}
+.topbar nav{display:flex;gap:6px 20px;flex-wrap:wrap}
+.topbar nav a{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-decoration:none;color:var(--ink-2)}
+.topbar nav a:hover{color:var(--accent)}
+
+.hero{padding-block:clamp(36px,7vw,72px) clamp(28px,5vw,48px);display:grid;gap:20px}
+.hero .role{font-family:var(--mono);font-size:13px;letter-spacing:.08em;color:var(--accent);text-transform:uppercase}
+.hero h1{font-size:clamp(30px,5vw,54px);line-height:1.25;max-width:17em}
+.hero h1 .name{display:block;font-size:.5em;color:var(--ink-2);font-weight:500;margin-bottom:10px}
+.hero .lead{max-width:38em;color:var(--ink-2);font-size:17px}
+.facts{display:grid;gap:6px;padding:0;margin:0;list-style:none}
+.facts li{display:grid;grid-template-columns:96px minmax(0,1fr);gap:12px;font-size:15px;color:var(--ink-2)}
+.facts li span:first-child{font-family:var(--mono);font-size:12px;color:var(--muted);padding-top:3px;letter-spacing:.04em}
+
+.index{border-top:1px solid var(--ink)}
+.index a{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 16px;align-items:baseline;padding-block:16px;border-bottom:1px solid var(--line);text-decoration:none}
+.index .t{font-family:var(--display);font-size:clamp(19px,2.4vw,24px);font-weight:700}
+.index a:hover .t{color:var(--accent)}
+.index .d{display:block;font-size:14px;color:var(--muted);font-family:var(--body);font-weight:400}
+.index .shows{font-family:var(--mono);font-size:12px;color:var(--accent)}
+
+.sheet{margin-top:clamp(48px,8vw,96px);background:var(--sheet);border:1px solid var(--line)}
+.titleblock{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border-bottom:1px solid var(--line)}
+.titleblock div{padding:12px 16px;border-right:1px solid var(--line-2);min-width:0}
+.titleblock div:last-child{border-right:0}
+.titleblock .k{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--muted);text-transform:uppercase}
+.titleblock .v{display:block;font-size:14px;margin-top:2px}
+.titleblock .v.acc{color:var(--accent);font-weight:600}
+.sheet-body{padding:clamp(20px,4vw,48px);display:grid;gap:clamp(28px,4.5vw,48px)}
+.sheet-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(16px,4vw,48px);align-items:end}
+.sheet-head h2{font-size:clamp(32px,5vw,52px);line-height:1.1}
+.sheet-head .one{font-size:17px;color:var(--ink-2);margin-top:10px}
+.sheet-head .why{font-size:15px;color:var(--ink-2)}
+
+.media{background:var(--media-bg);border:1px solid var(--line-2);overflow:hidden}
+.media video,.media img{display:block;width:100%;height:auto;max-width:100%}
+figcaption{font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:8px;letter-spacing:.02em}
+.grid-media{display:grid;gap:16px;grid-template-columns:repeat(2,minmax(0,1fr))}
+.grid-media.c3{grid-template-columns:repeat(3,minmax(0,1fr))}
+
+.block{display:grid;gap:16px;min-width:0}
+.label{font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:var(--muted);text-transform:uppercase;padding-bottom:10px;border-bottom:1px solid var(--line)}
+.note{font-size:14px;color:var(--muted);max-width:44em}
+.cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,4vw,48px)}
+.did{list-style:none;padding:0;margin:0;display:grid;gap:12px}
+.did li{font-size:15px;color:var(--ink-2);padding-left:18px;position:relative;max-width:40em}
+.did li::before{content:"";position:absolute;left:0;top:.8em;width:8px;height:1px;background:var(--accent)}
+.did b{color:var(--ink);font-weight:600}
+code{font-family:var(--mono);font-size:.86em;background:var(--accent-soft);color:var(--ink);padding:1px 5px;border-radius:2px}
+
+/* 토큰 표 */
+.scroll{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:14px;min-width:520px}
+th{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:400;text-align:left;padding:8px 12px 8px 0;border-bottom:1px solid var(--line)}
+td{padding:10px 12px 10px 0;border-bottom:1px solid var(--line-2);color:var(--ink-2);vertical-align:middle}
+td.num{font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:13px}
+.sw{display:inline-block;width:28px;height:28px;border:1px solid var(--line);vertical-align:middle;margin-right:10px}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:8px;vertical-align:middle}
+td .hex{font-family:var(--mono);font-size:13px;color:var(--ink)}
+
+/* 견본: 실제 서비스의 색을 그대로 써야 하므로 견본 상자 안에서만 고정 색을 쓴다 */
+.spec{border:1px solid var(--line-2);padding:20px;display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.spec.docq{background:#FFF8E1;font-family:"Jua","IBM Plex Sans KR",sans-serif;color:#5D4037}
+.dq-btn{font:inherit;font-size:1.1rem;padding:10px 22px;border-radius:16px;border:3px solid #5D4037;cursor:pointer;transition:transform .08s,box-shadow .08s}
+.dq-primary{background:#7CB342;color:#fff;border-color:#558B2F;box-shadow:0 5px 0 #558B2F}
+.dq-primary:active{transform:translateY(5px);box-shadow:0 0 0 #558B2F}
+.dq-sub{background:#8D6E63;color:#fff}
+.dq-danger{background:#EF5350;color:#fff;border-color:#B71C1C;font-size:.9rem;padding:6px 14px;border-radius:12px}
+.dq-chip{background:#fff;color:#5D4037;border-radius:999px;font-size:.9rem;padding:6px 18px}
+.dq-drop{border:3px dashed #5D4037;border-radius:16px;padding:12px 20px;font-size:.9rem;color:#8D6E63;background:#fff}
+.spec.jabis{background:#18181B;color:#D4D4D8;font-family:var(--body);font-size:13px}
+.jb-pill{display:inline-flex;align-items:center;gap:8px;padding:5px 10px;border-radius:8px;background:#27272A}
+.jb-tag{padding:2px 8px;border-radius:6px;font-size:12px;border:1px solid}
+.jb-estop{background:#EF4444;color:#fff;font-weight:700;border:0;border-radius:8px;padding:7px 16px;font-size:13px;letter-spacing:.04em}
+.jb-log{font-family:var(--mono);font-size:12px;color:#A1A1AA;display:grid;gap:2px;min-width:0}
+
+.result{display:flex;flex-wrap:wrap;gap:12px 32px;padding-top:18px;border-top:1px solid var(--line)}
+.result div{font-size:14px;color:var(--ink-2)}
+.result b{display:block;font-family:var(--display);font-size:22px;color:var(--ink)}
+.chip{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:13px;padding:8px 12px;border:1px solid var(--line);background:var(--sheet);color:var(--ink);text-decoration:none;border-radius:3px;cursor:pointer}
+.chip:hover{border-color:var(--accent);color:var(--accent)}
+.linkrow{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+
+.plain{margin-top:clamp(48px,8vw,96px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:clamp(20px,4vw,56px)}
+.plain h2{font-size:clamp(24px,3.2vw,32px)}
+.plain dl{margin:0;border-top:1px solid var(--line)}
+.plain dl div{display:grid;grid-template-columns:150px minmax(0,1fr);gap:16px;padding-block:14px;border-bottom:1px solid var(--line-2)}
+.plain dt{font-family:var(--mono);font-size:12px;color:var(--muted);letter-spacing:.04em;padding-top:3px}
+.plain dd{margin:0;font-size:15px;color:var(--ink-2)}
+footer{margin-top:clamp(48px,8vw,96px);padding-block:28px 48px;border-top:1px solid var(--ink);display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;align-items:center}
+footer h2{font-size:clamp(22px,3vw,28px)}
+.toast{font-family:var(--mono);font-size:12px;color:var(--accent)}
+
+@media (max-width:820px){
+  .sheet-head,.cols,.plain{grid-template-columns:1fr}
+  .titleblock{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .titleblock div{border-bottom:1px solid var(--line-2)}
+  .titleblock div:nth-child(2n){border-right:0}
+  .grid-media.c3{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:520px){
+  .grid-media,.grid-media.c3{grid-template-columns:1fr}
+  .facts li,.plain dl div{grid-template-columns:1fr;gap:0}
+  .index a{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+  <header class="topbar">
+    <span class="mono">OH CHANGMIN · UI DESIGN PORTFOLIO 2026</span>
+    <nav aria-label="섹션">
+      <a href="#docq">DocQ</a>
+      <a href="#jabis">Jabis</a>
+      <a href="#wyd">Would You Draw</a>
+      <a href="#ai">생성형 AI</a>
+      <a href="#contact">연락처</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <p class="role">UI Design · Design System · Front-end</p>
+    <h1><span class="name">오창민</span>화면의 규칙을 정하고, 그 규칙대로 직접 구현합니다.</h1>
+    <p class="lead">건축을 전공하며 도면과 모형으로 공간의 규칙을 정하는 일을 배웠습니다. 지금은 같은 일을 화면에서 합니다. SSAFY 14기 세 프로젝트에서 화면의 톤과 컴포넌트, 상태 표현을 정하고 Vue와 React로 구현했으며, 세 프로젝트 모두 상을 받았습니다.</p>
+    <ul class="facts">
+      <li><span>EDUCATION</span><span>SSAFY 14기 수료 · 계명대학교 건축학 학사</span></li>
+      <li><span>NOW</span><span>LG전자 K-뉴딜 아카데미 1기 AX 워크플로우 트랙 (2026.08~)</span></li>
+      <li><span>AWARDS</span><span>SSAFY 공통 최우수상 · 특화 우수상 · 자율 우수상</span></li>
+      <li><span>TOOLS</span><span>Figma · Blender · HTML/CSS · Vue 3 · React · TypeScript</span></li>
+    </ul>
+  </section>
+
+  <nav class="index" aria-label="프로젝트">
+    <a href="#docq"><span class="t">DocQ<span class="d">PDF를 AI가 퀴즈로 바꾸고 함께 푸는 3D 보드게임</span></span><span class="shows">서비스 아이덴티티 · 컴포넌트</span></a>
+    <a href="#jabis"><span class="t">Jabis<span class="d">음성 명령으로 움직이는 AI 로봇의 운영 대시보드</span></span><span class="shows">상태 설계 · 정보 우선순위</span></a>
+    <a href="#wyd"><span class="t">Would You Draw<span class="d">그린 감정을 AI가 해석해 별로 쌓는 감정 기록</span></span><span class="shows">AI 응답 대기 화면</span></a>
+  </nav>
+
+  <!-- ───────── DocQ ───────── -->
+  <article class="sheet" id="docq">
+    <div class="titleblock">
+      <div><span class="k">Period</span><span class="v">2026.01.06 – 02.13</span></div>
+      <div><span class="k">Team</span><span class="v">6명 (FE 3)</span></div>
+      <div><span class="k">Role</span><span class="v">비주얼·UX 방향 · FE · 3D 에셋</span></div>
+      <div><span class="k">Built with</span><span class="v">Vue 3 · Three.js · Blender</span></div>
+      <div><span class="k">Award</span><span class="v acc">SSAFY 공통 최우수상</span></div>
+    </div>
+    <div class="sheet-body">
+      <div class="sheet-head">
+        <div>
+          <h2>DocQ</h2>
+          <p class="one">PDF 문서를 AI가 퀴즈로 바꾸고, 최대 4명이 3D 보드게임으로 푸는 실시간 멀티플레이 서비스</p>
+        </div>
+        <p class="why">'다 읽었다'와 '다 안다'는 다릅니다. 읽은 문서를 이해했는지 혼자 확인하는 지루한 과정을 친구와 겨루는 게임으로 바꾸는 것이 목표였습니다. 저는 이 게임이 어떤 모습이고 어떻게 느껴질지를 정하는 역할을 맡았습니다.</p>
+      </div>
+
+      <figure>
+        <div class="media"><video src="../assets/docq-main.mp4" poster="../assets/docq-main.jpg" muted loop playsinline controls preload="none" aria-label="DocQ 메인 화면"></video></div>
+        <figcaption>메인 화면. 3D 캐러셀 메뉴와 캐릭터 배경</figcaption>
+      </figure>
+
+      <div class="cols">
+        <div class="block">
+          <p class="label">정한 것</p>
+          <ul class="did">
+            <li><b>동화책 톤.</b> 혼자 하는 공부가 아니라 친구와 하는 보드게임으로 느껴져야 했습니다. 나무 패널, 파스텔 하늘, 둥근 버튼으로 보드게임 상자를 여는 느낌을 잡고 로비·대기실·커뮤니티 전체에 적용했습니다.</li>
+            <li><b>나무색 한 가지로 글자와 테두리를.</b> 검정 대신 짙은 나무색 <code>#5D4037</code>을 글자와 테두리에 함께 써서 화면 전체가 한 재질로 보이게 했습니다.</li>
+            <li><b>누르면 들어가는 버튼.</b> 주 버튼은 아래쪽 5px 그림자로 두께를 만들고, 누르면 그 두께만큼 내려앉습니다. 아래 견본에서 눌러볼 수 있습니다.</li>
+            <li><b>초록 하나를 주 색으로.</b> 나무색 바탕 위에서 초록은 GAME START 같은 주 버튼과 선택된 항목에 써서, 다음에 누를 곳이 먼저 보이게 했습니다.</li>
+          </ul>
+        </div>
+        <div class="block">
+          <p class="label">대기실 화면 구성</p>
+          <figure>
+            <div class="media"><img src="../assets/docq-waiting.jpg" alt="DocQ 대기실: 플레이어 4칸, 캐릭터 선택, PDF 업로드, 채팅 매크로" width="800" height="426" loading="lazy"></div>
+            <figcaption>대기실. 왼쪽 플레이어 4칸, 오른쪽 준비 순서, 아래 채팅 매크로</figcaption>
+          </figure>
+          <p class="note">오른쪽 열은 위에서 아래로 캐릭터 선택 → PDF 올리기 → GAME START 순서입니다. 시작하려면 해야 하는 일의 순서와 화면의 순서를 맞췄습니다.</p>
+        </div>
+      </div>
+
+      <div class="block">
+        <p class="label">컬러 토큰</p>
+        <div class="scroll">
+          <table>
+            <thead><tr><th>색</th><th>역할</th><th>쓰인 곳</th><th>코드 내 사용</th></tr></thead>
+            <tbody>
+              <tr><td><span class="sw" style="background:#5D4037"></span><span class="hex">#5D4037</span></td><td>Wood / Dark</td><td>본문 글자, 패널과 버튼 테두리</td><td class="num">112회</td></tr>
+              <tr><td><span class="sw" style="background:#8D6E63"></span><span class="hex">#8D6E63</span></td><td>Wood / Mid</td><td>보조 버튼, 보조 글자</td><td class="num">82회</td></tr>
+              <tr><td><span class="sw" style="background:#BCAAA4"></span><span class="hex">#BCAAA4</span></td><td>Wood / Light</td><td>입력창과 카드 테두리</td><td class="num">58회</td></tr>
+              <tr><td><span class="sw" style="background:#D7CCC8"></span><span class="hex">#D7CCC8</span></td><td>Wood / Pale</td><td>비활성 버튼, 옅은 바탕과 테두리</td><td class="num">52회</td></tr>
+              <tr><td><span class="sw" style="background:#FFF8E1"></span><span class="hex">#FFF8E1</span></td><td>Paper</td><td>패널 바탕</td><td class="num">34회</td></tr>
+              <tr><td><span class="sw" style="background:#7CB342"></span><span class="hex">#7CB342</span></td><td>Go</td><td>주 버튼, 선택 표시</td><td class="num">53회</td></tr>
+              <tr><td><span class="sw" style="background:#558B2F"></span><span class="hex">#558B2F</span></td><td>Go / Deep</td><td>주 버튼 테두리와 두께</td><td class="num">39회</td></tr>
+              <tr><td><span class="sw" style="background:#EF5350"></span><span class="hex">#EF5350</span></td><td>Stop</td><td>나가기 같은 경고성 버튼</td><td class="num">16회</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="note">프로젝트 당시에는 토큰 파일 없이 화면마다 값을 직접 썼습니다. 이 표는 프론트엔드 코드에서 실제로 쓰인 값을 세어 역할별로 다시 정리한 것입니다. 글꼴은 Jua 한 가지, 모서리는 8 · 12 · 16 · 20 · 24px와 알약형(999px)을 썼습니다.</p>
+      </div>
+
+      <div class="block">
+        <p class="label">컴포넌트 견본</p>
+        <div class="spec docq">
+          <button class="dq-btn dq-primary" type="button">GAME START</button>
+          <button class="dq-btn dq-sub" type="button">기본 퀴즈</button>
+          <button class="dq-btn dq-danger" type="button">EXIT</button>
+          <button class="dq-btn dq-chip" type="button">인사</button>
+          <button class="dq-btn dq-chip" type="button">준비</button>
+          <span class="dq-drop">PDF 파일 드래그</span>
+        </div>
+        <p class="note">위 토큰으로 이 페이지에 다시 그린 견본입니다. 실제 서비스에는 이 밖에 알림 모달, 확인 모달, 방 만들기·입장 모달, 유저 카드, 커스텀 커서를 만들었습니다.</p>
+      </div>
+
+      <div class="grid-media">
+        <figure><div class="media"><img src="../assets/docq-community.jpg" alt="DocQ 퀴즈 공유 커뮤니티" width="800" height="426" loading="lazy"></div><figcaption>퀴즈 공유 커뮤니티</figcaption></figure>
+        <figure><div class="media"><img src="../assets/docq-board.jpg" alt="DocQ 3D 보드 맵" width="800" height="426" loading="lazy"></div><figcaption>Blender로 만든 보드 맵</figcaption></figure>
+      </div>
+
+      <div class="result">
+        <div><b>공통 최우수상</b>SSAFY 14기 공통 프로젝트</div>
+        <div><b>22 / 24건</b>팀이 받은 유저 피드백 중 반영한 수</div>
+      </div>
+      <div class="linkrow"><a class="chip" href="https://github.com/mm-sj/S14P11D209" target="_blank" rel="noopener">GitHub 저장소 ↗</a></div>
+    </div>
+  </article>
+
+  <!-- ───────── Jabis ───────── -->
+  <article class="sheet" id="jabis">
+    <div class="titleblock">
+      <div><span class="k">Period</span><span class="v">2026.04.08 – 05.21</span></div>
+      <div><span class="k">Team</span><span class="v">5명 (FE 1)</span></div>
+      <div><span class="k">Role</span><span class="v">대시보드 설계와 구현 전담</span></div>
+      <div><span class="k">Built with</span><span class="v">React · shadcn/ui · R3F</span></div>
+      <div><span class="k">Award</span><span class="v acc">SSAFY 자율 우수상</span></div>
+    </div>
+    <div class="sheet-body">
+      <div class="sheet-head">
+        <div>
+          <h2>Jabis</h2>
+          <p class="one">음성 명령을 듣고, 책상을 보고, 두 팔로 물건을 집는 AI 데스크 로봇의 운영 대시보드</p>
+        </div>
+        <p class="why">AI가 스스로 판단해 움직이는 로봇입니다. 그래서 화면이 답해야 할 질문은 세 가지였습니다. 지금 연결돼 있는가, 지금 무엇을 하고 있는가, 멈추려면 어디를 누르는가. 팀의 유일한 FE로 화면 구성부터 구현까지 맡았습니다.</p>
+      </div>
+
+      <figure>
+        <div class="media"><video src="../assets/jabis-dashboard.mp4" poster="../assets/jabis-dashboard.jpg" muted loop playsinline controls preload="none" aria-label="Jabis 대시보드"></video></div>
+        <figcaption>대시보드. 왼쪽은 로봇이 보는 책상, 오른쪽은 인식 결과·세션·시스템 로그</figcaption>
+      </figure>
+
+      <div class="block">
+        <p class="label">정보 우선순위</p>
+        <ul class="did">
+          <li><b>맨 위 줄은 안전.</b> 연결 상태, 현재 모드, E-STOP을 상단 바 오른쪽에 고정했습니다. 어느 화면에 있든 같은 자리에서 멈출 수 있습니다.</li>
+          <li><b>가장 큰 면적은 로봇의 시야.</b> 로봇이 무엇을 보고 어디로 팔을 뻗는지가 가장 먼저 읽혀야 해서, 디지털 트윈에 화면의 3분의 2를 줬습니다.</li>
+          <li><b>오른쪽 열은 위에서 아래로 구체적인 순서.</b> 인식된 물체 → 진행 중인 세션 → 시스템 로그. 요약에서 원본 기록으로 내려갑니다.</li>
+          <li><b>색은 상태에만.</b> 바탕과 글자는 회색 단계만 쓰고, 초록·노랑·빨강은 상태 표시에만 썼습니다. 색이 보이면 곧 확인할 것이 있다는 뜻입니다.</li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <p class="label">상태 정의</p>
+        <div class="scroll">
+          <table>
+            <thead><tr><th>대상</th><th>상태</th><th>표시</th><th>바뀌는 조건</th></tr></thead>
+            <tbody>
+              <tr><td rowspan="3">연결</td><td><span class="dot" style="background:#34D399"></span>Connected</td><td>초록 점 + 글자</td><td>웹소켓 연결, 신호 정상 수신</td></tr>
+              <tr><td><span class="dot" style="background:#FBBF24"></span>Unstable</td><td>노란 점 + 글자</td><td>연결은 됐지만 10초 넘게 신호 없음</td></tr>
+              <tr><td><span class="dot" style="background:#F87171"></span>Disconnected</td><td>빨간 점 + 글자</td><td>웹소켓 끊김</td></tr>
+              <tr><td>로봇 작업</td><td>진행 중</td><td>오른쪽 아래 알림 카드 + 작업 취소</td><td>로봇이 작업을 시작할 때</td></tr>
+              <tr><td>긴급 정지</td><td>정지됨</td><td>화면 전체 빨간 테두리 + EMERGENCY STOP</td><td>E-STOP을 눌렀을 때</td></tr>
+              <tr><td>시스템 로그</td><td>INFO / WARN / ERROR / AI</td><td>파랑 / 노랑 / 빨강 / 보라 말머리</td><td>AI의 판단은 별도 등급으로 구분</td></tr>
+              <tr><td>자세</td><td>정상 / 주의</td><td>초록 / 노란 태그</td><td>자세 인식 결과</td></tr>
+              <tr><td>인식 박스</td><td>유지</td><td>마지막 위치에 그대로</td><td>물체를 놓쳐도 2초 동안은 지우지 않음</td></tr>
+              <tr><td>차트</td><td>비어 있음</td><td>"데이터 수집 중…"</td><td>아직 받은 값이 없을 때</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="spec jabis">
+          <span class="jb-pill"><span class="dot" style="background:#34D399;margin:0"></span><span style="color:#34D399">Connected</span></span>
+          <span class="jb-pill"><span class="dot" style="background:#FBBF24;margin:0"></span><span style="color:#FBBF24">Unstable</span></span>
+          <span class="jb-pill"><span class="dot" style="background:#F87171;margin:0"></span><span style="color:#F87171">Disconnected</span></span>
+          <span class="jb-tag" style="color:#34D399;border-color:rgba(52,211,153,.2);background:rgba(52,211,153,.1)">정상</span>
+          <span class="jb-tag" style="color:#FBBF24;border-color:rgba(251,191,36,.2);background:rgba(251,191,36,.1)">주의</span>
+          <button class="jb-estop" type="button">E-STOP</button>
+          <div class="jb-log"><span><span style="color:#60A5FA">[INFO]</span> 모드 변경: focus → movie</span><span><span style="color:#FBBF24">[WARN]</span> Front 카메라 연결 끊김</span><span><span style="color:#A78BFA">[ AI ]</span> AI 판단 기록은 보라색 말머리</span></div>
+        </div>
+        <p class="note">실제 화면의 색과 크기로 다시 그린 견본입니다. 상태마다 색과 글자를 함께 써서 색만으로 구분하지 않게 했습니다.</p>
+      </div>
+
+      <div class="cols">
+        <div class="block">
+          <p class="label">바꾼 결정 하나</p>
+          <p style="font-size:15px;color:var(--ink-2);max-width:40em">처음에는 로봇이 움직이기 전에 작업마다 승인을 받는 구조였습니다. 개발 중에 이를 <b style="color:var(--ink)">일일이 허락받지 않고 "지금 이 작업을 하고 있다"만 알리고, 원치 않을 때만 취소</b>하는 방식으로 바꿨습니다. 알림 카드는 오른쪽 아래에 떠서 로봇 화면을 가리지 않습니다.</p>
+        </div>
+        <div class="block">
+          <p class="label">개발 협업 문서</p>
+          <ul class="did">
+            <li>개발 시작 전에 좌표계, 단위, 이름 규칙을 정한 <b>AI 코딩 가이드 문서</b>를 써서 팀 전체가 같은 규칙으로 AI 도구를 쓰게 했습니다.</li>
+            <li>FE와 BE가 주고받는 데이터 형식을 맞추는 <b>API 명세</b>와 FE 폴더 구조, 타입 정의를 세팅했습니다.</li>
+            <li>버튼은 shadcn/ui를 바탕으로 종류 6가지, 크기 8가지를 variant로 관리했습니다.</li>
+          </ul>
+        </div>
+      </div>
+
+      <figure>
+        <div class="media"><img src="../assets/jabis-panels.jpg" alt="Jabis 카메라 4대 영상과 관절 텔레메트리 패널" width="1280" height="694" loading="lazy"></div>
+        <figcaption>카메라 4대 영상과 양팔 관절 텔레메트리 패널</figcaption>
+      </figure>
+
+      <div class="result">
+        <div><b>자율 우수상</b>SSAFY 14기 자율 프로젝트</div>
+        <div><b>모드별 화면</b>집중·게임·영화·외출마다 다른 레이아웃</div>
+      </div>
+      <div class="linkrow">
+        <a class="chip" href="https://www.youtube.com/watch?v=pIx2FC31FqI" target="_blank" rel="noopener">홍보 영상 ↗</a>
+        <a class="chip" href="https://github.com/mm-sj/S14P31D101" target="_blank" rel="noopener">GitHub 저장소 ↗</a>
+      </div>
+    </div>
+  </article>
+
+  <!-- ───────── WYD ───────── -->
+  <article class="sheet" id="wyd">
+    <div class="titleblock">
+      <div><span class="k">Period</span><span class="v">2026.03.03 – 03.29</span></div>
+      <div><span class="k">Team</span><span class="v">5명 (FE 2)</span></div>
+      <div><span class="k">Role</span><span class="v">FE 팀장</span></div>
+      <div><span class="k">Built with</span><span class="v">React · R3F · Canvas</span></div>
+      <div><span class="k">Award</span><span class="v acc">SSAFY 특화 우수상</span></div>
+    </div>
+    <div class="sheet-body">
+      <div class="sheet-head">
+        <div>
+          <h2>Would You Draw</h2>
+          <p class="one">감정을 그림으로 그리면 AI가 해석하고, 그 기록이 별, 별자리(7일), 은하(30일)로 쌓이는 감정 드로잉 서비스</p>
+        </div>
+        <p class="why">감정을 점수로 매기는 대신 시간이 지날수록 넓어지는 우주로 보여주고 싶었습니다. 우주 화면 자체는 팀원이 만들었고, 저는 그 위의 인터랙션과 드로잉 화면, 분석 결과 화면을 맡았습니다.</p>
+      </div>
+
+      <figure>
+        <div class="media"><video src="../assets/wyd-universe.mp4" poster="../assets/wyd-universe.jpg" muted loop playsinline controls preload="none" aria-label="Would You Draw 우주 화면"></video></div>
+        <figcaption>감정 기록이 모여 만든 우주</figcaption>
+      </figure>
+
+      <div class="cols">
+        <div class="block">
+          <p class="label">AI 응답을 기다리는 화면</p>
+          <ul class="did">
+            <li><b>문제.</b> 그림을 저장하면 AI 분석이 뒤에서 따로 돌아갑니다. 분석이 끝날 때까지 우주에 아무 변화가 없어서, 저장이 실패한 것처럼 보였습니다.</li>
+            <li><b>결정.</b> 저장되는 즉시 임시 별을 먼저 띄우고 탄생 연출을 보여줍니다. 분석 결과가 오면 임시 별을 실제 별로 바꿉니다.</li>
+            <li><b>확인 간격.</b> 2 → 5 → 10 → 15 → 20초로 간격을 늘려 가며 결과를 확인하고, 확인 중에는 요청이 겹치지 않게 했습니다.</li>
+          </ul>
+        </div>
+        <div class="block">
+          <p class="label">피드백으로 바꾼 것</p>
+          <ul class="did">
+            <li>유저 피드백 37건에서 반복된 말은 "어떻게 쓰는지 모르겠다"였습니다. 첫 진입 튜토리얼과 전역 알림 모달을 넣었습니다.</li>
+            <li>사용자가 고른 감정 색 중 일부는 별이 빛나지 않았습니다. 색마다 밝기가 달라 생긴 문제여서, 모든 색이 고르게 빛나도록 기준값을 낮췄습니다.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="grid-media c3">
+        <figure><div class="media"><img src="../assets/wyd-canvas.jpg" alt="드로잉 캔버스" width="1280" height="854" loading="lazy"></div><figcaption>드로잉 캔버스와 커스텀 팔레트</figcaption></figure>
+        <figure><div class="media"><img src="../assets/wyd-tutorial.jpg" alt="튜토리얼" width="1280" height="836" loading="lazy"></div><figcaption>피드백으로 넣은 튜토리얼</figcaption></figure>
+        <figure><div class="media"><img src="../assets/wyd-custom.jpg" alt="중심별 커스텀" width="1280" height="678" loading="lazy"></div><figcaption>중심별 형태·색 커스텀</figcaption></figure>
+      </div>
+
+      <div class="linkrow"><a class="chip" href="https://github.com/mm-sj/S14P21D207" target="_blank" rel="noopener">GitHub 저장소 ↗</a></div>
+    </div>
+  </article>
+
+  <!-- ───────── 생성형 AI ───────── -->
+  <section class="plain" id="ai">
+    <h2>생성형 AI를 쓰는 방식</h2>
+    <dl>
+      <div><dt>AX 워크플로우</dt><dd>LG전자 K-뉴딜 아카데미에서 n8n과 카카오 오픈빌더로 캐릭터 챗봇을 만들었습니다. 없는 사실을 지어내는 답이 나와, 시스템 프롬프트로 답할 수 있는 범위를 좁혀 줄였습니다.</dd></div>
+      <div><dt>하루 만에 만든 영상</dt><dd>Jabis 홍보 영상은 촬영 대신 로봇 3D 모델을 웹에 띄우고, Claude Code로 조명·카메라·스크롤 연출을 만들어 화면을 녹화했습니다. "멋있게"라는 요청으로는 결과가 밋밋했고, 조명 위치와 구도를 조건으로 적어 주자 원하는 장면이 나왔습니다.</dd></div>
+      <div><dt>팀 규칙 문서</dt><dd>각자 AI에게 따로 묻다 보면 코드 규칙이 흩어집니다. Jabis에서는 개발 전에 좌표계·단위·이름 규칙을 문서로 정해 AI 도구가 같은 전제에서 답하게 했습니다.</dd></div>
+      <div><dt>이 포트폴리오</dt><dd>이 사이트도 Claude와 함께 만들었습니다. 내용은 저장소의 커밋 기록과 대조해 제가 실제로 한 부분만 남겼습니다.</dd></div>
+    </dl>
+  </section>
+
+  <footer id="contact">
+    <h2>Contact</h2>
+    <div class="linkrow">
+      <button class="chip" type="button" id="copy-mail">dhckdals1104@naver.com</button>
+      <a class="chip" href="https://github.com/mm-sj" target="_blank" rel="noopener">github.com/mm-sj ↗</a>
+      <a class="chip" href="https://mm-sj.github.io/" target="_blank" rel="noopener">인터랙티브 버전 ↗</a>
+      <span class="toast" id="toast" aria-live="polite"></span>
+    </div>
+  </footer>
+</div>
+
+<script>
+document.getElementById('copy-mail').addEventListener('click', function () {
+  var t = document.getElementById('toast'), text = this.textContent;
+  function done(ok) { t.textContent = ok ? '복사했습니다' : '주소를 길게 눌러 복사하세요'; setTimeout(function () { t.textContent = ''; }, 2400); }
+  try { navigator.clipboard.writeText(text).then(function () { done(true); }, function () { done(false); }); } catch (e) { done(false); }
+});
+</script>
+</body>
+</html>
