@@ -11,6 +11,9 @@ export const PROFILE = {
   quick: QUICK,
 }
 
+/** 수상 프로젝트와 따로 두는 AX 프로젝트 — 3D 장면 없이 전체 보기(quick)의 04 시트로만 연결 */
+export const AX_PROJECT = { id: 'fridge', no: '04', title: '데이터 냉장고' }
+
 export type Project = {
   id: string
   no: string

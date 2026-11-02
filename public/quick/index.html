@@ -7,7 +7,7 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://mm-sj.github.io/quick/">
 <meta property="og:title" content="오창민 — 건축을 전공한 프론트엔드 개발자">
-<meta property="og:description" content="DocQ · Would You Draw · Jabis — SSAFY 14기 수상 프로젝트 3개">
+<meta property="og:description" content="DocQ · Would You Draw · Jabis — SSAFY 14기 수상 프로젝트 3개 · 데이터 냉장고 — AX 워크플로우">
 <meta property="og:image" content="https://mm-sj.github.io/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -207,6 +207,20 @@ footer h2{font-size:clamp(24px,3vw,30px)}
 .skills + .index{margin-top:0}
 .proj-h + .index{margin-top:16px}
 @media (max-width:860px){.hero-side{justify-self:start;width:min(240px,100%)}}
+
+/* 04 데이터 냉장고 — 입고 파이프라인 도식 */
+.flow{background:var(--media-bg);border:1px solid var(--line-2);padding:clamp(16px,3vw,28px);overflow-x:auto}
+.flow svg{display:block;width:100%;min-width:640px;height:auto}
+.flow .bx{fill:var(--sheet);stroke:var(--line)}
+.flow .bx.me{stroke:var(--accent);stroke-width:1.5}
+.flow .bx.ai{fill:var(--accent-soft);stroke:var(--accent)}
+.flow .tt{font:600 13px var(--body);fill:var(--ink)}
+.flow .ss{font:400 11px var(--mono);fill:var(--muted)}
+.flow .ar{stroke:var(--ink-2);stroke-width:1.2;fill:none}
+.flow .ah{fill:var(--ink-2)}
+.flow .rj{stroke:#C8372D;stroke-width:1.2;fill:none;stroke-dasharray:4 3}
+.flow .rt{font:500 11px var(--mono);fill:#C8372D}
+.flow .lg{font:400 11px var(--mono);fill:var(--muted)}
 </style>
 
 <script>
@@ -231,6 +245,7 @@ footer h2{font-size:clamp(24px,3vw,30px)}
       <a href="#docq">01 DocQ</a>
       <a href="#wyd">02 Would You Draw</a>
       <a href="#jabis">03 Jabis</a>
+      <a href="#fridge">04 데이터 냉장고</a>
       <a href="#contact">연락처</a>
     </nav>
   </header>
@@ -243,7 +258,7 @@ footer h2{font-size:clamp(24px,3vw,30px)}
       <ul class="facts">
         <li><span>EDUCATION</span><span>SSAFY 14기 수료 · 계명대학교 건축학 학사</span></li>
         <li><span>EXPERIENCE</span><span>건축사사무소 인턴 (학부 4학년) — 모형 제작, 3D 모델링</span></li>
-        <li><span>NOW</span><span>LG전자 K-뉴딜 아카데미 1기 AX 워크플로우 트랙 (2026.08~)</span></li>
+        <li><span>NOW</span><span>LG전자 K-뉴딜 아카데미 1기 AX 워크플로우 트랙 (2026.08~) — <a href="#fridge">데이터 냉장고</a></span></li>
         <li><span>AWARDS</span><span>SSAFY 공통 최우수상 · 특화 우수상 · 자율 우수상</span></li>
       </ul>
     </div>
@@ -279,13 +294,14 @@ footer h2{font-size:clamp(24px,3vw,30px)}
     <a href="#docq"><span class="mono">01</span><span><span class="t">DocQ</span><span class="d">PDF를 퀴즈로 만들어 함께 푸는 3D 보드게임</span></span><span class="award">공통 최우수상</span></a>
     <a href="#wyd"><span class="mono">02</span><span><span class="t">Would You Draw</span><span class="d">그린 감정이 별이 되어 쌓이는 3D 우주 아카이브</span></span><span class="award">특화 우수상</span></a>
     <a href="#jabis"><span class="mono">03</span><span><span class="t">Jabis</span><span class="d">양팔 데스크 로봇의 실시간 디지털 트윈 대시보드</span></span><span class="award">자율 우수상</span></a>
+    <a href="#fridge"><span class="mono">04</span><span><span class="t">데이터 냉장고</span><span class="d">저장한 이유가 다시 유효해질 때 자료를 꺼내주는 AX 워크플로우</span></span><span class="award">LG AX 트랙</span></a>
   </nav>
 
 
   <!-- ─────────── 01 DocQ ─────────── -->
   <article class="sheet" id="docq">
     <div class="titleblock">
-      <div><span class="k">Sheet</span><span class="v">01 / 03</span></div>
+      <div><span class="k">Sheet</span><span class="v">01 / 04</span></div>
       <div><span class="k">Period</span><span class="v">2026.01.06 – 02.13</span></div>
       <div><span class="k">Team</span><span class="v">6명 (FE 3)</span></div>
       <div><span class="k">Role</span><span class="v">FE · UX 방향 · 3D 에셋</span></div>
@@ -369,7 +385,7 @@ footer h2{font-size:clamp(24px,3vw,30px)}
   <!-- ─────────── 02 WYD ─────────── -->
   <article class="sheet" id="wyd">
     <div class="titleblock">
-      <div><span class="k">Sheet</span><span class="v">02 / 03</span></div>
+      <div><span class="k">Sheet</span><span class="v">02 / 04</span></div>
       <div><span class="k">Period</span><span class="v">2026.03.03 – 03.29</span></div>
       <div><span class="k">Team</span><span class="v">5명 (FE 2)</span></div>
       <div><span class="k">Role</span><span class="v">FE 팀장</span></div>
@@ -456,7 +472,7 @@ footer h2{font-size:clamp(24px,3vw,30px)}
   <!-- ─────────── 03 Jabis ─────────── -->
   <article class="sheet" id="jabis">
     <div class="titleblock">
-      <div><span class="k">Sheet</span><span class="v">03 / 03</span></div>
+      <div><span class="k">Sheet</span><span class="v">03 / 04</span></div>
       <div><span class="k">Period</span><span class="v">2026.04.08 – 05.21</span></div>
       <div><span class="k">Team</span><span class="v">5명 (FE 1)</span></div>
       <div><span class="k">Role</span><span class="v">FE 전담</span></div>
@@ -543,6 +559,91 @@ footer h2{font-size:clamp(24px,3vw,30px)}
       <div class="linkrow">
         <a class="chip" href="https://www.youtube.com/watch?v=pIx2FC31FqI" target="_blank" rel="noopener">홍보 영상 보기 ↗</a>
         <a class="chip" href="https://github.com/mm-sj/S14P31D101" target="_blank" rel="noopener">GitHub 저장소 ↗</a>
+      </div>
+    </div>
+  </article>
+
+  <!-- ─────────── 04 데이터 냉장고 ─────────── -->
+  <article class="sheet" id="fridge">
+    <div class="titleblock">
+      <div><span class="k">Sheet</span><span class="v">04 / 04</span></div>
+      <div><span class="k">Period</span><span class="v">2026.10 –</span></div>
+      <div><span class="k">Team</span><span class="v">5명</span></div>
+      <div><span class="k">Role</span><span class="v">자료 입고 워크플로우 · 웹 화면</span></div>
+      <div><span class="k">Stack</span><span class="v tbstack"><span class="tbi">n8n</span><span class="tbi">FastAPI</span><span class="tbi">MarkItDown</span><span class="tbi">Three.js</span></span></div>
+      <div><span class="k">Track</span><span class="v acc">LG전자 AX</span></div>
+    </div>
+    <div class="sheet-body">
+      <div class="sheet-head">
+        <div>
+          <p class="no">04 — 데이터 냉장고</p>
+          <h2>데이터 냉장고</h2>
+          <p class="one">자료를 저장할 때 이유를 남기면, 그 이유가 다시 유효해지는 업무 상황에서 AI가 자료를 꺼내주는 사내 지식 재활용 서비스</p>
+        </div>
+        <p class="why">회사 자료는 쌓여도 '왜 저장했는지'가 남지 않아 다시 쓰이지 않습니다. LG전자 K-뉴딜 아카데미 AX 워크플로우 트랙의 팀 프로젝트로, 저장 이유와 활용 조건을 자료와 함께 남기는 구조를 n8n으로 만들었습니다. 저는 자료가 들어오는 입구, 즉 어떤 파일이든 AI가 읽을 수 있는 카드로 바꾸는 흐름을 맡았습니다.</p>
+      </div>
+
+      <figure class="lead-media">
+        <div class="flow">
+          <svg viewBox="0 0 984 236" role="img" aria-label="입고 흐름: 파일 업로드, 변환 서버, 이미지 분석, 카드 초안, 사용자 확정, 저장. 변환 단계에서 스캔본, 미지원 형식, 깨진 파일을 거절한다.">
+            <defs><marker id="fr-ah" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path class="ah" d="M0,0 L8,4 L0,8 z"/></marker></defs>
+            <g>
+              <rect class="bx" x="2" y="20" width="142" height="64" rx="3"/>
+              <text class="tt" x="73" y="48" text-anchor="middle">파일 업로드</text><text class="ss" x="73" y="68" text-anchor="middle">docx · pptx · pdf</text>
+              <rect class="bx me" x="170" y="20" width="142" height="64" rx="3"/>
+              <text class="tt" x="241" y="48" text-anchor="middle">변환 서버</text><text class="ss" x="241" y="68" text-anchor="middle">MarkItDown · Render</text>
+              <rect class="bx ai" x="338" y="20" width="142" height="64" rx="3"/>
+              <text class="tt" x="409" y="48" text-anchor="middle">이미지 분석</text><text class="ss" x="409" y="68" text-anchor="middle">문서 속 그림 설명</text>
+              <rect class="bx ai" x="506" y="20" width="142" height="64" rx="3"/>
+              <text class="tt" x="577" y="48" text-anchor="middle">카드 초안</text><text class="ss" x="577" y="68" text-anchor="middle">제목·요약·태그·날짜</text>
+              <rect class="bx me" x="674" y="20" width="142" height="64" rx="3"/>
+              <text class="tt" x="745" y="48" text-anchor="middle">사용자 확정</text><text class="ss" x="745" y="68" text-anchor="middle">draft → confirmed</text>
+              <rect class="bx" x="842" y="20" width="140" height="64" rx="3"/>
+              <text class="tt" x="912" y="48" text-anchor="middle">저장</text><text class="ss" x="912" y="68" text-anchor="middle">카드 + 저장 이유</text>
+            </g>
+            <g class="ar" marker-end="url(#fr-ah)">
+              <path d="M144 52 H166"/><path d="M312 52 H334"/><path d="M480 52 H502"/><path d="M648 52 H670"/><path d="M816 52 H838"/>
+            </g>
+            <path class="rj" d="M241 84 V128"/>
+            <text class="rt" x="241" y="148" text-anchor="middle">거절 · 이유를 돌려줌</text>
+            <text class="ss" x="241" y="168" text-anchor="middle">스캔본(글자 0) → no_text</text>
+            <text class="ss" x="241" y="186" text-anchor="middle">HWP 등 → unsupported_type</text>
+            <text class="ss" x="241" y="204" text-anchor="middle">깨진 파일 → corrupt_file</text>
+            <path class="rj" d="M745 84 V128"/>
+            <text class="rt" x="745" y="148" text-anchor="middle">사람이 고친 뒤에만 저장</text>
+            <rect class="bx ai" x="506" y="218" width="12" height="12" rx="2"/><text class="lg" x="524" y="228">AI 처리</text>
+            <rect class="bx me" x="596" y="218" width="12" height="12" rx="2"/><text class="lg" x="614" y="228">제가 설계한 판단 지점</text>
+          </svg>
+        </div>
+        <figcaption>자료 입고 흐름 — AI가 만든 초안은 사람이 확인해야 저장됩니다</figcaption>
+      </figure>
+
+      <div class="cols">
+        <div>
+          <p class="label">제가 한 일</p>
+          <ul class="did">
+            <li><b>입고 워크플로우 설계·구현.</b> 파일 → 마크다운 변환 → 이미지 분석 → AI 카드 초안 → 사용자 확정 → 저장으로 이어지는 n8n 흐름을 만들었습니다. 팀원 버전과 비교를 거쳐 팀의 기본 구조로 채택됐습니다.</li>
+            <li><b>변환 서버 배포.</b> 형식이 제각각인 문서를 AI가 읽을 텍스트로 바꾸는 MarkItDown 서버(FastAPI)를 Docker로 Render에 배포하고, API 키 인증을 붙여 n8n과 연결했습니다. n8n 안에서 변환하는 방법(Execute Command, Code 노드)도 검토했지만 환경 제약이 커서 별도 서버로 정했습니다.</li>
+            <li><b>사람 검토 단계.</b> AI가 만든 요약과 태그를 바로 저장하지 않고, 사용자가 확인·수정한 뒤 확정하도록 초안(draft)과 확정(confirmed) 상태를 나눴습니다.</li>
+            <li><b>웹 화면.</b> 양문형 냉장고를 열어 '넣기'와 '꺼내기'를 고르는 화면을 와이어프레임하고, three.js와 GSAP로 3D 프로토타입을 만들었습니다.</li>
+          </ul>
+          <div class="stack"><span>n8n</span><span>Python</span><span>FastAPI</span><span>MarkItDown</span><span>Docker</span><span>Render</span><span>Three.js</span><span>GSAP</span></div>
+        </div>
+        <div class="ts">
+          <p class="label">트러블슈팅</p>
+          <h3>깨진 파일이 '변환 성공'으로 통과하던 문제</h3>
+          <div class="steps">
+            <div class="step"><span class="k">문제</span><p>실패 경로를 테스트하다가, 확장자만 docx이고 내용은 깨진 파일을 올렸는데 서버가 성공 응답을 돌려줬습니다. 의미 없는 글자가 그대로 AI 카드 초안 단계로 넘어갈 수 있는 상태였습니다.</p></div>
+            <div class="step"><span class="k">원인</span><p>MarkItDown은 형식을 읽지 못하면 오류를 내는 대신 파일을 일반 텍스트로 읽고 넘어갑니다. 실패가 성공처럼 보였습니다.</p></div>
+            <div class="step"><span class="k">해결</span><p>변환 전에 파일 앞부분의 시그니처를 확장자와 대조해 맞지 않으면 <code>corrupt_file</code>로 거절했습니다. 같은 기준으로 글자 수가 0인 스캔본은 <code>no_text</code>, 지원하지 않는 형식은 <code>unsupported_type</code>으로 나눠, n8n이 이유별로 사용자에게 안내하게 했습니다.</p></div>
+            <div class="step"><span class="k">배운 점</span><p>AI 자동화에서 더 위험한 것은 멈추는 실패가 아니라 조용히 통과하는 실패라는 것을 알게 됐습니다. AI 앞단에서 입력을 먼저 걸러야 결과를 믿을 수 있습니다.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="result">
+        <div><b>팀 기본안 채택</b>제가 만든 입고 워크플로우</div>
+        <div><b>4가지 실패 응답</b>스캔본 · 미지원 형식 · 깨진 파일 · 서버 다운</div>
       </div>
     </div>
   </article>

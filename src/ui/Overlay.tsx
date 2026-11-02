@@ -3,7 +3,7 @@ import { modalClick } from './Modal'
 import { stampSvg } from './stamp'
 
 const TOUCH = typeof window !== 'undefined' && window.matchMedia?.('(pointer: coarse)').matches
-import { PROFILE, PROJECTS, type Project } from '../content'
+import { AX_PROJECT, PROFILE, PROJECTS, type Project } from '../content'
 import { MODEL_CUBES } from '../scene/layouts'
 
 function Copy({ text }: { text: string }) {
@@ -172,7 +172,15 @@ export function Overlay() {
           <ul className="facts">
             <li><i>EDUCATION</i>SSAFY 14기 수료 · 계명대학교 건축학 학사</li>
             <li><i>EXPERIENCE</i>건축사사무소 인턴 (학부 4학년) — 모형 제작, 3D 모델링</li>
-            <li><i>NOW</i>LG전자 K-뉴딜 아카데미 1기 AX 워크플로우 트랙</li>
+            <li>
+              <i>NOW</i>
+              <span>
+                LG전자 K-뉴딜 아카데미 1기 AX 워크플로우 트랙 —{' '}
+                <a href={`${PROFILE.quick.split('#')[0]}#${AX_PROJECT.id}`} target="_blank" rel="noopener" onClick={modalClick(AX_PROJECT.id)}>
+                  {AX_PROJECT.title} 보기 →
+                </a>
+              </span>
+            </li>
             <li><i>AWARDS</i>SSAFY 공통 최우수상 · 특화 우수상 · 자율 우수상</li>
           </ul>
           <div className="links links--contact">

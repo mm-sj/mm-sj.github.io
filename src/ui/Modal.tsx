@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { PROFILE, PROJECTS } from '../content'
+import { AX_PROJECT, PROFILE, PROJECTS } from '../content'
 
 /**
  * 전체 보기 모달 — 문서형 포트폴리오(quick/)를 iframe 하나로 띄운다.
@@ -91,6 +91,9 @@ export function FolioModal() {
                 {p.no} {p.title}
               </button>
             ))}
+            <button type="button" className="mono" onClick={() => jump(AX_PROJECT.id)}>
+              {AX_PROJECT.no} {AX_PROJECT.title}
+            </button>
           </nav>
           <span className="modal__actions">
             <a className="mono" href={PROFILE.quick} target="_blank" rel="noopener">

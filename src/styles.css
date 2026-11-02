@@ -111,6 +111,7 @@ p { margin: 0; line-height: 1.75; color: var(--ink-2); font-size: 16px; }
 /* end */
 .facts { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; border-top: 1px solid var(--line); padding-top: 14px; }
 .facts li { font-size: 14.5px; color: var(--ink-2); display: grid; grid-template-columns: 96px 1fr; gap: 10px; }
+.facts a { color: var(--accent); text-underline-offset: 3px; }
 .facts i { font-style: normal; font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; color: var(--muted); padding-top: 3px; }
 
 @media (max-width: 860px) {
