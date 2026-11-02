@@ -1,0 +1,99 @@
+/* ───── A4 인쇄용 덮어쓰기 ───── */
+@page{size:A4;margin:12mm 12mm 13mm}
+html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{padding:0;font-size:13px;line-height:1.6;background:var(--paper)}
+.wrap{max-width:none}
+a{color:inherit}
+.pdf-top{display:flex;justify-content:space-between;gap:12px;padding-bottom:7px;border-bottom:1px solid var(--line)}
+.pdf-top .mono{font-size:10px;letter-spacing:.06em}
+.pdf-top a{text-decoration:underline;text-underline-offset:2px}
+/* 1쪽: 소개 + Skills + Projects 목차 */
+.hero{grid-template-columns:minmax(0,1fr) 178px;gap:26px;align-items:start;padding-block:16px 6px}
+.hero .role{font-size:10.5px}
+.hero h1{font-size:30px;line-height:1.22;margin-top:8px}
+.hero h1 .name{font-size:.5em;margin-bottom:6px}
+.hero .lead{font-size:12px;line-height:1.65;margin-top:10px;max-width:none}
+.facts{margin-top:12px}
+.facts li{font-size:11px;grid-template-columns:86px 1fr}
+.facts li span:first-child{font-size:9.5px}
+.hero-side{width:178px;justify-self:end;gap:6px}
+.portrait{padding:6px 6px 4px}
+.portrait figcaption{font-size:8.5px;margin-top:4px}
+.hero-side .contact{display:grid;grid-template-columns:1fr;gap:5px}
+.hero-side .contact .chip{grid-column:1/-1;justify-content:center;font-size:9.5px;padding:5px 6px}
+.chip--tel{font-weight:600;color:var(--ink);border-color:var(--ink)!important}
+.live{display:grid;justify-items:center;gap:1px;text-decoration:none;color:var(--ink);border:1px solid var(--accent);padding:5px 6px;border-radius:3px;background:var(--sheet)}
+.live b{font-size:9.5px;color:var(--accent);font-weight:600}
+.live span{font-family:var(--mono);font-size:9.5px}
+.skills{margin-top:8px;grid-template-columns:1fr 2.6fr;gap:20px}
+.skills h2{font-size:19px}
+.skills dl div{grid-template-columns:88px 1fr;padding-block:4px;gap:10px}
+.skills dt{font-size:9.5px}
+.tks{gap:3px}
+.tk{font-size:10px;padding:1px 6px 1px 3px;gap:4px}
+.tk svg{width:11px;height:11px}
+.tk-mono{min-width:11px;height:11px;font-size:6.5px}
+.proj-h{margin-top:14px;font-size:19px}
+.proj-h + .index{margin-top:6px}
+.index a{padding-block:7px;grid-template-columns:44px minmax(0,1fr) auto}
+.index .t{font-size:15px}
+.index .d{font-size:11px}
+.index .award{font-size:10px}
+/* 프로젝트: 시트마다 새 쪽에서 시작 */
+.sheet{break-before:page;margin-top:0}
+.titleblock div{padding:8px 10px}
+.titleblock .k{font-size:9px}
+.titleblock .v{font-size:11.5px}
+.sheet-body{padding:16px 18px 18px;position:relative}
+.sheet-head h2{font-size:30px}
+.sheet-head p,.sheet-head .lead{font-size:12px}
+.lead-media{margin-top:12px}
+.lead-media .media{display:flex;justify-content:center}
+.lead-media img{max-height:250px;height:auto;width:auto;max-width:100%;margin:0 auto;object-fit:contain}
+.grid-media{gap:10px;margin-top:10px}
+figcaption{font-size:10px}
+#wyd .grid-media .media{aspect-ratio:16/9}
+#jabis .jabis-more .media{aspect-ratio:16/9}
+/* 내용(제가 한 일·트러블슈팅)은 다음 쪽 — 데이터 냉장고는 이미지가 없어 이어서 */
+.sheet:not(#fridge) .cols{break-before:page}
+.cols{margin-top:16px;gap:24px}
+.cols p,.cols li{font-size:11.5px;line-height:1.65}
+.step{break-inside:avoid}
+.flow{padding:12px}
+.flow svg{min-width:0}
+.result{margin-top:16px;padding-top:12px}
+.linkrow{margin-top:10px}
+.linkrow .chip{font-size:10px;padding:5px 9px}
+.stamp-wrap{width:88px;height:88px;top:-44px;right:-2px}
+/* A4 폭(약 720px)에서 걸리는 모바일 규칙을 데스크톱 배치로 되돌린다 */
+.sheet-head{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px}
+.cols{grid-template-columns:minmax(0,1fr) minmax(0,1.35fr)}
+.skills{grid-template-columns:1fr 2.6fr}
+.titleblock{grid-template-columns:repeat(6,minmax(0,1fr))}
+.titleblock div{border-right:1px solid var(--line-2);border-bottom:0}
+.titleblock div:nth-child(3n){border-right:1px solid var(--line-2)}
+.titleblock div:last-child{border-right:0}
+.grid-media.c4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.hero-side,.portrait{justify-self:end}
+.portrait{width:100%}
+.ts .step{grid-template-columns:60px 1fr}
+/* 2쪽째(제가 한 일·트러블슈팅)가 넘치지 않게 조금 촘촘히 */
+.cols p,.cols li{font-size:11px;line-height:1.58}
+.ts .step{padding-block:8px}
+.result b{font-size:17px}
+.sheet-head .one{font-size:13px;margin-top:6px}
+.sheet-head .why{font-size:12px}
+.ts h3{font-size:17px}
+.ts .steps{margin-top:10px}
+.ts .step{grid-template-columns:52px minmax(0,1fr);gap:12px}
+.ts .step .k{font-size:10px}
+.ts .step p{font-size:11.5px;line-height:1.6}
+.sub{margin-top:14px;padding:10px 12px}
+.sub h4{font-size:12px}
+.sub p,.sub li{font-size:10.5px}
+#fridge .cols{margin-top:10px}
+#fridge .result{margin-top:10px;padding-top:8px}
+#fridge .linkrow{margin-top:6px}
+#fridge .flow{padding:8px 10px}
+/* 데이터 냉장고: 소개 영상 버튼을 결과 줄 오른쪽에 붙여 한 쪽에 맞춘다 */
+#fridge .linkrow{position:absolute;right:18px;bottom:18px;margin:0}

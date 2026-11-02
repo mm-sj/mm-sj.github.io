@@ -2,3 +2,7 @@ node_modules
 dist
 .DS_Store
 *.tsbuildinfo
+render/
+fonts/
+*.pdf
+!public/portfolio.pdf
