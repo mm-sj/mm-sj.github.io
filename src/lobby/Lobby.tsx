@@ -27,17 +27,18 @@ function Icon({ name, style }: { name: string; style?: React.CSSProperties }) {
   )
 }
 
-/** 가운데 카드에 올라간 동안만 재생되는 루프 영상 */
-function Clip({ src, poster, label }: { src: string; poster: string; label: string }) {
+/** 가운데 카드일 때만 재생. 엘리먼트는 계속 살려 둬서 카드가 바뀔 때 다시 불러오지 않는다 */
+function Clip({ src, poster, label, active }: { src: string; poster: string; label: string; active: boolean }) {
   const ref = useRef<HTMLVideoElement>(null)
   useEffect(() => {
     const v = ref.current
     if (!v) return
-    v.src = src
-    v.play().catch(() => {})
-    return () => v.pause()
-  }, [src])
-  return <video ref={ref} className="clip" poster={poster} muted loop playsInline aria-label={label} />
+    if (active) {
+      if (!v.getAttribute('src')) v.src = src
+      v.play().catch(() => {})
+    } else v.pause()
+  }, [active, src])
+  return <video ref={ref} className="clip" poster={poster} muted loop playsInline preload="none" aria-label={label} />
 }
 
 function Btn({ item, children, onClick, href, ghost }: { item: LobbyItem; children: React.ReactNode; onClick?: (e: React.MouseEvent) => void; href?: string; ghost?: boolean }) {
@@ -76,7 +77,7 @@ function Copy({ text }: { text: string }) {
   )
 }
 
-function CardBody({ item }: { item: LobbyItem }) {
+function CardBody({ item, active }: { item: LobbyItem; active: boolean }) {
   if (item.kind === 'about')
     return (
       <div className="body body--about">
@@ -108,7 +109,7 @@ function CardBody({ item }: { item: LobbyItem }) {
     const p = item.project
     return (
       <div className="body">
-        <Clip src={p.video} poster={p.poster} label={`${p.title} 화면 영상`} />
+        <Clip src={p.video} poster={p.poster} label={`${p.title} 화면 영상`} active={active} />
         <div className="head">
           <span className="no" style={{ '--sw': item.color } as React.CSSProperties}>{p.no}</span>
           <h1 className="wood">{p.title}</h1>
@@ -215,9 +216,10 @@ export function Lobby() {
   }, [])
 
   const step = useCallback((dir: number) => {
+    // 처음 만질 때만 혼자 돌던 각도를 칸에 맞추고, 그 뒤로는 DocQ처럼 입력만큼 그대로 쌓는다
+    if (!touched.current) target.current = Math.round(target.current / STEP) * STEP
     touched.current = true
-    // 아직 돌고 있는 중이면 다음 칸 기준으로 쌓는다
-    target.current = Math.round(target.current / STEP) * STEP - dir * STEP
+    target.current -= dir * STEP
   }, [])
 
   // 메인 루프 — DocQ의 updateLoop
@@ -230,11 +232,11 @@ export function Lobby() {
       if (!a) return
       a.animate(
         [
-          { transform: 'translate(-50%, -63%) rotate(0deg)' },
-          { transform: `translate(-50%, -63%) rotate(${dir > 0 ? -25 : 25}deg)`, offset: 0.14 },
-          { transform: `translate(-50%, -63%) rotate(${dir > 0 ? 8 : -8}deg)`, offset: 0.45 },
-          { transform: `translate(-50%, -63%) rotate(${dir > 0 ? -3 : 3}deg)`, offset: 0.7 },
-          { transform: 'translate(-50%, -63%) rotate(0deg)' },
+          { transform: 'translate(-50%, -55%) rotate(0deg)' },
+          { transform: `translate(-50%, -55%) rotate(${dir > 0 ? -25 : 25}deg)`, offset: 0.14 },
+          { transform: `translate(-50%, -55%) rotate(${dir > 0 ? 8 : -8}deg)`, offset: 0.45 },
+          { transform: `translate(-50%, -55%) rotate(${dir > 0 ? -3 : 3}deg)`, offset: 0.7 },
+          { transform: 'translate(-50%, -55%) rotate(0deg)' },
         ],
         { duration: 380, easing: 'ease-out' },
       )
@@ -266,19 +268,18 @@ export function Lobby() {
 
   // 입력: 휠 · 방향키 · 드래그(스와이프)
   useEffect(() => {
+    // DocQ(gsap Observer)와 같은 방식: 한 프레임 동안 들어온 휠 값을 모아 8 이상이면 한 칸
     let acc = 0
-    let lock = 0
+    let queued = 0
+    const flush = () => {
+      queued = 0
+      if (Math.abs(acc) >= 8) step(acc > 0 ? 1 : -1)
+      acc = 0
+    }
     const onWheel = (e: WheelEvent) => {
       if (modalOpen.current) return
-      const t = e.target as HTMLElement
-      if (t.closest('.body')) return
       acc += Math.abs(e.deltaY) > Math.abs(e.deltaX) ? e.deltaY : e.deltaX
-      const now = performance.now()
-      if (Math.abs(acc) > 30 && now > lock) {
-        step(acc > 0 ? 1 : -1)
-        acc = 0
-        lock = now + 160
-      }
+      if (!queued) queued = requestAnimationFrame(flush)
     }
     const onKey = (e: KeyboardEvent) => {
       if (modalOpen.current) return
@@ -308,6 +309,7 @@ export function Lobby() {
     window.addEventListener('folio:modal', onModal)
     return () => {
       window.removeEventListener('wheel', onWheel)
+      cancelAnimationFrame(queued)
       window.removeEventListener('keydown', onKey)
       window.removeEventListener('pointerdown', onDown)
       window.removeEventListener('pointerup', onUp)
@@ -347,8 +349,6 @@ export function Lobby() {
         <div className="studio__floor" />
         <div className="studio__light" />
       </div>
-      <div className="tilt tilt--top" aria-hidden="true" />
-      <div className="tilt tilt--bottom" aria-hidden="true" />
       <div className="grain" aria-hidden="true" />
 
       <header className="banner">
@@ -375,14 +375,11 @@ export function Lobby() {
               onPointerLeave={center ? () => (hovering.current = false) : undefined}
             >
               <div className={`panel ${center ? 'panel--main' : 'panel--side'}`}>
-                {center ? (
-                  <CardBody item={item} />
-                ) : (
-                  <div className="mini">
-                    <Icon name={item.icon} />
-                    <span>{item.label}</span>
-                  </div>
-                )}
+                <CardBody item={item} active={center} />
+                <div className="mini">
+                  <Icon name={item.icon} />
+                  <span>{item.label}</span>
+                </div>
               </div>
             </section>
           )
@@ -395,11 +392,6 @@ export function Lobby() {
           <div className="roulette__wood" />
           {Array.from({ length: TOTAL * 2 }, (_, n) => (
             <span key={n} className="pin" style={{ transform: `rotate(${n * PIN}deg) translateY(calc(var(--R) * -0.4925))` }} />
-          ))}
-          {ITEMS.map((it, n) => (
-            <span key={it.id} className="seg" style={{ transform: `rotate(${n * STEP}deg) translateY(calc(var(--R) * -0.455))` }}>
-              <Icon name={it.icon} />
-            </span>
           ))}
         </div>
         <div className="walkers-wrap">

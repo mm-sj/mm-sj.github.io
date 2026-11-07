@@ -1,69 +1,106 @@
 import { Suspense, useEffect, useMemo } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
-import { ContactShadows, useAnimations, useGLTF } from '@react-three/drei'
+import { useAnimations, useGLTF } from '@react-three/drei'
 import { SkeletonUtils } from 'three-stdlib'
 import * as THREE from 'three'
 import { wheelState } from './wheelState'
 
 /**
- * 룰렛 위를 걷는 동물 4마리 — DocQ 메인 화면 CharacterBackground를 R3F로 옮겼다.
- * 룰렛이 빨리 돌수록 걷는 애니메이션도 빨라진다.
+ * 룰렛 위를 걷는 점경인물 — 건축 모형에 세우는 흰 사람 모형처럼.
+ * DocQ 메인 화면의 동물 행렬(CharacterBackground)에서 강아지 한 마리만 데려와 사람과 같이 걷게 했다.
+ * 룰렛이 빨리 돌수록 걸음도 빨라진다.
  */
-const CHARS = [
-  { file: './assets/character/character_chicken.glb', x: 3.3, y: -0.4, scale: 2.4, speed: 0.5 },
-  { file: './assets/character/character_dog.glb', x: -1.6, y: -0.2, scale: 2.2, speed: 1.0 },
-  { file: './assets/character/character_sheep.glb', x: 1.6, y: -0.2, scale: 2.2, speed: 1.2 },
-  { file: './assets/character/character_pig.glb', x: -3.4, y: -0.5, scale: 2.4, speed: 1.0 },
+type Spec = { file: string; x: number; h: number; speed: number; phase: number }
+const FIG = './assets/character/figure.glb'
+const DOG = './assets/character/character_dog.glb'
+const WALKERS: Spec[] = [
+  { file: FIG, x: -3.1, h: 1.75, speed: 1.0, phase: 0.1 },
+  { file: FIG, x: -1.9, h: 1.62, speed: 1.05, phase: 0.55 },
+  { file: DOG, x: 1.1, h: 0.9, speed: 1.15, phase: 0.3 },
+  { file: FIG, x: 2.3, h: 1.82, speed: 0.95, phase: 0.8 },
 ]
+const GROUND = -0.95
+const PLASTER = new THREE.MeshStandardMaterial({ color: '#e9e5dd', roughness: 0.88, metalness: 0 })
 
-function Walker({ file, x, y, scale, speed }: (typeof CHARS)[number]) {
+/** 발밑 그림자 — 매 프레임 깊이를 다시 그리는 ContactShadows 대신 고정 텍스처 한 장 */
+const shadowTex = (() => {
+  if (typeof document === 'undefined') return null
+  const c = document.createElement('canvas')
+  c.width = c.height = 64
+  const g = c.getContext('2d')!
+  const grad = g.createRadialGradient(32, 32, 0, 32, 32, 32)
+  grad.addColorStop(0, 'rgba(40,32,24,0.55)')
+  grad.addColorStop(1, 'rgba(40,32,24,0)')
+  g.fillStyle = grad
+  g.fillRect(0, 0, 64, 64)
+  return new THREE.CanvasTexture(c)
+})()
+
+function Walker({ file, x, h, speed, phase }: Spec) {
   const { scene, animations } = useGLTF(file)
-  const model = useMemo(() => {
+  const { model, scale } = useMemo(() => {
     const m = SkeletonUtils.clone(scene)
     m.traverse((c) => {
       const mesh = c as THREE.Mesh
       if (mesh.isMesh) {
-        // 원색 복셀 대신 석고 모형 인형처럼 — 흰 단색 재질
-        mesh.material = new THREE.MeshStandardMaterial({ color: '#ece8e0', roughness: 0.85, metalness: 0 })
+        mesh.material = PLASTER
+        mesh.frustumCulled = false
       }
     })
-    return m
-  }, [scene])
+    m.updateMatrixWorld(true)
+    const box = new THREE.Box3().setFromObject(m, true)
+    const size = box.getSize(new THREE.Vector3())
+    const s = h / (size.y || 1)
+    // 발이 바닥선에 오도록 아래 기준으로 맞춘다
+    m.position.y = -box.min.y
+    return { model: m, scale: s }
+  }, [scene, h])
   const { actions, names } = useAnimations(animations, model)
   useEffect(() => {
     const a = names[0] ? actions[names[0]] : null
     if (!a) return
     a.reset().play()
-    a.time = Math.random() * 2
-  }, [actions, names])
+    a.time = phase * a.getClip().duration
+  }, [actions, names, phase])
   useFrame(() => {
     const a = names[0] ? actions[names[0]] : null
-    // 가만히 있을 때도 느긋하게 걷고, 룰렛이 빨라지면 같이 빨라진다
-    if (a) a.timeScale = speed * (0.55 + Math.min(wheelState.speed, 6) * 0.35)
+    if (a) a.timeScale = speed * (0.6 + Math.min(wheelState.speed, 6) * 0.3)
   })
-  return <primitive object={model} position={[x, y, 0]} scale={scale} rotation={[0, Math.PI / 2, 0]} />
+  return (
+    <group position={[x, GROUND, 0]}>
+      <group scale={scale} rotation={[0, Math.PI / 2, 0]}>
+        <primitive object={model} />
+      </group>
+      {shadowTex && (
+        <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.005, 0]}>
+          <planeGeometry args={[h * 0.75, h * 0.32]} />
+          <meshBasicMaterial map={shadowTex} transparent depthWrite={false} />
+        </mesh>
+      )}
+    </group>
+  )
 }
 
 export function Characters() {
   return (
     <Canvas
       className="walkers"
-      dpr={[1, 1.5]}
+      dpr={[1, 1.25]}
       camera={{ position: [0, 1, 6.5], fov: 50 }}
-      gl={{ alpha: true, antialias: true }}
+      gl={{ alpha: true, antialias: true, powerPreference: 'high-performance' }}
       onCreated={() => window.dispatchEvent(new Event('folio:ready'))}
     >
       <hemisphereLight args={['#ffffff', '#b8b0a2', 0.9]} />
-      <directionalLight position={[-5, 7, 5]} intensity={2.8} />
+      <directionalLight position={[-5, 7, 5]} intensity={2.6} />
       <directionalLight position={[6, 1, 3]} intensity={0.35} />
       <Suspense fallback={null}>
-        {CHARS.map((c) => (
-          <Walker key={c.file} {...c} />
+        {WALKERS.map((c, i) => (
+          <Walker key={i} {...c} />
         ))}
-        <ContactShadows position={[0, -0.5, 0]} scale={[14, 3]} far={2} blur={2.2} opacity={0.45} resolution={512} color="#3b342c" />
       </Suspense>
     </Canvas>
   )
 }
 
-CHARS.forEach((c) => useGLTF.preload(c.file))
+useGLTF.preload(FIG)
+useGLTF.preload(DOG)
