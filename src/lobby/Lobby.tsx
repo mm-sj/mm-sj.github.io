@@ -58,11 +58,12 @@ function Brand({ name }: { name: keyof typeof BRAND }) {
     </svg>
   )
 }
-function Btn({ children, onClick, href, line, go = 'out', download, brand }: { children: React.ReactNode; onClick?: (e: React.MouseEvent) => void; href: string; line?: boolean; go?: Go; download?: boolean; brand?: keyof typeof BRAND }) {
+function Btn({ children, onClick, href, line, go = 'out', download, brand, icon }: { children: React.ReactNode; onClick?: (e: React.MouseEvent) => void; href: string; line?: boolean; go?: Go; download?: boolean; brand?: keyof typeof BRAND; icon?: string }) {
   return (
     <a className={`cbtn ${line ? 'cbtn--line' : ''}`} href={href} target={download ? undefined : '_blank'} rel="noopener" onClick={onClick} download={download || undefined}>
       <span>
         {brand && <Brand name={brand} />}
+        {icon && <Icon name={icon} />}
         {children}
       </span>
       <i aria-hidden="true">{MARK[go]}</i>
@@ -83,6 +84,7 @@ function Copy({ text }: { text: string }) {
         })
       }}
     >
+      <Icon name={done ? 'check' : 'mail'} />
       {done ? '복사했어요' : text}
       <i aria-hidden="true">{done ? '✓' : '복사'}</i>
     </button>
@@ -104,17 +106,20 @@ function CardBody({ item, active }: { item: LobbyItem; active: boolean }) {
             </p>
           ))}
           <div className="tags">
-            {ABOUT.chips.map((c) => (
-              <span key={c}>{c}</span>
+            {ABOUT.chips.map((c, i) => (
+              <span key={c}>
+                <Icon name={['school', 'code', 'bolt'][i]} />
+                {c}
+              </span>
             ))}
           </div>
         </div>
         <div className="actions">
-          <Btn onClick={modalClick()} href={PROFILE.quick} go="in">
-            포트폴리오 문서 보기
+          <Btn onClick={modalClick()} href={PROFILE.quick} go="in" icon="description">
+            포트폴리오 문서로 보기
           </Btn>
-          <Btn line href="./portfolio.pdf" go="down" download>
-            PDF
+          <Btn line href="./portfolio.pdf" go="down" download icon="picture_as_pdf">
+            PDF 다운로드
           </Btn>
         </div>
       </div>
@@ -135,7 +140,7 @@ function CardBody({ item, active }: { item: LobbyItem; active: boolean }) {
           {p.period} · {p.team} · <b>{p.role}</b>
         </p>
         <div className="actions">
-          <Btn onClick={modalClick(p.id)} href={p.detail} go="in">
+          <Btn onClick={modalClick(p.id)} href={p.detail} go="in" icon="article">
             자세히 보기
           </Btn>
           {p.extra && (
@@ -171,7 +176,7 @@ function CardBody({ item, active }: { item: LobbyItem; active: boolean }) {
           {FRIDGE.tag} · 4명 · <b>{FRIDGE.role}</b>
         </p>
         <div className="actions">
-          <Btn onClick={modalClick('fridge')} href={`${PROFILE.quick}#fridge`} go="in">
+          <Btn onClick={modalClick('fridge')} href={`${PROFILE.quick}#fridge`} go="in" icon="article">
             자세히 보기
           </Btn>
           <Btn line href={FRIDGE.video} brand="youtube">
@@ -188,8 +193,8 @@ function CardBody({ item, active }: { item: LobbyItem; active: boolean }) {
       <Copy text={PROFILE.email} />
       <div className="actions">
         <Btn href={PROFILE.github} brand="github">GitHub</Btn>
-        <Btn line href="./portfolio.pdf" go="down" download>
-          PDF
+        <Btn line href="./portfolio.pdf" go="down" download icon="picture_as_pdf">
+          PDF 다운로드
         </Btn>
       </div>
     </div>
@@ -334,7 +339,7 @@ export function Lobby() {
       if (!el || !panel) return
       const show = Math.min(300, Math.max(190, window.innerHeight * 0.3))
       const low = window.innerHeight < 760
-      const room = window.innerHeight - show - 96 - (low ? 80 : 100)
+      const room = window.innerHeight - show - 28 - (low ? 80 : 100)
       const f = Math.min(1, room / panel.offsetHeight, (window.innerWidth - 24) / panel.offsetWidth)
       el.style.setProperty('--fit', String(Math.max(0.55, f)))
     }
@@ -359,13 +364,9 @@ export function Lobby() {
       </div>
       <div className="grain" aria-hidden="true" />
 
-      <header className="banner">
-        <p className="banner__title">오창민</p>
-        <p className="banner__sub">서비스 기획 · 프론트엔드</p>
-      </header>
       <a className="docbtn" href={PROFILE.quick} target="_blank" rel="noopener" onClick={modalClick()}>
         <Icon name="description" />
-        문서로 보기
+        포트폴리오 문서로 보기
       </a>
 
       <main className="stage" aria-roledescription="carousel" aria-label="프로젝트 메뉴">

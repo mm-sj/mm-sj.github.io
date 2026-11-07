@@ -46,21 +46,18 @@
 }
 
 /* ── 상단 ── */
-.banner { position: absolute; top: 20px; left: 50%; transform: translateX(-50%); z-index: 40; text-align: center; pointer-events: none; }
-.banner__title { margin: 0; font-size: 1.7rem; font-weight: 600; letter-spacing: -0.02em; line-height: 1; color: var(--ink); }
-.banner__sub { margin: 7px 0 0; font-size: 12.5px; letter-spacing: 0.02em; color: var(--muted); }
 .docbtn {
   position: absolute; top: 18px; right: 18px; z-index: 60;
   display: inline-flex; align-items: center; gap: 12px; height: 38px; padding: 0 14px;
   border-radius: 8px; color: var(--ink); text-decoration: none; font-size: 13.5px; font-weight: 500;
   background: rgba(251, 250, 247, 0.7); box-shadow: inset 0 0 0 1px #cbc6bc; transition: box-shadow 0.15s, background 0.15s;
 }
-.docbtn .msym { display: none; }
+.docbtn .msym { font-size: 18px; margin-right: -4px; }
 .docbtn::after { content: '→'; font-family: var(--mono); font-size: 13px; opacity: 0.7; }
 .docbtn:hover { background: var(--board); box-shadow: inset 0 0 0 1px var(--ink); }
 
 /* ── 캐러셀 ── */
-.stage { position: absolute; z-index: 30; left: 50%; top: calc((96px + 100vh - var(--show) - 90px) / 2); width: 0; height: 0; perspective: 1100px; }
+.stage { position: absolute; z-index: 30; left: 50%; top: calc((28px + 100vh - var(--show) - 90px) / 2); width: 0; height: 0; perspective: 1100px; }
 .citem { position: absolute; left: 0; top: 0; width: 500px; transition: transform 0.6s cubic-bezier(0.22, 0.8, 0.22, 1), opacity 0.6s; transform-style: preserve-3d; }
 .pos-center { z-index: 20; opacity: 1; transform: translate(-50%, -50%) scale(var(--fit, 1)); }
 .pos-left { z-index: 10; opacity: 1; transform: translate(-128%, -50%) scale(calc(var(--fit, 1) * 0.62)) rotateY(25deg); cursor: pointer; }
@@ -146,7 +143,7 @@ h1.wood { margin: 0; font-family: var(--sans); font-weight: 600; font-size: 2rem
 .lede { margin: 0 0 6px; font-size: 16px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.45; color: var(--ink); }
 .role { margin: 4px 0 10px; font-size: 12.5px; color: var(--muted); }
 .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
-.tags span { padding: 4px 9px; border-radius: 4px; background: #f1efea; box-shadow: inset 0 0 0 1px var(--board-edge); font-size: 12.5px; color: var(--ink-2); }
+.tags > span { display: inline-flex; align-items: center; gap: 6px; padding: 4px 9px; border-radius: 4px; background: #f1efea; box-shadow: inset 0 0 0 1px var(--board-edge); font-size: 12.5px; color: var(--ink-2); }
 
 .flow { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 14px; padding: 26px 10px; border-radius: 3px; background: #f1efea; box-shadow: inset 0 0 0 1px var(--board-edge); }
 .flow__step { position: relative; padding: 7px 9px; border-radius: 4px; background: var(--board); font-size: 13px; white-space: nowrap; box-shadow: 0 0 0 1px var(--board-edge), 0 2px 0 #d9d4ca; }
@@ -211,7 +208,6 @@ h1.wood { margin: 0; font-family: var(--sans); font-weight: 600; font-size: 2rem
 @media (max-width: 760px) {
   .pos-left, .pos-right { opacity: 0; pointer-events: none; }
   .citem { width: min(500px, calc(100vw - 32px)); }
-  .banner { top: 16px; }
   .docbtn { top: auto; bottom: 96px; right: 50%; transform: translateX(50%); }
   .hint { display: none; }
   .dots__bar { gap: 6px; padding: 7px 9px; }
@@ -226,3 +222,7 @@ h1.wood { margin: 0; font-family: var(--sans); font-weight: 600; font-size: 2rem
 @media (prefers-reduced-motion: reduce) {
   .citem { transition: opacity 0.2s; }
 }
+
+.tags .msym { font-size: 15px; color: var(--muted); }
+.cbtn .msym { font-size: 18px; }
+.mail .msym { font-size: 18px; color: var(--muted); }
