@@ -128,6 +128,9 @@ h1.wood { margin: 0; font-family: var(--sans); font-weight: 600; font-size: 2rem
   color: #fff; background: var(--ink);
   transition: background 0.15s, box-shadow 0.15s, color 0.15s;
 }
+.cbtn > span { display: inline-flex; align-items: center; gap: 8px; min-width: 0; }
+.brand { width: 16px; height: 16px; flex: none; fill: currentColor; }
+.brand--youtube { fill: #ff0033; }
 .cbtn i { font-style: normal; font-family: var(--mono); font-size: 14px; opacity: 0.75; transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1); }
 .cbtn:hover { background: #3a3834; }
 .cbtn:hover i { transform: translateX(3px); }

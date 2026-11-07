@@ -50,8 +50,8 @@
 
   /* 표지 */
   .cover { display: grid; grid-template-columns: minmax(0, 1fr) 190px; gap: 40px; }
-  .cover h1 { margin: 0; font-size: clamp(34px, 5vw, 46px); font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; }
-  .cover .lede { margin: 26px 0 14px; font-size: clamp(19px, 2.4vw, 23px); font-weight: 600; letter-spacing: -0.02em; line-height: 1.45; color: var(--ink); }
+  .cover h1 { margin: 2px 0 8px; font-size: 30px; font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; color: var(--ink); }
+  .cover .lede { margin: 0 0 14px; font-size: clamp(19px, 2.4vw, 23px); font-weight: 600; letter-spacing: -0.02em; line-height: 1.45; color: var(--ink); }
   .cover p { margin: 0 0 6px; color: var(--ink-2); }
   .info { margin: 26px 0 0; display: grid; grid-template-columns: 56px 1fr; gap: 6px 14px; font-size: 14.5px; }
   .info dt { color: var(--muted); }
@@ -101,6 +101,10 @@
 
   /* 버튼 — 첫 화면과 같은 규칙: 꽉 찬 먹색 / 얇은 선, 오른쪽 끝에 방향 표시 */
   .btn { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 11px 14px; border-radius: 8px; font-size: 14px; font-weight: 500; text-decoration: none; transition: background 0.15s, box-shadow 0.15s; }
+  .btn > span { display: inline-flex; align-items: center; gap: 8px; }
+  .brand { width: 16px; height: 16px; flex: none; fill: currentColor; }
+  .brand--yt { fill: #ff0033; }
+  .btn--solid .brand--yt { fill: #fff; }
   .btn::after { content: '↗'; font-family: var(--mono); font-size: 13px; opacity: 0.7; }
   .btn--solid { background: var(--ink); color: #fff; }
   .btn--solid:hover { background: #3a3834; }
@@ -149,7 +153,6 @@
   <section class="sheet" id="top">
     <div class="cover">
       <div>
-        <h1>오창민</h1>
         <p class="lede">기획한 흐름을 직접 화면으로 만들어 본 사람입니다.</p>
         <p>건축을 전공했고, SSAFY 14기에서 웹 서비스 세 개를 팀으로 만들었습니다. 세 프로젝트 모두 화면 흐름을 정하는 일과 그 화면을 직접 구현하는 일을 같이 맡았고, 세 번 다 상을 받았습니다.</p>
         <p>이어서 LG전자 K-뉴딜 아카데미 AX 워크플로우 트랙에서 n8n으로 업무 자동화 서비스를 만들어 5개 팀 중 1위로 수료했습니다.</p>
@@ -163,6 +166,7 @@
       <div class="side">
         <img src="../assets/portrait.jpg" alt="오창민 사진" width="600" height="750">
         <div class="contact">
+          <h1>오창민</h1>
           <button type="button" data-copy="dhckdals1104@naver.com">dhckdals1104@naver.com</button>
           <a href="https://github.com/mm-sj" target="_blank" rel="noopener">github.com/mm-sj</a>
           <a href="../portfolio.pdf" download>PDF 내려받기</a>
@@ -230,7 +234,7 @@
         </ul>
         <p class="stack">n8n · FastAPI · MarkItDown · Docker · Render · Three.js · GSAP</p>
         <div class="links">
-          <a class="btn btn--solid" href="https://www.youtube.com/watch?v=HB-bQzTXlkQ" target="_blank" rel="noopener">소개 영상</a>
+          <a class="btn btn--solid" href="https://www.youtube.com/watch?v=HB-bQzTXlkQ" target="_blank" rel="noopener"><span><svg class="brand brand--yt" viewBox="0 0 24 24" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>소개 영상</span></a>
         </div>
         <p class="stack" style="margin-top:8px">소개 영상은 Claude Code와 HyperFrames로 직접 제작</p>
       </aside>
@@ -265,7 +269,7 @@
         </ul>
         <p class="note">팀이 받은 유저 피드백 24건 중 22건 반영</p>
         <p class="stack">Vue 3 · TypeScript · Three.js · GSAP · Blender</p>
-        <div class="links"><a class="btn btn--line" href="https://github.com/mm-sj/S14P11D209" target="_blank" rel="noopener">시연 원본 화면·상세 설명</a></div>
+        <div class="links"><a class="btn btn--line" href="https://github.com/mm-sj/S14P11D209" target="_blank" rel="noopener"><span><svg class="brand" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>시연 원본 화면·상세 설명</span></a></div>
       </aside>
     </div>
   </section>
@@ -297,7 +301,7 @@
         </ul>
         <p class="note">유저 피드백 37건 수집, 반영</p>
         <p class="stack">React · TypeScript · Zustand · React Three Fiber</p>
-        <div class="links"><a class="btn btn--line" href="https://github.com/mm-sj/S14P21D207" target="_blank" rel="noopener">시연 원본 화면·상세 설명</a></div>
+        <div class="links"><a class="btn btn--line" href="https://github.com/mm-sj/S14P21D207" target="_blank" rel="noopener"><span><svg class="brand" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>시연 원본 화면·상세 설명</span></a></div>
       </aside>
     </div>
   </section>
@@ -330,8 +334,8 @@
         </ul>
         <p class="stack">React · TypeScript · React Three Fiber · WebSocket</p>
         <div class="links">
-          <a class="btn btn--line" href="https://github.com/mm-sj/S14P31D101" target="_blank" rel="noopener">시연 원본 화면·상세 설명</a>
-          <a class="btn btn--line" href="https://www.youtube.com/watch?v=pIx2FC31FqI" target="_blank" rel="noopener">홍보 영상</a>
+          <a class="btn btn--line" href="https://github.com/mm-sj/S14P31D101" target="_blank" rel="noopener"><span><svg class="brand" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>시연 원본 화면·상세 설명</span></a>
+          <a class="btn btn--line" href="https://www.youtube.com/watch?v=pIx2FC31FqI" target="_blank" rel="noopener"><span><svg class="brand brand--yt" viewBox="0 0 24 24" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>홍보 영상</span></a>
         </div>
       </aside>
     </div>

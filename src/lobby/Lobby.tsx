@@ -46,10 +46,25 @@ function Clip({ src, poster, label, active }: { src: string; poster: string; lab
  */
 type Go = 'in' | 'out' | 'down'
 const MARK: Record<Go, string> = { in: '→', out: '↗', down: '↓' }
-function Btn({ children, onClick, href, line, go = 'out', download }: { children: React.ReactNode; onClick?: (e: React.MouseEvent) => void; href: string; line?: boolean; go?: Go; download?: boolean }) {
+/** 브랜드 아이콘 (Simple Icons) — 어디로 가는 링크인지 한눈에 */
+const BRAND = {
+  github: 'M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12',
+  youtube: 'M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z',
+} as const
+function Brand({ name }: { name: keyof typeof BRAND }) {
+  return (
+    <svg className={`brand brand--${name}`} viewBox="0 0 24 24" aria-hidden="true">
+      <path d={BRAND[name]} />
+    </svg>
+  )
+}
+function Btn({ children, onClick, href, line, go = 'out', download, brand }: { children: React.ReactNode; onClick?: (e: React.MouseEvent) => void; href: string; line?: boolean; go?: Go; download?: boolean; brand?: keyof typeof BRAND }) {
   return (
     <a className={`cbtn ${line ? 'cbtn--line' : ''}`} href={href} target={download ? undefined : '_blank'} rel="noopener" onClick={onClick} download={download || undefined}>
-      <span>{children}</span>
+      <span>
+        {brand && <Brand name={brand} />}
+        {children}
+      </span>
       <i aria-hidden="true">{MARK[go]}</i>
     </a>
   )
@@ -124,11 +139,11 @@ function CardBody({ item, active }: { item: LobbyItem; active: boolean }) {
             자세히 보기
           </Btn>
           {p.extra && (
-            <Btn line href={p.extra.href}>
+            <Btn line href={p.extra.href} brand="youtube">
               {p.extra.label}
             </Btn>
           )}
-          <Btn line href={p.repo}>
+          <Btn line href={p.repo} brand="github">
             GitHub
           </Btn>
         </div>
@@ -159,7 +174,7 @@ function CardBody({ item, active }: { item: LobbyItem; active: boolean }) {
           <Btn onClick={modalClick('fridge')} href={`${PROFILE.quick}#fridge`} go="in">
             자세히 보기
           </Btn>
-          <Btn line href={FRIDGE.video}>
+          <Btn line href={FRIDGE.video} brand="youtube">
             소개 영상
           </Btn>
         </div>
@@ -172,7 +187,7 @@ function CardBody({ item, active }: { item: LobbyItem; active: boolean }) {
       <p className="desc">끝까지 봐 주셔서 고맙습니다.</p>
       <Copy text={PROFILE.email} />
       <div className="actions">
-        <Btn href={PROFILE.github}>GitHub</Btn>
+        <Btn href={PROFILE.github} brand="github">GitHub</Btn>
         <Btn line href="./portfolio.pdf" go="down" download>
           PDF
         </Btn>
@@ -246,7 +261,8 @@ export function Lobby() {
         tick(lastDelta)
         lastPin = pin
       }
-      const idx = mod(Math.round(-cur.current / STEP))
+      // 카드는 룰렛이 도착할 칸(target) 기준으로 바로 출발해서 룰렛과 같이 움직인다
+      const idx = mod(Math.round(-target.current / STEP))
       setActive((a) => (a === idx ? a : idx))
       raf = requestAnimationFrame(loop)
     }
