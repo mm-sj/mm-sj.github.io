@@ -40,20 +40,18 @@ function Clip({ src, poster, label, active }: { src: string; poster: string; lab
   return <video ref={ref} className="clip" poster={poster} muted loop playsInline preload="none" aria-label={label} />
 }
 
-function Btn({ item, children, onClick, href, ghost }: { item: LobbyItem; children: React.ReactNode; onClick?: (e: React.MouseEvent) => void; href?: string; ghost?: boolean }) {
-  void item
-  const style = undefined
-  const cls = `cbtn ${ghost ? 'cbtn--ghost' : ''}`
-  if (href)
-    return (
-      <a className={cls} style={style} href={href} target="_blank" rel="noopener" onClick={onClick}>
-        {children}
-      </a>
-    )
+/**
+ * 버튼 — 두 가지만 쓴다. 꽉 찬 먹색(주 동작) / 얇은 선(보조 동작).
+ * 아이콘 대신 오른쪽 끝의 기호로 어디로 가는지 알려준다: → 이 페이지 안, ↗ 새 탭, ↓ 내려받기
+ */
+type Go = 'in' | 'out' | 'down'
+const MARK: Record<Go, string> = { in: '→', out: '↗', down: '↓' }
+function Btn({ children, onClick, href, line, go = 'out', download }: { children: React.ReactNode; onClick?: (e: React.MouseEvent) => void; href: string; line?: boolean; go?: Go; download?: boolean }) {
   return (
-    <button type="button" className={cls} style={style} onClick={onClick}>
-      {children}
-    </button>
+    <a className={`cbtn ${line ? 'cbtn--line' : ''}`} href={href} target={download ? undefined : '_blank'} rel="noopener" onClick={onClick} download={download || undefined}>
+      <span>{children}</span>
+      <i aria-hidden="true">{MARK[go]}</i>
+    </a>
   )
 }
 
@@ -70,8 +68,8 @@ function Copy({ text }: { text: string }) {
         })
       }}
     >
-      <Icon name={done ? 'check' : 'content_copy'} />
       {done ? '복사했어요' : text}
+      <i aria-hidden="true">{done ? '✓' : '복사'}</i>
     </button>
   )
 }
@@ -84,6 +82,7 @@ function CardBody({ item, active }: { item: LobbyItem; active: boolean }) {
         <div>
           <h1 className="wood">{ABOUT.name}</h1>
           <p className="role">{ABOUT.role}</p>
+          <p className="lede">{ABOUT.lede}</p>
           {ABOUT.lines.map((l) => (
             <p key={l} className="desc">
               {l}
@@ -96,9 +95,11 @@ function CardBody({ item, active }: { item: LobbyItem; active: boolean }) {
           </div>
         </div>
         <div className="actions">
-          <Btn item={item} onClick={modalClick()} href={PROFILE.quick}>
-            <Icon name="menu_book" />
-            전체 포트폴리오
+          <Btn onClick={modalClick()} href={PROFILE.quick} go="in">
+            포트폴리오 문서 보기
+          </Btn>
+          <Btn line href="./portfolio.pdf" go="down" download>
+            PDF
           </Btn>
         </div>
       </div>
@@ -112,28 +113,22 @@ function CardBody({ item, active }: { item: LobbyItem; active: boolean }) {
         <div className="head">
           <span className="no" style={{ '--sw': item.color } as React.CSSProperties}>{p.no}</span>
           <h1 className="wood">{p.title}</h1>
-          <span className="award">
-            <Icon name="emoji_events" />
-            {p.stamp.rank}
-          </span>
+          <span className="award">{p.award.replace('SSAFY ', '')}</span>
         </div>
         <p className="desc">{p.line}</p>
         <p className="meta">
           {p.period} · {p.team} · <b>{p.role}</b>
         </p>
         <div className="actions">
-          <Btn item={item} onClick={modalClick(p.id)} href={p.detail}>
-            <Icon name="article" />
+          <Btn onClick={modalClick(p.id)} href={p.detail} go="in">
             자세히 보기
           </Btn>
           {p.extra && (
-            <Btn item={item} ghost href={p.extra.href}>
-              <Icon name="play_circle" />
+            <Btn line href={p.extra.href}>
               {p.extra.label}
             </Btn>
           )}
-          <Btn item={item} ghost href={p.repo}>
-            <Icon name="code" />
+          <Btn line href={p.repo}>
             GitHub
           </Btn>
         </div>
@@ -144,32 +139,27 @@ function CardBody({ item, active }: { item: LobbyItem; active: boolean }) {
   if (item.kind === 'fridge')
     return (
       <div className="body">
-        <div className="flow" aria-label="자료 입고 흐름">
+        <div className="flow" aria-label="데이터 냉장고 흐름">
           {FRIDGE.flow.map((f, i) => (
-            <span key={f} className="flow__step" data-key={i === 3 ? '' : undefined}>
+            <span key={f} className="flow__step" data-key={i === 2 ? '' : undefined}>
               {f}
             </span>
           ))}
         </div>
         <div className="head">
-          <span className="no" style={{ '--sw': item.color } as React.CSSProperties}>04</span>
+          <span className="no" style={{ '--sw': item.color } as React.CSSProperties}>01</span>
           <h1 className="wood">{FRIDGE.title}</h1>
-          <span className="award">
-            <Icon name="emoji_events" />
-            팀 우수상 · 1위
-          </span>
+          <span className="award">팀 우수상 · 1위</span>
         </div>
         <p className="desc">{FRIDGE.line}</p>
         <p className="meta">
           {FRIDGE.tag} · 4명 · <b>{FRIDGE.role}</b>
         </p>
         <div className="actions">
-          <Btn item={item} onClick={modalClick('fridge')} href={`${PROFILE.quick}#fridge`}>
-            <Icon name="article" />
+          <Btn onClick={modalClick('fridge')} href={`${PROFILE.quick}#fridge`} go="in">
             자세히 보기
           </Btn>
-          <Btn item={item} ghost href={FRIDGE.video}>
-            <Icon name="play_circle" />
+          <Btn line href={FRIDGE.video}>
             소개 영상
           </Btn>
         </div>
@@ -179,15 +169,11 @@ function CardBody({ item, active }: { item: LobbyItem; active: boolean }) {
   return (
     <div className="body body--contact">
       <h1 className="wood">연락처</h1>
-      <p className="desc">포트폴리오를 끝까지 봐 주셔서 고맙습니다.</p>
+      <p className="desc">끝까지 봐 주셔서 고맙습니다.</p>
       <Copy text={PROFILE.email} />
       <div className="actions">
-        <Btn item={item} href={PROFILE.github}>
-          <Icon name="code" />
-          GitHub
-        </Btn>
-        <Btn item={item} ghost href="./portfolio.pdf">
-          <Icon name="download" />
+        <Btn href={PROFILE.github}>GitHub</Btn>
+        <Btn line href="./portfolio.pdf" go="down" download>
           PDF
         </Btn>
       </div>
@@ -332,7 +318,7 @@ export function Lobby() {
       if (!el || !panel) return
       const show = Math.min(300, Math.max(190, window.innerHeight * 0.3))
       const low = window.innerHeight < 760
-      const room = window.innerHeight - show - 96 - (low ? 30 : 60)
+      const room = window.innerHeight - show - 96 - (low ? 80 : 100)
       const f = Math.min(1, room / panel.offsetHeight, (window.innerWidth - 24) / panel.offsetWidth)
       el.style.setProperty('--fit', String(Math.max(0.55, f)))
     }
@@ -359,7 +345,7 @@ export function Lobby() {
 
       <header className="banner">
         <p className="banner__title">오창민</p>
-        <p className="banner__sub">FRONTEND DEVELOPER · WEB 3D</p>
+        <p className="banner__sub">서비스 기획 · 프론트엔드</p>
       </header>
       <a className="docbtn" href={PROFILE.quick} target="_blank" rel="noopener" onClick={modalClick()}>
         <Icon name="description" />
