@@ -80,7 +80,7 @@ export const PROJECTS: Project[] = [
     award: 'SSAFY 자율 우수상',
     stamp: { rank: '우수상', track: '자율 프로젝트' },
     period: '2026.04 – 05',
-    team: '5명 · FE 1',
+    team: '6명 · FE 1',
     role: 'FE 전담',
     line: '말을 알아듣고 책상 위 물건을 두 팔로 집는 로봇. 그 로봇이 보고 움직이는 것을 보여주는 대시보드',
     points: [
