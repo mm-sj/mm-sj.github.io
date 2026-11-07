@@ -1,6 +1,6 @@
 import { Suspense, useEffect, useMemo } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
-import { useAnimations, useGLTF } from '@react-three/drei'
+import { ContactShadows, useAnimations, useGLTF } from '@react-three/drei'
 import { SkeletonUtils } from 'three-stdlib'
 import * as THREE from 'three'
 import { wheelState } from './wheelState'
@@ -23,10 +23,8 @@ function Walker({ file, x, y, scale, speed }: (typeof CHARS)[number]) {
     m.traverse((c) => {
       const mesh = c as THREE.Mesh
       if (mesh.isMesh) {
-        const mat = (mesh.material as THREE.MeshStandardMaterial).clone()
-        mat.roughness = 1
-        mat.metalness = 0
-        mesh.material = mat
+        // 원색 복셀 대신 석고 모형 인형처럼 — 흰 단색 재질
+        mesh.material = new THREE.MeshStandardMaterial({ color: '#ece8e0', roughness: 0.85, metalness: 0 })
       }
     })
     return m
@@ -55,13 +53,14 @@ export function Characters() {
       gl={{ alpha: true, antialias: true }}
       onCreated={() => window.dispatchEvent(new Event('folio:ready'))}
     >
-      <ambientLight intensity={2.6} />
-      <directionalLight position={[5, 10, 7]} intensity={2.4} />
-      <directionalLight position={[0, 0, 10]} intensity={1.2} />
+      <hemisphereLight args={['#ffffff', '#b8b0a2', 0.9]} />
+      <directionalLight position={[-5, 7, 5]} intensity={2.8} />
+      <directionalLight position={[6, 1, 3]} intensity={0.35} />
       <Suspense fallback={null}>
         {CHARS.map((c) => (
           <Walker key={c.file} {...c} />
         ))}
+        <ContactShadows position={[0, -0.5, 0]} scale={[14, 3]} far={2} blur={2.2} opacity={0.45} resolution={512} color="#3b342c" />
       </Suspense>
     </Canvas>
   )

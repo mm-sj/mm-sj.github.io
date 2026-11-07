@@ -1,4 +1,4 @@
-import { lazy, Suspense, useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { lazy, Suspense, useCallback, useEffect, useRef, useState } from 'react'
 import { PROFILE } from '../content'
 import { openFolio, modalClick } from '../ui/Modal'
 import { ABOUT, FRIDGE, ITEMS, type LobbyItem } from './items'
@@ -41,7 +41,8 @@ function Clip({ src, poster, label }: { src: string; poster: string; label: stri
 }
 
 function Btn({ item, children, onClick, href, ghost }: { item: LobbyItem; children: React.ReactNode; onClick?: (e: React.MouseEvent) => void; href?: string; ghost?: boolean }) {
-  const style = ghost ? undefined : ({ '--c': item.color, '--d': item.dark } as React.CSSProperties)
+  void item
+  const style = undefined
   const cls = `cbtn ${ghost ? 'cbtn--ghost' : ''}`
   if (href)
     return (
@@ -109,9 +110,9 @@ function CardBody({ item }: { item: LobbyItem }) {
       <div className="body">
         <Clip src={p.video} poster={p.poster} label={`${p.title} 화면 영상`} />
         <div className="head">
-          <span className="no">{p.no}</span>
+          <span className="no" style={{ '--sw': item.color } as React.CSSProperties}>{p.no}</span>
           <h1 className="wood">{p.title}</h1>
-          <span className="award" style={{ background: item.color, borderColor: item.dark }}>
+          <span className="award">
             <Icon name="emoji_events" />
             {p.stamp.rank}
           </span>
@@ -145,15 +146,15 @@ function CardBody({ item }: { item: LobbyItem }) {
       <div className="body">
         <div className="flow" aria-label="자료 입고 흐름">
           {FRIDGE.flow.map((f, i) => (
-            <span key={f} className="flow__step" style={i === 3 ? { background: item.color, color: '#fff', borderColor: item.dark } : undefined}>
+            <span key={f} className="flow__step" data-key={i === 3 ? '' : undefined}>
               {f}
             </span>
           ))}
         </div>
         <div className="head">
-          <span className="no">04</span>
+          <span className="no" style={{ '--sw': item.color } as React.CSSProperties}>04</span>
           <h1 className="wood">{FRIDGE.title}</h1>
-          <span className="award" style={{ background: item.color, borderColor: item.dark }}>
+          <span className="award">
             <Icon name="school" />
             AX 트랙
           </span>
@@ -204,25 +205,6 @@ export function Lobby() {
   const hovering = useRef(false)
   const modalOpen = useRef(false)
 
-  const clouds = useMemo(
-    () =>
-      Array.from({ length: 11 }, (_, i) => {
-        const dur = 30 + Math.random() * 35
-        return {
-          id: i,
-          type: (i % 3) + 1,
-          style: {
-            top: `${3 + Math.random() * 30}%`,
-            opacity: 0.75 + Math.random() * 0.25,
-            transform: `scale(${0.6 + Math.random() * 0.8})`,
-            animationDuration: `${dur}s`,
-            animationDelay: `${-Math.random() * dur}s`,
-          } as React.CSSProperties,
-        }
-      }),
-    [],
-  )
-
   const go = useCallback((index: number) => {
     touched.current = true
     const now = Math.round(-target.current / STEP)
@@ -257,10 +239,14 @@ export function Lobby() {
         { duration: 380, easing: 'ease-out' },
       )
     }
-    const loop = () => {
-      if (!touched.current && !hovering.current && !modalOpen.current && !REDUCED) target.current -= 0.06
+    let last = performance.now()
+    const loop = (now: number) => {
+      // 프레임 속도와 상관없이 같은 빠르기로 움직이도록 경과 시간 기준으로 계산
+      const dt = Math.min(0.1, (now - last) / 1000)
+      last = now
+      if (!touched.current && !hovering.current && !modalOpen.current && !REDUCED) target.current -= 3.6 * dt
       const diff = target.current - cur.current
-      cur.current += diff * 0.08
+      cur.current += diff * (1 - Math.exp(-5 * dt))
       const sp = Math.abs(diff) * 0.8
       wheelState.speed = sp < 0.05 ? 0 : 0.5 + sp
       if (Math.abs(diff) > 0.01) lastDelta = diff
@@ -357,17 +343,17 @@ export function Lobby() {
 
   return (
     <div className="lobby" ref={root}>
-      <div className="sky" aria-hidden="true">
-        {clouds.map((c) => (
-          <div key={c.id} className={`cloud cloud-${c.type}`} style={c.style} />
-        ))}
-        <div className="ground-back" />
-        <div className="ground-front" />
+      <div className="studio" aria-hidden="true">
+        <div className="studio__floor" />
+        <div className="studio__light" />
       </div>
+      <div className="tilt tilt--top" aria-hidden="true" />
+      <div className="tilt tilt--bottom" aria-hidden="true" />
+      <div className="grain" aria-hidden="true" />
 
       <header className="banner">
         <p className="banner__title">오창민</p>
-        <p className="banner__sub">Frontend Developer · Web 3D</p>
+        <p className="banner__sub">FRONTEND DEVELOPER · WEB 3D</p>
       </header>
       <a className="docbtn" href={PROFILE.quick} target="_blank" rel="noopener" onClick={modalClick()}>
         <Icon name="description" />
@@ -393,7 +379,7 @@ export function Lobby() {
                   <CardBody item={item} />
                 ) : (
                   <div className="mini">
-                    <Icon name={item.icon} style={{ color: item.color }} />
+                    <Icon name={item.icon} />
                     <span>{item.label}</span>
                   </div>
                 )}
@@ -412,7 +398,7 @@ export function Lobby() {
           ))}
           {ITEMS.map((it, n) => (
             <span key={it.id} className="seg" style={{ transform: `rotate(${n * STEP}deg) translateY(calc(var(--R) * -0.455))` }}>
-              <Icon name={it.icon} style={{ color: it.dark }} />
+              <Icon name={it.icon} />
             </span>
           ))}
         </div>
@@ -442,10 +428,9 @@ export function Lobby() {
               aria-label={item.label}
               aria-current={i === active}
               onClick={() => go(i)}
-              style={i === active ? { background: item.color, borderColor: item.dark, boxShadow: `0 5px 10px ${item.dark}40` } : undefined}
             >
-              <Icon name={item.icon} style={i === active ? undefined : { color: item.color }} />
-              <span className="tip" style={{ background: item.dark }}>
+              <Icon name={item.icon} />
+              <span className="tip">
                 {item.label}
               </span>
             </button>

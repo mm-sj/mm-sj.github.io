@@ -10,12 +10,12 @@ export type LobbyItem =
 const P = Object.fromEntries(PROJECTS.map((p) => [p.id, p]))
 
 export const ITEMS: LobbyItem[] = [
-  { kind: 'about', id: 'about', label: '소개', icon: 'face', color: '#42a5f5', dark: '#1565c0' },
-  { kind: 'project', id: 'docq', label: 'DocQ', icon: 'casino', color: '#7cb342', dark: '#33691e', project: P.docq },
-  { kind: 'project', id: 'wyd', label: 'Would You Draw', icon: 'auto_awesome', color: '#7e57c2', dark: '#4527a0', project: P.wyd },
-  { kind: 'project', id: 'jabis', label: 'Jabis', icon: 'precision_manufacturing', color: '#5c6bc0', dark: '#283593', project: P.jabis },
-  { kind: 'fridge', id: 'fridge', label: '데이터 냉장고', icon: 'kitchen', color: '#26a69a', dark: '#00695c' },
-  { kind: 'contact', id: 'contact', label: '연락처', icon: 'mail', color: '#8d6e63', dark: '#4e342e' },
+  { kind: 'about', id: 'about', label: '소개', icon: 'face', color: '#8fa3b8', dark: '#5f7387' },
+  { kind: 'project', id: 'docq', label: 'DocQ', icon: 'casino', color: '#9bae7c', dark: '#6b7d4f', project: P.docq },
+  { kind: 'project', id: 'wyd', label: 'Would You Draw', icon: 'auto_awesome', color: '#7d78a6', dark: '#55507d', project: P.wyd },
+  { kind: 'project', id: 'jabis', label: 'Jabis', icon: 'precision_manufacturing', color: '#66748a', dark: '#434f62', project: P.jabis },
+  { kind: 'fridge', id: 'fridge', label: '데이터 냉장고', icon: 'kitchen', color: '#73a59c', dark: '#4b7a71' },
+  { kind: 'contact', id: 'contact', label: '연락처', icon: 'mail', color: '#c2a07c', dark: '#8f6f4e' },
 ]
 
 export const ABOUT = {
