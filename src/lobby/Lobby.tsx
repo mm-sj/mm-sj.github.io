@@ -1,10 +1,9 @@
-import { lazy, Suspense, useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { PROFILE } from '../content'
 import { openFolio, modalClick } from '../ui/Modal'
 import { ABOUT, FRIDGE, ITEMS, type LobbyItem } from './items'
 import { wheelState } from './wheelState'
 
-const Characters = lazy(() => import('./Characters').then((m) => ({ default: m.Characters })))
 
 /*
  * DocQ 메인 화면(룰렛 + 3D 캐러셀 메뉴)을 포트폴리오용으로 다시 짠 것.
@@ -156,13 +155,13 @@ function CardBody({ item, active }: { item: LobbyItem; active: boolean }) {
           <span className="no" style={{ '--sw': item.color } as React.CSSProperties}>04</span>
           <h1 className="wood">{FRIDGE.title}</h1>
           <span className="award">
-            <Icon name="school" />
-            AX 트랙
+            <Icon name="emoji_events" />
+            팀 우수상 · 1위
           </span>
         </div>
         <p className="desc">{FRIDGE.line}</p>
         <p className="meta">
-          {FRIDGE.tag} · 5명 · <b>{FRIDGE.role}</b>
+          {FRIDGE.tag} · 4명 · <b>{FRIDGE.role}</b>
         </p>
         <div className="actions">
           <Btn item={item} onClick={modalClick('fridge')} href={`${PROFILE.quick}#fridge`}>
@@ -203,11 +202,13 @@ export function Lobby() {
   const cur = useRef(0)
   const target = useRef(0)
   const touched = useRef(false)
+  const idle = useRef(0)
   const hovering = useRef(false)
   const modalOpen = useRef(false)
 
   const go = useCallback((index: number) => {
     touched.current = true
+    idle.current = performance.now() + 1000
     const now = Math.round(-target.current / STEP)
     let diff = index - mod(now)
     if (diff > TOTAL / 2) diff -= TOTAL
@@ -220,6 +221,7 @@ export function Lobby() {
     if (!touched.current) target.current = Math.round(target.current / STEP) * STEP
     touched.current = true
     target.current -= dir * STEP
+    idle.current = performance.now() + 1000
   }, [])
 
   // 메인 루프 — DocQ의 updateLoop
@@ -246,7 +248,7 @@ export function Lobby() {
       // 프레임 속도와 상관없이 같은 빠르기로 움직이도록 경과 시간 기준으로 계산
       const dt = Math.min(0.1, (now - last) / 1000)
       last = now
-      if (!touched.current && !hovering.current && !modalOpen.current && !REDUCED) target.current -= 3.6 * dt
+      if (now > idle.current && !hovering.current && !modalOpen.current && !REDUCED) target.current -= 3.6 * dt
       const diff = target.current - cur.current
       cur.current += diff * (1 - Math.exp(-5 * dt))
       const sp = Math.abs(diff) * 0.8
@@ -317,6 +319,10 @@ export function Lobby() {
     }
   }, [step])
 
+  useEffect(() => {
+    document.fonts?.ready.then(() => window.dispatchEvent(new Event('folio:ready')))
+  }, [])
+
   // 화면이 낮으면 가운데 카드를 줄여서 룰렛 위에 들어가게 한다
   const root = useRef<HTMLDivElement>(null)
   useEffect(() => {
@@ -326,7 +332,7 @@ export function Lobby() {
       if (!el || !panel) return
       const show = Math.min(300, Math.max(190, window.innerHeight * 0.3))
       const low = window.innerHeight < 760
-      const room = window.innerHeight - show - 96 - (low ? 40 : 110)
+      const room = window.innerHeight - show - 96 - (low ? 30 : 60)
       const f = Math.min(1, room / panel.offsetHeight, (window.innerWidth - 24) / panel.offsetWidth)
       el.style.setProperty('--fit', String(Math.max(0.55, f)))
     }
@@ -393,11 +399,6 @@ export function Lobby() {
           {Array.from({ length: TOTAL * 2 }, (_, n) => (
             <span key={n} className="pin" style={{ transform: `rotate(${n * PIN}deg) translateY(calc(var(--R) * -0.4925))` }} />
           ))}
-        </div>
-        <div className="walkers-wrap">
-          <Suspense fallback={null}>
-            <Characters />
-          </Suspense>
         </div>
         <div className="arrow" ref={arrow}>
           <svg viewBox="0 0 100 300">

@@ -22,7 +22,7 @@ export const ABOUT = {
   name: '오창민',
   role: PROFILE.role,
   lines: ['건축을 전공한 프론트엔드 개발자입니다.', '모형을 만지던 손으로, 지금은 웹에서 3D를 만지고 있습니다.'],
-  chips: ['SSAFY 14기', '계명대 건축학', 'LG전자 K-뉴딜 AX 트랙'],
+  chips: ['계명대 건축학', 'SSAFY 14기', 'LG전자 K-뉴딜 AX 트랙'],
 }
 
 export const FRIDGE = {
