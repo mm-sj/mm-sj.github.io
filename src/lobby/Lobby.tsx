@@ -144,7 +144,7 @@ function CardBody({ item, active }: { item: LobbyItem; active: boolean }) {
         {p.id === 'docq' && (
           <p className="note">
             <Icon name="casino" />
-            지금 이 페이지의 룰렛 메뉴가 DocQ 메인 화면을 그대로 가져온 것입니다
+            지금 이 페이지의 룰렛 메뉴는 DocQ 메인 화면의 구조를 가져온 것입니다
           </p>
         )}
         <p className="meta">
@@ -405,7 +405,7 @@ export function Lobby() {
 
       <button type="button" className="homage" onClick={() => go(DOCQ_I)}>
         <span className="homage__k">HOMAGE</span>
-        <span className="homage__t">이 첫 화면은 DocQ 메인 화면의 룰렛 메뉴를 다시 만든 것입니다</span>
+        <span className="homage__t">이 첫 화면은 DocQ 메인 화면의 룰렛 메뉴 구조를 가져와 다시 만들었습니다</span>
         <span className="homage__go">DocQ 보기 →</span>
         <span className="homage__s">DocQ 메인 화면 오마주 →</span>
       </button>
