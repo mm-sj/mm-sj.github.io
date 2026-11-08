@@ -116,7 +116,7 @@ function CardBody({ item, active }: { item: LobbyItem; active: boolean }) {
         </div>
         <div className="actions">
           <Btn onClick={modalClick()} href={PROFILE.quick} go="in" icon="description">
-            포트폴리오 문서로 보기
+            포트폴리오
           </Btn>
           <Btn line href="./portfolio.pdf" go="down" download icon="picture_as_pdf">
             PDF 다운로드
@@ -366,7 +366,7 @@ export function Lobby() {
 
       <a className="docbtn" href={PROFILE.quick} target="_blank" rel="noopener" onClick={modalClick()}>
         <Icon name="description" />
-        포트폴리오 문서로 보기
+        포트폴리오
       </a>
 
       <main className="stage" aria-roledescription="carousel" aria-label="프로젝트 메뉴">
