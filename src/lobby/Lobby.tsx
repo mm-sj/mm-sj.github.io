@@ -12,6 +12,7 @@ import { wheelState } from './wheelState'
  * - 처음엔 혼자 천천히 돌다가, 사용자가 한 번 만지면 멈춰서 기다린다
  */
 const TOTAL = ITEMS.length
+const DOCQ_I = ITEMS.findIndex((it) => it.id === 'docq')
 const STEP = 360 / TOTAL
 const PIN = STEP / 2
 const REDUCED = typeof window !== 'undefined' && window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
@@ -140,6 +141,12 @@ function CardBody({ item, active }: { item: LobbyItem; active: boolean }) {
           <span className="award">{p.award.replace('SSAFY ', '')}</span>
         </div>
         <p className="desc">{p.line}</p>
+        {p.id === 'docq' && (
+          <p className="note">
+            <Icon name="casino" />
+            지금 이 페이지의 룰렛 메뉴가 DocQ 메인 화면을 그대로 가져온 것입니다
+          </p>
+        )}
         <p className="meta">
           {p.period} · {p.team} · <b>{p.role}</b>
         </p>
@@ -395,6 +402,13 @@ export function Lobby() {
           </svg>
         </div>
       </div>
+
+      <button type="button" className="homage" onClick={() => go(DOCQ_I)}>
+        <span className="homage__k">HOMAGE</span>
+        <span className="homage__t">이 첫 화면은 DocQ 메인 화면의 룰렛 메뉴를 다시 만든 것입니다</span>
+        <span className="homage__go">DocQ 보기 →</span>
+        <span className="homage__s">DocQ 메인 화면 오마주 →</span>
+      </button>
 
       <nav className="dots" aria-label="메뉴 바로가기">
         <p className="hint">
