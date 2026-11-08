@@ -66,7 +66,7 @@ function Btn({ children, onClick, href, line, go = 'out', download, brand, icon 
         {icon && <Icon name={icon} />}
         {children}
       </span>
-      <i aria-hidden="true">{MARK[go]}</i>
+      {go !== 'in' && <i aria-hidden="true">{MARK[go]}</i>}
     </a>
   )
 }
@@ -364,9 +364,6 @@ export function Lobby() {
       </div>
       <div className="grain" aria-hidden="true" />
 
-      <a className="docbtn" href={PROFILE.quick} target="_blank" rel="noopener" onClick={modalClick()}>
-        포트폴리오
-      </a>
 
       <main className="stage" aria-roledescription="carousel" aria-label="프로젝트 메뉴">
         {ITEMS.map((item, i) => {

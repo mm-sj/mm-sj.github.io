@@ -46,15 +46,6 @@
 }
 
 /* ── 상단 ── */
-.docbtn {
-  position: absolute; top: 18px; left: 50%; transform: translateX(-50%); z-index: 60;
-  display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 38px; padding: 0 38px;
-  border-radius: 8px; color: var(--ink); text-decoration: none; font-size: 13.5px; font-weight: 500;
-  background: rgba(251, 250, 247, 0.7); box-shadow: inset 0 0 0 1px #cbc6bc; transition: box-shadow 0.15s, background 0.15s;
-}
-.docbtn .msym { font-size: 18px; }
-.docbtn::after { position: absolute; right: 12px; content: '→'; font-family: var(--mono); font-size: 13px; opacity: 0.7; }
-.docbtn:hover { background: var(--board); box-shadow: inset 0 0 0 1px var(--ink); }
 
 /* ── 캐러셀 ── */
 .stage { position: absolute; z-index: 30; left: 50%; top: calc((28px + 100vh - var(--show) - 90px) / 2); width: 0; height: 0; perspective: 1100px; }
@@ -208,7 +199,6 @@ h1.wood { margin: 0; font-family: var(--sans); font-weight: 600; font-size: 2rem
 @media (max-width: 760px) {
   .pos-left, .pos-right { opacity: 0; pointer-events: none; }
   .citem { width: min(500px, calc(100vw - 32px)); }
-  .docbtn { top: auto; bottom: 96px; }
   .hint { display: none; }
   .dots__bar { gap: 6px; padding: 7px 9px; }
   .dot { width: 38px; height: 38px; }
