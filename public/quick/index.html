@@ -4,695 +4,396 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>오창민 포트폴리오</title>
+<meta name="description" content="기획한 흐름을 직접 화면으로 만들어 본 사람, 오창민의 포트폴리오 — 데이터 냉장고 · DocQ · Would You Draw · Jabis">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://mm-sj.github.io/quick/">
-<meta property="og:title" content="오창민 — 건축을 전공한 프론트엔드 개발자">
-<meta property="og:description" content="DocQ · Would You Draw · Jabis — SSAFY 14기 수상 프로젝트 3개 · 데이터 냉장고 — AX 워크플로우">
+<meta property="og:title" content="오창민 — 기획한 흐름을 직접 화면으로 만들어 본 사람">
+<meta property="og:description" content="데이터 냉장고 · DocQ · Would You Draw · Jabis — 수상 프로젝트 4개">
 <meta property="og:image" content="https://mm-sj.github.io/og.jpg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="description" content="웹 3D·인터랙션 프론트엔드 개발자 오창민의 포트폴리오">
+<meta name="theme-color" content="#ecebe7">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@500;700&family=IBM+Plex+Sans+KR:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
-<style>
-:root{
-  --paper:#F3F5F4;
-  --sheet:#FBFCFB;
-  --ink:#16191C;
-  --ink-2:#434A52;
-  --muted:#6B737C;
-  --line:#D3D8D6;
-  --line-2:#E4E8E6;
-  --accent:#2446D8;
-  --accent-soft:#E3E8FB;
-  --media-bg:#E9ECEB;
-  --display:"Hahmlet","Noto Serif KR",Georgia,serif;
-  --body:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
-  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
-  --maxw:1120px;
-}
-@media (prefers-color-scheme:dark){
-  :root:not([data-theme="light"]){
-    --paper:#111416;--sheet:#171B1E;--ink:#E8ECEA;--ink-2:#BAC2C0;--muted:#8D9795;
-    --line:#2C3336;--line-2:#22282B;--accent:#7F98FF;--accent-soft:#1E2748;--media-bg:#1D2225;
-    color-scheme:dark;
-  }
-}
-:root[data-theme="dark"]{
-  --paper:#111416;--sheet:#171B1E;--ink:#E8ECEA;--ink-2:#BAC2C0;--muted:#8D9795;
-  --line:#2C3336;--line-2:#22282B;--accent:#7F98FF;--accent-soft:#1E2748;--media-bg:#1D2225;
-  color-scheme:dark;
-}
-*{box-sizing:border-box}
-body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.7;margin:0;padding-inline:clamp(16px,4vw,48px);-webkit-font-smoothing:antialiased;word-break:keep-all;overflow-wrap:break-word}
-a{color:inherit}
-a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
-.wrap{max-width:var(--maxw);margin:0 auto}
-.mono{font-family:var(--mono);font-size:12px;letter-spacing:.04em;color:var(--muted)}
-h1,h2,h3{font-family:var(--display);font-weight:700;text-wrap:balance;margin:0;color:var(--ink)}
-p{margin:0}
-
-/* ── top bar ── */
-.topbar{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-block:20px;border-bottom:1px solid var(--line)}
-.topbar nav{display:flex;gap:20px;flex-wrap:wrap}
-.topbar nav a{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-decoration:none;color:var(--ink-2)}
-.topbar nav a:hover{color:var(--accent)}
-
-/* ── hero ── */
-.hero{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(24px,5vw,64px);align-items:center;padding-block:clamp(40px,8vw,88px) clamp(32px,6vw,64px)}
-.hero .role{font-family:var(--mono);font-size:13px;letter-spacing:.08em;color:var(--accent);text-transform:uppercase}
-.hero h1{font-size:clamp(34px,5.4vw,60px);line-height:1.22;margin-top:14px;font-weight:700}
-.hero h1 .name{display:block;font-size:.5em;color:var(--ink-2);font-weight:500;margin-bottom:10px}
-.hero .lead{margin-top:24px;max-width:36em;color:var(--ink-2);font-size:17px}
-.facts{margin-top:28px;display:grid;gap:6px;padding:0;list-style:none}
-.facts li{display:grid;grid-template-columns:88px 1fr;gap:12px;font-size:15px;color:var(--ink-2)}
-.facts li span:first-child{font-family:var(--mono);font-size:12px;color:var(--muted);padding-top:3px;letter-spacing:.04em}
-.contact{margin-top:28px;display:flex;flex-wrap:wrap;gap:10px}
-.chip{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:13px;padding:8px 12px;border:1px solid var(--line);background:var(--sheet);color:var(--ink);text-decoration:none;border-radius:3px;cursor:pointer}
-.chip:hover{border-color:var(--accent);color:var(--accent)}
-button.chip{font:inherit;font-family:var(--mono);font-size:13px}
-
-.portrait{margin:0;justify-self:end;width:min(320px,100%);border:1px solid var(--line);background:var(--sheet);padding:10px 10px 8px}
-.portrait img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover}
-.portrait figcaption{margin-top:8px;font-size:11px;letter-spacing:.12em}
-@media (max-width:860px){.portrait{justify-self:start;width:min(240px,70%)}}
-.model{position:relative;aspect-ratio:1/1;max-width:100%;border:1px solid var(--line);background:var(--sheet)}
-.model canvas{display:block;width:100%;height:100%}
-.model .fallback{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
-.model .tag{position:absolute;left:12px;bottom:10px;right:12px;display:flex;justify-content:space-between;pointer-events:none}
-
-/* ── index ── */
-.index{border-top:1px solid var(--ink);margin-top:8px}
-.index a{display:grid;grid-template-columns:72px minmax(0,1fr) auto;gap:16px;align-items:baseline;padding-block:18px;border-bottom:1px solid var(--line);text-decoration:none}
-.index a:hover .t{color:var(--accent)}
-.index .t{font-family:var(--display);font-size:clamp(20px,2.6vw,26px);font-weight:700;transition:color .15s}
-.index .d{display:block;font-size:14px;color:var(--muted);margin-top:2px;font-family:var(--body)}
-.award{font-family:var(--mono);font-size:12px;color:var(--accent);white-space:nowrap}
-
-/* ── project sheet ── */
-.sheet{margin-top:clamp(56px,9vw,112px);background:var(--sheet);border:1px solid var(--line)}
-.titleblock{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));border-bottom:1px solid var(--line)}
-.titleblock div{padding:12px 16px;border-right:1px solid var(--line-2);min-width:0}
-.titleblock div:last-child{border-right:0}
-.titleblock .k{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--muted);text-transform:uppercase}
-.titleblock .v{display:block;font-size:14px;margin-top:2px;color:var(--ink)}
-.titleblock .v.acc{color:var(--accent);font-weight:600}
-.sheet-body{padding:clamp(20px,4vw,48px)}
-.sheet-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(20px,4vw,48px);align-items:end}
-.sheet-head .no{font-family:var(--mono);font-size:13px;color:var(--accent);letter-spacing:.06em}
-.sheet-head h2{font-size:clamp(34px,5vw,54px);line-height:1.1;margin-top:6px}
-.sheet-head .one{font-size:17px;color:var(--ink-2);margin-top:10px}
-.sheet-head .why{font-size:15px;color:var(--ink-2)}
-
-figure{margin:0}
-.media{background:var(--media-bg);border:1px solid var(--line-2);overflow:hidden}
-.media video,.media img{display:block;width:100%;height:auto;max-width:100%}
-figcaption{font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:8px;letter-spacing:.02em}
-.lead-media{margin-top:clamp(24px,4vw,40px)}
-.grid-media{display:grid;gap:16px;margin-top:16px}
-.grid-media.c2{grid-template-columns:repeat(2,minmax(0,1fr))}
-.grid-media.c3{grid-template-columns:repeat(3,minmax(0,1fr))}
-.grid-media.c4{grid-template-columns:repeat(4,minmax(0,1fr))}
-
-.cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.35fr);gap:clamp(24px,4vw,56px);margin-top:clamp(32px,5vw,56px)}
-.label{font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:var(--muted);text-transform:uppercase;padding-bottom:10px;border-bottom:1px solid var(--line);margin-bottom:16px}
-.did{list-style:none;padding:0;margin:0;display:grid;gap:14px}
-.did li{font-size:15px;color:var(--ink-2);padding-left:18px;position:relative}
-.did li::before{content:"";position:absolute;left:0;top:.72em;width:8px;height:1px;background:var(--accent)}
-.did b{color:var(--ink);font-weight:600}
-.stack{display:flex;flex-wrap:wrap;gap:6px;margin-top:24px}
-.stack span{font-family:var(--mono);font-size:12px;padding:3px 8px;border:1px solid var(--line);color:var(--ink-2);border-radius:2px}
-
-.ts h3{font-size:22px;line-height:1.35}
-.ts .steps{display:grid;gap:0;margin-top:18px;border-top:1px solid var(--line-2)}
-.ts .step{display:grid;grid-template-columns:64px minmax(0,1fr);gap:16px;padding-block:14px;border-bottom:1px solid var(--line-2)}
-.ts .step .k{font-family:var(--mono);font-size:12px;color:var(--accent);padding-top:3px;letter-spacing:.04em}
-.ts .step p{font-size:15px;color:var(--ink-2)}
-.ts code{font-family:var(--mono);font-size:.86em;background:var(--accent-soft);color:var(--ink);padding:1px 5px;border-radius:2px}
-.sub{margin-top:28px;padding:18px 20px;border:1px dashed var(--line)}
-.sub h4{font-family:var(--body);font-size:15px;font-weight:600;margin:0 0 6px}
-.sub p,.sub li{font-size:14.5px;color:var(--ink-2)}
-.sub ul{margin:6px 0 0;padding-left:18px;display:grid;gap:4px}
-.result{margin-top:clamp(28px,4vw,44px);display:flex;flex-wrap:wrap;gap:12px 32px;padding-top:18px;border-top:1px solid var(--line)}
-.result div{font-size:14px;color:var(--ink-2)}
-.result b{display:block;font-family:var(--display);font-size:22px;color:var(--ink);font-weight:700}
-.linkrow{margin-top:16px;display:flex;flex-wrap:wrap;gap:10px}
-
-/* ── skills / footer ── */
-.skills{margin-top:clamp(56px,9vw,112px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:clamp(24px,4vw,56px)}
-.skills h2{font-size:clamp(26px,3.4vw,34px)}
-.skills dl{margin:0;display:grid;gap:0;border-top:1px solid var(--line)}
-.skills dl div{display:grid;grid-template-columns:140px minmax(0,1fr);gap:16px;padding-block:14px;border-bottom:1px solid var(--line-2)}
-.skills dt{font-family:var(--mono);font-size:12px;color:var(--muted);letter-spacing:.04em;padding-top:3px}
-.skills dd{margin:0;font-size:15px;color:var(--ink-2)}
-footer{margin-top:clamp(56px,9vw,112px);padding-block:32px 48px;border-top:1px solid var(--ink);display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;align-items:baseline}
-footer h2{font-size:clamp(24px,3vw,30px)}
-.toast{font-family:var(--mono);font-size:12px;color:var(--accent);min-height:1.2em}
-
-@media (max-width:860px){
-  .hero{grid-template-columns:1fr}
-  .model{max-width:420px}
-  .sheet-head,.cols,.skills{grid-template-columns:1fr}
-  .titleblock{grid-template-columns:repeat(3,minmax(0,1fr))}
-  .titleblock div:nth-child(3n){border-right:0}
-  .titleblock div:nth-child(-n+3){border-bottom:1px solid var(--line-2)}
-  .grid-media.c4{grid-template-columns:repeat(2,minmax(0,1fr))}
-}
-@media (max-width:520px){
-  .titleblock{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .titleblock div{border-right:1px solid var(--line-2)!important;border-bottom:1px solid var(--line-2)}
-  .titleblock div:nth-child(2n){border-right:0!important}
-  .grid-media.c2,.grid-media.c3,.grid-media.c4{grid-template-columns:1fr}
-  .index a{grid-template-columns:44px minmax(0,1fr)}
-  .index .award{grid-column:2}
-  .facts li,.skills dl div{grid-template-columns:1fr;gap:0}
-  .ts .step{grid-template-columns:1fr;gap:4px}
-}
-@media (prefers-reduced-motion:reduce){*{transition:none!important}}
-
-/* 수상 도장 */
-.sheet-body{position:relative}
-.stamp-wrap{position:absolute;top:-30px;right:clamp(16px,3vw,36px);width:112px;height:112px;color:#C8372D;transform:rotate(-13deg);mix-blend-mode:multiply;opacity:.92;pointer-events:none;z-index:1}
-.stamp-wrap svg{display:block;width:100%;height:100%;overflow:visible}
-@media (max-width:720px){.stamp-wrap{width:84px;height:84px;top:-22px}}
-
-/* 기술 스택 칩 — 작은 로고 + 이름 */
-.tks{display:flex;flex-wrap:wrap;gap:6px}
-.tk{display:inline-flex;align-items:center;gap:6px;padding:3px 9px 3px 5px;border:1px solid var(--line);border-radius:999px;background:var(--sheet);font-size:13px;line-height:1.3;color:var(--ink);white-space:nowrap}
-.tk svg{width:15px;height:15px;flex:none}
-.tk-mono{display:inline-grid;place-items:center;min-width:15px;height:15px;padding:0 2px;border-radius:4px;font:700 8.5px/1 var(--mono);font-style:normal;letter-spacing:0}
-.stack.tks{margin-top:24px}
-.stack.tks span.tk{font-family:inherit;font-size:13px;padding:3px 9px 3px 5px;border-radius:999px;color:var(--ink)}
-.titleblock .v.tbstack{display:flex;flex-wrap:wrap;gap:2px 10px}
-.tbi{display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
-.tbi svg{width:14px;height:14px;flex:none}
-.tbi .tk-mono{height:14px;min-width:14px;flex:none}
-.tk-desc{display:block;margin-top:6px;font-size:13.5px;color:var(--muted)}
-.skills + .index{margin-top:clamp(40px,6vw,72px)}
-/* WYD 갤러리: 원본 비율이 제각각이라(1.5~1.9) 칸 비율을 맞추고 남는 곳은 우주 배경색으로 */
-#wyd .grid-media .media{aspect-ratio:1280/836;background:#07080D}
-#wyd .grid-media .media video,#wyd .grid-media .media img{width:100%;height:100%;object-fit:contain}
-#jabis .jabis-more .media{aspect-ratio:16/9;background:#111316}
-#jabis .jabis-more .media video,#jabis .jabis-more .media img{width:100%;height:100%;object-fit:cover}
-.hero-side{justify-self:end;width:min(320px,100%);display:grid;gap:12px}
-.hero-side .portrait{justify-self:stretch;width:100%}
-.hero-side .contact{margin-top:0;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px}
-.hero-side .contact .chip{justify-content:center}
-.hero-side .contact .chip:first-child{grid-column:1/-1}
-.hero{padding-bottom:clamp(16px,3vw,32px)}
-.hero + .skills{margin-top:clamp(16px,3vw,32px)}
-.proj-h{margin-top:clamp(40px,6vw,72px);font-size:clamp(26px,3.4vw,34px)}
-.skills + .index{margin-top:0}
-.proj-h + .index{margin-top:16px}
-@media (max-width:860px){.hero-side{justify-self:start;width:min(240px,100%)}}
-
-/* 04 데이터 냉장고 — 입고 파이프라인 도식 */
-.flow{background:var(--media-bg);border:1px solid var(--line-2);padding:clamp(16px,3vw,28px);overflow-x:auto}
-.flow svg{display:block;width:100%;min-width:640px;height:auto}
-.flow .bx{fill:var(--sheet);stroke:var(--line)}
-.flow .bx.me{stroke:var(--accent);stroke-width:1.5}
-.flow .bx.ai{fill:var(--accent-soft);stroke:var(--accent)}
-.flow .tt{font:600 13px var(--body);fill:var(--ink)}
-.flow .ss{font:400 11px var(--mono);fill:var(--muted)}
-.flow .ar{stroke:var(--ink-2);stroke-width:1.2;fill:none}
-.flow .ah{fill:var(--ink-2)}
-.flow .rj{stroke:#C8372D;stroke-width:1.2;fill:none;stroke-dasharray:4 3}
-.flow .rt{font:500 11px var(--mono);fill:#C8372D}
-.flow .lg{font:400 11px var(--mono);fill:var(--muted)}
-</style>
-
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,300,0,0&display=block">
 <script>
-  // ?embed — 인터랙티브 포트폴리오의 '전체 보기' 모달 안에서 열릴 때
+  // ?embed — 인터랙티브 포트폴리오의 '문서로 보기' 모달 안에서 열릴 때
   if (/[?&]embed\b/.test(location.search)) document.documentElement.classList.add('embed')
 </script>
 <style>
-  * { scrollbar-width: thin; scrollbar-color: rgba(128, 134, 140, 0.45) transparent; }
-  ::-webkit-scrollbar { width: 6px; height: 6px; }
-  ::-webkit-scrollbar-track { background: transparent; }
-  ::-webkit-scrollbar-thumb { background: rgba(128, 134, 140, 0.45); border-radius: 3px; }
-  /* 모달 안에서는 모달 상단 바가 목차 역할을 하므로 자체 상단 바만 숨긴다 */
-  .embed .topbar { display: none !important; }
-  .embed .hero { padding-top: clamp(24px, 4vw, 48px); }
+  :root {
+    --bg: #ecebe7; --board: #fbfaf7; --edge: #e3dfd7; --ink: #1f1e1c; --ink-2: #4a4743; --muted: #8a857d;
+    --accent: #d6452c; --sans: 'IBM Plex Sans KR', 'Apple SD Gothic Neo', system-ui, sans-serif; --mono: 'IBM Plex Mono', ui-monospace, monospace;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--sans); font-size: 16px; line-height: 1.7; word-break: keep-all; overflow-wrap: break-word; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; }
+  img, video { display: block; max-width: 100%; }
+  :focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+  .wrap { width: min(980px, calc(100% - 32px)); margin: 0 auto; }
+
+  /* 상단 바 */
+  .topbar { position: sticky; top: 0; z-index: 10; background: rgba(236, 235, 231, 0.92); border-bottom: 1px solid var(--edge); }
+  .topbar .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 52px; }
+  .topbar b { font-size: 15px; letter-spacing: -0.01em; }
+  .topbar nav { display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; }
+  .topbar nav a { padding: 6px 10px; border-radius: 6px; font-size: 13px; color: var(--ink-2); text-decoration: none; white-space: nowrap; }
+  .topbar nav a:hover { background: rgba(0, 0, 0, 0.05); color: var(--ink); }
+  .embed .topbar { display: none; }
+
+  /* 폼보드 시트 */
+  .sheet { background: var(--board); border-radius: 6px; margin: 28px 0; padding: clamp(24px, 5vw, 56px);
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.04), 0 4px 0 var(--edge), 0 18px 30px -22px rgba(45, 35, 25, 0.45); }
+  .embed .sheet:first-of-type { margin-top: 16px; }
+  .sheet { scroll-margin-top: 64px; }
+  .embed .sheet { scroll-margin-top: 12px; }
+
+  /* 표지 */
+  .cover { display: grid; grid-template-columns: minmax(0, 1fr) 190px; gap: 40px; }
+  .cover h1 { margin: 2px 0 8px; font-size: 30px; font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; color: var(--ink); }
+  .cover .lede { margin: 0 0 14px; font-size: clamp(19px, 2.4vw, 23px); font-weight: 600; letter-spacing: -0.02em; line-height: 1.45; color: var(--ink); }
+  .cover p { margin: 0 0 6px; color: var(--ink-2); }
+  .info { margin: 26px 0 0; display: grid; grid-template-columns: 56px 1fr; gap: 6px 14px; font-size: 14.5px; }
+  .info dt { color: var(--muted); }
+  .info dd { margin: 0; color: var(--ink-2); }
+  .side img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 4px; box-shadow: 0 10px 18px -12px rgba(45, 35, 25, 0.6); }
+  .contact { margin-top: 16px; display: grid; gap: 4px; font-size: 13.5px; }
+  .contact a:not(.btn), .contact button:not(.btn) { text-decoration: none; color: var(--ink-2); text-align: left; padding: 0; border: 0; background: none; font: inherit; cursor: pointer; }
+  .contact a:not(.btn):hover, .contact button:not(.btn):hover { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+  .toast { min-height: 1.2em; font-size: 12px; color: var(--muted); }
+
+  .h2 { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin: 48px 0 0; padding-bottom: 12px; border-bottom: 1.5px solid var(--ink); }
+  .h2 h2 { margin: 0; font-size: 20px; letter-spacing: -0.02em; }
+  .h2 small { color: var(--muted); font-size: 12.5px; }
+  .plist { list-style: none; margin: 0; padding: 0; }
+  .plist a { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 20px; padding: 18px 0; border-bottom: 1px solid var(--edge); text-decoration: none; }
+  .plist a:hover h3 { text-decoration: underline; text-underline-offset: 4px; }
+  .plist h3 { margin: 0; font-size: 19px; letter-spacing: -0.02em; }
+  .plist p { margin: 0; grid-column: 1; color: var(--ink-2); font-size: 14.5px; }
+  .plist .r { grid-row: 1 / 3; grid-column: 2; display: grid; justify-items: end; align-content: start; gap: 6px; }
+  .award { display: inline-block; padding: 2px 8px; border-radius: 4px; box-shadow: inset 0 0 0 1px rgba(214, 69, 44, 0.5); color: var(--accent); font-size: 12.5px; font-weight: 500; white-space: nowrap; }
+  .when { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+  .skills { margin: 18px 0 0; padding-top: 18px; border-top: 1px solid var(--edge); display: grid; grid-template-columns: 76px 1fr; gap: 6px 14px; font-size: 14px; }
+  .skills dt { color: var(--muted); }
+  .skills dd { margin: 0; color: var(--ink-2); }
+
+  /* 프로젝트 시트 */
+  .ph { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .ph h2 { margin: 0; font-size: clamp(28px, 4vw, 36px); letter-spacing: -0.03em; line-height: 1.15; }
+  .sum { margin: 10px 0 0; font-size: 17px; color: var(--ink-2); max-width: 46em; }
+  .meta { margin: 18px 0 0; display: flex; flex-wrap: wrap; gap: 6px 22px; font-size: 13.5px; color: var(--ink-2); padding: 12px 0; border-top: 1px solid var(--edge); border-bottom: 1px solid var(--edge); }
+  .meta span b { font-weight: 500; color: var(--muted); margin-right: 8px; font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.04em; }
+  .media { margin-top: 26px; display: grid; gap: 12px; }
+  .media .two { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  figure { margin: 0; }
+  figure > img, figure > video, figure > a > video { width: 100%; height: auto; border-radius: 4px; background: #2a2825; box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.06); }
+  figcaption { margin-top: 6px; font-size: 12.5px; color: var(--muted); }
+  .cols { margin-top: 30px; display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 40px; }
+  .cols p { margin: 0 0 14px; color: var(--ink-2); }
+  .cols p b { color: var(--ink); font-weight: 600; }
+  aside h4 { margin: 0 0 8px; font-size: 13px; color: var(--muted); font-weight: 500; }
+  aside ul { margin: 0 0 18px; padding: 0; list-style: none; font-size: 14px; color: var(--ink-2); }
+  aside li { padding: 3px 0 3px 12px; position: relative; line-height: 1.55; }
+  aside li::before { content: ''; position: absolute; left: 0; top: 0.8em; width: 4px; height: 4px; border-radius: 50%; background: var(--muted); }
+  .note { margin: 0 0 14px; padding: 10px 12px; border-radius: 4px; background: #f1efea; font-size: 13.5px; color: var(--ink); }
+  .stack { font-family: var(--mono); font-size: 12px; color: var(--muted); line-height: 1.7; margin: 0 0 16px; }
+  .links { display: grid; gap: 8px; }
+
+  /* 버튼 — 첫 화면과 같은 규칙: 꽉 찬 먹색 / 얇은 선, 오른쪽 끝에 방향 표시 */
+  .btn { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 11px 14px; border-radius: 8px; font-size: 14px; font-weight: 500; text-decoration: none; transition: background 0.15s, box-shadow 0.15s; }
+  .btn > span { display: inline-flex; align-items: center; gap: 8px; }
+  .brand { width: 16px; height: 16px; flex: none; fill: currentColor; }
+  .brand--yt { fill: #ff0033; }
+  .btn--solid .brand--yt { fill: #fff; }
+  .btn::after { content: '↗'; font-family: var(--mono); font-size: 13px; opacity: 0.7; }
+  .btn--solid { background: var(--ink); color: #fff; }
+  .btn--solid:hover { background: #3a3834; }
+  .btn--line { box-shadow: inset 0 0 0 1px #cfcac1; color: var(--ink); }
+  .btn--line:hover { box-shadow: inset 0 0 0 1px var(--ink); }
+
+  /* 데이터 냉장고 AS-IS / TO-BE */
+  .flowcmp { margin-top: 26px; display: grid; gap: 10px; }
+  .flowrow { display: grid; grid-template-columns: 74px repeat(4, minmax(0, 1fr)); gap: 8px; align-items: stretch; }
+  .flowrow > b { display: grid; place-items: center; border-radius: 4px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; color: var(--muted); box-shadow: inset 0 0 0 1px var(--edge); }
+  .flowrow.to > b { background: var(--ink); color: #fff; box-shadow: none; }
+  .step { padding: 10px 12px; border-radius: 4px; background: #f1efea; font-size: 13.5px; line-height: 1.45; }
+  .step strong { display: block; font-size: 14.5px; color: var(--ink); margin-bottom: 2px; }
+  .step span { color: var(--muted); font-size: 12.5px; }
+  .flowrow.to .step { background: var(--board); box-shadow: 0 0 0 1px var(--edge), 0 2px 0 var(--edge); }
+  .flowrow.to .step.key { box-shadow: inset 0 0 0 1.5px var(--accent); }
+
+
+  /* 아이콘 · 칩 */
+  .ms { font-family: 'Material Symbols Outlined'; font-weight: normal; font-style: normal; font-size: 18px; line-height: 1; display: inline-block; white-space: nowrap; letter-spacing: normal; text-transform: none; font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; -webkit-font-smoothing: antialiased; vertical-align: -4px; flex: none; }
+  .h2 h2 .ms, aside h4 .ms, .info dt .ms, .skills dt .ms { margin-right: 6px; color: var(--muted); }
+  .h2 h2 .ms { font-size: 22px; vertical-align: -4px; color: var(--ink); }
+  .info dt, .skills dt { white-space: nowrap; }
+  .tech { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 16px; }
+  .skills .tech { margin: 0; }
+  .chip { display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px 3px 8px; border-radius: 999px; background: #f1efea; box-shadow: inset 0 0 0 1px var(--edge); font-size: 12.5px; color: var(--ink-2); line-height: 1.6; }
+  .chip svg { width: 14px; height: 14px; flex: none; }
+  .chip .ms { font-size: 14px; vertical-align: 0; color: var(--muted); }
+  .cbtns { display: grid; gap: 8px; margin-top: 4px; }
+  .cbtns .btn { padding: 10px 12px; font-size: 13.5px; border: 0; font-family: inherit; cursor: pointer; text-align: left; }
+  .cbtns .btn::after { display: none; }
+  .cbtns .btn--down::after { display: inline; content: '↓'; }
+  .cbtns .btn--copy::after { display: inline; content: '복사'; font-family: var(--sans); font-size: 12px; }
+  .cbtns .btn .ms { font-size: 18px; vertical-align: 0; }
+  .mailtxt { margin: 0 0 8px; font-family: var(--mono); font-size: 12px; color: var(--muted); word-break: break-all; }
+  .side .contact h1 { margin-bottom: 4px; }
+
+  footer { padding: 30px 0 60px; text-align: center; font-size: 13px; color: var(--muted); }
+  .embed footer { padding-bottom: 30px; }
+
+  @media (max-width: 760px) {
+    .cover { grid-template-columns: 1fr; gap: 24px; }
+    .side { display: grid; grid-template-columns: 110px 1fr; gap: 16px; align-items: end; }
+    .side .contact { margin: 0; }
+    .cols { grid-template-columns: 1fr; gap: 10px; }
+    .media .two { grid-template-columns: 1fr; }
+    .flowrow { grid-template-columns: 1fr 1fr; }
+    .flowrow > b { grid-column: 1 / -1; padding: 6px; }
+    .plist a { grid-template-columns: 1fr; }
+    .plist .r { grid-row: auto; grid-column: 1; justify-items: start; grid-auto-flow: column; justify-content: start; align-items: center; }
+  }
 </style>
 </head>
 <body>
-<div class="wrap">
-  <header class="topbar">
-    <span class="mono">OH CHANGMIN — PORTFOLIO 2026</span>
-    <nav aria-label="섹션">
-      <a href="#docq">01 DocQ</a>
-      <a href="#wyd">02 Would You Draw</a>
-      <a href="#jabis">03 Jabis</a>
-      <a href="#fridge">04 데이터 냉장고</a>
-      <a href="#contact">연락처</a>
+<header class="topbar">
+  <div class="wrap">
+    <b>오창민</b>
+    <nav aria-label="바로가기">
+      <a href="#fridge">데이터 냉장고</a><a href="#docq">DocQ</a><a href="#wyd">Would You Draw</a><a href="#jabis">Jabis</a><a href="../">← 첫 화면</a>
     </nav>
-  </header>
+  </div>
+</header>
 
-  <section class="hero">
-    <div>
-      <p class="role">Frontend Developer · Web 3D &amp; Interaction</p>
-      <h1><span class="name">오창민</span>건축을 전공한 프론트엔드 개발자입니다.</h1>
-      <p class="lead">모형을 만지던 손으로, 지금은 웹에서 3D를 만지고 있습니다. 건축을 공부하며 모형과 3D 모델을 만들다가, 화면 위에서 직접 움직이는 공간이 궁금해 개발로 넘어왔습니다. SSAFY 14기에서 Vue와 React로 세 프로젝트의 화면과 3D 연출을 만들었고, 세 프로젝트 모두 상을 받았습니다. 지금은 LG전자 K-뉴딜 아카데미에서 AI로 업무 흐름을 자동화하는 AX 워크플로우를 배우고 있습니다.</p>
-      <ul class="facts">
-        <li><span>EDUCATION</span><span>SSAFY 14기 수료 · 계명대학교 건축학 학사</span></li>
-        <li><span>EXPERIENCE</span><span>건축사사무소 인턴 (학부 4학년) — 모형 제작, 3D 모델링</span></li>
-        <li><span>NOW</span><span>LG전자 K-뉴딜 아카데미 1기 AX 워크플로우 트랙 (2026.08~) — <a href="#fridge">데이터 냉장고</a></span></li>
-        <li><span>AWARDS</span><span>SSAFY 공통 최우수상 · 특화 우수상 · 자율 우수상</span></li>
-      </ul>
-    </div>
-    <div class="hero-side">
-      <figure class="portrait">
-        <img src="../assets/portrait.jpg" alt="오창민 프로필 사진" width="600" height="750" loading="eager" decoding="async">
-        <figcaption class="mono">OH CHANGMIN</figcaption>
-      </figure>
-      <div class="contact">
-        <button class="chip" type="button" data-copy="dhckdals1104@naver.com">dhckdals1104@naver.com</button>
-        <a class="chip" href="https://github.com/mm-sj" target="_blank" rel="noopener">github.com/mm-sj ↗</a>
-        <a class="chip" href="../portfolio.pdf" target="_blank" rel="noopener">PDF ↓</a>
+<main class="wrap">
+  <!-- 표지 -->
+  <section class="sheet" id="top">
+    <div class="cover">
+      <div>
+        <p class="lede">기획한 흐름을 직접 화면으로 만들어 본 사람입니다.</p>
+        <p>건축을 전공했고, SSAFY 14기에서 웹 서비스 세 개를 팀으로 만들었습니다. 세 프로젝트 모두 화면 흐름을 정하는 일과 그 화면을 직접 구현하는 일을 같이 맡았고, 세 번 다 상을 받았습니다.</p>
+        <p>이어서 LG전자 K-뉴딜 아카데미 AX 워크플로우 트랙에서 n8n으로 업무 자동화 서비스를 만들어 5개 팀 중 1위로 수료했습니다.</p>
+        <dl class="info">
+          <dt><span class="ms">school</span>학력</dt><dd>계명대학교 건축학과 (5년제) 졸업</dd>
+          <dt><span class="ms">menu_book</span>교육</dt><dd>SSAFY 14기 수료 · LG전자 K-뉴딜 아카데미 1기 AX 워크플로우 트랙 수료</dd>
+          <dt><span class="ms">architecture</span>인턴</dt><dd>오후건축사사무소, 계획안 모형·3D 모델링·건축 일러스트</dd>
+          <dt><span class="ms">emoji_events</span>수상</dt><dd>LG전자 K-뉴딜 아카데미 AX 트랙 팀 우수상 (1위 / 5개 팀)<br>SSAFY 14기 공통 프로젝트 최우수상, 특화 우수상, 자율 우수상</dd>
+        </dl>
+        <dl class="skills" id="skills">
+          <dt><span class="ms">edit_note</span>기획·협업</dt><dd><div class="tech"><span class="chip"><svg viewBox="0 0 24 24" aria-hidden="true" fill="#F24E1E"><path d="M15.852 8.981h-4.588V0h4.588c2.476 0 4.49 2.014 4.49 4.49s-2.014 4.491-4.49 4.491zM12.735 7.51h3.117c1.665 0 3.019-1.355 3.019-3.019s-1.355-3.019-3.019-3.019h-3.117V7.51zm0 1.471H8.148c-2.476 0-4.49-2.014-4.49-4.49S5.672 0 8.148 0h4.588v8.981zm-4.587-7.51c-1.665 0-3.019 1.355-3.019 3.019s1.354 3.02 3.019 3.02h3.117V1.471H8.148zm4.587 15.019H8.148c-2.476 0-4.49-2.014-4.49-4.49s2.014-4.49 4.49-4.49h4.588v8.98zM8.148 8.981c-1.665 0-3.019 1.355-3.019 3.019s1.355 3.019 3.019 3.019h3.117V8.981H8.148zM8.172 24c-2.489 0-4.515-2.014-4.515-4.49s2.014-4.49 4.49-4.49h4.588v4.441c0 2.503-2.047 4.539-4.563 4.539zm-.024-7.51a3.023 3.023 0 0 0-3.019 3.019c0 1.665 1.365 3.019 3.044 3.019 1.705 0 3.093-1.376 3.093-3.068v-2.97H8.148zm7.704 0h-.098c-2.476 0-4.49-2.014-4.49-4.49s2.014-4.49 4.49-4.49h.098c2.476 0 4.49 2.014 4.49 4.49s-2.014 4.49-4.49 4.49zm-.097-7.509c-1.665 0-3.019 1.355-3.019 3.019s1.355 3.019 3.019 3.019h.098c1.665 0 3.019-1.355 3.019-3.019s-1.355-3.019-3.019-3.019h-.098z"/></svg>Figma</span><span class="chip"><svg viewBox="0 0 24 24" aria-hidden="true" fill="#0052CC"><path d="M11.571 11.513H0a5.218 5.218 0 0 0 5.232 5.215h2.13v2.057A5.215 5.215 0 0 0 12.575 24V12.518a1.005 1.005 0 0 0-1.005-1.005zm5.723-5.756H5.736a5.215 5.215 0 0 0 5.215 5.214h2.129v2.058a5.218 5.218 0 0 0 5.215 5.214V6.758a1.001 1.001 0 0 0-1.001-1.001zM23.013 0H11.455a5.215 5.215 0 0 0 5.215 5.215h2.129v2.057A5.215 5.215 0 0 0 24 12.483V1.005A1.001 1.001 0 0 0 23.013 0Z"/></svg>Jira</span><span class="chip"><svg viewBox="0 0 24 24" aria-hidden="true" fill="#00C4CC"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zM6.962 7.68c.754 0 1.337.549 1.405 1.2.069.583-.171 1.097-.822 1.406-.343.171-.48.172-.549.069-.034-.069 0-.137.069-.206.617-.514.617-.926.548-1.508-.034-.378-.308-.618-.583-.618-1.2 0-2.914 2.674-2.674 4.629.103.754.549 1.646 1.509 1.646.308 0 .65-.103.96-.24.5-.264.799-.47 1.097-.8-.073-.885.704-2.046 1.851-2.046.515 0 .926.205.96.583.068.514-.377.582-.514.582s-.378-.034-.378-.17c-.034-.138.309-.07.275-.378-.035-.206-.24-.274-.446-.274-.72 0-1.131.994-1.029 1.611.035.275.172.549.447.549.205 0 .514-.31.617-.755.068-.308.343-.514.583-.514.102 0 .17.034.205.171v.138c-.034.137-.137.548-.102.651 0 .069.034.171.17.171.092 0 .436-.18.777-.459.117-.59.253-1.298.253-1.357.034-.24.137-.48.617-.48.103 0 .171.034.205.171v.138l-.136.617c.445-.583 1.097-.994 1.508-.994.172 0 .309.102.309.274 0 .103 0 .274-.069.446-.137.377-.309.96-.412 1.474 0 .137.035.274.207.274.171 0 .685-.206 1.096-.754l.007-.004c-.002-.068-.007-.134-.007-.202 0-.411.035-.754.104-.994.068-.274.411-.514.617-.514.103 0 .205.069.205.171 0 .035 0 .103-.034.137-.137.446-.24.857-.24 1.269 0 .24.034.582.102.788 0 .034.035.069.07.069.068 0 .548-.445.89-1.028-.308-.206-.48-.549-.48-.96 0-.72.446-1.097.858-1.097.343 0 .617.24.617.72 0 .308-.103.65-.274.96h.102a.77.77 0 0 0 .584-.24.293.293 0 0 1 .134-.117c.335-.425.83-.74 1.41-.74.48 0 .924.205.959.582.068.515-.378.618-.515.618l-.002-.002c-.138 0-.377-.035-.377-.172 0-.137.309-.068.274-.376-.034-.206-.24-.275-.446-.275-.686 0-1.13.891-1.028 1.611.034.275.171.583.445.583.206 0 .515-.308.652-.754.068-.274.343-.514.583-.514.103 0 .17.034.205.171 0 .069 0 .206-.137.652-.17.308-.171.48-.137.617.034.274.171.48.309.583.034.034.068.102.068.102 0 .069-.034.138-.137.138-.034 0-.068 0-.103-.035-.514-.205-.72-.548-.789-.891-.205.24-.445.377-.72.377-.445 0-.89-.411-.96-.926a1.609 1.609 0 0 1 .075-.649c-.203.13-.422.203-.623.203h-.17c-.447.652-.927 1.098-1.27 1.303a.896.896 0 0 1-.377.104c-.068 0-.171-.035-.205-.104-.095-.152-.156-.392-.193-.667-.481.527-1.145.805-1.453.805-.343 0-.548-.206-.582-.55v-.376c.102-.754.377-1.2.377-1.337a.074.074 0 0 0-.069-.07c-.24 0-1.028.824-1.166 1.373l-.103.445c-.068.309-.377.515-.582.515-.103 0-.172-.035-.206-.172v-.137l.046-.233c-.435.31-.87.508-1.075.508-.308 0-.48-.172-.514-.412-.206.274-.445.412-.754.412-.352 0-.696-.24-.862-.593-.244.275-.523.553-.852.764-.48.309-1.028.549-1.68.549-.582 0-1.097-.309-1.371-.583-.412-.377-.651-.96-.686-1.509-.205-1.68.823-3.84 2.4-4.8.378-.205.755-.343 1.132-.343zm9.77 3.291c-.104 0-.172.172-.172.343 0 .274.137.583.309.755a1.74 1.74 0 0 0 .102-.583c0-.343-.137-.515-.24-.515z"/></svg>Canva</span><span class="chip"><svg viewBox="0 0 24 24" aria-hidden="true" fill="#D97757"><path d="m4.7144 15.9555 4.7174-2.6471.079-.2307-.079-.1275h-.2307l-.7893-.0486-2.6956-.0729-2.3375-.0971-2.2646-.1214-.5707-.1215-.5343-.7042.0546-.3522.4797-.3218.686.0608 1.5179.1032 2.2767.1578 1.6514.0972 2.4468.255h.3886l.0546-.1579-.1336-.0971-.1032-.0972L6.973 9.8356l-2.55-1.6879-1.3356-.9714-.7225-.4918-.3643-.4614-.1578-1.0078.6557-.7225.8803.0607.2246.0607.8925.686 1.9064 1.4754 2.4893 1.8336.3643.3035.1457-.1032.0182-.0728-.164-.2733-1.3539-2.4467-1.445-2.4893-.6435-1.032-.17-.6194c-.0607-.255-.1032-.4674-.1032-.7285L6.287.1335 6.6997 0l.9957.1336.419.3642.6192 1.4147 1.0018 2.2282 1.5543 3.0296.4553.8985.2429.8318.091.255h.1579v-.1457l.1275-1.706.2368-2.0947.2307-2.6957.0789-.7589.3764-.9107.7468-.4918.5828.2793.4797.686-.0668.4433-.2853 1.8517-.5586 2.9021-.3643 1.9429h.2125l.2429-.2429.9835-1.3053 1.6514-2.0643.7286-.8196.85-.9046.5464-.4311h1.0321l.759 1.1293-.34 1.1657-1.0625 1.3478-.8804 1.1414-1.2628 1.7-.7893 1.36.0729.1093.1882-.0183 2.8535-.607 1.5421-.2794 1.8396-.3157.8318.3886.091.3946-.3278.8075-1.967.4857-2.3072.4614-3.4364.8136-.0425.0304.0486.0607 1.5482.1457.6618.0364h1.621l3.0175.2247.7892.522.4736.6376-.079.4857-1.2142.6193-1.6393-.3886-3.825-.9107-1.3113-.3279h-.1822v.1093l1.0929 1.0686 2.0035 1.8092 2.5075 2.3314.1275.5768-.3218.4554-.34-.0486-2.2039-1.6575-.85-.7468-1.9246-1.621h-.1275v.17l.4432.6496 2.3436 3.5214.1214 1.0807-.17.3521-.6071.2125-.6679-.1214-1.3721-1.9246L14.38 17.959l-1.1414-1.9428-.1397.079-.674 7.2552-.3156.3703-.7286.2793-.6071-.4614-.3218-.7468.3218-1.4753.3886-1.9246.3157-1.53.2853-1.9004.17-.6314-.0121-.0425-.1397.0182-1.4328 1.9672-2.1796 2.9446-1.7243 1.8456-.4128.164-.7164-.3704.0667-.6618.4008-.5889 2.386-3.0357 1.4389-1.882.929-1.0868-.0062-.1579h-.0546l-6.3385 4.1164-1.1293.1457-.4857-.4554.0608-.7467.2307-.2429 1.9064-1.3114Z"/></svg>Claude Code</span></div></dd>
+          <dt><span class="ms">automation</span>자동화</dt><dd><div class="tech"><span class="chip"><svg viewBox="0 0 24 24" aria-hidden="true" fill="#EA4B71"><path d="M21.4737 5.6842c-1.1772 0-2.1663.8051-2.4468 1.8947h-2.8955c-1.235 0-2.289.893-2.492 2.111l-.1038.623a1.263 1.263 0 0 1-1.246 1.0555H11.289c-.2805-1.0896-1.2696-1.8947-2.4468-1.8947s-2.1663.8051-2.4467 1.8947H4.973c-.2805-1.0896-1.2696-1.8947-2.4468-1.8947C1.1311 9.4737 0 10.6047 0 12s1.131 2.5263 2.5263 2.5263c1.1772 0 2.1663-.8051 2.4468-1.8947h1.4223c.2804 1.0896 1.2696 1.8947 2.4467 1.8947 1.1772 0 2.1663-.8051 2.4468-1.8947h1.0008a1.263 1.263 0 0 1 1.2459 1.0555l.1038.623c.203 1.218 1.257 2.111 2.492 2.111h.3692c.2804 1.0895 1.2696 1.8947 2.4468 1.8947 1.3952 0 2.5263-1.131 2.5263-2.5263s-1.131-2.5263-2.5263-2.5263c-1.1772 0-2.1664.805-2.4468 1.8947h-.3692a1.263 1.263 0 0 1-1.246-1.0555l-.1037-.623A2.52 2.52 0 0 0 13.9607 12a2.52 2.52 0 0 0 .821-1.4794l.1038-.623a1.263 1.263 0 0 1 1.2459-1.0555h2.8955c.2805 1.0896 1.2696 1.8947 2.4468 1.8947 1.3952 0 2.5263-1.131 2.5263-2.5263s-1.131-2.5263-2.5263-2.5263m0 1.2632a1.263 1.263 0 0 1 1.2631 1.2631 1.263 1.263 0 0 1-1.2631 1.2632 1.263 1.263 0 0 1-1.2632-1.2632 1.263 1.263 0 0 1 1.2632-1.2631M2.5263 10.7368A1.263 1.263 0 0 1 3.7895 12a1.263 1.263 0 0 1-1.2632 1.2632A1.263 1.263 0 0 1 1.2632 12a1.263 1.263 0 0 1 1.2631-1.2632m6.3158 0A1.263 1.263 0 0 1 10.1053 12a1.263 1.263 0 0 1-1.2632 1.2632A1.263 1.263 0 0 1 7.579 12a1.263 1.263 0 0 1 1.2632-1.2632m10.1053 3.7895a1.263 1.263 0 0 1 1.2631 1.2632 1.263 1.263 0 0 1-1.2631 1.2631 1.263 1.263 0 0 1-1.2632-1.2631 1.263 1.263 0 0 1 1.2632-1.2632"/></svg>n8n</span><span class="chip"><svg viewBox="0 0 24 24" aria-hidden="true" fill="#009688"><path d="M12 .0387C5.3729.0384.0003 5.3931 0 11.9988c-.001 6.6066 5.372 11.9628 12 11.9625 6.628.0003 12.001-5.3559 12-11.9625-.0003-6.6057-5.3729-11.9604-12-11.96m-.829 5.4153h7.55l-7.5805 5.3284h5.1828L5.279 18.5436q2.9466-6.5444 5.892-13.0896"/></svg>FastAPI</span><span class="chip"><svg viewBox="0 0 24 24" aria-hidden="true" fill="#2496ED"><path d="M13.983 11.078h2.119a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.119a.185.185 0 00-.185.185v1.888c0 .102.083.185.185.185m-2.954-5.43h2.118a.186.186 0 00.186-.186V3.574a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m0 2.716h2.118a.187.187 0 00.186-.186V6.29a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.887c0 .102.082.185.185.186m-2.93 0h2.12a.186.186 0 00.184-.186V6.29a.185.185 0 00-.185-.185H8.1a.185.185 0 00-.185.185v1.887c0 .102.083.185.185.186m-2.964 0h2.119a.186.186 0 00.185-.186V6.29a.185.185 0 00-.185-.185H5.136a.186.186 0 00-.186.185v1.887c0 .102.084.185.186.186m5.893 2.715h2.118a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m-2.93 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.083.185.185.185m-2.964 0h2.119a.185.185 0 00.185-.185V9.006a.185.185 0 00-.184-.186h-2.12a.186.186 0 00-.186.186v1.887c0 .102.084.185.186.185m-2.92 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.082.185.185.185M23.763 9.89c-.065-.051-.672-.51-1.954-.51-.338.001-.676.03-1.01.087-.248-1.7-1.653-2.53-1.716-2.566l-.344-.199-.226.327c-.284.438-.49.922-.612 1.43-.23.97-.09 1.882.403 2.661-.595.332-1.55.413-1.744.42H.751a.751.751 0 00-.75.748 11.376 11.376 0 00.692 4.062c.545 1.428 1.355 2.48 2.41 3.124 1.18.723 3.1 1.137 5.275 1.137.983.003 1.963-.086 2.93-.266a12.248 12.248 0 003.823-1.389c.98-.567 1.86-1.288 2.61-2.136 1.252-1.418 1.998-2.997 2.553-4.4h.221c1.372 0 2.215-.549 2.68-1.009.309-.293.55-.65.707-1.046l.098-.288Z"/></svg>Docker</span></div></dd>
+          <dt><span class="ms">terminal</span>개발</dt><dd><div class="tech"><span class="chip"><svg viewBox="0 0 24 24" aria-hidden="true" fill="#61DAFB"><path d="M14.23 12.004a2.236 2.236 0 0 1-2.235 2.236 2.236 2.236 0 0 1-2.236-2.236 2.236 2.236 0 0 1 2.235-2.236 2.236 2.236 0 0 1 2.236 2.236zm2.648-10.69c-1.346 0-3.107.96-4.888 2.622-1.78-1.653-3.542-2.602-4.887-2.602-.41 0-.783.093-1.106.278-1.375.793-1.683 3.264-.973 6.365C1.98 8.917 0 10.42 0 12.004c0 1.59 1.99 3.097 5.043 4.03-.704 3.113-.39 5.588.988 6.38.32.187.69.275 1.102.275 1.345 0 3.107-.96 4.888-2.624 1.78 1.654 3.542 2.603 4.887 2.603.41 0 .783-.09 1.106-.275 1.374-.792 1.683-3.263.973-6.365C22.02 15.096 24 13.59 24 12.004c0-1.59-1.99-3.097-5.043-4.032.704-3.11.39-5.587-.988-6.38-.318-.184-.688-.277-1.092-.278zm-.005 1.09v.006c.225 0 .406.044.558.127.666.382.955 1.835.73 3.704-.054.46-.142.945-.25 1.44-.96-.236-2.006-.417-3.107-.534-.66-.905-1.345-1.727-2.035-2.447 1.592-1.48 3.087-2.292 4.105-2.295zm-9.77.02c1.012 0 2.514.808 4.11 2.28-.686.72-1.37 1.537-2.02 2.442-1.107.117-2.154.298-3.113.538-.112-.49-.195-.964-.254-1.42-.23-1.868.054-3.32.714-3.707.19-.09.4-.127.563-.132zm4.882 3.05c.455.468.91.992 1.36 1.564-.44-.02-.89-.034-1.345-.034-.46 0-.915.01-1.36.034.44-.572.895-1.096 1.345-1.565zM12 8.1c.74 0 1.477.034 2.202.093.406.582.802 1.203 1.183 1.86.372.64.71 1.29 1.018 1.946-.308.655-.646 1.31-1.013 1.95-.38.66-.773 1.288-1.18 1.87-.728.063-1.466.098-2.21.098-.74 0-1.477-.035-2.202-.093-.406-.582-.802-1.204-1.183-1.86-.372-.64-.71-1.29-1.018-1.946.303-.657.646-1.313 1.013-1.954.38-.66.773-1.286 1.18-1.868.728-.064 1.466-.098 2.21-.098zm-3.635.254c-.24.377-.48.763-.704 1.16-.225.39-.435.782-.635 1.174-.265-.656-.49-1.31-.676-1.947.64-.15 1.315-.283 2.015-.386zm7.26 0c.695.103 1.365.23 2.006.387-.18.632-.405 1.282-.66 1.933-.2-.39-.41-.783-.64-1.174-.225-.392-.465-.774-.705-1.146zm3.063.675c.484.15.944.317 1.375.498 1.732.74 2.852 1.708 2.852 2.476-.005.768-1.125 1.74-2.857 2.475-.42.18-.88.342-1.355.493-.28-.958-.646-1.956-1.1-2.98.45-1.017.81-2.01 1.085-2.964zm-13.395.004c.278.96.645 1.957 1.1 2.98-.45 1.017-.812 2.01-1.086 2.964-.484-.15-.944-.318-1.37-.5-1.732-.737-2.852-1.706-2.852-2.474 0-.768 1.12-1.742 2.852-2.476.42-.18.88-.342 1.356-.494zm11.678 4.28c.265.657.49 1.312.676 1.948-.64.157-1.316.29-2.016.39.24-.375.48-.762.705-1.158.225-.39.435-.788.636-1.18zm-9.945.02c.2.392.41.783.64 1.175.23.39.465.772.705 1.143-.695-.102-1.365-.23-2.006-.386.18-.63.406-1.282.66-1.933zM17.92 16.32c.112.493.2.968.254 1.423.23 1.868-.054 3.32-.714 3.708-.147.09-.338.128-.563.128-1.012 0-2.514-.807-4.11-2.28.686-.72 1.37-1.536 2.02-2.44 1.107-.118 2.154-.3 3.113-.54zm-11.83.01c.96.234 2.006.415 3.107.532.66.905 1.345 1.727 2.035 2.446-1.595 1.483-3.092 2.295-4.11 2.295-.22-.005-.406-.05-.553-.132-.666-.38-.955-1.834-.73-3.703.054-.46.142-.944.25-1.438zm4.56.64c.44.02.89.034 1.345.034.46 0 .915-.01 1.36-.034-.44.572-.895 1.095-1.345 1.565-.455-.47-.91-.993-1.36-1.565z"/></svg>React</span><span class="chip"><svg viewBox="0 0 24 24" aria-hidden="true" fill="#4FC08D"><path d="M24,1.61H14.06L12,5.16,9.94,1.61H0L12,22.39ZM12,14.08,5.16,2.23H9.59L12,6.41l2.41-4.18h4.43Z"/></svg>Vue 3</span><span class="chip"><svg viewBox="0 0 24 24" aria-hidden="true" fill="#3178C6"><path d="M1.125 0C.502 0 0 .502 0 1.125v21.75C0 23.498.502 24 1.125 24h21.75c.623 0 1.125-.502 1.125-1.125V1.125C24 .502 23.498 0 22.875 0zm17.363 9.75c.612 0 1.154.037 1.627.111a6.38 6.38 0 0 1 1.306.34v2.458a3.95 3.95 0 0 0-.643-.361 5.093 5.093 0 0 0-.717-.26 5.453 5.453 0 0 0-1.426-.2c-.3 0-.573.028-.819.086a2.1 2.1 0 0 0-.623.242c-.17.104-.3.229-.393.374a.888.888 0 0 0-.14.49c0 .196.053.373.156.529.104.156.252.304.443.444s.423.276.696.41c.273.135.582.274.926.416.47.197.892.407 1.266.628.374.222.695.473.963.753.268.279.472.598.614.957.142.359.214.776.214 1.253 0 .657-.125 1.21-.373 1.656a3.033 3.033 0 0 1-1.012 1.085 4.38 4.38 0 0 1-1.487.596c-.566.12-1.163.18-1.79.18a9.916 9.916 0 0 1-1.84-.164 5.544 5.544 0 0 1-1.512-.493v-2.63a5.033 5.033 0 0 0 3.237 1.2c.333 0 .624-.03.872-.09.249-.06.456-.144.623-.25.166-.108.29-.234.373-.38a1.023 1.023 0 0 0-.074-1.089 2.12 2.12 0 0 0-.537-.5 5.597 5.597 0 0 0-.807-.444 27.72 27.72 0 0 0-1.007-.436c-.918-.383-1.602-.852-2.053-1.405-.45-.553-.676-1.222-.676-2.005 0-.614.123-1.141.369-1.582.246-.441.58-.804 1.004-1.089a4.494 4.494 0 0 1 1.47-.629 7.536 7.536 0 0 1 1.77-.201zm-15.113.188h9.563v2.166H9.506v9.646H6.789v-9.646H3.375z"/></svg>TypeScript</span><span class="chip"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M.38 0a.268.268 0 0 0-.256.332l2.894 11.716a.268.268 0 0 0 .01.04l2.89 11.708a.268.268 0 0 0 .447.128L23.802 7.15a.268.268 0 0 0-.112-.45l-5.784-1.667a.268.268 0 0 0-.123-.035L6.38 1.715a.268.268 0 0 0-.144-.04L.456.01A.268.268 0 0 0 .38 0zm.374.654L5.71 2.08 1.99 5.664zM6.61 2.34l4.864 1.4-3.65 3.515zm-.522.12l1.217 4.926-4.877-1.4zm6.28 1.538l4.878 1.404-3.662 3.53zm-.52.13l1.208 4.9-4.853-1.392zm6.3 1.534l4.947 1.424-3.715 3.574zm-.524.12l1.215 4.926-4.876-1.398zm-15.432.696l4.964 1.424-3.726 3.586zM8.047 8.15l4.877 1.4-3.66 3.527zm-.518.137l1.236 5.017-4.963-1.432zm6.274 1.535l4.965 1.425-3.73 3.586zm-.52.127l1.235 5.012-4.958-1.43zm-9.63 2.438l4.873 1.406-3.656 3.523zm5.854 1.687l4.863 1.403-3.648 3.51zm-.54.04l1.214 4.927-4.875-1.4zm-3.896 4.02l5.037 1.442-3.782 3.638z"/></svg>Three.js</span></div></dd>
+          <dt><span class="ms">view_in_ar</span>그래픽</dt><dd><div class="tech"><span class="chip"><svg viewBox="0 0 24 24" aria-hidden="true" fill="#E87D0D"><path d="M12.51 13.214c.046-.8.438-1.506 1.03-2.006a3.424 3.424 0 0 1 2.212-.79c.85 0 1.631.3 2.211.79.592.5.983 1.206 1.028 2.005.045.823-.285 1.586-.865 2.153a3.389 3.389 0 0 1-2.374.938 3.393 3.393 0 0 1-2.376-.938c-.58-.567-.91-1.33-.865-2.152M7.35 14.831c.006.314.106.922.256 1.398a7.372 7.372 0 0 0 1.593 2.757 8.227 8.227 0 0 0 2.787 2.001 8.947 8.947 0 0 0 3.66.76 8.964 8.964 0 0 0 3.657-.772 8.285 8.285 0 0 0 2.785-2.01 7.428 7.428 0 0 0 1.592-2.762 6.964 6.964 0 0 0 .25-3.074 7.123 7.123 0 0 0-1.016-2.779 7.764 7.764 0 0 0-1.852-2.043h.002L13.566 2.55l-.02-.015c-.492-.378-1.319-.376-1.86.002-.547.382-.609 1.015-.123 1.415l-.001.001 3.126 2.543-9.53.01h-.013c-.788.001-1.545.518-1.695 1.172-.154.665.38 1.217 1.2 1.22V8.9l4.83-.01-8.62 6.617-.034.025c-.813.622-1.075 1.658-.563 2.313.52.667 1.625.668 2.447.004L7.414 14s-.069.52-.063.831zm12.09 1.741c-.97.988-2.326 1.548-3.795 1.55-1.47.004-2.827-.552-3.797-1.538a4.51 4.51 0 0 1-1.036-1.622 4.282 4.282 0 0 1 .282-3.519 4.702 4.702 0 0 1 1.153-1.371c.942-.768 2.141-1.183 3.396-1.185 1.256-.002 2.455.41 3.398 1.175.48.391.87.854 1.152 1.367a4.28 4.28 0 0 1 .522 1.706 4.236 4.236 0 0 1-.239 1.811 4.54 4.54 0 0 1-1.035 1.626"/></svg>Blender</span><span class="chip"><svg viewBox="0 0 24 24" aria-hidden="true" fill="#31A8FF"><path d="M9.85 8.42c-.37-.15-.77-.21-1.18-.2-.26 0-.49 0-.68.01-.2-.01-.34 0-.41.01v3.36c.14.01.27.02.39.02h.53c.39 0 .78-.06 1.15-.18.32-.09.6-.28.82-.53.21-.25.31-.59.31-1.03.01-.31-.07-.62-.23-.89-.17-.26-.41-.46-.7-.57zM19.75.3H4.25C1.9.3 0 2.2 0 4.55v14.899c0 2.35 1.9 4.25 4.25 4.25h15.5c2.35 0 4.25-1.9 4.25-4.25V4.55C24 2.2 22.1.3 19.75.3zm-7.391 11.65c-.399.56-.959.98-1.609 1.22-.68.25-1.43.34-2.25.34-.24 0-.4 0-.5-.01s-.24-.01-.43-.01v3.209c.01.07-.04.131-.11.141H5.52c-.08 0-.12-.041-.12-.131V6.42c0-.07.03-.11.1-.11.17 0 .33 0 .56-.01.24-.01.49-.01.76-.02s.56-.01.87-.02c.31-.01.61-.01.91-.01.82 0 1.5.1 2.06.31.5.17.96.45 1.34.82.32.32.57.71.73 1.14.149.42.229.85.229 1.3.001.86-.199 1.57-.6 2.13zm7.091 3.89c-.28.4-.671.709-1.12.891-.49.209-1.09.318-1.811.318-.459 0-.91-.039-1.359-.129-.35-.061-.7-.17-1.02-.32-.07-.039-.121-.109-.111-.189v-1.74c0-.029.011-.07.041-.09.029-.02.06-.01.09.01.39.23.8.391 1.24.49.379.1.779.15 1.18.15.38 0 .65-.051.83-.141.16-.07.27-.24.27-.42 0-.141-.08-.27-.24-.4-.16-.129-.489-.279-.979-.471-.51-.18-.979-.42-1.42-.719-.31-.221-.569-.51-.761-.85-.159-.32-.239-.67-.229-1.021 0-.43.12-.84.341-1.21.25-.4.619-.72 1.049-.92.469-.239 1.059-.349 1.769-.349.41 0 .83.03 1.24.09.3.04.59.12.86.23.039.01.08.05.1.09.01.04.02.08.02.12v1.63c0 .04-.02.08-.05.1-.09.02-.14.02-.18 0-.3-.16-.62-.27-.96-.34-.37-.08-.74-.13-1.12-.13-.2-.01-.41.02-.601.07-.129.03-.24.1-.31.2-.05.08-.08.18-.08.27s.04.18.101.26c.09.11.209.2.34.27.229.12.47.23.709.33.541.18 1.061.43 1.541.73.33.209.6.49.789.83.16.318.24.67.23 1.029.011.471-.129.94-.389 1.331z"/></svg>Photoshop</span><span class="chip"><svg viewBox="0 0 24 24" aria-hidden="true" fill="#E51050"><path d="M3.8672 1.0527v.0157L0 3.3848v17.914l3.8965-2.332h18.3398V2.3301c0-.702-.5773-1.2774-1.2793-1.2774H3.8672zm7.5058 4.0098h3.3008l2.9844 9.9512h-2.5879l-.5683-2.1895h-2.9844l-.5703 2.1621h-2.416l2.8417-9.9238zm11.8633.0273v14.877H4.172l-2.0684 1.2383v.4648c0 .702.5793 1.2774 1.2813 1.2774H24V5.0898h-.7637zM12.9668 6.6816l-.9941 4.3243h2.0468l-1.0527-4.3243z"/></svg>AutoCAD</span><span class="chip"><svg viewBox="0 0 24 24" aria-hidden="true" fill="#005F9E"><path d="M.968 9.027l7.717 4.428-.006 1.32-4.39-2.518-2.763 1.57 7.148 4.12.005 1.27-7.658-4.405c.02.516.488 2.106 1.383 3.337.91 1.247 1.946 1.776 1.946 1.776L11.428 24V11.849L.975 5.846zm22.064-3.8L15.22.723S13.982 0 12.008 0C9.952 0 8.76.746 8.76.746l-7.236 4.14 11.009 6.328V24l7.245-4.136s1.295-.715 2.279-2.414c.867-1.496.975-2.943.975-2.943zM11.251 7.308s1.615-.298 2.98.49l2.171 1.25s.003 1.097.003 2.736c0 1.313-1.112 2.674-1.112 2.674l.002-4.816zm6.402 10.562l-2.358 1.353v-1.269l1.835-1.05c1.748-1.26 2.037-3.117 2.037-3.761l-.007-5.705-5.006-2.881s-.76-.499-2.129-.499c-1.367 0-2.113.461-2.113.461L8.154 5.53l-1.11-.641L9.473 3.5s.95-.527 2.544-.527c1.462 0 2.6.571 2.6.571L20.27 6.81l-.007 6.226c.04.957-.406 3.296-2.61 4.835z"/></svg>SketchUp</span></div></dd>
+        </dl>
       </div>
-      <p class="toast" aria-live="polite" id="toast-hero"></p>
+      <div class="side">
+        <img src="../assets/portrait.jpg" alt="오창민 사진" width="600" height="750">
+        <div class="contact">
+          <h1>오창민</h1>
+          <p class="mailtxt">dhckdals1104@naver.com</p>
+          <div class="cbtns">
+            <button type="button" class="btn btn--line btn--copy" data-copy="dhckdals1104@naver.com"><span><span class="ms">mail</span>이메일 복사</span></button>
+            <a class="btn btn--line" href="https://github.com/mm-sj" target="_blank" rel="noopener"><span><svg class="brand" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>GitHub</span></a>
+            <a class="btn btn--solid btn--down" href="../portfolio.pdf" download><span><span class="ms">picture_as_pdf</span>PDF 다운로드</span></a>
+          </div>
+          <span class="toast" id="toast" aria-live="polite"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="h2"><h2><span class="ms">folder_open</span>프로젝트</h2><small>큰 화면을 누르면 GitHub에서 원본 화면과 시연 영상을 볼 수 있습니다</small></div>
+    <ul class="plist">
+      <li><a href="#fridge"><h3>데이터 냉장고</h3><p>저장한 이유가 다시 필요해질 때 AI가 자료를 꺼내주는 사내 지식 서비스. 자료 입고 흐름과 웹 화면을 맡았습니다.</p><span class="r"><span class="award">팀 우수상 · 1위</span><span class="when">2026.10–11</span></span></a></li>
+      <li><a href="#docq"><h3>DocQ</h3><p>PDF를 AI 퀴즈로 바꿔 최대 4명이 보드게임처럼 푸는 학습 서비스. UX 방향과 게임 밖 화면 전반을 맡았습니다.</p><span class="r"><span class="award">공통 최우수상</span><span class="when">2026.01–02</span></span></a></li>
+      <li><a href="#wyd"><h3>Would You Draw</h3><p>그린 감정이 별, 별자리, 은하로 쌓이는 감정 기록 앱. FE 팀장으로 드로잉과 우주 인터랙션을 맡았습니다.</p><span class="r"><span class="award">특화 우수상</span><span class="when">2026.03</span></span></a></li>
+      <li><a href="#jabis"><h3>Jabis</h3><p>양팔 데스크 로봇의 상태를 3D로 보여주는 웹 대시보드. 팀의 유일한 FE로 대시보드 전체를 맡았습니다.</p><span class="r"><span class="award">자율 우수상</span><span class="when">2026.04–05</span></span></a></li>
+    </ul>
+
+  </section>
+
+  <!-- 데이터 냉장고 -->
+  <section class="sheet" id="fridge">
+    <div class="ph"><h2>데이터 냉장고</h2><span class="award">팀 우수상 · 1위</span></div>
+    <p class="sum">자료를 저장할 때 '왜 저장하는지'를 같이 남겨두면, 나중에 그 이유가 다시 필요해졌을 때 AI가 자료를 꺼내주는 사내 서비스입니다. LG전자 AX 트랙 팀 프로젝트입니다.</p>
+    <div class="meta"><span><b>기간</b>2026.10.19 – 11.04</span><span><b>팀</b>4명</span><span><b>역할</b>자료 입고 워크플로우, 웹 화면</span><span><b>과정</b>LG전자 K-뉴딜 아카데미</span></div>
+
+    <div class="flowcmp" aria-label="기존 방식과 데이터 냉장고 비교">
+      <div class="flowrow"><b>AS-IS</b>
+        <div class="step"><strong>일단 저장</strong><span>필요할 것 같아서</span></div>
+        <div class="step"><strong>잊어버림</strong><span>어디 뒀는지, 왜 뒀는지</span></div>
+        <div class="step"><strong>다시 검색</strong><span>폴더와 키워드를 뒤짐</span></div>
+        <div class="step"><strong>재확인</strong><span>찾은 게 맞는지 열어봄</span></div>
+      </div>
+      <div class="flowrow to"><b>TO-BE</b>
+        <div class="step"><strong>이유와 함께 저장</strong><span>왜, 언제 쓸지 남김</span></div>
+        <div class="step"><strong>AI 정리</strong><span>요약·태그 초안</span></div>
+        <div class="step key"><strong>사람이 확정</strong><span>초안을 확인하고 저장</span></div>
+        <div class="step"><strong>필요할 때 꺼내줌</strong><span>관련 일정 전에 먼저 제안</span></div>
+      </div>
+    </div>
+
+    <div class="media">
+      <div class="two">
+        <figure><img src="../assets/fridge-n8n.jpg" alt="n8n 자료 입고 워크플로우 캔버스" loading="lazy" width="1297" height="746"><figcaption>n8n 기반 자료 입고 워크플로우</figcaption></figure>
+        <figure><img src="../assets/fridge-ui.jpg" alt="3D 냉장고 UI 메인 화면" loading="lazy" width="1600" height="1000"><figcaption>3D 냉장고 UI 메인 화면 (시연용 데이터)</figcaption></figure>
+      </div>
+    </div>
+
+    <div class="cols">
+      <div>
+        <p>자료가 들어오는 입구와 웹 화면을 맡았습니다. 어떤 형식의 파일이 들어와도 AI가 읽을 수 있는 카드로 바꾸는 흐름을 n8n으로 만들었고, 팀원 버전과 비교한 뒤 이 구조가 팀 기본안이 됐습니다. 프로젝트는 5개 팀 중 1위로 팀 우수상을 받았습니다.</p>
+        <p><b>AI 결과는 그대로 저장하지 않게 했습니다.</b> 요약과 태그는 초안으로만 만들고, 사람이 확인하고 고쳐야 저장됩니다. 테스트하다가 깨진 파일이 '변환 성공'으로 통과하는 걸 발견해서, 실패를 네 가지로 나눠 각각 다른 안내를 띄우게 했습니다.</p>
+        <p>화면은 냉장고 그대로 만들었습니다. 반찬통을 열면 넣기, 꺼내기, 브리핑으로 들어가서, 처음 보는 사람도 자료를 넣는 곳과 꺼내는 곳을 바로 구분할 수 있게 했습니다.</p>
+      </div>
+      <aside>
+        <h4><span class="ms">task_alt</span>맡은 일</h4>
+        <ul>
+          <li>n8n 자료 입고 워크플로우</li>
+          <li>문서 변환 서버 (n8n 안에서 변환하는 방법을 먼저 검토했다가 환경 제약 때문에 별도 서버로)</li>
+          <li>웹 화면 기획·구현 (3D 냉장고 UI)</li>
+        </ul>
+        <div class="tech"><span class="chip"><svg viewBox="0 0 24 24" aria-hidden="true" fill="#EA4B71"><path d="M21.4737 5.6842c-1.1772 0-2.1663.8051-2.4468 1.8947h-2.8955c-1.235 0-2.289.893-2.492 2.111l-.1038.623a1.263 1.263 0 0 1-1.246 1.0555H11.289c-.2805-1.0896-1.2696-1.8947-2.4468-1.8947s-2.1663.8051-2.4467 1.8947H4.973c-.2805-1.0896-1.2696-1.8947-2.4468-1.8947C1.1311 9.4737 0 10.6047 0 12s1.131 2.5263 2.5263 2.5263c1.1772 0 2.1663-.8051 2.4468-1.8947h1.4223c.2804 1.0896 1.2696 1.8947 2.4467 1.8947 1.1772 0 2.1663-.8051 2.4468-1.8947h1.0008a1.263 1.263 0 0 1 1.2459 1.0555l.1038.623c.203 1.218 1.257 2.111 2.492 2.111h.3692c.2804 1.0895 1.2696 1.8947 2.4468 1.8947 1.3952 0 2.5263-1.131 2.5263-2.5263s-1.131-2.5263-2.5263-2.5263c-1.1772 0-2.1664.805-2.4468 1.8947h-.3692a1.263 1.263 0 0 1-1.246-1.0555l-.1037-.623A2.52 2.52 0 0 0 13.9607 12a2.52 2.52 0 0 0 .821-1.4794l.1038-.623a1.263 1.263 0 0 1 1.2459-1.0555h2.8955c.2805 1.0896 1.2696 1.8947 2.4468 1.8947 1.3952 0 2.5263-1.131 2.5263-2.5263s-1.131-2.5263-2.5263-2.5263m0 1.2632a1.263 1.263 0 0 1 1.2631 1.2631 1.263 1.263 0 0 1-1.2631 1.2632 1.263 1.263 0 0 1-1.2632-1.2632 1.263 1.263 0 0 1 1.2632-1.2631M2.5263 10.7368A1.263 1.263 0 0 1 3.7895 12a1.263 1.263 0 0 1-1.2632 1.2632A1.263 1.263 0 0 1 1.2632 12a1.263 1.263 0 0 1 1.2631-1.2632m6.3158 0A1.263 1.263 0 0 1 10.1053 12a1.263 1.263 0 0 1-1.2632 1.2632A1.263 1.263 0 0 1 7.579 12a1.263 1.263 0 0 1 1.2632-1.2632m10.1053 3.7895a1.263 1.263 0 0 1 1.2631 1.2632 1.263 1.263 0 0 1-1.2631 1.2631 1.263 1.263 0 0 1-1.2632-1.2631 1.263 1.263 0 0 1 1.2632-1.2632"/></svg>n8n</span><span class="chip"><svg viewBox="0 0 24 24" aria-hidden="true" fill="#009688"><path d="M12 .0387C5.3729.0384.0003 5.3931 0 11.9988c-.001 6.6066 5.372 11.9628 12 11.9625 6.628.0003 12.001-5.3559 12-11.9625-.0003-6.6057-5.3729-11.9604-12-11.96m-.829 5.4153h7.55l-7.5805 5.3284h5.1828L5.279 18.5436q2.9466-6.5444 5.892-13.0896"/></svg>FastAPI</span><span class="chip"><span class="ms">code</span>MarkItDown</span><span class="chip"><svg viewBox="0 0 24 24" aria-hidden="true" fill="#2496ED"><path d="M13.983 11.078h2.119a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.119a.185.185 0 00-.185.185v1.888c0 .102.083.185.185.185m-2.954-5.43h2.118a.186.186 0 00.186-.186V3.574a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m0 2.716h2.118a.187.187 0 00.186-.186V6.29a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.887c0 .102.082.185.185.186m-2.93 0h2.12a.186.186 0 00.184-.186V6.29a.185.185 0 00-.185-.185H8.1a.185.185 0 00-.185.185v1.887c0 .102.083.185.185.186m-2.964 0h2.119a.186.186 0 00.185-.186V6.29a.185.185 0 00-.185-.185H5.136a.186.186 0 00-.186.185v1.887c0 .102.084.185.186.186m5.893 2.715h2.118a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m-2.93 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.083.185.185.185m-2.964 0h2.119a.185.185 0 00.185-.185V9.006a.185.185 0 00-.184-.186h-2.12a.186.186 0 00-.186.186v1.887c0 .102.084.185.186.185m-2.92 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.082.185.185.185M23.763 9.89c-.065-.051-.672-.51-1.954-.51-.338.001-.676.03-1.01.087-.248-1.7-1.653-2.53-1.716-2.566l-.344-.199-.226.327c-.284.438-.49.922-.612 1.43-.23.97-.09 1.882.403 2.661-.595.332-1.55.413-1.744.42H.751a.751.751 0 00-.75.748 11.376 11.376 0 00.692 4.062c.545 1.428 1.355 2.48 2.41 3.124 1.18.723 3.1 1.137 5.275 1.137.983.003 1.963-.086 2.93-.266a12.248 12.248 0 003.823-1.389c.98-.567 1.86-1.288 2.61-2.136 1.252-1.418 1.998-2.997 2.553-4.4h.221c1.372 0 2.215-.549 2.68-1.009.309-.293.55-.65.707-1.046l.098-.288Z"/></svg>Docker</span><span class="chip"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M18.263.007c-3.121-.147-5.744 2.109-6.192 5.082-.018.138-.045.272-.067.405-.696 3.703-3.936 6.507-7.827 6.507-1.388 0-2.691-.356-3.825-.979a.2024.2024 0 0 0-.302.178V24H12v-8.999c0-1.656 1.338-3 2.987-3h2.988c3.382 0 6.103-2.817 5.97-6.244-.12-3.084-2.61-5.603-5.682-5.75"/></svg>Render</span><span class="chip"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M.38 0a.268.268 0 0 0-.256.332l2.894 11.716a.268.268 0 0 0 .01.04l2.89 11.708a.268.268 0 0 0 .447.128L23.802 7.15a.268.268 0 0 0-.112-.45l-5.784-1.667a.268.268 0 0 0-.123-.035L6.38 1.715a.268.268 0 0 0-.144-.04L.456.01A.268.268 0 0 0 .38 0zm.374.654L5.71 2.08 1.99 5.664zM6.61 2.34l4.864 1.4-3.65 3.515zm-.522.12l1.217 4.926-4.877-1.4zm6.28 1.538l4.878 1.404-3.662 3.53zm-.52.13l1.208 4.9-4.853-1.392zm6.3 1.534l4.947 1.424-3.715 3.574zm-.524.12l1.215 4.926-4.876-1.398zm-15.432.696l4.964 1.424-3.726 3.586zM8.047 8.15l4.877 1.4-3.66 3.527zm-.518.137l1.236 5.017-4.963-1.432zm6.274 1.535l4.965 1.425-3.73 3.586zm-.52.127l1.235 5.012-4.958-1.43zm-9.63 2.438l4.873 1.406-3.656 3.523zm5.854 1.687l4.863 1.403-3.648 3.51zm-.54.04l1.214 4.927-4.875-1.4zm-3.896 4.02l5.037 1.442-3.782 3.638z"/></svg>Three.js</span><span class="chip"><svg viewBox="0 0 24 24" aria-hidden="true" fill="#88CE02"><path d="M17.21 0c-.545.003-1.084.134-1.256.367-.11.165-.192 1.196-.11 1.718 0 0 .032.345.09.614a14.6 14.6 0 0 1-.02.182 7.024 7.024 0 0 1-.097.605c-.01.056-.207.095-.425.152a2.495 2.495 0 0 0-.138-.042c-.234-.069-.385.123-.618.26-.069-.04-.371-.178-.536-.082-.165.096-.275.193-.44.261-.082-.041-.302-.041-.48.028a1.27 1.27 0 0 0-.483.278c-2.314.58-4.813 1.635-5.012 1.741-1.017.522-2.679 1.415-3.434 2.033-1.291 1.071-2.06 2.322-2.363 3.242-.385 1.14-.275 1.827.096 1.387.298-.366 1.632-1.454 2.475-1.999l-.002.007a3.219 3.219 0 0 1 .44-.26l.233-.124.505-.323c.602.552.803 1.433.937 2.63.22 1.841 1.704 2.693 3.434 2.72 1.8.028 2.446.399 3.119 1.305.153.201.318.307.47.368a1.954 1.954 0 0 0-.16.405c-.075.17-.125.38-.157.608a.157.157 0 0 0-.03.075c-.068.536-.055 1.8-.068 2.473-.014.673-.028.77-.083.866-.055.11-.11.178-.178.467-.069.302-.193.384-.316.631-.206.385-.165.81.041 1.003.206.192.77.481 1.538.385.77-.096.88-.151.756-.893-.014-.11-.192-.605-.137-.797.082-.206-.096-.563-.055-.577.041-.014.096-.288.096-.426 0-.137-.014-.796.137-1.14.062-.14.193-.46.326-.785.442-.723.459-1.161.48-1.41.03-.202.046-.46.018-.744.055-.083.289-.275.316-.646 0 0 .644-.337 1.102-1.148.16.557.31.91.286 1.272-.499.39-.684.678-.76.959-.048-.02-.076-.037-.11-.04h-.027a.437.437 0 0 0-.106.029c-.192.068-.041 1.318.165 1.827.206.508.316.81.398 1.36.083.549-.192 1.222-.302 1.524 0 0-.179.536.233.824.358.248 1.704.18 2.308.18.605 0 1.511.219 2.088.109.715-.124.824-.55.399-.77-.426-.22-1.072-.329-1.91-.933-.22-.152-.522-.289-.563-.412-.041-.124-.041-.838-.027-1.457.013-.618.22-1.414.288-1.84.064-.398-.076-.388-.262-.351.032-.147.066-.292.097-.446.344-.632.193-1.223.193-1.223.82-1.044.4-3.27.22-4.048.64.303.96.188.96.188.102-.055.192-.134.274-.224.337-.362.51-.916.51-.916V11c.782-.783 1.151-1.936.26-2.692a1.331 1.331 0 0 0-.219-1.263 1.56 1.56 0 0 0-.37-1.731 1.36 1.36 0 0 0-.487-.297c-.2-.295-.245-.417-.572-.349-.15-.165-.178-.288-.494-.178 0 0-.096-.234-.275-.289a.25.25 0 0 0-.05-.015c-.302-.21-.576-.215-.772-.16-.064-.048-.061-.124-.07-.388-.008-.2-.019-.486-.031-.744.027-.328.102-.974.126-1.303.028-.37.042-.948-.123-1.195C18.303.12 17.754-.003 17.21 0zm-.005.34c.7 0 1.002.22 1.044.343.013.028.082.495.04.797-.013.11-.027.509-.054.687-.014.179-.069.385-.124.673-.041.234-.233.495-.384.536-.261.069-.742.055-1.017 0-.069-.014-.124-.055-.192-.096-.151-.248-.234-.44-.261-.742-.028-.289-.083-.412-.096-.632-.014-.33-.014-.55-.014-.55.014-.178.069-.618.069-.659.013-.123.233-.357.989-.357zm-1.133 2.702c.146.149.301.306.432.416.124.11.426.096.7.096.248 0 .468.028.564-.027.154-.077.355-.235.523-.394.011.152.022.304.026.435.01.295-.043.468.024.57-.082.048-.174.105-.269.156-.151.08-.306.136-.403.115h-.002c-.209-.035-.931-.215-1.331-.407-.167-.259-.335-.398-.326-.448.027-.137.04-.247.054-.425.004-.03.005-.058.008-.088zm-.853.69l.035.001c.424.036.65.152.808.284l.076.03.008-.027c.047.03.102.06.162.088.47.159 1.104.308 1.309.353.247.055.645-.192.838-.316.343-.22.783-.04.989.193.137.15.192.247.192.288.316-.11.357.041.508.206.385-.179.412.041.44.137-.122 0-.298.014-.538.04l-.012-.012c-.144-.153-.402-.289-.599-.384-.087-.031-.18-.049-.252-.097-.11-.055-.22-.137-.385-.123-.687.082-.824.315-1.415.178-.577-.134-.737-.254-1.333-.221l.001.026c-.105.016-.2.03-.22.03-.206.012-.722.067-1.153-.1a1.256 1.256 0 0 0-.161-.076l-.005-.002h-.001c-.18-.07-.39-.11-.63-.112h-.026c.218-.11.356-.259.56-.218.22.041.44.22.564.357a.858.858 0 0 0-.178-.288c.128-.09.245-.229.418-.234zm-1.1.545c.15.002.28.026.417.073.018.009.034.018.059.029.288.137.81.164 1.25.137a2.26 2.26 0 0 0 .563-.095c.322.024.514.11.977.216.31.07.502.045.695-.007.193-.053.386-.13.723-.17a.542.542 0 0 1 .188.013c.038.02.075.04.11.061.062.049.214.135.343.189.164.068.59.357.645.425a.1.1 0 0 0 .038.03c.242.314.407.755.396 1.21-.06.46-.426.214-.626.12-.412-.178-.824-.302-1.305-.302-.48 0-1.099.041-1.635.179-.741.206-.961.192-1.29.027-.33-.178-.907-.618-.907-.618v.01c-.007-.007-.012-.012-.014-.01-.042.069-.138.247-.193.33-.027.522-.343 1.346-.934 1.552a.547.547 0 0 1-.467-.041 2.503 2.503 0 0 0-.55-.275c.481.384.729.673.949 1.181.174.43.415 1.017 1.002 1.646.363-.004.725.097.962.346.137.137.357.289.33.426 0 .041-.083.151-.151.234a3.231 3.231 0 0 1-.207.22c-.054.04-.247.192-.288.22-.041.027-.096.095-.137.109-.138.069-.289.014-.426-.055s.027-.082-.124-.192c-.34-.24-.541-.411-.454-.832-.932-.794-2.561-1.26-2.911-2.108-.22-.55-.248-.824-.042-1.058.605-.687.371-1.346.825-1.634.425-.275.783.04.989.33-.124-.509-.55-.633-.55-.674 0-.632.605-1.071 1.21-1.181.218-.041.389-.062.54-.06zm-1.847.534c-.14.196-.231.435-.246.721-.206.028-.673.055-.907.907a3.39 3.39 0 0 1-.214.62c-.103.045-2.946 1.274-5.229 2.542l-.01-.007c-.32.18-.627.363-.919.546l-.125.077-.001.003c-1.136.723-2.04 1.45-2.637 2.112.412-2.679 2.528-4.08 3.53-4.698 2.42-1.489 4.629-2.225 6.758-2.823zm8.037.323c.26-.004.536.06.756.275.59.577.425 1.209.247 1.648.15.179.508.687.288 1.291-.04.138-.343.138-.563.495.55-.316.893-.233 1.017.165.192.618-.234 1.36-.605 1.772 0-.014-.014-.028-.014-.041-.055.206-.123.604-.535 1.044-.206.22-.371.192-.605.137-.215-.054-.322-.142-.543-.276-.036-.207-.102-.482-.102-.59 0-.044-.004-.141-.01-.243.032-.036.066-.074.106-.114 0 0 .178-.247.44-.233.26.014.535-.041.604-.11 0-.48-.55-.494-.357-1.319.013-.04.082-.11.302-.137-.33-.069-.48-.083-.714-.302l-.013-.013c.11-.253.224-.457.301-.605.193-.385.082-.852.082-.852.207-.069.385-.179.413-.247.203-.673-.164-1.322-.605-1.74.036-.003.073-.005.11-.006zm-5.46.925c.01.016.02.033.034.05.179.22.577.495 1.113.673.26.083.467.028.7-.027 1.123-.278 2.304-.346 3.33.155a1.82 1.82 0 0 1-.157 1.068c-.232.465-.533 1.068-.48 2.215-.246.044-1.419.144-1.992.037-.521-.097-1.416-.525-1.62-.69a6.703 6.703 0 0 1-.125-.848 1.37 1.37 0 0 0 .454-.343c-.412.068-.577.04-.825-.097-.235-.13-.642-.533-.87-.82.229-.29.393-.69.335-1.226.037-.05.07-.099.102-.147zm-4.38 1.598c-.09.253.093.654.224.953.508 1.179 2.07 1.29 3.127 2.18a.723.723 0 0 0 .06.388c.083.165.371.413.371.413-.055.054-.027.164-.027.164.204.217.504.243.547.246-.435 1.248-.816 2.626-.451 4.095-.179.244-.368.445-.531.668a.851.851 0 0 1-.444-.31c-.591-.852-1.457-1.416-3.023-1.374-2.349.055-3.283-.907-3.461-2.748-.094-.974-.357-1.922-.888-2.479C7.489 9.014 9.6 7.937 10.268 7.73a2.8 2.8 0 0 0 .2-.073zm3.496.18c.381.442.795.727 1.193.979.082.343.11.577.192 1.03h-.041l-.027.308a2.836 2.836 0 0 0-.62-.113l.001-.003c-.893-1.057-.7-1.47-1.058-2.019.097-.034.225-.094.36-.182zm5.911 1.086c.076.067.178.12.323.154-.327.68.33.912.37 1.17-.143.083-.367.037-.603.025-.115-.006-.229.065-.321.147l.032-.367c.006-.43.09-.809.2-1.13zM15.79 9.947c.024.035.178.131 1.002.352 1.026.275 2.323.12 2.55.09a.378.378 0 0 1-.022.089c0 .343.055.59.096.81.053.308.13.533.163.74l.008-.007c.234 1.367.561 3.133-.267 4.048.041.192.069.467.014.783a3.204 3.204 0 0 1-.151.535 2.29 2.29 0 0 0-.108.352c-1.1.142-1.755.055-2.06-.015.123-.374.407-.754.876-.735-.022-.911-.264-1.223-.511-1.891.395-.883.299-1.665.621-2.848-.247.261-.44 1.209-.604 1.786-.206.838-.563 1.648-1.525 2.294 0 .22-.069.384-.151.494-.179.261-.412.344-.494.77.11-.138.26-.261.26-.22a8.51 8.51 0 0 1-.025.493l.012.001c-.165 1.044-.522 1.525-.742 2.115-.151.426-.096 1.36-.151 1.374-.385.083-.975-.068-1.14-.15.162-1.14.019-2.278.436-3.6l-.015-.006c.16-.554.478-.878.939-1.464-.161-.52-.532-1.64.266-4.182.033-.014.067-.03.105-.049l.206-.137c.04-.028.096-.069.137-.096.069-.042.371-.371.412-.412.096-.097.165-.124.192-.234.055-.206-.247-.412-.37-.55-.018-.019-.03-.034-.043-.05.013-.039.027-.077.042-.114.01-.125.028-.26.042-.367zm.883 7.942c.05.002.174.122.751.158.66.04 1.539-.083 1.772-.138.234-.055.097.11.069.275l-.026.169c-.399.134-1.008.188-1.416.202-.393.013-.846-.012-1.161-.11-.048-.26-.063-.47-.007-.55a.024.024 0 0 1 .018-.006zm2.506.846c-.02.135-.035.223-.058.372-.388.12-.888.122-1.27.135a4.413 4.413 0 0 1-1.012-.07 2.065 2.065 0 0 1-.033-.109 11.343 11.343 0 0 1-.065-.252c.179.034.53.079 1.15.087a4.142 4.142 0 0 0 1.288-.163zm-.106.685c-.069.44-.055 1.786-.014 2.157.014.11.948.522 1.277.77.107.085.259.157.422.222.042.042.116.105.197.203.162.213.052.436-.135.526-.264-.007-.568-.052-1.074-.128-.695-.104-1.129-.101-1.73-.106v-.003c-.152-.275-.056-.728-.056-.728a2.2 2.2 0 0 1-.809-.18l.012-.026c.234-.48.22-.591.151-1.415-.047-.578-.196-.883-.335-1.195.169.016.409.035.857.041a4.567 4.567 0 0 0 1.237-.138zm-5.306 2.084c.243 0 .6.032.676.1v.014c.014.165.165.399.11.522-.027.069-.096-.041-.192-.068.041.26.151.741.316 1.112.11.248.041.426-.33.495-.33.014-.755 0-1.112-.083-.412-.206-.55-.316-.467-.7.068-.275.494-.59.865-.838-.206.014-.426.165-.398-.014.055-.357.206-.33.302-.508-.02-.02.084-.032.23-.032z"/></svg>GSAP</span></div>
+        <div class="links">
+          <a class="btn btn--solid" href="https://www.youtube.com/watch?v=HB-bQzTXlkQ" target="_blank" rel="noopener"><span><svg class="brand brand--yt" viewBox="0 0 24 24" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>소개 영상</span></a>
+        </div>
+        <p class="stack" style="margin-top:8px">소개 영상은 Claude Code와 HyperFrames로 직접 제작</p>
+      </aside>
     </div>
   </section>
 
-  <section class="skills" id="skills" aria-labelledby="skills-h">
-    <h2 id="skills-h">Skills</h2>
-    <dl>
-      <div><dt>FRONTEND</dt><dd><span class="tks"><span class="tk"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#61DAFB" d="M14.23 12.004a2.236 2.236 0 0 1-2.235 2.236 2.236 2.236 0 0 1-2.236-2.236 2.236 2.236 0 0 1 2.235-2.236 2.236 2.236 0 0 1 2.236 2.236zm2.648-10.69c-1.346 0-3.107.96-4.888 2.622-1.78-1.653-3.542-2.602-4.887-2.602-.41 0-.783.093-1.106.278-1.375.793-1.683 3.264-.973 6.365C1.98 8.917 0 10.42 0 12.004c0 1.59 1.99 3.097 5.043 4.03-.704 3.113-.39 5.588.988 6.38.32.187.69.275 1.102.275 1.345 0 3.107-.96 4.888-2.624 1.78 1.654 3.542 2.603 4.887 2.603.41 0 .783-.09 1.106-.275 1.374-.792 1.683-3.263.973-6.365C22.02 15.096 24 13.59 24 12.004c0-1.59-1.99-3.097-5.043-4.032.704-3.11.39-5.587-.988-6.38-.318-.184-.688-.277-1.092-.278zm-.005 1.09v.006c.225 0 .406.044.558.127.666.382.955 1.835.73 3.704-.054.46-.142.945-.25 1.44-.96-.236-2.006-.417-3.107-.534-.66-.905-1.345-1.727-2.035-2.447 1.592-1.48 3.087-2.292 4.105-2.295zm-9.77.02c1.012 0 2.514.808 4.11 2.28-.686.72-1.37 1.537-2.02 2.442-1.107.117-2.154.298-3.113.538-.112-.49-.195-.964-.254-1.42-.23-1.868.054-3.32.714-3.707.19-.09.4-.127.563-.132zm4.882 3.05c.455.468.91.992 1.36 1.564-.44-.02-.89-.034-1.345-.034-.46 0-.915.01-1.36.034.44-.572.895-1.096 1.345-1.565zM12 8.1c.74 0 1.477.034 2.202.093.406.582.802 1.203 1.183 1.86.372.64.71 1.29 1.018 1.946-.308.655-.646 1.31-1.013 1.95-.38.66-.773 1.288-1.18 1.87-.728.063-1.466.098-2.21.098-.74 0-1.477-.035-2.202-.093-.406-.582-.802-1.204-1.183-1.86-.372-.64-.71-1.29-1.018-1.946.303-.657.646-1.313 1.013-1.954.38-.66.773-1.286 1.18-1.868.728-.064 1.466-.098 2.21-.098zm-3.635.254c-.24.377-.48.763-.704 1.16-.225.39-.435.782-.635 1.174-.265-.656-.49-1.31-.676-1.947.64-.15 1.315-.283 2.015-.386zm7.26 0c.695.103 1.365.23 2.006.387-.18.632-.405 1.282-.66 1.933-.2-.39-.41-.783-.64-1.174-.225-.392-.465-.774-.705-1.146zm3.063.675c.484.15.944.317 1.375.498 1.732.74 2.852 1.708 2.852 2.476-.005.768-1.125 1.74-2.857 2.475-.42.18-.88.342-1.355.493-.28-.958-.646-1.956-1.1-2.98.45-1.017.81-2.01 1.085-2.964zm-13.395.004c.278.96.645 1.957 1.1 2.98-.45 1.017-.812 2.01-1.086 2.964-.484-.15-.944-.318-1.37-.5-1.732-.737-2.852-1.706-2.852-2.474 0-.768 1.12-1.742 2.852-2.476.42-.18.88-.342 1.356-.494zm11.678 4.28c.265.657.49 1.312.676 1.948-.64.157-1.316.29-2.016.39.24-.375.48-.762.705-1.158.225-.39.435-.788.636-1.18zm-9.945.02c.2.392.41.783.64 1.175.23.39.465.772.705 1.143-.695-.102-1.365-.23-2.006-.386.18-.63.406-1.282.66-1.933zM17.92 16.32c.112.493.2.968.254 1.423.23 1.868-.054 3.32-.714 3.708-.147.09-.338.128-.563.128-1.012 0-2.514-.807-4.11-2.28.686-.72 1.37-1.536 2.02-2.44 1.107-.118 2.154-.3 3.113-.54zm-11.83.01c.96.234 2.006.415 3.107.532.66.905 1.345 1.727 2.035 2.446-1.595 1.483-3.092 2.295-4.11 2.295-.22-.005-.406-.05-.553-.132-.666-.38-.955-1.834-.73-3.703.054-.46.142-.944.25-1.438zm4.56.64c.44.02.89.034 1.345.034.46 0 .915-.01 1.36-.034-.44.572-.895 1.095-1.345 1.565-.455-.47-.91-.993-1.36-1.565z"/></svg>React</span><span class="tk"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4FC08D" d="M24,1.61H14.06L12,5.16,9.94,1.61H0L12,22.39ZM12,14.08,5.16,2.23H9.59L12,6.41l2.41-4.18h4.43Z"/></svg>Vue 3</span><span class="tk"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#3178C6" d="M1.125 0C.502 0 0 .502 0 1.125v21.75C0 23.498.502 24 1.125 24h21.75c.623 0 1.125-.502 1.125-1.125V1.125C24 .502 23.498 0 22.875 0zm17.363 9.75c.612 0 1.154.037 1.627.111a6.38 6.38 0 0 1 1.306.34v2.458a3.95 3.95 0 0 0-.643-.361 5.093 5.093 0 0 0-.717-.26 5.453 5.453 0 0 0-1.426-.2c-.3 0-.573.028-.819.086a2.1 2.1 0 0 0-.623.242c-.17.104-.3.229-.393.374a.888.888 0 0 0-.14.49c0 .196.053.373.156.529.104.156.252.304.443.444s.423.276.696.41c.273.135.582.274.926.416.47.197.892.407 1.266.628.374.222.695.473.963.753.268.279.472.598.614.957.142.359.214.776.214 1.253 0 .657-.125 1.21-.373 1.656a3.033 3.033 0 0 1-1.012 1.085 4.38 4.38 0 0 1-1.487.596c-.566.12-1.163.18-1.79.18a9.916 9.916 0 0 1-1.84-.164 5.544 5.544 0 0 1-1.512-.493v-2.63a5.033 5.033 0 0 0 3.237 1.2c.333 0 .624-.03.872-.09.249-.06.456-.144.623-.25.166-.108.29-.234.373-.38a1.023 1.023 0 0 0-.074-1.089 2.12 2.12 0 0 0-.537-.5 5.597 5.597 0 0 0-.807-.444 27.72 27.72 0 0 0-1.007-.436c-.918-.383-1.602-.852-2.053-1.405-.45-.553-.676-1.222-.676-2.005 0-.614.123-1.141.369-1.582.246-.441.58-.804 1.004-1.089a4.494 4.494 0 0 1 1.47-.629 7.536 7.536 0 0 1 1.77-.201zm-15.113.188h9.563v2.166H9.506v9.646H6.789v-9.646H3.375z"/></svg>TypeScript</span><span class="tk"><i class="tk-mono" style="background:#443E38;color:#fff" aria-hidden="true">Zu</i>Zustand</span><span class="tk"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#FFD859" d="M13.277.002c-.079-.01-.193.024-.31.09a2.346 2.346 0 0 0-.415.311c-.301.274-.65.68-.985 1.176-.672.99-1.31 2.356-1.485 3.785-.12.977-.154 1.849-.074 2.578a5.878 5.878 0 0 1 1.956-.338c.922 0 1.804.218 2.618.613.197-.637.34-1.395.445-2.246.175-1.429-.1-2.907-.499-4.028a6.695 6.695 0 0 0-.653-1.378 2.296 2.296 0 0 0-.321-.401c-.097-.092-.199-.153-.277-.162zm-6.81 2.965a.603.603 0 0 0-.288.117l-.013.011a.863.863 0 0 0-.177.327c-.051.15-.094.344-.126.565a8.205 8.205 0 0 0-.044 1.637c.08 1.222.397 2.665 1.079 3.769.093.15.193.296.294.442.726-.776 1.567-1.385 2.488-1.768-.1-.79-.06-1.714.066-2.744.038-.31.1-.616.176-.916a6.45 6.45 0 0 0-1.692-1.08 4.575 4.575 0 0 0-1.29-.366 1.805 1.805 0 0 0-.474.006zm11.751 1.789c-.21.003-.442.022-.687.06a5.974 5.974 0 0 0-2.132.76c-.009.146-.019.291-.036.437-.11.888-.258 1.684-.475 2.364.848.468 1.614 1.13 2.267 1.94.823-.85 1.43-2.05 1.787-3.13.187-.57.304-1.1.35-1.514.022-.207.027-.38.017-.51-.01-.133-.042-.206-.04-.202a.35.35 0 0 0-.114-.072 1.516 1.516 0 0 0-.375-.1 3.42 3.42 0 0 0-.562-.033zm-6.254 3.139c-2.014 0-3.83 1.087-5.147 2.834-1.316 1.748-2.131 4.16-2.131 6.807 0 2.65.806 4.258 2.131 5.218C8.132 23.707 9.96 24 11.964 24c2.004 0 3.831-.293 5.147-1.246 1.326-.96 2.133-2.568 2.133-5.218 0-2.647-.816-5.059-2.133-6.806-1.317-1.748-3.134-2.835-5.147-2.835Zm-3.297 5.209a1.282 1.282 0 0 1 .292 2.518c.115.094.177.201.164.307-.032.265-.521.424-1.09.354-.571-.07-1.007-.342-.974-.607.024-.198.302-.336.678-.364a1.282 1.282 0 0 1 .93-2.208zm6.284.22a1.282 1.282 0 0 1 .726 2.303c.437.058.757.244.757.466 0 .267-.466.483-1.04.483-.574 0-1.04-.216-1.04-.483 0-.098.063-.189.17-.265a1.282 1.282 0 0 1 .427-2.505zm-6.318.215a.822.822 0 1 0 .028 1.645.822.822 0 0 0-.028-1.645zm6.284.22a.822.822 0 1 0 .027 1.644.822.822 0 0 0-.027-1.644zm-6.543.109a.338.338 0 1 1-.023.677.338.338 0 0 1 .023-.677zm6.284.22a.339.339 0 1 1-.018 0h.018zm-3.91 1.179c.17.252.432.404.808.447.372.043.694-.05.976-.28a.145.145 0 1 1 .183.226c-.344.28-.745.394-1.192.343-.445-.051-.79-.24-1.016-.574a.145.145 0 1 1 .24-.162z"/></svg>Pinia</span></span></dd></div>
-      <div><dt>WEB 3D</dt><dd><span class="tks"><span class="tk"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#000000" d="M.38 0a.268.268 0 0 0-.256.332l2.894 11.716a.268.268 0 0 0 .01.04l2.89 11.708a.268.268 0 0 0 .447.128L23.802 7.15a.268.268 0 0 0-.112-.45l-5.784-1.667a.268.268 0 0 0-.123-.035L6.38 1.715a.268.268 0 0 0-.144-.04L.456.01A.268.268 0 0 0 .38 0zm.374.654L5.71 2.08 1.99 5.664zM6.61 2.34l4.864 1.4-3.65 3.515zm-.522.12l1.217 4.926-4.877-1.4zm6.28 1.538l4.878 1.404-3.662 3.53zm-.52.13l1.208 4.9-4.853-1.392zm6.3 1.534l4.947 1.424-3.715 3.574zm-.524.12l1.215 4.926-4.876-1.398zm-15.432.696l4.964 1.424-3.726 3.586zM8.047 8.15l4.877 1.4-3.66 3.527zm-.518.137l1.236 5.017-4.963-1.432zm6.274 1.535l4.965 1.425-3.73 3.586zm-.52.127l1.235 5.012-4.958-1.43zm-9.63 2.438l4.873 1.406-3.656 3.523zm5.854 1.687l4.863 1.403-3.648 3.51zm-.54.04l1.214 4.927-4.875-1.4zm-3.896 4.02l5.037 1.442-3.782 3.638z"/></svg>Three.js</span><span class="tk"><i class="tk-mono" style="background:#20232A;color:#61DAFB" aria-hidden="true">R3F</i>React Three Fiber</span></span></dd></div>
-      <div><dt>3D ASSET</dt><dd><span class="tks"><span class="tk"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#E87D0D" d="M12.51 13.214c.046-.8.438-1.506 1.03-2.006a3.424 3.424 0 0 1 2.212-.79c.85 0 1.631.3 2.211.79.592.5.983 1.206 1.028 2.005.045.823-.285 1.586-.865 2.153a3.389 3.389 0 0 1-2.374.938 3.393 3.393 0 0 1-2.376-.938c-.58-.567-.91-1.33-.865-2.152M7.35 14.831c.006.314.106.922.256 1.398a7.372 7.372 0 0 0 1.593 2.757 8.227 8.227 0 0 0 2.787 2.001 8.947 8.947 0 0 0 3.66.76 8.964 8.964 0 0 0 3.657-.772 8.285 8.285 0 0 0 2.785-2.01 7.428 7.428 0 0 0 1.592-2.762 6.964 6.964 0 0 0 .25-3.074 7.123 7.123 0 0 0-1.016-2.779 7.764 7.764 0 0 0-1.852-2.043h.002L13.566 2.55l-.02-.015c-.492-.378-1.319-.376-1.86.002-.547.382-.609 1.015-.123 1.415l-.001.001 3.126 2.543-9.53.01h-.013c-.788.001-1.545.518-1.695 1.172-.154.665.38 1.217 1.2 1.22V8.9l4.83-.01-8.62 6.617-.034.025c-.813.622-1.075 1.658-.563 2.313.52.667 1.625.668 2.447.004L7.414 14s-.069.52-.063.831zm12.09 1.741c-.97.988-2.326 1.548-3.795 1.55-1.47.004-2.827-.552-3.797-1.538a4.51 4.51 0 0 1-1.036-1.622 4.282 4.282 0 0 1 .282-3.519 4.702 4.702 0 0 1 1.153-1.371c.942-.768 2.141-1.183 3.396-1.185 1.256-.002 2.455.41 3.398 1.175.48.391.87.854 1.152 1.367a4.28 4.28 0 0 1 .522 1.706 4.236 4.236 0 0 1-.239 1.811 4.54 4.54 0 0 1-1.035 1.626"/></svg>Blender</span></span></dd></div>
-      <div><dt>DESIGN</dt><dd><span class="tks"><span class="tk"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#E51050" d="M3.8672 1.0527v.0157L0 3.3848v17.914l3.8965-2.332h18.3398V2.3301c0-.702-.5773-1.2774-1.2793-1.2774H3.8672zm7.5058 4.0098h3.3008l2.9844 9.9512h-2.5879l-.5683-2.1895h-2.9844l-.5703 2.1621h-2.416l2.8417-9.9238zm11.8633.0273v14.877H4.172l-2.0684 1.2383v.4648c0 .702.5793 1.2774 1.2813 1.2774H24V5.0898h-.7637zM12.9668 6.6816l-.9941 4.3243h2.0468l-1.0527-4.3243z"/></svg>AutoCAD</span><span class="tk"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#005F9E" d="M.968 9.027l7.717 4.428-.006 1.32-4.39-2.518-2.763 1.57 7.148 4.12.005 1.27-7.658-4.405c.02.516.488 2.106 1.383 3.337.91 1.247 1.946 1.776 1.946 1.776L11.428 24V11.849L.975 5.846zm22.064-3.8L15.22.723S13.982 0 12.008 0C9.952 0 8.76.746 8.76.746l-7.236 4.14 11.009 6.328V24l7.245-4.136s1.295-.715 2.279-2.414c.867-1.496.975-2.943.975-2.943zM11.251 7.308s1.615-.298 2.98.49l2.171 1.25s.003 1.097.003 2.736c0 1.313-1.112 2.674-1.112 2.674l.002-4.816zm6.402 10.562l-2.358 1.353v-1.269l1.835-1.05c1.748-1.26 2.037-3.117 2.037-3.761l-.007-5.705-5.006-2.881s-.76-.499-2.129-.499c-1.367 0-2.113.461-2.113.461L8.154 5.53l-1.11-.641L9.473 3.5s.95-.527 2.544-.527c1.462 0 2.6.571 2.6.571L20.27 6.81l-.007 6.226c.04.957-.406 3.296-2.61 4.835z"/></svg>SketchUp</span><span class="tk"><i class="tk-mono" style="background:#001E36;color:#31A8FF" aria-hidden="true">Ps</i>Adobe Photoshop</span></span></dd></div>
-      <div><dt>REALTIME</dt><dd><span class="tks"><span class="tk"><i class="tk-mono" style="background:#4A5560;color:#fff" aria-hidden="true">WS</i>WebSocket</span></span></dd></div>
-      <div><dt>AUTOMATION</dt><dd><span class="tks"><span class="tk"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#EA4B71" d="M21.4737 5.6842c-1.1772 0-2.1663.8051-2.4468 1.8947h-2.8955c-1.235 0-2.289.893-2.492 2.111l-.1038.623a1.263 1.263 0 0 1-1.246 1.0555H11.289c-.2805-1.0896-1.2696-1.8947-2.4468-1.8947s-2.1663.8051-2.4467 1.8947H4.973c-.2805-1.0896-1.2696-1.8947-2.4468-1.8947C1.1311 9.4737 0 10.6047 0 12s1.131 2.5263 2.5263 2.5263c1.1772 0 2.1663-.8051 2.4468-1.8947h1.4223c.2804 1.0896 1.2696 1.8947 2.4467 1.8947 1.1772 0 2.1663-.8051 2.4468-1.8947h1.0008a1.263 1.263 0 0 1 1.2459 1.0555l.1038.623c.203 1.218 1.257 2.111 2.492 2.111h.3692c.2804 1.0895 1.2696 1.8947 2.4468 1.8947 1.3952 0 2.5263-1.131 2.5263-2.5263s-1.131-2.5263-2.5263-2.5263c-1.1772 0-2.1664.805-2.4468 1.8947h-.3692a1.263 1.263 0 0 1-1.246-1.0555l-.1037-.623A2.52 2.52 0 0 0 13.9607 12a2.52 2.52 0 0 0 .821-1.4794l.1038-.623a1.263 1.263 0 0 1 1.2459-1.0555h2.8955c.2805 1.0896 1.2696 1.8947 2.4468 1.8947 1.3952 0 2.5263-1.131 2.5263-2.5263s-1.131-2.5263-2.5263-2.5263m0 1.2632a1.263 1.263 0 0 1 1.2631 1.2631 1.263 1.263 0 0 1-1.2631 1.2632 1.263 1.263 0 0 1-1.2632-1.2632 1.263 1.263 0 0 1 1.2632-1.2631M2.5263 10.7368A1.263 1.263 0 0 1 3.7895 12a1.263 1.263 0 0 1-1.2632 1.2632A1.263 1.263 0 0 1 1.2632 12a1.263 1.263 0 0 1 1.2631-1.2632m6.3158 0A1.263 1.263 0 0 1 10.1053 12a1.263 1.263 0 0 1-1.2632 1.2632A1.263 1.263 0 0 1 7.579 12a1.263 1.263 0 0 1 1.2632-1.2632m10.1053 3.7895a1.263 1.263 0 0 1 1.2631 1.2632 1.263 1.263 0 0 1-1.2631 1.2631 1.263 1.263 0 0 1-1.2632-1.2631 1.263 1.263 0 0 1 1.2632-1.2632"/></svg>n8n</span></span></dd></div>
-      <div><dt>COLLAB</dt><dd><span class="tks"><span class="tk"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#F03C2E" d="M13.09 23.549a1.54 1.54 0 0 1-2.18 0L.451 13.089a1.54 1.54 0 0 1 0-2.179l7.191-7.19 2.733 2.733a1.85 1.85 0 0 0 .964 2.326v6.66a1.849 1.849 0 1 0 1.54 0V8.957l2.508 2.508a1.85 1.85 0 1 0 1.09-1.09l-2.634-2.634a1.85 1.85 0 0 0-2.378-2.377L8.73 2.63 10.91.451a1.54 1.54 0 0 1 2.179 0l10.459 10.46a1.54 1.54 0 0 1 0 2.179z"/></svg>Git</span><span class="tk"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#0052CC" d="M11.571 11.513H0a5.218 5.218 0 0 0 5.232 5.215h2.13v2.057A5.215 5.215 0 0 0 12.575 24V12.518a1.005 1.005 0 0 0-1.005-1.005zm5.723-5.756H5.736a5.215 5.215 0 0 0 5.215 5.214h2.129v2.058a5.218 5.218 0 0 0 5.215 5.214V6.758a1.001 1.001 0 0 0-1.001-1.001zM23.013 0H11.455a5.215 5.215 0 0 0 5.215 5.215h2.129v2.057A5.215 5.215 0 0 0 24 12.483V1.005A1.001 1.001 0 0 0 23.013 0Z"/></svg>Jira</span><span class="tk"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#F24E1E" d="M15.852 8.981h-4.588V0h4.588c2.476 0 4.49 2.014 4.49 4.49s-2.014 4.491-4.49 4.491zM12.735 7.51h3.117c1.665 0 3.019-1.355 3.019-3.019s-1.355-3.019-3.019-3.019h-3.117V7.51zm0 1.471H8.148c-2.476 0-4.49-2.014-4.49-4.49S5.672 0 8.148 0h4.588v8.981zm-4.587-7.51c-1.665 0-3.019 1.355-3.019 3.019s1.354 3.02 3.019 3.02h3.117V1.471H8.148zm4.587 15.019H8.148c-2.476 0-4.49-2.014-4.49-4.49s2.014-4.49 4.49-4.49h4.588v8.98zM8.148 8.981c-1.665 0-3.019 1.355-3.019 3.019s1.355 3.019 3.019 3.019h3.117V8.981H8.148zM8.172 24c-2.489 0-4.515-2.014-4.515-4.49s2.014-4.49 4.49-4.49h4.588v4.441c0 2.503-2.047 4.539-4.563 4.539zm-.024-7.51a3.023 3.023 0 0 0-3.019 3.019c0 1.665 1.365 3.019 3.044 3.019 1.705 0 3.093-1.376 3.093-3.068v-2.97H8.148zm7.704 0h-.098c-2.476 0-4.49-2.014-4.49-4.49s2.014-4.49 4.49-4.49h.098c2.476 0 4.49 2.014 4.49 4.49s-2.014 4.49-4.49 4.49zm-.097-7.509c-1.665 0-3.019 1.355-3.019 3.019s1.355 3.019 3.019 3.019h.098c1.665 0 3.019-1.355 3.019-3.019s-1.355-3.019-3.019-3.019h-.098z"/></svg>Figma</span><span class="tk"><i class="tk-mono" style="background:#00C4CC;color:#fff" aria-hidden="true">C</i>Canva</span></span></dd></div>
-    </dl>
+  <!-- DocQ -->
+  <section class="sheet" id="docq">
+    <div class="ph"><h2>DocQ</h2><span class="award">공통 최우수상</span></div>
+    <p class="sum">PDF를 올리면 AI가 퀴즈를 만들고, 최대 4명이 룰렛을 돌려 보드를 이동하며 푸는 학습 서비스입니다.</p>
+    <div class="meta"><span><b>기간</b>2026.01.06 – 02.13</span><span><b>팀</b>6명 (FE 3)</span><span><b>역할</b>UX 방향, FE, 3D 에셋</span></div>
+    <div class="media">
+      <figure><a href="https://github.com/mm-sj/S14P11D209" target="_blank" rel="noopener"><video data-src="../assets/docq-main.mp4" poster="../assets/docq-main.jpg" muted loop playsinline aria-label="DocQ 메인 화면 영상"></video></a><figcaption>3D 캐러셀 메뉴 기반 메인 화면</figcaption></figure>
+      <div class="two">
+        <figure><video data-src="../assets/docq-waiting.mp4" poster="../assets/docq-waiting.jpg" muted loop playsinline aria-label="대기실 영상"></video><figcaption>캐릭터 선택·PDF 업로드 대기실</figcaption></figure>
+        <figure><video data-src="../assets/docq-board.mp4" poster="../assets/docq-board.jpg" muted loop playsinline aria-label="보드 맵 영상"></video><figcaption>Blender로 제작한 3D 보드 맵</figcaption></figure>
+      </div>
+    </div>
+    <div class="cols">
+      <div>
+        <p>문서를 다 읽은 것과 제대로 이해한 것은 다른데, 혼자 확인하는 건 지루해서 잘 안 하게 됩니다. 그래서 친구와 겨루는 게임으로 만들었습니다. <b>저는 이 게임이 어떤 모습이고 어떤 느낌일지를 정하는 역할이었습니다.</b></p>
+        <p>나무 패널, 파스텔 하늘, 둥근 버튼으로 동화 같은 톤을 잡았습니다. 게임 화면만이 아니라 로비, 대기실, 커뮤니티까지 같은 톤으로 맞췄고, 게임 밖 화면은 전부 제가 만들었습니다.</p>
+        <p>보드 맵은 가져온 에셋을 Blender로 고쳐서 만들었고, 캐릭터와 룰렛 애니메이션도 다시 잡았습니다.</p>
+      </div>
+      <aside>
+        <h4><span class="ms">task_alt</span>맡은 일</h4>
+        <ul>
+          <li>비주얼, UX 방향</li>
+          <li>로비, 대기실, 커뮤니티, 미니게임 UI</li>
+          <li>3D 보드 맵, 룰렛·캐릭터 애니메이션</li>
+          <li>메인 화면 3D 메뉴와 캐릭터 배경</li>
+        </ul>
+        <p class="note">팀이 받은 유저 피드백 24건 중 22건 반영</p>
+        <div class="tech"><span class="chip"><svg viewBox="0 0 24 24" aria-hidden="true" fill="#4FC08D"><path d="M24,1.61H14.06L12,5.16,9.94,1.61H0L12,22.39ZM12,14.08,5.16,2.23H9.59L12,6.41l2.41-4.18h4.43Z"/></svg>Vue 3</span><span class="chip"><svg viewBox="0 0 24 24" aria-hidden="true" fill="#3178C6"><path d="M1.125 0C.502 0 0 .502 0 1.125v21.75C0 23.498.502 24 1.125 24h21.75c.623 0 1.125-.502 1.125-1.125V1.125C24 .502 23.498 0 22.875 0zm17.363 9.75c.612 0 1.154.037 1.627.111a6.38 6.38 0 0 1 1.306.34v2.458a3.95 3.95 0 0 0-.643-.361 5.093 5.093 0 0 0-.717-.26 5.453 5.453 0 0 0-1.426-.2c-.3 0-.573.028-.819.086a2.1 2.1 0 0 0-.623.242c-.17.104-.3.229-.393.374a.888.888 0 0 0-.14.49c0 .196.053.373.156.529.104.156.252.304.443.444s.423.276.696.41c.273.135.582.274.926.416.47.197.892.407 1.266.628.374.222.695.473.963.753.268.279.472.598.614.957.142.359.214.776.214 1.253 0 .657-.125 1.21-.373 1.656a3.033 3.033 0 0 1-1.012 1.085 4.38 4.38 0 0 1-1.487.596c-.566.12-1.163.18-1.79.18a9.916 9.916 0 0 1-1.84-.164 5.544 5.544 0 0 1-1.512-.493v-2.63a5.033 5.033 0 0 0 3.237 1.2c.333 0 .624-.03.872-.09.249-.06.456-.144.623-.25.166-.108.29-.234.373-.38a1.023 1.023 0 0 0-.074-1.089 2.12 2.12 0 0 0-.537-.5 5.597 5.597 0 0 0-.807-.444 27.72 27.72 0 0 0-1.007-.436c-.918-.383-1.602-.852-2.053-1.405-.45-.553-.676-1.222-.676-2.005 0-.614.123-1.141.369-1.582.246-.441.58-.804 1.004-1.089a4.494 4.494 0 0 1 1.47-.629 7.536 7.536 0 0 1 1.77-.201zm-15.113.188h9.563v2.166H9.506v9.646H6.789v-9.646H3.375z"/></svg>TypeScript</span><span class="chip"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M.38 0a.268.268 0 0 0-.256.332l2.894 11.716a.268.268 0 0 0 .01.04l2.89 11.708a.268.268 0 0 0 .447.128L23.802 7.15a.268.268 0 0 0-.112-.45l-5.784-1.667a.268.268 0 0 0-.123-.035L6.38 1.715a.268.268 0 0 0-.144-.04L.456.01A.268.268 0 0 0 .38 0zm.374.654L5.71 2.08 1.99 5.664zM6.61 2.34l4.864 1.4-3.65 3.515zm-.522.12l1.217 4.926-4.877-1.4zm6.28 1.538l4.878 1.404-3.662 3.53zm-.52.13l1.208 4.9-4.853-1.392zm6.3 1.534l4.947 1.424-3.715 3.574zm-.524.12l1.215 4.926-4.876-1.398zm-15.432.696l4.964 1.424-3.726 3.586zM8.047 8.15l4.877 1.4-3.66 3.527zm-.518.137l1.236 5.017-4.963-1.432zm6.274 1.535l4.965 1.425-3.73 3.586zm-.52.127l1.235 5.012-4.958-1.43zm-9.63 2.438l4.873 1.406-3.656 3.523zm5.854 1.687l4.863 1.403-3.648 3.51zm-.54.04l1.214 4.927-4.875-1.4zm-3.896 4.02l5.037 1.442-3.782 3.638z"/></svg>Three.js</span><span class="chip"><svg viewBox="0 0 24 24" aria-hidden="true" fill="#88CE02"><path d="M17.21 0c-.545.003-1.084.134-1.256.367-.11.165-.192 1.196-.11 1.718 0 0 .032.345.09.614a14.6 14.6 0 0 1-.02.182 7.024 7.024 0 0 1-.097.605c-.01.056-.207.095-.425.152a2.495 2.495 0 0 0-.138-.042c-.234-.069-.385.123-.618.26-.069-.04-.371-.178-.536-.082-.165.096-.275.193-.44.261-.082-.041-.302-.041-.48.028a1.27 1.27 0 0 0-.483.278c-2.314.58-4.813 1.635-5.012 1.741-1.017.522-2.679 1.415-3.434 2.033-1.291 1.071-2.06 2.322-2.363 3.242-.385 1.14-.275 1.827.096 1.387.298-.366 1.632-1.454 2.475-1.999l-.002.007a3.219 3.219 0 0 1 .44-.26l.233-.124.505-.323c.602.552.803 1.433.937 2.63.22 1.841 1.704 2.693 3.434 2.72 1.8.028 2.446.399 3.119 1.305.153.201.318.307.47.368a1.954 1.954 0 0 0-.16.405c-.075.17-.125.38-.157.608a.157.157 0 0 0-.03.075c-.068.536-.055 1.8-.068 2.473-.014.673-.028.77-.083.866-.055.11-.11.178-.178.467-.069.302-.193.384-.316.631-.206.385-.165.81.041 1.003.206.192.77.481 1.538.385.77-.096.88-.151.756-.893-.014-.11-.192-.605-.137-.797.082-.206-.096-.563-.055-.577.041-.014.096-.288.096-.426 0-.137-.014-.796.137-1.14.062-.14.193-.46.326-.785.442-.723.459-1.161.48-1.41.03-.202.046-.46.018-.744.055-.083.289-.275.316-.646 0 0 .644-.337 1.102-1.148.16.557.31.91.286 1.272-.499.39-.684.678-.76.959-.048-.02-.076-.037-.11-.04h-.027a.437.437 0 0 0-.106.029c-.192.068-.041 1.318.165 1.827.206.508.316.81.398 1.36.083.549-.192 1.222-.302 1.524 0 0-.179.536.233.824.358.248 1.704.18 2.308.18.605 0 1.511.219 2.088.109.715-.124.824-.55.399-.77-.426-.22-1.072-.329-1.91-.933-.22-.152-.522-.289-.563-.412-.041-.124-.041-.838-.027-1.457.013-.618.22-1.414.288-1.84.064-.398-.076-.388-.262-.351.032-.147.066-.292.097-.446.344-.632.193-1.223.193-1.223.82-1.044.4-3.27.22-4.048.64.303.96.188.96.188.102-.055.192-.134.274-.224.337-.362.51-.916.51-.916V11c.782-.783 1.151-1.936.26-2.692a1.331 1.331 0 0 0-.219-1.263 1.56 1.56 0 0 0-.37-1.731 1.36 1.36 0 0 0-.487-.297c-.2-.295-.245-.417-.572-.349-.15-.165-.178-.288-.494-.178 0 0-.096-.234-.275-.289a.25.25 0 0 0-.05-.015c-.302-.21-.576-.215-.772-.16-.064-.048-.061-.124-.07-.388-.008-.2-.019-.486-.031-.744.027-.328.102-.974.126-1.303.028-.37.042-.948-.123-1.195C18.303.12 17.754-.003 17.21 0zm-.005.34c.7 0 1.002.22 1.044.343.013.028.082.495.04.797-.013.11-.027.509-.054.687-.014.179-.069.385-.124.673-.041.234-.233.495-.384.536-.261.069-.742.055-1.017 0-.069-.014-.124-.055-.192-.096-.151-.248-.234-.44-.261-.742-.028-.289-.083-.412-.096-.632-.014-.33-.014-.55-.014-.55.014-.178.069-.618.069-.659.013-.123.233-.357.989-.357zm-1.133 2.702c.146.149.301.306.432.416.124.11.426.096.7.096.248 0 .468.028.564-.027.154-.077.355-.235.523-.394.011.152.022.304.026.435.01.295-.043.468.024.57-.082.048-.174.105-.269.156-.151.08-.306.136-.403.115h-.002c-.209-.035-.931-.215-1.331-.407-.167-.259-.335-.398-.326-.448.027-.137.04-.247.054-.425.004-.03.005-.058.008-.088zm-.853.69l.035.001c.424.036.65.152.808.284l.076.03.008-.027c.047.03.102.06.162.088.47.159 1.104.308 1.309.353.247.055.645-.192.838-.316.343-.22.783-.04.989.193.137.15.192.247.192.288.316-.11.357.041.508.206.385-.179.412.041.44.137-.122 0-.298.014-.538.04l-.012-.012c-.144-.153-.402-.289-.599-.384-.087-.031-.18-.049-.252-.097-.11-.055-.22-.137-.385-.123-.687.082-.824.315-1.415.178-.577-.134-.737-.254-1.333-.221l.001.026c-.105.016-.2.03-.22.03-.206.012-.722.067-1.153-.1a1.256 1.256 0 0 0-.161-.076l-.005-.002h-.001c-.18-.07-.39-.11-.63-.112h-.026c.218-.11.356-.259.56-.218.22.041.44.22.564.357a.858.858 0 0 0-.178-.288c.128-.09.245-.229.418-.234zm-1.1.545c.15.002.28.026.417.073.018.009.034.018.059.029.288.137.81.164 1.25.137a2.26 2.26 0 0 0 .563-.095c.322.024.514.11.977.216.31.07.502.045.695-.007.193-.053.386-.13.723-.17a.542.542 0 0 1 .188.013c.038.02.075.04.11.061.062.049.214.135.343.189.164.068.59.357.645.425a.1.1 0 0 0 .038.03c.242.314.407.755.396 1.21-.06.46-.426.214-.626.12-.412-.178-.824-.302-1.305-.302-.48 0-1.099.041-1.635.179-.741.206-.961.192-1.29.027-.33-.178-.907-.618-.907-.618v.01c-.007-.007-.012-.012-.014-.01-.042.069-.138.247-.193.33-.027.522-.343 1.346-.934 1.552a.547.547 0 0 1-.467-.041 2.503 2.503 0 0 0-.55-.275c.481.384.729.673.949 1.181.174.43.415 1.017 1.002 1.646.363-.004.725.097.962.346.137.137.357.289.33.426 0 .041-.083.151-.151.234a3.231 3.231 0 0 1-.207.22c-.054.04-.247.192-.288.22-.041.027-.096.095-.137.109-.138.069-.289.014-.426-.055s.027-.082-.124-.192c-.34-.24-.541-.411-.454-.832-.932-.794-2.561-1.26-2.911-2.108-.22-.55-.248-.824-.042-1.058.605-.687.371-1.346.825-1.634.425-.275.783.04.989.33-.124-.509-.55-.633-.55-.674 0-.632.605-1.071 1.21-1.181.218-.041.389-.062.54-.06zm-1.847.534c-.14.196-.231.435-.246.721-.206.028-.673.055-.907.907a3.39 3.39 0 0 1-.214.62c-.103.045-2.946 1.274-5.229 2.542l-.01-.007c-.32.18-.627.363-.919.546l-.125.077-.001.003c-1.136.723-2.04 1.45-2.637 2.112.412-2.679 2.528-4.08 3.53-4.698 2.42-1.489 4.629-2.225 6.758-2.823zm8.037.323c.26-.004.536.06.756.275.59.577.425 1.209.247 1.648.15.179.508.687.288 1.291-.04.138-.343.138-.563.495.55-.316.893-.233 1.017.165.192.618-.234 1.36-.605 1.772 0-.014-.014-.028-.014-.041-.055.206-.123.604-.535 1.044-.206.22-.371.192-.605.137-.215-.054-.322-.142-.543-.276-.036-.207-.102-.482-.102-.59 0-.044-.004-.141-.01-.243.032-.036.066-.074.106-.114 0 0 .178-.247.44-.233.26.014.535-.041.604-.11 0-.48-.55-.494-.357-1.319.013-.04.082-.11.302-.137-.33-.069-.48-.083-.714-.302l-.013-.013c.11-.253.224-.457.301-.605.193-.385.082-.852.082-.852.207-.069.385-.179.413-.247.203-.673-.164-1.322-.605-1.74.036-.003.073-.005.11-.006zm-5.46.925c.01.016.02.033.034.05.179.22.577.495 1.113.673.26.083.467.028.7-.027 1.123-.278 2.304-.346 3.33.155a1.82 1.82 0 0 1-.157 1.068c-.232.465-.533 1.068-.48 2.215-.246.044-1.419.144-1.992.037-.521-.097-1.416-.525-1.62-.69a6.703 6.703 0 0 1-.125-.848 1.37 1.37 0 0 0 .454-.343c-.412.068-.577.04-.825-.097-.235-.13-.642-.533-.87-.82.229-.29.393-.69.335-1.226.037-.05.07-.099.102-.147zm-4.38 1.598c-.09.253.093.654.224.953.508 1.179 2.07 1.29 3.127 2.18a.723.723 0 0 0 .06.388c.083.165.371.413.371.413-.055.054-.027.164-.027.164.204.217.504.243.547.246-.435 1.248-.816 2.626-.451 4.095-.179.244-.368.445-.531.668a.851.851 0 0 1-.444-.31c-.591-.852-1.457-1.416-3.023-1.374-2.349.055-3.283-.907-3.461-2.748-.094-.974-.357-1.922-.888-2.479C7.489 9.014 9.6 7.937 10.268 7.73a2.8 2.8 0 0 0 .2-.073zm3.496.18c.381.442.795.727 1.193.979.082.343.11.577.192 1.03h-.041l-.027.308a2.836 2.836 0 0 0-.62-.113l.001-.003c-.893-1.057-.7-1.47-1.058-2.019.097-.034.225-.094.36-.182zm5.911 1.086c.076.067.178.12.323.154-.327.68.33.912.37 1.17-.143.083-.367.037-.603.025-.115-.006-.229.065-.321.147l.032-.367c.006-.43.09-.809.2-1.13zM15.79 9.947c.024.035.178.131 1.002.352 1.026.275 2.323.12 2.55.09a.378.378 0 0 1-.022.089c0 .343.055.59.096.81.053.308.13.533.163.74l.008-.007c.234 1.367.561 3.133-.267 4.048.041.192.069.467.014.783a3.204 3.204 0 0 1-.151.535 2.29 2.29 0 0 0-.108.352c-1.1.142-1.755.055-2.06-.015.123-.374.407-.754.876-.735-.022-.911-.264-1.223-.511-1.891.395-.883.299-1.665.621-2.848-.247.261-.44 1.209-.604 1.786-.206.838-.563 1.648-1.525 2.294 0 .22-.069.384-.151.494-.179.261-.412.344-.494.77.11-.138.26-.261.26-.22a8.51 8.51 0 0 1-.025.493l.012.001c-.165 1.044-.522 1.525-.742 2.115-.151.426-.096 1.36-.151 1.374-.385.083-.975-.068-1.14-.15.162-1.14.019-2.278.436-3.6l-.015-.006c.16-.554.478-.878.939-1.464-.161-.52-.532-1.64.266-4.182.033-.014.067-.03.105-.049l.206-.137c.04-.028.096-.069.137-.096.069-.042.371-.371.412-.412.096-.097.165-.124.192-.234.055-.206-.247-.412-.37-.55-.018-.019-.03-.034-.043-.05.013-.039.027-.077.042-.114.01-.125.028-.26.042-.367zm.883 7.942c.05.002.174.122.751.158.66.04 1.539-.083 1.772-.138.234-.055.097.11.069.275l-.026.169c-.399.134-1.008.188-1.416.202-.393.013-.846-.012-1.161-.11-.048-.26-.063-.47-.007-.55a.024.024 0 0 1 .018-.006zm2.506.846c-.02.135-.035.223-.058.372-.388.12-.888.122-1.27.135a4.413 4.413 0 0 1-1.012-.07 2.065 2.065 0 0 1-.033-.109 11.343 11.343 0 0 1-.065-.252c.179.034.53.079 1.15.087a4.142 4.142 0 0 0 1.288-.163zm-.106.685c-.069.44-.055 1.786-.014 2.157.014.11.948.522 1.277.77.107.085.259.157.422.222.042.042.116.105.197.203.162.213.052.436-.135.526-.264-.007-.568-.052-1.074-.128-.695-.104-1.129-.101-1.73-.106v-.003c-.152-.275-.056-.728-.056-.728a2.2 2.2 0 0 1-.809-.18l.012-.026c.234-.48.22-.591.151-1.415-.047-.578-.196-.883-.335-1.195.169.016.409.035.857.041a4.567 4.567 0 0 0 1.237-.138zm-5.306 2.084c.243 0 .6.032.676.1v.014c.014.165.165.399.11.522-.027.069-.096-.041-.192-.068.041.26.151.741.316 1.112.11.248.041.426-.33.495-.33.014-.755 0-1.112-.083-.412-.206-.55-.316-.467-.7.068-.275.494-.59.865-.838-.206.014-.426.165-.398-.014.055-.357.206-.33.302-.508-.02-.02.084-.032.23-.032z"/></svg>GSAP</span><span class="chip"><svg viewBox="0 0 24 24" aria-hidden="true" fill="#E87D0D"><path d="M12.51 13.214c.046-.8.438-1.506 1.03-2.006a3.424 3.424 0 0 1 2.212-.79c.85 0 1.631.3 2.211.79.592.5.983 1.206 1.028 2.005.045.823-.285 1.586-.865 2.153a3.389 3.389 0 0 1-2.374.938 3.393 3.393 0 0 1-2.376-.938c-.58-.567-.91-1.33-.865-2.152M7.35 14.831c.006.314.106.922.256 1.398a7.372 7.372 0 0 0 1.593 2.757 8.227 8.227 0 0 0 2.787 2.001 8.947 8.947 0 0 0 3.66.76 8.964 8.964 0 0 0 3.657-.772 8.285 8.285 0 0 0 2.785-2.01 7.428 7.428 0 0 0 1.592-2.762 6.964 6.964 0 0 0 .25-3.074 7.123 7.123 0 0 0-1.016-2.779 7.764 7.764 0 0 0-1.852-2.043h.002L13.566 2.55l-.02-.015c-.492-.378-1.319-.376-1.86.002-.547.382-.609 1.015-.123 1.415l-.001.001 3.126 2.543-9.53.01h-.013c-.788.001-1.545.518-1.695 1.172-.154.665.38 1.217 1.2 1.22V8.9l4.83-.01-8.62 6.617-.034.025c-.813.622-1.075 1.658-.563 2.313.52.667 1.625.668 2.447.004L7.414 14s-.069.52-.063.831zm12.09 1.741c-.97.988-2.326 1.548-3.795 1.55-1.47.004-2.827-.552-3.797-1.538a4.51 4.51 0 0 1-1.036-1.622 4.282 4.282 0 0 1 .282-3.519 4.702 4.702 0 0 1 1.153-1.371c.942-.768 2.141-1.183 3.396-1.185 1.256-.002 2.455.41 3.398 1.175.48.391.87.854 1.152 1.367a4.28 4.28 0 0 1 .522 1.706 4.236 4.236 0 0 1-.239 1.811 4.54 4.54 0 0 1-1.035 1.626"/></svg>Blender</span></div>
+        <div class="links"><a class="btn btn--line" href="https://github.com/mm-sj/S14P11D209" target="_blank" rel="noopener"><span><svg class="brand" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>시연 원본 화면·상세 설명</span></a></div>
+      </aside>
+    </div>
   </section>
 
-  <h2 class="proj-h" id="projects">Projects</h2>
-  <nav class="index" aria-label="프로젝트 목록">
-    <a href="#docq"><span class="mono">01</span><span><span class="t">DocQ</span><span class="d">PDF를 퀴즈로 만들어 함께 푸는 3D 보드게임</span></span><span class="award">공통 최우수상</span></a>
-    <a href="#wyd"><span class="mono">02</span><span><span class="t">Would You Draw</span><span class="d">그린 감정이 별이 되어 쌓이는 3D 우주 아카이브</span></span><span class="award">특화 우수상</span></a>
-    <a href="#jabis"><span class="mono">03</span><span><span class="t">Jabis</span><span class="d">양팔 데스크 로봇의 실시간 디지털 트윈 대시보드</span></span><span class="award">자율 우수상</span></a>
-    <a href="#fridge"><span class="mono">04</span><span><span class="t">데이터 냉장고</span><span class="d">저장한 이유가 다시 유효해질 때 자료를 꺼내주는 AX 워크플로우</span></span><span class="award">LG AX 트랙</span></a>
-  </nav>
-
-
-  <!-- ─────────── 01 DocQ ─────────── -->
-  <article class="sheet" id="docq">
-    <div class="titleblock">
-      <div><span class="k">Sheet</span><span class="v">01 / 04</span></div>
-      <div><span class="k">Period</span><span class="v">2026.01.06 – 02.13</span></div>
-      <div><span class="k">Team</span><span class="v">6명 (FE 3)</span></div>
-      <div><span class="k">Role</span><span class="v">FE · UX 방향 · 3D 에셋</span></div>
-      <div><span class="k">Stack</span><span class="v tbstack"><span class="tbi"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4FC08D" d="M24,1.61H14.06L12,5.16,9.94,1.61H0L12,22.39ZM12,14.08,5.16,2.23H9.59L12,6.41l2.41-4.18h4.43Z"/></svg>Vue 3</span><span class="tbi"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#000000" d="M.38 0a.268.268 0 0 0-.256.332l2.894 11.716a.268.268 0 0 0 .01.04l2.89 11.708a.268.268 0 0 0 .447.128L23.802 7.15a.268.268 0 0 0-.112-.45l-5.784-1.667a.268.268 0 0 0-.123-.035L6.38 1.715a.268.268 0 0 0-.144-.04L.456.01A.268.268 0 0 0 .38 0zm.374.654L5.71 2.08 1.99 5.664zM6.61 2.34l4.864 1.4-3.65 3.515zm-.522.12l1.217 4.926-4.877-1.4zm6.28 1.538l4.878 1.404-3.662 3.53zm-.52.13l1.208 4.9-4.853-1.392zm6.3 1.534l4.947 1.424-3.715 3.574zm-.524.12l1.215 4.926-4.876-1.398zm-15.432.696l4.964 1.424-3.726 3.586zM8.047 8.15l4.877 1.4-3.66 3.527zm-.518.137l1.236 5.017-4.963-1.432zm6.274 1.535l4.965 1.425-3.73 3.586zm-.52.127l1.235 5.012-4.958-1.43zm-9.63 2.438l4.873 1.406-3.656 3.523zm5.854 1.687l4.863 1.403-3.648 3.51zm-.54.04l1.214 4.927-4.875-1.4zm-3.896 4.02l5.037 1.442-3.782 3.638z"/></svg>Three.js</span></span></div>
-      <div><span class="k">Award</span><span class="v acc">공통 최우수상</span></div>
-    </div>
-    <div class="sheet-body">
-      <span class="stamp-wrap" aria-hidden="true"><svg class="stamp-award is-top" viewBox="0 0 120 120" role="img" aria-label="공통 프로젝트 최우수상">
-  <defs>
-    <path id="st-docq-p" d="M60,60 m-45,0 a45,45 0 1,1 90,0 a45,45 0 1,1 -90,0"/>
-    <filter id="st-docq-ink" x="-10%" y="-10%" width="120%" height="120%">
-      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="49" result="n"/>
-      <feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -1.3 1.5" result="m"/>
-      <feComposite in="SourceGraphic" in2="m" operator="in" result="t"/>
-      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="1" seed="3" result="w"/>
-      <feDisplacementMap in="t" in2="w" scale="1.1"/>
-    </filter>
-  </defs>
-  <g filter="url(#st-docq-ink)" fill="currentColor" stroke="currentColor">
-    <circle cx="60" cy="60" r="56" fill="none" stroke-width="3.2"/>
-    <circle cx="60" cy="60" r="37" fill="none" stroke-width="1.2"/>
-    <text font-size="8.6" stroke="none" font-family="'IBM Plex Mono', ui-monospace, monospace" font-weight="500">
-      <textPath href="#st-docq-p" startOffset="0" textLength="280" lengthAdjust="spacing">SSAFY 14TH · AWARD · 2026 · SSAFY 14TH · AWARD · 2026 · </textPath>
-    </text>
-    <text x="60" y="51" text-anchor="middle" font-size="8.5" stroke="none" font-family="'IBM Plex Sans KR', 'Pretendard', sans-serif" font-weight="600">공통 프로젝트</text>
-    <text x="60" y="70" text-anchor="middle" font-size="16.5" stroke="none" font-family="'Hahmlet', serif" font-weight="700">최우수상</text>
-    <text x="60" y="84" text-anchor="middle" font-size="7" stroke="none">★ ★ ★</text>
-  </g>
-</svg></span>
-      <div class="sheet-head">
-        <div>
-          <p class="no">01 — DocQ</p>
-          <h2>DocQ</h2>
-          <p class="one">PDF 문서를 AI가 퀴즈로 바꾸고, 최대 4명이 3D 보드게임으로 푸는 실시간 멀티플레이 서비스</p>
-        </div>
-        <p class="why">'다 읽었다'와 '다 안다'는 다릅니다. 읽은 문서를 제대로 이해했는지 혼자 검증하는 지루한 과정을, 친구와 겨루는 게임으로 바꾸는 것이 목표였습니다. 저는 이 게임이 어떤 모습이고 어떻게 느껴질지를 정하는 역할을 맡았습니다.</p>
-      </div>
-
-      <figure class="lead-media">
-        <div class="media"><video data-src="../assets/docq-main.mp4" poster="../assets/docq-main.jpg" muted loop playsinline preload="none" aria-label="DocQ 메인 화면: 3D 캐러셀과 캐릭터"></video></div>
-        <figcaption>메인 화면 — 3D 캐러셀 메뉴와 GLB 캐릭터 배경</figcaption>
-      </figure>
-      <div class="grid-media c2">
-        <figure><div class="media"><video data-src="../assets/docq-board.mp4" poster="../assets/docq-board.jpg" muted loop playsinline preload="none" aria-label="3D 보드 맵"></video></div><figcaption>Blender로 제작한 보드 맵</figcaption></figure>
-        <figure><div class="media"><video data-src="../assets/docq-roulette.mp4" poster="../assets/docq-roulette.jpg" muted loop playsinline preload="none" aria-label="3D 룰렛"></video></div><figcaption>이동 칸 수를 정하는 3D 룰렛</figcaption></figure>
-        <figure><div class="media"><video data-src="../assets/docq-waiting.mp4" poster="../assets/docq-waiting.jpg" muted loop playsinline preload="none" aria-label="대기실"></video></div><figcaption>대기실 — 캐릭터 선택, PDF 업로드, 채팅 매크로</figcaption></figure>
-        <figure><div class="media"><video data-src="../assets/docq-community.mp4" poster="../assets/docq-community.jpg" muted loop playsinline preload="none" aria-label="커뮤니티"></video></div><figcaption>퀴즈 공유 커뮤니티</figcaption></figure>
-      </div>
-
-      <div class="cols">
-        <div>
-          <p class="label">제가 한 일</p>
-          <ul class="did">
-            <li><b>비주얼·UX 방향 수립.</b> 나무 패널, 파스텔 하늘, 둥근 버튼으로 이어지는 동화 같은 톤을 잡고 화면 전반에 적용했습니다.</li>
-            <li><b>3D 에셋.</b> 가져온 에셋을 Blender로 수정해 보드 맵을 만들고, 캐릭터와 룰렛의 애니메이션 좌표를 다시 설정했습니다.</li>
-            <li><b>메인 화면.</b> CSS 3D 캐러셀 메뉴와, 캐릭터 4종이 동시에 움직이는 Three.js 배경(AnimationMixer)을 구현했습니다.</li>
-            <li><b>게임 밖 화면 전반.</b> 로비, 대기실, 커뮤니티(게시글·댓글 삭제와 확인 모달), 미니게임 UI, 커스텀 커서, BGM, 팀 소개 모달을 만들었습니다.</li>
-          </ul>
-          <div class="stack tks"><span class="tk"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4FC08D" d="M24,1.61H14.06L12,5.16,9.94,1.61H0L12,22.39ZM12,14.08,5.16,2.23H9.59L12,6.41l2.41-4.18h4.43Z"/></svg>Vue 3</span><span class="tk"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#3178C6" d="M1.125 0C.502 0 0 .502 0 1.125v21.75C0 23.498.502 24 1.125 24h21.75c.623 0 1.125-.502 1.125-1.125V1.125C24 .502 23.498 0 22.875 0zm17.363 9.75c.612 0 1.154.037 1.627.111a6.38 6.38 0 0 1 1.306.34v2.458a3.95 3.95 0 0 0-.643-.361 5.093 5.093 0 0 0-.717-.26 5.453 5.453 0 0 0-1.426-.2c-.3 0-.573.028-.819.086a2.1 2.1 0 0 0-.623.242c-.17.104-.3.229-.393.374a.888.888 0 0 0-.14.49c0 .196.053.373.156.529.104.156.252.304.443.444s.423.276.696.41c.273.135.582.274.926.416.47.197.892.407 1.266.628.374.222.695.473.963.753.268.279.472.598.614.957.142.359.214.776.214 1.253 0 .657-.125 1.21-.373 1.656a3.033 3.033 0 0 1-1.012 1.085 4.38 4.38 0 0 1-1.487.596c-.566.12-1.163.18-1.79.18a9.916 9.916 0 0 1-1.84-.164 5.544 5.544 0 0 1-1.512-.493v-2.63a5.033 5.033 0 0 0 3.237 1.2c.333 0 .624-.03.872-.09.249-.06.456-.144.623-.25.166-.108.29-.234.373-.38a1.023 1.023 0 0 0-.074-1.089 2.12 2.12 0 0 0-.537-.5 5.597 5.597 0 0 0-.807-.444 27.72 27.72 0 0 0-1.007-.436c-.918-.383-1.602-.852-2.053-1.405-.45-.553-.676-1.222-.676-2.005 0-.614.123-1.141.369-1.582.246-.441.58-.804 1.004-1.089a4.494 4.494 0 0 1 1.47-.629 7.536 7.536 0 0 1 1.77-.201zm-15.113.188h9.563v2.166H9.506v9.646H6.789v-9.646H3.375z"/></svg>TypeScript</span><span class="tk"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#FFD859" d="M13.277.002c-.079-.01-.193.024-.31.09a2.346 2.346 0 0 0-.415.311c-.301.274-.65.68-.985 1.176-.672.99-1.31 2.356-1.485 3.785-.12.977-.154 1.849-.074 2.578a5.878 5.878 0 0 1 1.956-.338c.922 0 1.804.218 2.618.613.197-.637.34-1.395.445-2.246.175-1.429-.1-2.907-.499-4.028a6.695 6.695 0 0 0-.653-1.378 2.296 2.296 0 0 0-.321-.401c-.097-.092-.199-.153-.277-.162zm-6.81 2.965a.603.603 0 0 0-.288.117l-.013.011a.863.863 0 0 0-.177.327c-.051.15-.094.344-.126.565a8.205 8.205 0 0 0-.044 1.637c.08 1.222.397 2.665 1.079 3.769.093.15.193.296.294.442.726-.776 1.567-1.385 2.488-1.768-.1-.79-.06-1.714.066-2.744.038-.31.1-.616.176-.916a6.45 6.45 0 0 0-1.692-1.08 4.575 4.575 0 0 0-1.29-.366 1.805 1.805 0 0 0-.474.006zm11.751 1.789c-.21.003-.442.022-.687.06a5.974 5.974 0 0 0-2.132.76c-.009.146-.019.291-.036.437-.11.888-.258 1.684-.475 2.364.848.468 1.614 1.13 2.267 1.94.823-.85 1.43-2.05 1.787-3.13.187-.57.304-1.1.35-1.514.022-.207.027-.38.017-.51-.01-.133-.042-.206-.04-.202a.35.35 0 0 0-.114-.072 1.516 1.516 0 0 0-.375-.1 3.42 3.42 0 0 0-.562-.033zm-6.254 3.139c-2.014 0-3.83 1.087-5.147 2.834-1.316 1.748-2.131 4.16-2.131 6.807 0 2.65.806 4.258 2.131 5.218C8.132 23.707 9.96 24 11.964 24c2.004 0 3.831-.293 5.147-1.246 1.326-.96 2.133-2.568 2.133-5.218 0-2.647-.816-5.059-2.133-6.806-1.317-1.748-3.134-2.835-5.147-2.835Zm-3.297 5.209a1.282 1.282 0 0 1 .292 2.518c.115.094.177.201.164.307-.032.265-.521.424-1.09.354-.571-.07-1.007-.342-.974-.607.024-.198.302-.336.678-.364a1.282 1.282 0 0 1 .93-2.208zm6.284.22a1.282 1.282 0 0 1 .726 2.303c.437.058.757.244.757.466 0 .267-.466.483-1.04.483-.574 0-1.04-.216-1.04-.483 0-.098.063-.189.17-.265a1.282 1.282 0 0 1 .427-2.505zm-6.318.215a.822.822 0 1 0 .028 1.645.822.822 0 0 0-.028-1.645zm6.284.22a.822.822 0 1 0 .027 1.644.822.822 0 0 0-.027-1.644zm-6.543.109a.338.338 0 1 1-.023.677.338.338 0 0 1 .023-.677zm6.284.22a.339.339 0 1 1-.018 0h.018zm-3.91 1.179c.17.252.432.404.808.447.372.043.694-.05.976-.28a.145.145 0 1 1 .183.226c-.344.28-.745.394-1.192.343-.445-.051-.79-.24-1.016-.574a.145.145 0 1 1 .24-.162z"/></svg>Pinia</span><span class="tk"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#06B6D4" d="M12.001,4.8c-3.2,0-5.2,1.6-6,4.8c1.2-1.6,2.6-2.2,4.2-1.8c0.913,0.228,1.565,0.89,2.288,1.624 C13.666,10.618,15.027,12,18.001,12c3.2,0,5.2-1.6,6-4.8c-1.2,1.6-2.6,2.2-4.2,1.8c-0.913-0.228-1.565-0.89-2.288-1.624 C16.337,6.182,14.976,4.8,12.001,4.8z M6.001,12c-3.2,0-5.2,1.6-6,4.8c1.2-1.6,2.6-2.2,4.2-1.8c0.913,0.228,1.565,0.89,2.288,1.624 c1.177,1.194,2.538,2.576,5.512,2.576c3.2,0,5.2-1.6,6-4.8c-1.2,1.6-2.6,2.2-4.2,1.8c-0.913-0.228-1.565-0.89-2.288-1.624 C10.337,13.382,8.976,12,6.001,12z"/></svg>TailwindCSS</span><span class="tk"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#000000" d="M.38 0a.268.268 0 0 0-.256.332l2.894 11.716a.268.268 0 0 0 .01.04l2.89 11.708a.268.268 0 0 0 .447.128L23.802 7.15a.268.268 0 0 0-.112-.45l-5.784-1.667a.268.268 0 0 0-.123-.035L6.38 1.715a.268.268 0 0 0-.144-.04L.456.01A.268.268 0 0 0 .38 0zm.374.654L5.71 2.08 1.99 5.664zM6.61 2.34l4.864 1.4-3.65 3.515zm-.522.12l1.217 4.926-4.877-1.4zm6.28 1.538l4.878 1.404-3.662 3.53zm-.52.13l1.208 4.9-4.853-1.392zm6.3 1.534l4.947 1.424-3.715 3.574zm-.524.12l1.215 4.926-4.876-1.398zm-15.432.696l4.964 1.424-3.726 3.586zM8.047 8.15l4.877 1.4-3.66 3.527zm-.518.137l1.236 5.017-4.963-1.432zm6.274 1.535l4.965 1.425-3.73 3.586zm-.52.127l1.235 5.012-4.958-1.43zm-9.63 2.438l4.873 1.406-3.656 3.523zm5.854 1.687l4.863 1.403-3.648 3.51zm-.54.04l1.214 4.927-4.875-1.4zm-3.896 4.02l5.037 1.442-3.782 3.638z"/></svg>Three.js</span><span class="tk"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#0AE448" d="M9.83,7.59C10.647,7.595 11.267,7.828 11.672,8.282C12.055,8.713 12.239,9.336 12.219,10.132L12.205,10.193C12.197,10.211 12.185,10.229 12.17,10.243C12.14,10.272 12.099,10.288 12.057,10.288L10.398,10.288C10.29,10.288 10.199,10.2 10.199,10.093C10.199,9.669 10.071,9.435 9.809,9.383L9.689,9.372C9.347,9.372 9.125,9.583 9.119,9.951C9.112,10.361 9.344,10.734 10.004,11.374C10.872,12.19 11.221,12.913 11.204,13.867C11.177,15.411 10.127,16.41 8.531,16.41C7.716,16.41 7.093,16.191 6.678,15.761C6.258,15.324 6.066,14.683 6.106,13.855C6.108,13.813 6.125,13.772 6.155,13.743C6.185,13.714 6.226,13.698 6.267,13.698L7.983,13.698C8.007,13.699 8.03,13.705 8.052,13.715C8.073,13.726 8.092,13.741 8.107,13.76C8.12,13.775 8.129,13.793 8.135,13.813C8.14,13.832 8.141,13.853 8.137,13.873C8.118,14.171 8.171,14.394 8.288,14.518C8.363,14.598 8.469,14.639 8.599,14.639C8.916,14.639 9.102,14.414 9.109,14.024C9.115,13.687 9.007,13.39 8.427,12.792C7.676,12.058 7.003,11.3 7.024,10.108C7.037,9.416 7.311,8.784 7.798,8.327C8.312,7.845 9.014,7.59 9.83,7.59ZM4.047,7.618C4.794,7.612 5.381,7.842 5.789,8.303C6.221,8.79 6.44,9.524 6.441,10.485C6.44,10.527 6.422,10.567 6.392,10.597C6.362,10.626 6.322,10.643 6.28,10.643L4.479,10.643C4.448,10.642 4.417,10.629 4.395,10.607C4.373,10.584 4.361,10.553 4.36,10.522C4.346,9.899 4.172,9.576 3.828,9.538L3.757,9.534C3.067,9.535 2.66,10.472 2.444,10.992C2.142,11.719 1.988,12.507 2.018,13.293C2.033,13.659 2.092,14.173 2.438,14.386C2.746,14.575 3.185,14.45 3.451,14.24C3.716,14.031 3.93,13.669 4.02,13.339C4.033,13.293 4.033,13.258 4.021,13.241C4.015,13.233 4.003,13.229 3.989,13.226L3.485,13.222C3.461,13.222 3.436,13.216 3.414,13.206C3.392,13.196 3.372,13.181 3.356,13.162C3.344,13.148 3.335,13.13 3.331,13.112C3.327,13.093 3.327,13.074 3.331,13.056L3.647,11.682C3.663,11.611 3.726,11.558 3.804,11.548L3.804,11.545L6.839,11.545C6.846,11.545 6.854,11.545 6.86,11.546C6.939,11.556 6.995,11.63 6.994,11.71L6.994,11.714L6.678,13.085C6.661,13.163 6.583,13.22 6.494,13.22L6.113,13.22C6.1,13.22 6.086,13.225 6.075,13.233C6.064,13.241 6.056,13.253 6.052,13.266C5.7,14.46 5.223,15.282 4.594,15.775C4.058,16.195 3.399,16.391 2.517,16.391C1.725,16.391 1.191,16.136 0.738,15.633C0.14,14.967 -0.107,13.879 0.043,12.566C0.313,10.103 1.589,7.618 4.047,7.618ZM21.016,7.75C23.026,7.75 24.03,8.662 23.999,10.461C23.962,12.569 22.678,14.119 20.745,14.477C20.47,14.527 20.191,14.547 19.912,14.545L18.978,14.541C18.963,14.541 18.948,14.547 18.937,14.558C18.926,14.568 18.92,14.583 18.92,14.598C18.92,14.608 18.922,14.618 18.928,14.627C18.933,14.636 18.941,14.643 18.95,14.648L19.744,15.062C19.809,15.096 19.835,15.153 19.82,15.226C19.815,15.249 19.618,16.139 19.613,16.159C19.596,16.237 19.533,16.282 19.442,16.282L17.739,16.282C17.715,16.282 17.69,16.277 17.668,16.267C17.646,16.257 17.626,16.241 17.61,16.223C17.598,16.208 17.589,16.191 17.585,16.173C17.58,16.155 17.581,16.135 17.585,16.116L19.481,7.875C19.5,7.789 19.581,7.751 19.653,7.751L21.016,7.75ZM17.273,7.762C17.292,7.77 17.31,7.781 17.324,7.795C17.338,7.81 17.351,7.828 17.358,7.847C17.366,7.866 17.369,7.886 17.369,7.906L17.358,16.119C17.361,16.138 17.36,16.158 17.355,16.177C17.35,16.196 17.34,16.213 17.328,16.228C17.313,16.245 17.295,16.259 17.274,16.268C17.254,16.277 17.232,16.282 17.21,16.281L15.397,16.281C15.377,16.282 15.356,16.277 15.337,16.27C15.318,16.262 15.3,16.25 15.286,16.236C15.272,16.221 15.26,16.204 15.253,16.185C15.245,16.166 15.241,16.146 15.241,16.125L15.28,15.328C15.282,15.241 15.28,15.217 15.229,15.211L15.161,15.209L13.447,15.209C13.323,15.209 13.314,15.22 13.27,15.334L12.914,16.191C12.882,16.252 12.818,16.281 12.722,16.281L10.927,16.281C10.818,16.281 10.74,16.173 10.781,16.072L14.499,7.873C14.524,7.824 14.562,7.75 14.648,7.75L17.214,7.75C17.234,7.75 17.254,7.754 17.273,7.762ZM15.5,9.985C15.492,9.953 15.466,9.956 15.445,9.998C15.43,10.028 15.416,10.06 15.405,10.091L14.121,13.274C14.114,13.294 14.109,13.31 14.105,13.322C14.104,13.328 14.103,13.335 14.104,13.341C14.105,13.347 14.108,13.353 14.111,13.358C14.115,13.363 14.12,13.367 14.126,13.37C14.131,13.373 14.137,13.376 14.143,13.376L15.215,13.39C15.334,13.38 15.34,13.374 15.352,13.253C15.354,13.21 15.506,10.022 15.5,9.985ZM20.112,9.582C20.097,9.582 20.083,9.588 20.072,9.599C20.061,9.609 20.055,9.624 20.054,9.639C20.054,9.649 20.057,9.659 20.062,9.668C20.068,9.677 20.075,9.685 20.084,9.69C20.097,9.697 20.869,10.104 20.926,10.135C20.968,10.158 20.969,10.198 20.955,10.267C20.948,10.298 20.415,12.642 20.416,12.644C20.419,12.647 20.435,12.655 20.515,12.655L20.551,12.655C21.446,12.619 21.934,11.561 21.952,10.534C21.961,9.979 21.772,9.638 21.429,9.588L21.358,9.582L20.112,9.582Z"/></svg>GSAP</span><span class="tk"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#E87D0D" d="M12.51 13.214c.046-.8.438-1.506 1.03-2.006a3.424 3.424 0 0 1 2.212-.79c.85 0 1.631.3 2.211.79.592.5.983 1.206 1.028 2.005.045.823-.285 1.586-.865 2.153a3.389 3.389 0 0 1-2.374.938 3.393 3.393 0 0 1-2.376-.938c-.58-.567-.91-1.33-.865-2.152M7.35 14.831c.006.314.106.922.256 1.398a7.372 7.372 0 0 0 1.593 2.757 8.227 8.227 0 0 0 2.787 2.001 8.947 8.947 0 0 0 3.66.76 8.964 8.964 0 0 0 3.657-.772 8.285 8.285 0 0 0 2.785-2.01 7.428 7.428 0 0 0 1.592-2.762 6.964 6.964 0 0 0 .25-3.074 7.123 7.123 0 0 0-1.016-2.779 7.764 7.764 0 0 0-1.852-2.043h.002L13.566 2.55l-.02-.015c-.492-.378-1.319-.376-1.86.002-.547.382-.609 1.015-.123 1.415l-.001.001 3.126 2.543-9.53.01h-.013c-.788.001-1.545.518-1.695 1.172-.154.665.38 1.217 1.2 1.22V8.9l4.83-.01-8.62 6.617-.034.025c-.813.622-1.075 1.658-.563 2.313.52.667 1.625.668 2.447.004L7.414 14s-.069.52-.063.831zm12.09 1.741c-.97.988-2.326 1.548-3.795 1.55-1.47.004-2.827-.552-3.797-1.538a4.51 4.51 0 0 1-1.036-1.622 4.282 4.282 0 0 1 .282-3.519 4.702 4.702 0 0 1 1.153-1.371c.942-.768 2.141-1.183 3.396-1.185 1.256-.002 2.455.41 3.398 1.175.48.391.87.854 1.152 1.367a4.28 4.28 0 0 1 .522 1.706 4.236 4.236 0 0 1-.239 1.811 4.54 4.54 0 0 1-1.035 1.626"/></svg>Blender</span></div>
-        </div>
-        <div class="ts">
-          <p class="label">트러블슈팅</p>
-          <h3>룰렛이 제자리에서 돌지 않고 궤도를 그리며 돌던 문제</h3>
-          <div class="steps">
-            <div class="step"><span class="k">문제</span><p>수정한 룰렛 GLB를 웹에 올리자, 원판이 자기 중심이 아니라 엉뚱한 지점을 축으로 크게 원을 그리며 돌았습니다. Blender를 처음 다뤄 본 상태라 원인을 찾는 데 오래 걸렸습니다.</p></div>
-            <div class="step"><span class="k">원인</span><p>Blender 오브젝트의 원점(Origin)이 원판 중심이 아닌 다른 위치에 있었습니다. Three.js는 오브젝트를 원점 기준으로 회전시키기 때문에, 원점이 어긋나면 회전축도 함께 어긋납니다.</p></div>
-            <div class="step"><span class="k">해결</span><p>Blender에서 원판의 원점을 회전 중심으로 다시 지정하고 변환(Transform)을 적용한 뒤 다시 내보냈습니다. FE에서 모델의 바운딩 박스 중심으로 보정하는 로직과 맞춰 룰렛이 제자리에서 회전하도록 했습니다.</p></div>
-            <div class="step"><span class="k">배운 점</span><p>3D 에셋은 눈에 보이는 모양보다 원점, 축, 스케일 같은 보이지 않는 데이터가 웹에서의 동작을 결정한다는 것을 알게 됐습니다.</p></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="result">
-        <div><b>공통 최우수상</b>SSAFY 14기 공통 프로젝트</div>
-        <div><b>92%</b>팀이 받은 유저 피드백 24건 중 22건 반영</div>
-      </div>
-      <div class="linkrow"><a class="chip" href="https://github.com/mm-sj/S14P11D209" target="_blank" rel="noopener">GitHub 저장소 ↗</a></div>
-    </div>
-  </article>
-
-  <!-- ─────────── 02 WYD ─────────── -->
-  <article class="sheet" id="wyd">
-    <div class="titleblock">
-      <div><span class="k">Sheet</span><span class="v">02 / 04</span></div>
-      <div><span class="k">Period</span><span class="v">2026.03.03 – 03.29</span></div>
-      <div><span class="k">Team</span><span class="v">5명 (FE 2)</span></div>
-      <div><span class="k">Role</span><span class="v">FE 팀장</span></div>
-      <div><span class="k">Stack</span><span class="v tbstack"><span class="tbi"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#61DAFB" d="M14.23 12.004a2.236 2.236 0 0 1-2.235 2.236 2.236 2.236 0 0 1-2.236-2.236 2.236 2.236 0 0 1 2.235-2.236 2.236 2.236 0 0 1 2.236 2.236zm2.648-10.69c-1.346 0-3.107.96-4.888 2.622-1.78-1.653-3.542-2.602-4.887-2.602-.41 0-.783.093-1.106.278-1.375.793-1.683 3.264-.973 6.365C1.98 8.917 0 10.42 0 12.004c0 1.59 1.99 3.097 5.043 4.03-.704 3.113-.39 5.588.988 6.38.32.187.69.275 1.102.275 1.345 0 3.107-.96 4.888-2.624 1.78 1.654 3.542 2.603 4.887 2.603.41 0 .783-.09 1.106-.275 1.374-.792 1.683-3.263.973-6.365C22.02 15.096 24 13.59 24 12.004c0-1.59-1.99-3.097-5.043-4.032.704-3.11.39-5.587-.988-6.38-.318-.184-.688-.277-1.092-.278zm-.005 1.09v.006c.225 0 .406.044.558.127.666.382.955 1.835.73 3.704-.054.46-.142.945-.25 1.44-.96-.236-2.006-.417-3.107-.534-.66-.905-1.345-1.727-2.035-2.447 1.592-1.48 3.087-2.292 4.105-2.295zm-9.77.02c1.012 0 2.514.808 4.11 2.28-.686.72-1.37 1.537-2.02 2.442-1.107.117-2.154.298-3.113.538-.112-.49-.195-.964-.254-1.42-.23-1.868.054-3.32.714-3.707.19-.09.4-.127.563-.132zm4.882 3.05c.455.468.91.992 1.36 1.564-.44-.02-.89-.034-1.345-.034-.46 0-.915.01-1.36.034.44-.572.895-1.096 1.345-1.565zM12 8.1c.74 0 1.477.034 2.202.093.406.582.802 1.203 1.183 1.86.372.64.71 1.29 1.018 1.946-.308.655-.646 1.31-1.013 1.95-.38.66-.773 1.288-1.18 1.87-.728.063-1.466.098-2.21.098-.74 0-1.477-.035-2.202-.093-.406-.582-.802-1.204-1.183-1.86-.372-.64-.71-1.29-1.018-1.946.303-.657.646-1.313 1.013-1.954.38-.66.773-1.286 1.18-1.868.728-.064 1.466-.098 2.21-.098zm-3.635.254c-.24.377-.48.763-.704 1.16-.225.39-.435.782-.635 1.174-.265-.656-.49-1.31-.676-1.947.64-.15 1.315-.283 2.015-.386zm7.26 0c.695.103 1.365.23 2.006.387-.18.632-.405 1.282-.66 1.933-.2-.39-.41-.783-.64-1.174-.225-.392-.465-.774-.705-1.146zm3.063.675c.484.15.944.317 1.375.498 1.732.74 2.852 1.708 2.852 2.476-.005.768-1.125 1.74-2.857 2.475-.42.18-.88.342-1.355.493-.28-.958-.646-1.956-1.1-2.98.45-1.017.81-2.01 1.085-2.964zm-13.395.004c.278.96.645 1.957 1.1 2.98-.45 1.017-.812 2.01-1.086 2.964-.484-.15-.944-.318-1.37-.5-1.732-.737-2.852-1.706-2.852-2.474 0-.768 1.12-1.742 2.852-2.476.42-.18.88-.342 1.356-.494zm11.678 4.28c.265.657.49 1.312.676 1.948-.64.157-1.316.29-2.016.39.24-.375.48-.762.705-1.158.225-.39.435-.788.636-1.18zm-9.945.02c.2.392.41.783.64 1.175.23.39.465.772.705 1.143-.695-.102-1.365-.23-2.006-.386.18-.63.406-1.282.66-1.933zM17.92 16.32c.112.493.2.968.254 1.423.23 1.868-.054 3.32-.714 3.708-.147.09-.338.128-.563.128-1.012 0-2.514-.807-4.11-2.28.686-.72 1.37-1.536 2.02-2.44 1.107-.118 2.154-.3 3.113-.54zm-11.83.01c.96.234 2.006.415 3.107.532.66.905 1.345 1.727 2.035 2.446-1.595 1.483-3.092 2.295-4.11 2.295-.22-.005-.406-.05-.553-.132-.666-.38-.955-1.834-.73-3.703.054-.46.142-.944.25-1.438zm4.56.64c.44.02.89.034 1.345.034.46 0 .915-.01 1.36-.034-.44.572-.895 1.095-1.345 1.565-.455-.47-.91-.993-1.36-1.565z"/></svg>React</span><span class="tbi"><i class="tk-mono" style="background:#20232A;color:#61DAFB" aria-hidden="true">R3F</i>R3F</span></span></div>
-      <div><span class="k">Award</span><span class="v acc">특화 우수상</span></div>
-    </div>
-    <div class="sheet-body">
-      <span class="stamp-wrap" aria-hidden="true"><svg class="stamp-award" viewBox="0 0 120 120" role="img" aria-label="특화 프로젝트 우수상">
-  <defs>
-    <path id="st-wyd-p" d="M60,60 m-45,0 a45,45 0 1,1 90,0 a45,45 0 1,1 -90,0"/>
-    <filter id="st-wyd-ink" x="-10%" y="-10%" width="120%" height="120%">
-      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="42" result="n"/>
-      <feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -1.3 1.5" result="m"/>
-      <feComposite in="SourceGraphic" in2="m" operator="in" result="t"/>
-      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="1" seed="3" result="w"/>
-      <feDisplacementMap in="t" in2="w" scale="1.1"/>
-    </filter>
-  </defs>
-  <g filter="url(#st-wyd-ink)" fill="currentColor" stroke="currentColor">
-    <circle cx="60" cy="60" r="56" fill="none" stroke-width="3.2"/>
-    <circle cx="60" cy="60" r="37" fill="none" stroke-width="1.2"/>
-    <text font-size="8.6" stroke="none" font-family="'IBM Plex Mono', ui-monospace, monospace" font-weight="500">
-      <textPath href="#st-wyd-p" startOffset="0" textLength="280" lengthAdjust="spacing">SSAFY 14TH · AWARD · 2026 · SSAFY 14TH · AWARD · 2026 · </textPath>
-    </text>
-    <text x="60" y="51" text-anchor="middle" font-size="8.5" stroke="none" font-family="'IBM Plex Sans KR', 'Pretendard', sans-serif" font-weight="600">특화 프로젝트</text>
-    <text x="60" y="71" text-anchor="middle" font-size="19" stroke="none" font-family="'Hahmlet', serif" font-weight="700">우수상</text>
-    <text x="60" y="84" text-anchor="middle" font-size="7" stroke="none">★ ★</text>
-  </g>
-</svg></span>
-      <div class="sheet-head">
-        <div>
-          <p class="no">02 — Would You Draw</p>
-          <h2>Would You Draw</h2>
-          <p class="one">감정을 그림으로 그리면 AI가 해석하고, 그 기록이 별에서 별자리(7일), 은하(30일)로 쌓이는 감정 드로잉 PWA</p>
-        </div>
-        <p class="why">감정을 점수로 매기는 대신, 시간이 지날수록 넓어지는 우주로 보여주고 싶었습니다. FE 팀장으로 우주 씬의 인터랙션과 드로잉 콘텐츠를 맡았습니다.</p>
-      </div>
-
-      <figure class="lead-media">
-        <div class="media"><video data-src="../assets/wyd-universe.mp4" poster="../assets/wyd-universe.jpg" muted loop playsinline preload="none" aria-label="감정 별이 모인 3D 우주 씬"></video></div>
-        <figcaption>감정 기록이 모여 만든 우주 — 은하에서 개별 별까지 카메라가 이어서 이동</figcaption>
-      </figure>
-      <div class="grid-media c2">
-        <figure><div class="media"><video data-src="../assets/wyd-birth.mp4" poster="../assets/wyd-birth.jpg" muted loop playsinline preload="none" aria-label="별 탄생"></video></div><figcaption>새 별과 별자리</figcaption></figure>
-        <figure><div class="media"><video data-src="../assets/wyd-custom.mp4" poster="../assets/wyd-custom.jpg" muted loop playsinline preload="none" aria-label="중심별 커스텀"></video></div><figcaption>중심별 형태·색 커스텀</figcaption></figure>
-        <figure><div class="media"><video data-src="../assets/wyd-tutorial.mp4" poster="../assets/wyd-tutorial.jpg" muted loop playsinline preload="none" aria-label="튜토리얼"></video></div><figcaption>피드백 반영 튜토리얼</figcaption></figure>
-        <figure><div class="media"><video data-src="../assets/wyd-canvas.mp4" poster="../assets/wyd-canvas.jpg" muted loop playsinline preload="none" aria-label="드로잉 캔버스"></video></div><figcaption>드로잉 캔버스 — 커스텀 컬러 팔레트</figcaption></figure>
-      </div>
-
-      <div class="cols">
-        <div>
-          <p class="label">제가 한 일</p>
-          <ul class="did">
-            <li><b>우주 씬 인터랙션.</b> 팀원이 만든 R3F 우주 씬 위에서 별자리 연결 로직, 새 별 탄생 연출, 시네마틱 모드, 패널이 열릴 때 카메라 구도를 옮기는 레이아웃을 맡았습니다.</li>
-            <li><b>드로잉 캔버스.</b> 캔버스를 공통 컴포넌트로 분리하고, HTP 단계별 드로잉, 데일리 자유 드로잉, 명화 색칠, 커스텀 컬러 팔레트를 구현했습니다.</li>
-            <li><b>분석 결과와 커스텀.</b> HTP 분석 결과 UI와, 8가지 형태와 팔레트로 꾸미는 마이페이지 중심별 커스텀을 만들었습니다.</li>
-            <li><b>피드백 대응.</b> 유저 피드백 37건에서 반복된 '직관성·가이드 부족'에 맞춰 튜토리얼과 전역 알림 모달을 넣었습니다.</li>
-          </ul>
-          <div class="stack tks"><span class="tk"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#61DAFB" d="M14.23 12.004a2.236 2.236 0 0 1-2.235 2.236 2.236 2.236 0 0 1-2.236-2.236 2.236 2.236 0 0 1 2.235-2.236 2.236 2.236 0 0 1 2.236 2.236zm2.648-10.69c-1.346 0-3.107.96-4.888 2.622-1.78-1.653-3.542-2.602-4.887-2.602-.41 0-.783.093-1.106.278-1.375.793-1.683 3.264-.973 6.365C1.98 8.917 0 10.42 0 12.004c0 1.59 1.99 3.097 5.043 4.03-.704 3.113-.39 5.588.988 6.38.32.187.69.275 1.102.275 1.345 0 3.107-.96 4.888-2.624 1.78 1.654 3.542 2.603 4.887 2.603.41 0 .783-.09 1.106-.275 1.374-.792 1.683-3.263.973-6.365C22.02 15.096 24 13.59 24 12.004c0-1.59-1.99-3.097-5.043-4.032.704-3.11.39-5.587-.988-6.38-.318-.184-.688-.277-1.092-.278zm-.005 1.09v.006c.225 0 .406.044.558.127.666.382.955 1.835.73 3.704-.054.46-.142.945-.25 1.44-.96-.236-2.006-.417-3.107-.534-.66-.905-1.345-1.727-2.035-2.447 1.592-1.48 3.087-2.292 4.105-2.295zm-9.77.02c1.012 0 2.514.808 4.11 2.28-.686.72-1.37 1.537-2.02 2.442-1.107.117-2.154.298-3.113.538-.112-.49-.195-.964-.254-1.42-.23-1.868.054-3.32.714-3.707.19-.09.4-.127.563-.132zm4.882 3.05c.455.468.91.992 1.36 1.564-.44-.02-.89-.034-1.345-.034-.46 0-.915.01-1.36.034.44-.572.895-1.096 1.345-1.565zM12 8.1c.74 0 1.477.034 2.202.093.406.582.802 1.203 1.183 1.86.372.64.71 1.29 1.018 1.946-.308.655-.646 1.31-1.013 1.95-.38.66-.773 1.288-1.18 1.87-.728.063-1.466.098-2.21.098-.74 0-1.477-.035-2.202-.093-.406-.582-.802-1.204-1.183-1.86-.372-.64-.71-1.29-1.018-1.946.303-.657.646-1.313 1.013-1.954.38-.66.773-1.286 1.18-1.868.728-.064 1.466-.098 2.21-.098zm-3.635.254c-.24.377-.48.763-.704 1.16-.225.39-.435.782-.635 1.174-.265-.656-.49-1.31-.676-1.947.64-.15 1.315-.283 2.015-.386zm7.26 0c.695.103 1.365.23 2.006.387-.18.632-.405 1.282-.66 1.933-.2-.39-.41-.783-.64-1.174-.225-.392-.465-.774-.705-1.146zm3.063.675c.484.15.944.317 1.375.498 1.732.74 2.852 1.708 2.852 2.476-.005.768-1.125 1.74-2.857 2.475-.42.18-.88.342-1.355.493-.28-.958-.646-1.956-1.1-2.98.45-1.017.81-2.01 1.085-2.964zm-13.395.004c.278.96.645 1.957 1.1 2.98-.45 1.017-.812 2.01-1.086 2.964-.484-.15-.944-.318-1.37-.5-1.732-.737-2.852-1.706-2.852-2.474 0-.768 1.12-1.742 2.852-2.476.42-.18.88-.342 1.356-.494zm11.678 4.28c.265.657.49 1.312.676 1.948-.64.157-1.316.29-2.016.39.24-.375.48-.762.705-1.158.225-.39.435-.788.636-1.18zm-9.945.02c.2.392.41.783.64 1.175.23.39.465.772.705 1.143-.695-.102-1.365-.23-2.006-.386.18-.63.406-1.282.66-1.933zM17.92 16.32c.112.493.2.968.254 1.423.23 1.868-.054 3.32-.714 3.708-.147.09-.338.128-.563.128-1.012 0-2.514-.807-4.11-2.28.686-.72 1.37-1.536 2.02-2.44 1.107-.118 2.154-.3 3.113-.54zm-11.83.01c.96.234 2.006.415 3.107.532.66.905 1.345 1.727 2.035 2.446-1.595 1.483-3.092 2.295-4.11 2.295-.22-.005-.406-.05-.553-.132-.666-.38-.955-1.834-.73-3.703.054-.46.142-.944.25-1.438zm4.56.64c.44.02.89.034 1.345.034.46 0 .915-.01 1.36-.034-.44.572-.895 1.095-1.345 1.565-.455-.47-.91-.993-1.36-1.565z"/></svg>React</span><span class="tk"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#3178C6" d="M1.125 0C.502 0 0 .502 0 1.125v21.75C0 23.498.502 24 1.125 24h21.75c.623 0 1.125-.502 1.125-1.125V1.125C24 .502 23.498 0 22.875 0zm17.363 9.75c.612 0 1.154.037 1.627.111a6.38 6.38 0 0 1 1.306.34v2.458a3.95 3.95 0 0 0-.643-.361 5.093 5.093 0 0 0-.717-.26 5.453 5.453 0 0 0-1.426-.2c-.3 0-.573.028-.819.086a2.1 2.1 0 0 0-.623.242c-.17.104-.3.229-.393.374a.888.888 0 0 0-.14.49c0 .196.053.373.156.529.104.156.252.304.443.444s.423.276.696.41c.273.135.582.274.926.416.47.197.892.407 1.266.628.374.222.695.473.963.753.268.279.472.598.614.957.142.359.214.776.214 1.253 0 .657-.125 1.21-.373 1.656a3.033 3.033 0 0 1-1.012 1.085 4.38 4.38 0 0 1-1.487.596c-.566.12-1.163.18-1.79.18a9.916 9.916 0 0 1-1.84-.164 5.544 5.544 0 0 1-1.512-.493v-2.63a5.033 5.033 0 0 0 3.237 1.2c.333 0 .624-.03.872-.09.249-.06.456-.144.623-.25.166-.108.29-.234.373-.38a1.023 1.023 0 0 0-.074-1.089 2.12 2.12 0 0 0-.537-.5 5.597 5.597 0 0 0-.807-.444 27.72 27.72 0 0 0-1.007-.436c-.918-.383-1.602-.852-2.053-1.405-.45-.553-.676-1.222-.676-2.005 0-.614.123-1.141.369-1.582.246-.441.58-.804 1.004-1.089a4.494 4.494 0 0 1 1.47-.629 7.536 7.536 0 0 1 1.77-.201zm-15.113.188h9.563v2.166H9.506v9.646H6.789v-9.646H3.375z"/></svg>TypeScript</span><span class="tk"><i class="tk-mono" style="background:#443E38;color:#fff" aria-hidden="true">Zu</i>Zustand</span><span class="tk"><i class="tk-mono" style="background:#20232A;color:#61DAFB" aria-hidden="true">R3F</i>React Three Fiber</span><span class="tk"><i class="tk-mono" style="background:#20232A;color:#FFD166" aria-hidden="true">dr</i>drei</span><span class="tk"><i class="tk-mono" style="background:#3B3F58;color:#C9D8FF" aria-hidden="true">pp</i>postprocessing</span><span class="tk"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#0055FF" d="M4 0h16v8h-8zM4 8h8l8 8H4zM4 16h8v8z"/></svg>Framer Motion</span><span class="tk"><i class="tk-mono" style="background:#E44D26;color:#fff" aria-hidden="true">Cv</i>Canvas API</span></div>
-        </div>
-        <div class="ts">
-          <p class="label">트러블슈팅</p>
-          <h3>저장해도 별이 바로 뜨지 않던 문제 — 낙관적 업데이트</h3>
-          <div class="steps">
-            <div class="step"><span class="k">문제</span><p>그림을 저장한 뒤 AI 분석이 RabbitMQ로 비동기 처리되어, 분석이 끝나기 전까지는 별이 생기지 않았습니다. 저장 직후 우주에 아무 변화가 없어 사용자는 저장이 실패한 것으로 느낄 수 있었습니다.</p></div>
-            <div class="step"><span class="k">해결</span><p>저장 응답을 받는 즉시 임시 별을 만들고 탄생 애니메이션을 재생했습니다. 이후 <code>2 → 5 → 10 → 15 → 20초</code> 간격으로 별 목록을 다시 조회하고, 서버에서 실제 별이 오면 <code>targetId</code>로 임시 별을 대체했습니다. 폴링 중에는 새 폴링을 막아 요청이 겹치지 않게 했습니다.</p></div>
-            <div class="step"><span class="k">배운 점</span><p>비동기 처리가 끝날 때까지 화면이 기다리게 하지 않고, 결과를 먼저 보여준 뒤 나중에 맞추는 방식으로 체감 속도를 바꿀 수 있다는 것을 배웠습니다.</p></div>
-          </div>
-          <div class="sub">
-            <h4>특정 색의 별만 빛나지 않던 문제</h4>
-            <p>사용자가 고른 감정 색으로 별을 그리는데, 일부 색의 별은 Bloom 효과가 나타나지 않았습니다. 같은 발광 강도라도 색마다 휘도가 달라, 휘도가 낮은 색은 Bloom 임계값(<code>1.1</code>)을 넘지 못했기 때문입니다. 임계값을 <code>0.5</code>로 낮추고 반짝임 범위를 넓혀 모든 색이 고르게 빛나도록 했습니다.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="result">
-        <div><b>특화 우수상</b>SSAFY 14기 특화 프로젝트</div>
-        <div><b>37건</b>유저 피드백 수집 → 튜토리얼·캔버스·별 렌더링 개선</div>
-      </div>
-      <div class="linkrow"><a class="chip" href="https://github.com/mm-sj/S14P21D207" target="_blank" rel="noopener">GitHub 저장소 ↗</a></div>
-    </div>
-  </article>
-
-  <!-- ─────────── 03 Jabis ─────────── -->
-  <article class="sheet" id="jabis">
-    <div class="titleblock">
-      <div><span class="k">Sheet</span><span class="v">03 / 04</span></div>
-      <div><span class="k">Period</span><span class="v">2026.04.08 – 05.21</span></div>
-      <div><span class="k">Team</span><span class="v">6명 (FE 1)</span></div>
-      <div><span class="k">Role</span><span class="v">FE 전담</span></div>
-      <div><span class="k">Stack</span><span class="v tbstack"><span class="tbi"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#61DAFB" d="M14.23 12.004a2.236 2.236 0 0 1-2.235 2.236 2.236 2.236 0 0 1-2.236-2.236 2.236 2.236 0 0 1 2.235-2.236 2.236 2.236 0 0 1 2.236 2.236zm2.648-10.69c-1.346 0-3.107.96-4.888 2.622-1.78-1.653-3.542-2.602-4.887-2.602-.41 0-.783.093-1.106.278-1.375.793-1.683 3.264-.973 6.365C1.98 8.917 0 10.42 0 12.004c0 1.59 1.99 3.097 5.043 4.03-.704 3.113-.39 5.588.988 6.38.32.187.69.275 1.102.275 1.345 0 3.107-.96 4.888-2.624 1.78 1.654 3.542 2.603 4.887 2.603.41 0 .783-.09 1.106-.275 1.374-.792 1.683-3.263.973-6.365C22.02 15.096 24 13.59 24 12.004c0-1.59-1.99-3.097-5.043-4.032.704-3.11.39-5.587-.988-6.38-.318-.184-.688-.277-1.092-.278zm-.005 1.09v.006c.225 0 .406.044.558.127.666.382.955 1.835.73 3.704-.054.46-.142.945-.25 1.44-.96-.236-2.006-.417-3.107-.534-.66-.905-1.345-1.727-2.035-2.447 1.592-1.48 3.087-2.292 4.105-2.295zm-9.77.02c1.012 0 2.514.808 4.11 2.28-.686.72-1.37 1.537-2.02 2.442-1.107.117-2.154.298-3.113.538-.112-.49-.195-.964-.254-1.42-.23-1.868.054-3.32.714-3.707.19-.09.4-.127.563-.132zm4.882 3.05c.455.468.91.992 1.36 1.564-.44-.02-.89-.034-1.345-.034-.46 0-.915.01-1.36.034.44-.572.895-1.096 1.345-1.565zM12 8.1c.74 0 1.477.034 2.202.093.406.582.802 1.203 1.183 1.86.372.64.71 1.29 1.018 1.946-.308.655-.646 1.31-1.013 1.95-.38.66-.773 1.288-1.18 1.87-.728.063-1.466.098-2.21.098-.74 0-1.477-.035-2.202-.093-.406-.582-.802-1.204-1.183-1.86-.372-.64-.71-1.29-1.018-1.946.303-.657.646-1.313 1.013-1.954.38-.66.773-1.286 1.18-1.868.728-.064 1.466-.098 2.21-.098zm-3.635.254c-.24.377-.48.763-.704 1.16-.225.39-.435.782-.635 1.174-.265-.656-.49-1.31-.676-1.947.64-.15 1.315-.283 2.015-.386zm7.26 0c.695.103 1.365.23 2.006.387-.18.632-.405 1.282-.66 1.933-.2-.39-.41-.783-.64-1.174-.225-.392-.465-.774-.705-1.146zm3.063.675c.484.15.944.317 1.375.498 1.732.74 2.852 1.708 2.852 2.476-.005.768-1.125 1.74-2.857 2.475-.42.18-.88.342-1.355.493-.28-.958-.646-1.956-1.1-2.98.45-1.017.81-2.01 1.085-2.964zm-13.395.004c.278.96.645 1.957 1.1 2.98-.45 1.017-.812 2.01-1.086 2.964-.484-.15-.944-.318-1.37-.5-1.732-.737-2.852-1.706-2.852-2.474 0-.768 1.12-1.742 2.852-2.476.42-.18.88-.342 1.356-.494zm11.678 4.28c.265.657.49 1.312.676 1.948-.64.157-1.316.29-2.016.39.24-.375.48-.762.705-1.158.225-.39.435-.788.636-1.18zm-9.945.02c.2.392.41.783.64 1.175.23.39.465.772.705 1.143-.695-.102-1.365-.23-2.006-.386.18-.63.406-1.282.66-1.933zM17.92 16.32c.112.493.2.968.254 1.423.23 1.868-.054 3.32-.714 3.708-.147.09-.338.128-.563.128-1.012 0-2.514-.807-4.11-2.28.686-.72 1.37-1.536 2.02-2.44 1.107-.118 2.154-.3 3.113-.54zm-11.83.01c.96.234 2.006.415 3.107.532.66.905 1.345 1.727 2.035 2.446-1.595 1.483-3.092 2.295-4.11 2.295-.22-.005-.406-.05-.553-.132-.666-.38-.955-1.834-.73-3.703.054-.46.142-.944.25-1.438zm4.56.64c.44.02.89.034 1.345.034.46 0 .915-.01 1.36-.034-.44.572-.895 1.095-1.345 1.565-.455-.47-.91-.993-1.36-1.565z"/></svg>React</span><span class="tbi"><i class="tk-mono" style="background:#20232A;color:#61DAFB" aria-hidden="true">R3F</i>R3F</span><span class="tbi"><i class="tk-mono" style="background:#22314E;color:#8FB3FF" aria-hidden="true">UR</i>URDF</span></span></div>
-      <div><span class="k">Award</span><span class="v acc">자율 우수상</span></div>
-    </div>
-    <div class="sheet-body">
-      <span class="stamp-wrap" aria-hidden="true"><svg class="stamp-award" viewBox="0 0 120 120" role="img" aria-label="자율 프로젝트 우수상">
-  <defs>
-    <path id="st-jabis-p" d="M60,60 m-45,0 a45,45 0 1,1 90,0 a45,45 0 1,1 -90,0"/>
-    <filter id="st-jabis-ink" x="-10%" y="-10%" width="120%" height="120%">
-      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="56" result="n"/>
-      <feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -1.3 1.5" result="m"/>
-      <feComposite in="SourceGraphic" in2="m" operator="in" result="t"/>
-      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="1" seed="3" result="w"/>
-      <feDisplacementMap in="t" in2="w" scale="1.1"/>
-    </filter>
-  </defs>
-  <g filter="url(#st-jabis-ink)" fill="currentColor" stroke="currentColor">
-    <circle cx="60" cy="60" r="56" fill="none" stroke-width="3.2"/>
-    <circle cx="60" cy="60" r="37" fill="none" stroke-width="1.2"/>
-    <text font-size="8.6" stroke="none" font-family="'IBM Plex Mono', ui-monospace, monospace" font-weight="500">
-      <textPath href="#st-jabis-p" startOffset="0" textLength="280" lengthAdjust="spacing">SSAFY 14TH · AWARD · 2026 · SSAFY 14TH · AWARD · 2026 · </textPath>
-    </text>
-    <text x="60" y="51" text-anchor="middle" font-size="8.5" stroke="none" font-family="'IBM Plex Sans KR', 'Pretendard', sans-serif" font-weight="600">자율 프로젝트</text>
-    <text x="60" y="71" text-anchor="middle" font-size="19" stroke="none" font-family="'Hahmlet', serif" font-weight="700">우수상</text>
-    <text x="60" y="84" text-anchor="middle" font-size="7" stroke="none">★ ★</text>
-  </g>
-</svg></span>
-      <div class="sheet-head">
-        <div>
-          <p class="no">03 — Jabis</p>
-          <h2>Jabis</h2>
-          <p class="one">음성 명령을 듣고, 책상을 보고, 두 팔로 물건을 집는 Physical AI 데스크 로봇의 웹 대시보드와 디지털 트윈</p>
-        </div>
-        <p class="why">로봇이 지금 무엇을 보고 어떻게 움직이는지 사람이 한눈에 알 수 있어야 했습니다. 팀의 유일한 FE로서, 로봇의 관절·인식·자세 데이터를 실시간으로 받아 3D로 보여주는 대시보드와 디지털 트윈을 맡았습니다.</p>
-      </div>
-
-      <figure class="lead-media">
-        <div class="media"><video data-src="../assets/jabis-dashboard.mp4" poster="../assets/jabis-dashboard.jpg" muted loop playsinline preload="none" aria-label="Jabis 디지털 트윈 대시보드"></video></div>
-        <figcaption>실측 책상(1200 × 600 × 700 mm) 위의 양팔 로봇 디지털 트윈과 인식된 물체의 3D 박스</figcaption>
-      </figure>
-      <div class="grid-media c2 jabis-more">
-        <figure><div class="media"><video data-src="../assets/jabis-robot.mp4" poster="../assets/jabis-robot.jpg" muted loop playsinline preload="none" aria-label="실제 양팔 로봇"></video></div><figcaption>실제 양팔 로봇 — 대시보드의 3D가 따라 움직이는 원본</figcaption></figure>
-        <figure><div class="media"><img src="../assets/jabis-panels.jpg" alt="카메라·텔레메트리 패널" loading="lazy"></div><figcaption>카메라 4대 영상과 양팔 관절 텔레메트리 패널</figcaption></figure>
-      </div>
-
-      <div class="cols">
-        <div>
-          <p class="label">제가 한 일</p>
-          <ul class="did">
-            <li><b>디지털 트윈.</b> SO-ARM101 URDF를 불러와 양팔 로봇을 실측 책상 GLB 위에 배치하고, WebSocket으로 받은 관절 각도를 실시간으로 반영했습니다.</li>
-            <li><b>인식 결과 시각화.</b> YOLO 인식 결과를 3D 박스로 렌더링하고, MJPEG 카메라 스트림과 시스템 로그, E-Stop을 연결했습니다.</li>
-            <li><b>모드별 대시보드.</b> 집중·게임·영화·외출 모드마다 레이아웃을 바꾸고, 자세 모니터링 차트와 리포트, 졸음 감지 카드를 만들었습니다.</li>
-            <li><b>FE 기반 설계.</b> FE 폴더 구조, FE API 명세, Zustand 스토어와 타입 정의를 세팅했습니다.</li>
-          </ul>
-          <div class="stack tks"><span class="tk"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#61DAFB" d="M14.23 12.004a2.236 2.236 0 0 1-2.235 2.236 2.236 2.236 0 0 1-2.236-2.236 2.236 2.236 0 0 1 2.235-2.236 2.236 2.236 0 0 1 2.236 2.236zm2.648-10.69c-1.346 0-3.107.96-4.888 2.622-1.78-1.653-3.542-2.602-4.887-2.602-.41 0-.783.093-1.106.278-1.375.793-1.683 3.264-.973 6.365C1.98 8.917 0 10.42 0 12.004c0 1.59 1.99 3.097 5.043 4.03-.704 3.113-.39 5.588.988 6.38.32.187.69.275 1.102.275 1.345 0 3.107-.96 4.888-2.624 1.78 1.654 3.542 2.603 4.887 2.603.41 0 .783-.09 1.106-.275 1.374-.792 1.683-3.263.973-6.365C22.02 15.096 24 13.59 24 12.004c0-1.59-1.99-3.097-5.043-4.032.704-3.11.39-5.587-.988-6.38-.318-.184-.688-.277-1.092-.278zm-.005 1.09v.006c.225 0 .406.044.558.127.666.382.955 1.835.73 3.704-.054.46-.142.945-.25 1.44-.96-.236-2.006-.417-3.107-.534-.66-.905-1.345-1.727-2.035-2.447 1.592-1.48 3.087-2.292 4.105-2.295zm-9.77.02c1.012 0 2.514.808 4.11 2.28-.686.72-1.37 1.537-2.02 2.442-1.107.117-2.154.298-3.113.538-.112-.49-.195-.964-.254-1.42-.23-1.868.054-3.32.714-3.707.19-.09.4-.127.563-.132zm4.882 3.05c.455.468.91.992 1.36 1.564-.44-.02-.89-.034-1.345-.034-.46 0-.915.01-1.36.034.44-.572.895-1.096 1.345-1.565zM12 8.1c.74 0 1.477.034 2.202.093.406.582.802 1.203 1.183 1.86.372.64.71 1.29 1.018 1.946-.308.655-.646 1.31-1.013 1.95-.38.66-.773 1.288-1.18 1.87-.728.063-1.466.098-2.21.098-.74 0-1.477-.035-2.202-.093-.406-.582-.802-1.204-1.183-1.86-.372-.64-.71-1.29-1.018-1.946.303-.657.646-1.313 1.013-1.954.38-.66.773-1.286 1.18-1.868.728-.064 1.466-.098 2.21-.098zm-3.635.254c-.24.377-.48.763-.704 1.16-.225.39-.435.782-.635 1.174-.265-.656-.49-1.31-.676-1.947.64-.15 1.315-.283 2.015-.386zm7.26 0c.695.103 1.365.23 2.006.387-.18.632-.405 1.282-.66 1.933-.2-.39-.41-.783-.64-1.174-.225-.392-.465-.774-.705-1.146zm3.063.675c.484.15.944.317 1.375.498 1.732.74 2.852 1.708 2.852 2.476-.005.768-1.125 1.74-2.857 2.475-.42.18-.88.342-1.355.493-.28-.958-.646-1.956-1.1-2.98.45-1.017.81-2.01 1.085-2.964zm-13.395.004c.278.96.645 1.957 1.1 2.98-.45 1.017-.812 2.01-1.086 2.964-.484-.15-.944-.318-1.37-.5-1.732-.737-2.852-1.706-2.852-2.474 0-.768 1.12-1.742 2.852-2.476.42-.18.88-.342 1.356-.494zm11.678 4.28c.265.657.49 1.312.676 1.948-.64.157-1.316.29-2.016.39.24-.375.48-.762.705-1.158.225-.39.435-.788.636-1.18zm-9.945.02c.2.392.41.783.64 1.175.23.39.465.772.705 1.143-.695-.102-1.365-.23-2.006-.386.18-.63.406-1.282.66-1.933zM17.92 16.32c.112.493.2.968.254 1.423.23 1.868-.054 3.32-.714 3.708-.147.09-.338.128-.563.128-1.012 0-2.514-.807-4.11-2.28.686-.72 1.37-1.536 2.02-2.44 1.107-.118 2.154-.3 3.113-.54zm-11.83.01c.96.234 2.006.415 3.107.532.66.905 1.345 1.727 2.035 2.446-1.595 1.483-3.092 2.295-4.11 2.295-.22-.005-.406-.05-.553-.132-.666-.38-.955-1.834-.73-3.703.054-.46.142-.944.25-1.438zm4.56.64c.44.02.89.034 1.345.034.46 0 .915-.01 1.36-.034-.44.572-.895 1.095-1.345 1.565-.455-.47-.91-.993-1.36-1.565z"/></svg>React</span><span class="tk"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#3178C6" d="M1.125 0C.502 0 0 .502 0 1.125v21.75C0 23.498.502 24 1.125 24h21.75c.623 0 1.125-.502 1.125-1.125V1.125C24 .502 23.498 0 22.875 0zm17.363 9.75c.612 0 1.154.037 1.627.111a6.38 6.38 0 0 1 1.306.34v2.458a3.95 3.95 0 0 0-.643-.361 5.093 5.093 0 0 0-.717-.26 5.453 5.453 0 0 0-1.426-.2c-.3 0-.573.028-.819.086a2.1 2.1 0 0 0-.623.242c-.17.104-.3.229-.393.374a.888.888 0 0 0-.14.49c0 .196.053.373.156.529.104.156.252.304.443.444s.423.276.696.41c.273.135.582.274.926.416.47.197.892.407 1.266.628.374.222.695.473.963.753.268.279.472.598.614.957.142.359.214.776.214 1.253 0 .657-.125 1.21-.373 1.656a3.033 3.033 0 0 1-1.012 1.085 4.38 4.38 0 0 1-1.487.596c-.566.12-1.163.18-1.79.18a9.916 9.916 0 0 1-1.84-.164 5.544 5.544 0 0 1-1.512-.493v-2.63a5.033 5.033 0 0 0 3.237 1.2c.333 0 .624-.03.872-.09.249-.06.456-.144.623-.25.166-.108.29-.234.373-.38a1.023 1.023 0 0 0-.074-1.089 2.12 2.12 0 0 0-.537-.5 5.597 5.597 0 0 0-.807-.444 27.72 27.72 0 0 0-1.007-.436c-.918-.383-1.602-.852-2.053-1.405-.45-.553-.676-1.222-.676-2.005 0-.614.123-1.141.369-1.582.246-.441.58-.804 1.004-1.089a4.494 4.494 0 0 1 1.47-.629 7.536 7.536 0 0 1 1.77-.201zm-15.113.188h9.563v2.166H9.506v9.646H6.789v-9.646H3.375z"/></svg>TypeScript</span><span class="tk"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#9135FF" d="M13.056 23.238a.57.57 0 0 1-1.02-.355v-5.202c0-.63-.512-1.143-1.144-1.143H5.148a.57.57 0 0 1-.464-.903l3.777-5.29c.54-.753 0-1.804-.93-1.804H.57a.574.574 0 0 1-.543-.746.6.6 0 0 1 .08-.157L5.008.78a.57.57 0 0 1 .467-.24h14.589a.57.57 0 0 1 .466.903l-3.778 5.29c-.54.755 0 1.806.93 1.806h5.745c.238 0 .424.138.513.322a.56.56 0 0 1-.063.603z"/></svg>Vite</span><span class="tk"><i class="tk-mono" style="background:#20232A;color:#61DAFB" aria-hidden="true">R3F</i>React Three Fiber</span><span class="tk"><i class="tk-mono" style="background:#22314E;color:#8FB3FF" aria-hidden="true">UR</i>urdf-loader</span><span class="tk"><i class="tk-mono" style="background:#443E38;color:#fff" aria-hidden="true">Zu</i>Zustand</span><span class="tk"><i class="tk-mono" style="background:#4A5560;color:#fff" aria-hidden="true">WS</i>WebSocket</span><span class="tk"><i class="tk-mono" style="background:#22B5BF;color:#fff" aria-hidden="true">Rc</i>Recharts</span><span class="tk"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#06B6D4" d="M12.001,4.8c-3.2,0-5.2,1.6-6,4.8c1.2-1.6,2.6-2.2,4.2-1.8c0.913,0.228,1.565,0.89,2.288,1.624 C13.666,10.618,15.027,12,18.001,12c3.2,0,5.2-1.6,6-4.8c-1.2,1.6-2.6,2.2-4.2,1.8c-0.913-0.228-1.565-0.89-2.288-1.624 C16.337,6.182,14.976,4.8,12.001,4.8z M6.001,12c-3.2,0-5.2,1.6-6,4.8c1.2-1.6,2.6-2.2,4.2-1.8c0.913,0.228,1.565,0.89,2.288,1.624 c1.177,1.194,2.538,2.576,5.512,2.576c3.2,0,5.2-1.6,6-4.8c-1.2,1.6-2.6,2.2-4.2,1.8c-0.913-0.228-1.565-0.89-2.288-1.624 C10.337,13.382,8.976,12,6.001,12z"/></svg>TailwindCSS</span><span class="tk"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#000000" d="M22.219 11.784 11.784 22.219c-.407.407-.407 1.068 0 1.476.407.407 1.068.407 1.476 0L23.695 13.26c.407-.408.407-1.069 0-1.476-.408-.407-1.069-.407-1.476 0ZM20.132.305.305 20.132c-.407.407-.407 1.068 0 1.476.408.407 1.069.407 1.476 0L21.608 1.781c.407-.407.407-1.068 0-1.476-.408-.407-1.069-.407-1.476 0Z"/></svg>shadcn/ui</span></div>
-        </div>
-        <div class="ts">
-          <p class="label">트러블슈팅</p>
-          <h3>실시간 인식 박스가 깜빡이던 문제 — 렌더링을 React 밖으로</h3>
-          <div class="steps">
-            <div class="step"><span class="k">문제</span><p>탑뷰 카메라의 YOLO 인식 결과(약 5Hz)가 WebSocket으로 들어올 때마다 3D 박스 목록 전체가 다시 렌더링되었습니다. 여기에 YOLO가 한두 프레임씩 물체를 놓치면 박스가 사라졌다 다시 생기면서 화면이 깜빡였습니다.</p></div>
-            <div class="step"><span class="k">해결</span><p>Zustand의 <code>subscribe</code>로 인식 결과를 React 렌더링 밖에서 받아 <code>ref</code>의 Map에 저장했습니다. 박스의 위치와 크기는 <code>useFrame</code> 안에서 lerp로 직접 움직이고, React 리렌더는 새 물체가 생기거나 오래 보이지 않은 물체를 지울 때만 일어나게 했습니다. 마지막 감지 후 박스를 유지하는 시간은 처음 800ms로 두었다가, 실제 로봇에서 YOLO가 놓치는 구간을 보고 2초(5Hz 기준 10프레임)로 늘렸습니다.</p></div>
-            <div class="step"><span class="k">배운 점</span><p>고빈도 실시간 데이터는 React 상태로 흘려보내지 않고, 화면에 필요한 변화만 React에 알리는 편이 낫다는 것을 배웠습니다.</p></div>
-          </div>
-          <div class="sub">
-            <h4>로봇 움직임을 부드럽게 만든 작업</h4>
-            <ul>
-              <li>20Hz로 들어오는 관절 데이터를 60fps 렌더 사이에서 lerp로 보간했습니다.</li>
-              <li>그리퍼 모터 각도를 링키지 관절 각도로 바꾸는 룩업 테이블을 선형 보간했습니다.</li>
-              <li>URDF의 Z-up 좌표계를 Three.js의 Y-up에 맞게 변환했습니다.</li>
-              <li>탑뷰 카메라 bbox의 픽셀 좌표를 책상 평면의 미터 좌표로 바꾸고, 물체 종류별 높이를 추정해 3D 박스를 세웠습니다.</li>
-              <li>조인트 참조를 한 번만 찾아 캐싱하고, 움직이지 않는 책상 메시는 <code>matrixAutoUpdate</code>를 꺼 매 프레임 계산을 줄였습니다.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="result">
-        <div><b>자율 우수상</b>SSAFY 14기 자율 프로젝트</div>
-        <div><b>FE 1인</b>팀 내 유일한 FE로 대시보드·디지털 트윈 담당</div>
-      </div>
-      <div class="linkrow">
-        <a class="chip" href="https://www.youtube.com/watch?v=pIx2FC31FqI" target="_blank" rel="noopener">홍보 영상 보기 ↗</a>
-        <a class="chip" href="https://github.com/mm-sj/S14P31D101" target="_blank" rel="noopener">GitHub 저장소 ↗</a>
+  <!-- Would You Draw -->
+  <section class="sheet" id="wyd">
+    <div class="ph"><h2>Would You Draw</h2><span class="award">특화 우수상</span></div>
+    <p class="sum">감정을 그림으로 그리면 AI가 해석하고, 그림이 별이 되어 7일이면 별자리, 30일이면 은하로 쌓이는 앱입니다.</p>
+    <div class="meta"><span><b>기간</b>2026.03.03 – 03.29</span><span><b>팀</b>5명 (FE 2)</span><span><b>역할</b>FE 팀장</span></div>
+    <div class="media">
+      <figure><a href="https://github.com/mm-sj/S14P21D207" target="_blank" rel="noopener"><video data-src="../assets/wyd-universe.mp4" poster="../assets/wyd-universe.jpg" muted loop playsinline aria-label="감정 우주 영상"></video></a><figcaption>감정 기록이 누적된 우주 화면</figcaption></figure>
+      <div class="two">
+        <figure><video data-src="../assets/wyd-canvas.mp4" poster="../assets/wyd-canvas.jpg" muted loop playsinline aria-label="드로잉 캔버스 영상"></video><figcaption>감정 드로잉 캔버스</figcaption></figure>
+        <figure><video data-src="../assets/wyd-tutorial.mp4" poster="../assets/wyd-tutorial.jpg" muted loop playsinline aria-label="튜토리얼 영상"></video><figcaption>유저 피드백 반영 튜토리얼</figcaption></figure>
       </div>
     </div>
-  </article>
-
-  <!-- ─────────── 04 데이터 냉장고 ─────────── -->
-  <article class="sheet" id="fridge">
-    <div class="titleblock">
-      <div><span class="k">Sheet</span><span class="v">04 / 04</span></div>
-      <div><span class="k">Period</span><span class="v">2026.10.19 – 11.04</span></div>
-      <div><span class="k">Team</span><span class="v">4명</span></div>
-      <div><span class="k">Role</span><span class="v">자료 입고 워크플로우 · 웹 화면</span></div>
-      <div><span class="k">Stack</span><span class="v tbstack"><span class="tbi"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#EA4B71" d="M21.4737 5.6842c-1.1772 0-2.1663.8051-2.4468 1.8947h-2.8955c-1.235 0-2.289.893-2.492 2.111l-.1038.623a1.263 1.263 0 0 1-1.246 1.0555H11.289c-.2805-1.0896-1.2696-1.8947-2.4468-1.8947s-2.1663.8051-2.4467 1.8947H4.973c-.2805-1.0896-1.2696-1.8947-2.4468-1.8947C1.1311 9.4737 0 10.6047 0 12s1.131 2.5263 2.5263 2.5263c1.1772 0 2.1663-.8051 2.4468-1.8947h1.4223c.2804 1.0896 1.2696 1.8947 2.4467 1.8947 1.1772 0 2.1663-.8051 2.4468-1.8947h1.0008a1.263 1.263 0 0 1 1.2459 1.0555l.1038.623c.203 1.218 1.257 2.111 2.492 2.111h.3692c.2804 1.0895 1.2696 1.8947 2.4468 1.8947 1.3952 0 2.5263-1.131 2.5263-2.5263s-1.131-2.5263-2.5263-2.5263c-1.1772 0-2.1664.805-2.4468 1.8947h-.3692a1.263 1.263 0 0 1-1.246-1.0555l-.1037-.623A2.52 2.52 0 0 0 13.9607 12a2.52 2.52 0 0 0 .821-1.4794l.1038-.623a1.263 1.263 0 0 1 1.2459-1.0555h2.8955c.2805 1.0896 1.2696 1.8947 2.4468 1.8947 1.3952 0 2.5263-1.131 2.5263-2.5263s-1.131-2.5263-2.5263-2.5263m0 1.2632a1.263 1.263 0 0 1 1.2631 1.2631 1.263 1.263 0 0 1-1.2631 1.2632 1.263 1.263 0 0 1-1.2632-1.2632 1.263 1.263 0 0 1 1.2632-1.2631M2.5263 10.7368A1.263 1.263 0 0 1 3.7895 12a1.263 1.263 0 0 1-1.2632 1.2632A1.263 1.263 0 0 1 1.2632 12a1.263 1.263 0 0 1 1.2631-1.2632m6.3158 0A1.263 1.263 0 0 1 10.1053 12a1.263 1.263 0 0 1-1.2632 1.2632A1.263 1.263 0 0 1 7.579 12a1.263 1.263 0 0 1 1.2632-1.2632m10.1053 3.7895a1.263 1.263 0 0 1 1.2631 1.2632 1.263 1.263 0 0 1-1.2631 1.2631 1.263 1.263 0 0 1-1.2632-1.2631 1.263 1.263 0 0 1 1.2632-1.2632"/></svg>n8n</span><span class="tbi"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#009688" d="M12 .0387C5.3729.0384.0003 5.3931 0 11.9988c-.001 6.6066 5.372 11.9628 12 11.9625 6.628.0003 12.001-5.3559 12-11.9625-.0003-6.6057-5.3729-11.9604-12-11.96m-.829 5.4153h7.55l-7.5805 5.3284h5.1828L5.279 18.5436q2.9466-6.5444 5.892-13.0896"/></svg>FastAPI</span><span class="tbi"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#16191C" d="M22.27 19.385H1.73A1.73 1.73 0 010 17.655V6.345a1.73 1.73 0 011.73-1.73h20.54A1.73 1.73 0 0124 6.345v11.308a1.73 1.73 0 01-1.73 1.731zM5.769 15.923v-4.5l2.308 2.885 2.307-2.885v4.5h2.308V8.078h-2.308l-2.307 2.885-2.308-2.885H3.46v7.847zM21.232 12h-2.309V8.077h-2.307V12h-2.308l3.461 4.039z"/></svg>MarkItDown</span><span class="tbi"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#16191C" d="M.38 0a.268.268 0 0 0-.256.332l2.894 11.716a.268.268 0 0 0 .01.04l2.89 11.708a.268.268 0 0 0 .447.128L23.802 7.15a.268.268 0 0 0-.112-.45l-5.784-1.667a.268.268 0 0 0-.123-.035L6.38 1.715a.268.268 0 0 0-.144-.04L.456.01A.268.268 0 0 0 .38 0zm.374.654L5.71 2.08 1.99 5.664zM6.61 2.34l4.864 1.4-3.65 3.515zm-.522.12l1.217 4.926-4.877-1.4zm6.28 1.538l4.878 1.404-3.662 3.53zm-.52.13l1.208 4.9-4.853-1.392zm6.3 1.534l4.947 1.424-3.715 3.574zm-.524.12l1.215 4.926-4.876-1.398zm-15.432.696l4.964 1.424-3.726 3.586zM8.047 8.15l4.877 1.4-3.66 3.527zm-.518.137l1.236 5.017-4.963-1.432zm6.274 1.535l4.965 1.425-3.73 3.586zm-.52.127l1.235 5.012-4.958-1.43zm-9.63 2.438l4.873 1.406-3.656 3.523zm5.854 1.687l4.863 1.403-3.648 3.51zm-.54.04l1.214 4.927-4.875-1.4zm-3.896 4.02l5.037 1.442-3.782 3.638z"/></svg>Three.js</span></span></div>
-      <div><span class="k">Track</span><span class="v acc">LG전자 AX · 팀 우수상</span></div>
+    <div class="cols">
+      <div>
+        <p>그림을 저장하면 AI 분석이 끝나야 별이 생기는 구조였습니다. 분석이 비동기로 돌아서 저장 직후엔 화면에 아무 변화가 없었고, 사용자 입장에선 저장이 안 된 것처럼 보였습니다.</p>
+        <p><b>그래서 저장 응답이 오자마자 임시 별을 띄우고 탄생 연출부터 보여준 뒤,</b> 2·5·10·15·20초 간격으로 다시 확인해서 실제 별이 오면 바꿔 끼우게 했습니다.</p>
+        <p>테스트 피드백 37건 중에 직관성과 가이드가 부족하다는 의견이 반복돼서, 튜토리얼과 알림 모달을 추가했습니다.</p>
+      </div>
+      <aside>
+        <h4><span class="ms">task_alt</span>맡은 일</h4>
+        <ul>
+          <li>FE 팀장, 업무 분배와 일정, 화면 흐름</li>
+          <li>드로잉 캔버스, 단계별·데일리 드로잉</li>
+          <li>별 탄생 연출, 별자리 연결, 중심별 꾸미기 (우주 씬 기반은 팀원이 제작)</li>
+        </ul>
+        <p class="note">유저 피드백 37건 수집, 반영</p>
+        <div class="tech"><span class="chip"><svg viewBox="0 0 24 24" aria-hidden="true" fill="#61DAFB"><path d="M14.23 12.004a2.236 2.236 0 0 1-2.235 2.236 2.236 2.236 0 0 1-2.236-2.236 2.236 2.236 0 0 1 2.235-2.236 2.236 2.236 0 0 1 2.236 2.236zm2.648-10.69c-1.346 0-3.107.96-4.888 2.622-1.78-1.653-3.542-2.602-4.887-2.602-.41 0-.783.093-1.106.278-1.375.793-1.683 3.264-.973 6.365C1.98 8.917 0 10.42 0 12.004c0 1.59 1.99 3.097 5.043 4.03-.704 3.113-.39 5.588.988 6.38.32.187.69.275 1.102.275 1.345 0 3.107-.96 4.888-2.624 1.78 1.654 3.542 2.603 4.887 2.603.41 0 .783-.09 1.106-.275 1.374-.792 1.683-3.263.973-6.365C22.02 15.096 24 13.59 24 12.004c0-1.59-1.99-3.097-5.043-4.032.704-3.11.39-5.587-.988-6.38-.318-.184-.688-.277-1.092-.278zm-.005 1.09v.006c.225 0 .406.044.558.127.666.382.955 1.835.73 3.704-.054.46-.142.945-.25 1.44-.96-.236-2.006-.417-3.107-.534-.66-.905-1.345-1.727-2.035-2.447 1.592-1.48 3.087-2.292 4.105-2.295zm-9.77.02c1.012 0 2.514.808 4.11 2.28-.686.72-1.37 1.537-2.02 2.442-1.107.117-2.154.298-3.113.538-.112-.49-.195-.964-.254-1.42-.23-1.868.054-3.32.714-3.707.19-.09.4-.127.563-.132zm4.882 3.05c.455.468.91.992 1.36 1.564-.44-.02-.89-.034-1.345-.034-.46 0-.915.01-1.36.034.44-.572.895-1.096 1.345-1.565zM12 8.1c.74 0 1.477.034 2.202.093.406.582.802 1.203 1.183 1.86.372.64.71 1.29 1.018 1.946-.308.655-.646 1.31-1.013 1.95-.38.66-.773 1.288-1.18 1.87-.728.063-1.466.098-2.21.098-.74 0-1.477-.035-2.202-.093-.406-.582-.802-1.204-1.183-1.86-.372-.64-.71-1.29-1.018-1.946.303-.657.646-1.313 1.013-1.954.38-.66.773-1.286 1.18-1.868.728-.064 1.466-.098 2.21-.098zm-3.635.254c-.24.377-.48.763-.704 1.16-.225.39-.435.782-.635 1.174-.265-.656-.49-1.31-.676-1.947.64-.15 1.315-.283 2.015-.386zm7.26 0c.695.103 1.365.23 2.006.387-.18.632-.405 1.282-.66 1.933-.2-.39-.41-.783-.64-1.174-.225-.392-.465-.774-.705-1.146zm3.063.675c.484.15.944.317 1.375.498 1.732.74 2.852 1.708 2.852 2.476-.005.768-1.125 1.74-2.857 2.475-.42.18-.88.342-1.355.493-.28-.958-.646-1.956-1.1-2.98.45-1.017.81-2.01 1.085-2.964zm-13.395.004c.278.96.645 1.957 1.1 2.98-.45 1.017-.812 2.01-1.086 2.964-.484-.15-.944-.318-1.37-.5-1.732-.737-2.852-1.706-2.852-2.474 0-.768 1.12-1.742 2.852-2.476.42-.18.88-.342 1.356-.494zm11.678 4.28c.265.657.49 1.312.676 1.948-.64.157-1.316.29-2.016.39.24-.375.48-.762.705-1.158.225-.39.435-.788.636-1.18zm-9.945.02c.2.392.41.783.64 1.175.23.39.465.772.705 1.143-.695-.102-1.365-.23-2.006-.386.18-.63.406-1.282.66-1.933zM17.92 16.32c.112.493.2.968.254 1.423.23 1.868-.054 3.32-.714 3.708-.147.09-.338.128-.563.128-1.012 0-2.514-.807-4.11-2.28.686-.72 1.37-1.536 2.02-2.44 1.107-.118 2.154-.3 3.113-.54zm-11.83.01c.96.234 2.006.415 3.107.532.66.905 1.345 1.727 2.035 2.446-1.595 1.483-3.092 2.295-4.11 2.295-.22-.005-.406-.05-.553-.132-.666-.38-.955-1.834-.73-3.703.054-.46.142-.944.25-1.438zm4.56.64c.44.02.89.034 1.345.034.46 0 .915-.01 1.36-.034-.44.572-.895 1.095-1.345 1.565-.455-.47-.91-.993-1.36-1.565z"/></svg>React</span><span class="chip"><svg viewBox="0 0 24 24" aria-hidden="true" fill="#3178C6"><path d="M1.125 0C.502 0 0 .502 0 1.125v21.75C0 23.498.502 24 1.125 24h21.75c.623 0 1.125-.502 1.125-1.125V1.125C24 .502 23.498 0 22.875 0zm17.363 9.75c.612 0 1.154.037 1.627.111a6.38 6.38 0 0 1 1.306.34v2.458a3.95 3.95 0 0 0-.643-.361 5.093 5.093 0 0 0-.717-.26 5.453 5.453 0 0 0-1.426-.2c-.3 0-.573.028-.819.086a2.1 2.1 0 0 0-.623.242c-.17.104-.3.229-.393.374a.888.888 0 0 0-.14.49c0 .196.053.373.156.529.104.156.252.304.443.444s.423.276.696.41c.273.135.582.274.926.416.47.197.892.407 1.266.628.374.222.695.473.963.753.268.279.472.598.614.957.142.359.214.776.214 1.253 0 .657-.125 1.21-.373 1.656a3.033 3.033 0 0 1-1.012 1.085 4.38 4.38 0 0 1-1.487.596c-.566.12-1.163.18-1.79.18a9.916 9.916 0 0 1-1.84-.164 5.544 5.544 0 0 1-1.512-.493v-2.63a5.033 5.033 0 0 0 3.237 1.2c.333 0 .624-.03.872-.09.249-.06.456-.144.623-.25.166-.108.29-.234.373-.38a1.023 1.023 0 0 0-.074-1.089 2.12 2.12 0 0 0-.537-.5 5.597 5.597 0 0 0-.807-.444 27.72 27.72 0 0 0-1.007-.436c-.918-.383-1.602-.852-2.053-1.405-.45-.553-.676-1.222-.676-2.005 0-.614.123-1.141.369-1.582.246-.441.58-.804 1.004-1.089a4.494 4.494 0 0 1 1.47-.629 7.536 7.536 0 0 1 1.77-.201zm-15.113.188h9.563v2.166H9.506v9.646H6.789v-9.646H3.375z"/></svg>TypeScript</span><span class="chip"><span class="ms">code</span>Zustand</span><span class="chip"><svg viewBox="0 0 24 24" aria-hidden="true" fill="#61DAFB"><path d="M14.23 12.004a2.236 2.236 0 0 1-2.235 2.236 2.236 2.236 0 0 1-2.236-2.236 2.236 2.236 0 0 1 2.235-2.236 2.236 2.236 0 0 1 2.236 2.236zm2.648-10.69c-1.346 0-3.107.96-4.888 2.622-1.78-1.653-3.542-2.602-4.887-2.602-.41 0-.783.093-1.106.278-1.375.793-1.683 3.264-.973 6.365C1.98 8.917 0 10.42 0 12.004c0 1.59 1.99 3.097 5.043 4.03-.704 3.113-.39 5.588.988 6.38.32.187.69.275 1.102.275 1.345 0 3.107-.96 4.888-2.624 1.78 1.654 3.542 2.603 4.887 2.603.41 0 .783-.09 1.106-.275 1.374-.792 1.683-3.263.973-6.365C22.02 15.096 24 13.59 24 12.004c0-1.59-1.99-3.097-5.043-4.032.704-3.11.39-5.587-.988-6.38-.318-.184-.688-.277-1.092-.278zm-.005 1.09v.006c.225 0 .406.044.558.127.666.382.955 1.835.73 3.704-.054.46-.142.945-.25 1.44-.96-.236-2.006-.417-3.107-.534-.66-.905-1.345-1.727-2.035-2.447 1.592-1.48 3.087-2.292 4.105-2.295zm-9.77.02c1.012 0 2.514.808 4.11 2.28-.686.72-1.37 1.537-2.02 2.442-1.107.117-2.154.298-3.113.538-.112-.49-.195-.964-.254-1.42-.23-1.868.054-3.32.714-3.707.19-.09.4-.127.563-.132zm4.882 3.05c.455.468.91.992 1.36 1.564-.44-.02-.89-.034-1.345-.034-.46 0-.915.01-1.36.034.44-.572.895-1.096 1.345-1.565zM12 8.1c.74 0 1.477.034 2.202.093.406.582.802 1.203 1.183 1.86.372.64.71 1.29 1.018 1.946-.308.655-.646 1.31-1.013 1.95-.38.66-.773 1.288-1.18 1.87-.728.063-1.466.098-2.21.098-.74 0-1.477-.035-2.202-.093-.406-.582-.802-1.204-1.183-1.86-.372-.64-.71-1.29-1.018-1.946.303-.657.646-1.313 1.013-1.954.38-.66.773-1.286 1.18-1.868.728-.064 1.466-.098 2.21-.098zm-3.635.254c-.24.377-.48.763-.704 1.16-.225.39-.435.782-.635 1.174-.265-.656-.49-1.31-.676-1.947.64-.15 1.315-.283 2.015-.386zm7.26 0c.695.103 1.365.23 2.006.387-.18.632-.405 1.282-.66 1.933-.2-.39-.41-.783-.64-1.174-.225-.392-.465-.774-.705-1.146zm3.063.675c.484.15.944.317 1.375.498 1.732.74 2.852 1.708 2.852 2.476-.005.768-1.125 1.74-2.857 2.475-.42.18-.88.342-1.355.493-.28-.958-.646-1.956-1.1-2.98.45-1.017.81-2.01 1.085-2.964zm-13.395.004c.278.96.645 1.957 1.1 2.98-.45 1.017-.812 2.01-1.086 2.964-.484-.15-.944-.318-1.37-.5-1.732-.737-2.852-1.706-2.852-2.474 0-.768 1.12-1.742 2.852-2.476.42-.18.88-.342 1.356-.494zm11.678 4.28c.265.657.49 1.312.676 1.948-.64.157-1.316.29-2.016.39.24-.375.48-.762.705-1.158.225-.39.435-.788.636-1.18zm-9.945.02c.2.392.41.783.64 1.175.23.39.465.772.705 1.143-.695-.102-1.365-.23-2.006-.386.18-.63.406-1.282.66-1.933zM17.92 16.32c.112.493.2.968.254 1.423.23 1.868-.054 3.32-.714 3.708-.147.09-.338.128-.563.128-1.012 0-2.514-.807-4.11-2.28.686-.72 1.37-1.536 2.02-2.44 1.107-.118 2.154-.3 3.113-.54zm-11.83.01c.96.234 2.006.415 3.107.532.66.905 1.345 1.727 2.035 2.446-1.595 1.483-3.092 2.295-4.11 2.295-.22-.005-.406-.05-.553-.132-.666-.38-.955-1.834-.73-3.703.054-.46.142-.944.25-1.438zm4.56.64c.44.02.89.034 1.345.034.46 0 .915-.01 1.36-.034-.44.572-.895 1.095-1.345 1.565-.455-.47-.91-.993-1.36-1.565z"/></svg>React Three Fiber</span></div>
+        <div class="links"><a class="btn btn--line" href="https://github.com/mm-sj/S14P21D207" target="_blank" rel="noopener"><span><svg class="brand" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>시연 원본 화면·상세 설명</span></a></div>
+      </aside>
     </div>
-    <div class="sheet-body">
-      <div class="sheet-head">
-        <div>
-          <p class="no">04 — 데이터 냉장고</p>
-          <h2>데이터 냉장고</h2>
-          <p class="one">자료를 저장할 때 이유를 남기면, 그 이유가 다시 유효해지는 업무 상황에서 AI가 자료를 꺼내주는 사내 지식 재활용 서비스</p>
-        </div>
-        <p class="why">회사 자료는 쌓여도 '왜 저장했는지'가 남지 않아 다시 쓰이지 않습니다. LG전자 K-뉴딜 아카데미 AX 워크플로우 트랙의 팀 프로젝트로, 저장 이유와 활용 조건을 자료와 함께 남기는 구조를 n8n으로 만들었습니다. 저는 자료가 들어오는 입구, 즉 어떤 파일이든 AI가 읽을 수 있는 카드로 바꾸는 흐름을 맡았습니다.</p>
-      </div>
+  </section>
 
-      <figure class="lead-media">
-        <div class="flow">
-          <svg viewBox="0 0 984 236" role="img" aria-label="입고 흐름: 파일 업로드, 변환 서버, 이미지 분석, 카드 초안, 사용자 확정, 저장. 변환 단계에서 스캔본, 미지원 형식, 깨진 파일을 거절하고, 변환 서버가 응답하지 않으면 오류를 안내한다.">
-            <defs><marker id="fr-ah" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path class="ah" d="M0,0 L8,4 L0,8 z"/></marker></defs>
-            <g>
-              <rect class="bx" x="2" y="20" width="142" height="64" rx="3"/>
-              <text class="tt" x="73" y="48" text-anchor="middle">파일 업로드</text><text class="ss" x="73" y="68" text-anchor="middle">docx · pptx · pdf</text>
-              <rect class="bx me" x="170" y="20" width="142" height="64" rx="3"/>
-              <text class="tt" x="241" y="48" text-anchor="middle">변환 서버</text><text class="ss" x="241" y="68" text-anchor="middle">MarkItDown · Render</text>
-              <rect class="bx ai" x="338" y="20" width="142" height="64" rx="3"/>
-              <text class="tt" x="409" y="48" text-anchor="middle">이미지 분석</text><text class="ss" x="409" y="68" text-anchor="middle">문서 속 그림 설명</text>
-              <rect class="bx ai" x="506" y="20" width="142" height="64" rx="3"/>
-              <text class="tt" x="577" y="48" text-anchor="middle">카드 초안</text><text class="ss" x="577" y="68" text-anchor="middle">제목·요약·태그·날짜</text>
-              <rect class="bx me" x="674" y="20" width="142" height="64" rx="3"/>
-              <text class="tt" x="745" y="48" text-anchor="middle">사용자 확정</text><text class="ss" x="745" y="68" text-anchor="middle">draft → confirmed</text>
-              <rect class="bx" x="842" y="20" width="140" height="64" rx="3"/>
-              <text class="tt" x="912" y="48" text-anchor="middle">저장</text><text class="ss" x="912" y="68" text-anchor="middle">카드 + 저장 이유</text>
-            </g>
-            <g class="ar" marker-end="url(#fr-ah)">
-              <path d="M144 52 H166"/><path d="M312 52 H334"/><path d="M480 52 H502"/><path d="M648 52 H670"/><path d="M816 52 H838"/>
-            </g>
-            <path class="rj" d="M241 84 V128"/>
-            <text class="rt" x="241" y="148" text-anchor="middle">거절 · 이유를 돌려줌</text>
-            <text class="ss" x="241" y="168" text-anchor="middle">스캔본(글자 0) → no_text</text>
-            <text class="ss" x="241" y="186" text-anchor="middle">HWP 등 → unsupported_type</text>
-            <text class="ss" x="241" y="204" text-anchor="middle">깨진 파일 → corrupt_file</text>
-            <text class="ss" x="241" y="222" text-anchor="middle">변환 서버 응답 없음 → 오류 안내</text>
-            <path class="rj" d="M745 84 V128"/>
-            <text class="rt" x="745" y="148" text-anchor="middle">사람이 고친 뒤에만 저장</text>
-            <rect class="bx ai" x="506" y="218" width="12" height="12" rx="2"/><text class="lg" x="524" y="228">AI 처리</text>
-            <rect class="bx me" x="596" y="218" width="12" height="12" rx="2"/><text class="lg" x="614" y="228">제가 설계한 판단 지점</text>
-          </svg>
-        </div>
-        <figcaption>자료 입고 흐름 — AI가 만든 초안은 사람이 확인해야 저장됩니다</figcaption>
-      </figure>
-
-      <div class="cols">
-        <div>
-          <p class="label">제가 한 일</p>
-          <ul class="did">
-            <li><b>입고 워크플로우 설계·구현.</b> 파일 → 마크다운 변환 → 이미지 분석 → AI 카드 초안 → 사용자 확정 → 저장으로 이어지는 n8n 흐름을 만들었습니다. 팀원 버전과 비교를 거쳐 팀의 기본 구조로 채택됐습니다.</li>
-            <li><b>변환 서버 배포.</b> 형식이 제각각인 문서를 AI가 읽을 텍스트로 바꾸는 MarkItDown 서버(FastAPI)를 Docker로 Render에 배포하고, API 키 인증을 붙여 n8n과 연결했습니다. n8n 안에서 변환하는 방법(Execute Command, Code 노드)도 검토했지만 환경 제약이 커서 별도 서버로 정했습니다.</li>
-            <li><b>사람 검토 단계.</b> AI가 만든 요약과 태그를 바로 저장하지 않고, 사용자가 확인·수정한 뒤 확정하도록 초안(draft)과 확정(confirmed) 상태를 나눴습니다.</li>
-            <li><b>웹 화면.</b> 양문형 냉장고를 열어 '넣기'와 '꺼내기'를 고르는 화면을 와이어프레임하고, three.js와 GSAP로 3D 프로토타입을 만들었습니다.</li>
-          </ul>
-          <div class="stack tks"><span class="tk"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#EA4B71" d="M21.4737 5.6842c-1.1772 0-2.1663.8051-2.4468 1.8947h-2.8955c-1.235 0-2.289.893-2.492 2.111l-.1038.623a1.263 1.263 0 0 1-1.246 1.0555H11.289c-.2805-1.0896-1.2696-1.8947-2.4468-1.8947s-2.1663.8051-2.4467 1.8947H4.973c-.2805-1.0896-1.2696-1.8947-2.4468-1.8947C1.1311 9.4737 0 10.6047 0 12s1.131 2.5263 2.5263 2.5263c1.1772 0 2.1663-.8051 2.4468-1.8947h1.4223c.2804 1.0896 1.2696 1.8947 2.4467 1.8947 1.1772 0 2.1663-.8051 2.4468-1.8947h1.0008a1.263 1.263 0 0 1 1.2459 1.0555l.1038.623c.203 1.218 1.257 2.111 2.492 2.111h.3692c.2804 1.0895 1.2696 1.8947 2.4468 1.8947 1.3952 0 2.5263-1.131 2.5263-2.5263s-1.131-2.5263-2.5263-2.5263c-1.1772 0-2.1664.805-2.4468 1.8947h-.3692a1.263 1.263 0 0 1-1.246-1.0555l-.1037-.623A2.52 2.52 0 0 0 13.9607 12a2.52 2.52 0 0 0 .821-1.4794l.1038-.623a1.263 1.263 0 0 1 1.2459-1.0555h2.8955c.2805 1.0896 1.2696 1.8947 2.4468 1.8947 1.3952 0 2.5263-1.131 2.5263-2.5263s-1.131-2.5263-2.5263-2.5263m0 1.2632a1.263 1.263 0 0 1 1.2631 1.2631 1.263 1.263 0 0 1-1.2631 1.2632 1.263 1.263 0 0 1-1.2632-1.2632 1.263 1.263 0 0 1 1.2632-1.2631M2.5263 10.7368A1.263 1.263 0 0 1 3.7895 12a1.263 1.263 0 0 1-1.2632 1.2632A1.263 1.263 0 0 1 1.2632 12a1.263 1.263 0 0 1 1.2631-1.2632m6.3158 0A1.263 1.263 0 0 1 10.1053 12a1.263 1.263 0 0 1-1.2632 1.2632A1.263 1.263 0 0 1 7.579 12a1.263 1.263 0 0 1 1.2632-1.2632m10.1053 3.7895a1.263 1.263 0 0 1 1.2631 1.2632 1.263 1.263 0 0 1-1.2631 1.2631 1.263 1.263 0 0 1-1.2632-1.2631 1.263 1.263 0 0 1 1.2632-1.2632"/></svg>n8n</span><span class="tk"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#3776AB" d="M14.25.18l.9.2.73.26.59.3.45.32.34.34.25.34.16.33.1.3.04.26.02.2-.01.13V8.5l-.05.63-.13.55-.21.46-.26.38-.3.31-.33.25-.35.19-.35.14-.33.1-.3.07-.26.04-.21.02H8.77l-.69.05-.59.14-.5.22-.41.27-.33.32-.27.35-.2.36-.15.37-.1.35-.07.32-.04.27-.02.21v3.06H3.17l-.21-.03-.28-.07-.32-.12-.35-.18-.36-.26-.36-.36-.35-.46-.32-.59-.28-.73-.21-.88-.14-1.05-.05-1.23.06-1.22.16-1.04.24-.87.32-.71.36-.57.4-.44.42-.33.42-.24.4-.16.36-.1.32-.05.24-.01h.16l.06.01h8.16v-.83H6.18l-.01-2.75-.02-.37.05-.34.11-.31.17-.28.25-.26.31-.23.38-.2.44-.18.51-.15.58-.12.64-.1.71-.06.77-.04.84-.02 1.27.05zm-6.3 1.98l-.23.33-.08.41.08.41.23.34.33.22.41.09.41-.09.33-.22.23-.34.08-.41-.08-.41-.23-.33-.33-.22-.41-.09-.41.09zm13.09 3.95l.28.06.32.12.35.18.36.27.36.35.35.47.32.59.28.73.21.88.14 1.04.05 1.23-.06 1.23-.16 1.04-.24.86-.32.71-.36.57-.4.45-.42.33-.42.24-.4.16-.36.09-.32.05-.24.02-.16-.01h-8.22v.82h5.84l.01 2.76.02.36-.05.34-.11.31-.17.29-.25.25-.31.24-.38.2-.44.17-.51.15-.58.13-.64.09-.71.07-.77.04-.84.01-1.27-.04-1.07-.14-.9-.2-.73-.25-.59-.3-.45-.33-.34-.34-.25-.34-.16-.33-.1-.3-.04-.25-.02-.2.01-.13v-5.34l.05-.64.13-.54.21-.46.26-.38.3-.32.33-.24.35-.2.35-.14.33-.1.3-.06.26-.04.21-.02.13-.01h5.84l.69-.05.59-.14.5-.21.41-.28.33-.32.27-.35.2-.36.15-.36.1-.35.07-.32.04-.28.02-.21V6.07h2.09l.14.01zm-6.47 14.25l-.23.33-.08.41.08.41.23.33.33.23.41.08.41-.08.33-.23.23-.33.08-.41-.08-.41-.23-.33-.33-.23-.41-.08-.41.08z"/></svg>Python</span><span class="tk"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#009688" d="M12 .0387C5.3729.0384.0003 5.3931 0 11.9988c-.001 6.6066 5.372 11.9628 12 11.9625 6.628.0003 12.001-5.3559 12-11.9625-.0003-6.6057-5.3729-11.9604-12-11.96m-.829 5.4153h7.55l-7.5805 5.3284h5.1828L5.279 18.5436q2.9466-6.5444 5.892-13.0896"/></svg>FastAPI</span><span class="tk"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#16191C" d="M22.27 19.385H1.73A1.73 1.73 0 010 17.655V6.345a1.73 1.73 0 011.73-1.73h20.54A1.73 1.73 0 0124 6.345v11.308a1.73 1.73 0 01-1.73 1.731zM5.769 15.923v-4.5l2.308 2.885 2.307-2.885v4.5h2.308V8.078h-2.308l-2.307 2.885-2.308-2.885H3.46v7.847zM21.232 12h-2.309V8.077h-2.307V12h-2.308l3.461 4.039z"/></svg>MarkItDown</span><span class="tk"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#2496ED" d="M13.983 11.078h2.119a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.119a.185.185 0 00-.185.185v1.888c0 .102.083.185.185.185m-2.954-5.43h2.118a.186.186 0 00.186-.186V3.574a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m0 2.716h2.118a.187.187 0 00.186-.186V6.29a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.887c0 .102.082.185.185.186m-2.93 0h2.12a.186.186 0 00.184-.186V6.29a.185.185 0 00-.185-.185H8.1a.185.185 0 00-.185.185v1.887c0 .102.083.185.185.186m-2.964 0h2.119a.186.186 0 00.185-.186V6.29a.185.185 0 00-.185-.185H5.136a.186.186 0 00-.186.185v1.887c0 .102.084.185.186.186m5.893 2.715h2.118a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m-2.93 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.083.185.185.185m-2.964 0h2.119a.185.185 0 00.185-.185V9.006a.185.185 0 00-.184-.186h-2.12a.186.186 0 00-.186.186v1.887c0 .102.084.185.186.185m-2.92 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.082.185.185.185M23.763 9.89c-.065-.051-.672-.51-1.954-.51-.338.001-.676.03-1.01.087-.248-1.7-1.653-2.53-1.716-2.566l-.344-.199-.226.327c-.284.438-.49.922-.612 1.43-.23.97-.09 1.882.403 2.661-.595.332-1.55.413-1.744.42H.751a.751.751 0 00-.75.748 11.376 11.376 0 00.692 4.062c.545 1.428 1.355 2.48 2.41 3.124 1.18.723 3.1 1.137 5.275 1.137.983.003 1.963-.086 2.93-.266a12.248 12.248 0 003.823-1.389c.98-.567 1.86-1.288 2.61-2.136 1.252-1.418 1.998-2.997 2.553-4.4h.221c1.372 0 2.215-.549 2.68-1.009.309-.293.55-.65.707-1.046l.098-.288Z"/></svg>Docker</span><span class="tk"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#16191C" d="M18.263.007c-3.121-.147-5.744 2.109-6.192 5.082-.018.138-.045.272-.067.405-.696 3.703-3.936 6.507-7.827 6.507-1.388 0-2.691-.356-3.825-.979a.2024.2024 0 0 0-.302.178V24H12v-8.999c0-1.656 1.338-3 2.987-3h2.988c3.382 0 6.103-2.817 5.97-6.244-.12-3.084-2.61-5.603-5.682-5.75"/></svg>Render</span><span class="tk"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#16191C" d="M.38 0a.268.268 0 0 0-.256.332l2.894 11.716a.268.268 0 0 0 .01.04l2.89 11.708a.268.268 0 0 0 .447.128L23.802 7.15a.268.268 0 0 0-.112-.45l-5.784-1.667a.268.268 0 0 0-.123-.035L6.38 1.715a.268.268 0 0 0-.144-.04L.456.01A.268.268 0 0 0 .38 0zm.374.654L5.71 2.08 1.99 5.664zM6.61 2.34l4.864 1.4-3.65 3.515zm-.522.12l1.217 4.926-4.877-1.4zm6.28 1.538l4.878 1.404-3.662 3.53zm-.52.13l1.208 4.9-4.853-1.392zm6.3 1.534l4.947 1.424-3.715 3.574zm-.524.12l1.215 4.926-4.876-1.398zm-15.432.696l4.964 1.424-3.726 3.586zM8.047 8.15l4.877 1.4-3.66 3.527zm-.518.137l1.236 5.017-4.963-1.432zm6.274 1.535l4.965 1.425-3.73 3.586zm-.52.127l1.235 5.012-4.958-1.43zm-9.63 2.438l4.873 1.406-3.656 3.523zm5.854 1.687l4.863 1.403-3.648 3.51zm-.54.04l1.214 4.927-4.875-1.4zm-3.896 4.02l5.037 1.442-3.782 3.638z"/></svg>Three.js</span><span class="tk"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#0AE448" d="M9.83,7.59C10.647,7.595 11.267,7.828 11.672,8.282C12.055,8.713 12.239,9.336 12.219,10.132L12.205,10.193C12.197,10.211 12.185,10.229 12.17,10.243C12.14,10.272 12.099,10.288 12.057,10.288L10.398,10.288C10.29,10.288 10.199,10.2 10.199,10.093C10.199,9.669 10.071,9.435 9.809,9.383L9.689,9.372C9.347,9.372 9.125,9.583 9.119,9.951C9.112,10.361 9.344,10.734 10.004,11.374C10.872,12.19 11.221,12.913 11.204,13.867C11.177,15.411 10.127,16.41 8.531,16.41C7.716,16.41 7.093,16.191 6.678,15.761C6.258,15.324 6.066,14.683 6.106,13.855C6.108,13.813 6.125,13.772 6.155,13.743C6.185,13.714 6.226,13.698 6.267,13.698L7.983,13.698C8.007,13.699 8.03,13.705 8.052,13.715C8.073,13.726 8.092,13.741 8.107,13.76C8.12,13.775 8.129,13.793 8.135,13.813C8.14,13.832 8.141,13.853 8.137,13.873C8.118,14.171 8.171,14.394 8.288,14.518C8.363,14.598 8.469,14.639 8.599,14.639C8.916,14.639 9.102,14.414 9.109,14.024C9.115,13.687 9.007,13.39 8.427,12.792C7.676,12.058 7.003,11.3 7.024,10.108C7.037,9.416 7.311,8.784 7.798,8.327C8.312,7.845 9.014,7.59 9.83,7.59ZM4.047,7.618C4.794,7.612 5.381,7.842 5.789,8.303C6.221,8.79 6.44,9.524 6.441,10.485C6.44,10.527 6.422,10.567 6.392,10.597C6.362,10.626 6.322,10.643 6.28,10.643L4.479,10.643C4.448,10.642 4.417,10.629 4.395,10.607C4.373,10.584 4.361,10.553 4.36,10.522C4.346,9.899 4.172,9.576 3.828,9.538L3.757,9.534C3.067,9.535 2.66,10.472 2.444,10.992C2.142,11.719 1.988,12.507 2.018,13.293C2.033,13.659 2.092,14.173 2.438,14.386C2.746,14.575 3.185,14.45 3.451,14.24C3.716,14.031 3.93,13.669 4.02,13.339C4.033,13.293 4.033,13.258 4.021,13.241C4.015,13.233 4.003,13.229 3.989,13.226L3.485,13.222C3.461,13.222 3.436,13.216 3.414,13.206C3.392,13.196 3.372,13.181 3.356,13.162C3.344,13.148 3.335,13.13 3.331,13.112C3.327,13.093 3.327,13.074 3.331,13.056L3.647,11.682C3.663,11.611 3.726,11.558 3.804,11.548L3.804,11.545L6.839,11.545C6.846,11.545 6.854,11.545 6.86,11.546C6.939,11.556 6.995,11.63 6.994,11.71L6.994,11.714L6.678,13.085C6.661,13.163 6.583,13.22 6.494,13.22L6.113,13.22C6.1,13.22 6.086,13.225 6.075,13.233C6.064,13.241 6.056,13.253 6.052,13.266C5.7,14.46 5.223,15.282 4.594,15.775C4.058,16.195 3.399,16.391 2.517,16.391C1.725,16.391 1.191,16.136 0.738,15.633C0.14,14.967 -0.107,13.879 0.043,12.566C0.313,10.103 1.589,7.618 4.047,7.618ZM21.016,7.75C23.026,7.75 24.03,8.662 23.999,10.461C23.962,12.569 22.678,14.119 20.745,14.477C20.47,14.527 20.191,14.547 19.912,14.545L18.978,14.541C18.963,14.541 18.948,14.547 18.937,14.558C18.926,14.568 18.92,14.583 18.92,14.598C18.92,14.608 18.922,14.618 18.928,14.627C18.933,14.636 18.941,14.643 18.95,14.648L19.744,15.062C19.809,15.096 19.835,15.153 19.82,15.226C19.815,15.249 19.618,16.139 19.613,16.159C19.596,16.237 19.533,16.282 19.442,16.282L17.739,16.282C17.715,16.282 17.69,16.277 17.668,16.267C17.646,16.257 17.626,16.241 17.61,16.223C17.598,16.208 17.589,16.191 17.585,16.173C17.58,16.155 17.581,16.135 17.585,16.116L19.481,7.875C19.5,7.789 19.581,7.751 19.653,7.751L21.016,7.75ZM17.273,7.762C17.292,7.77 17.31,7.781 17.324,7.795C17.338,7.81 17.351,7.828 17.358,7.847C17.366,7.866 17.369,7.886 17.369,7.906L17.358,16.119C17.361,16.138 17.36,16.158 17.355,16.177C17.35,16.196 17.34,16.213 17.328,16.228C17.313,16.245 17.295,16.259 17.274,16.268C17.254,16.277 17.232,16.282 17.21,16.281L15.397,16.281C15.377,16.282 15.356,16.277 15.337,16.27C15.318,16.262 15.3,16.25 15.286,16.236C15.272,16.221 15.26,16.204 15.253,16.185C15.245,16.166 15.241,16.146 15.241,16.125L15.28,15.328C15.282,15.241 15.28,15.217 15.229,15.211L15.161,15.209L13.447,15.209C13.323,15.209 13.314,15.22 13.27,15.334L12.914,16.191C12.882,16.252 12.818,16.281 12.722,16.281L10.927,16.281C10.818,16.281 10.74,16.173 10.781,16.072L14.499,7.873C14.524,7.824 14.562,7.75 14.648,7.75L17.214,7.75C17.234,7.75 17.254,7.754 17.273,7.762ZM15.5,9.985C15.492,9.953 15.466,9.956 15.445,9.998C15.43,10.028 15.416,10.06 15.405,10.091L14.121,13.274C14.114,13.294 14.109,13.31 14.105,13.322C14.104,13.328 14.103,13.335 14.104,13.341C14.105,13.347 14.108,13.353 14.111,13.358C14.115,13.363 14.12,13.367 14.126,13.37C14.131,13.373 14.137,13.376 14.143,13.376L15.215,13.39C15.334,13.38 15.34,13.374 15.352,13.253C15.354,13.21 15.506,10.022 15.5,9.985ZM20.112,9.582C20.097,9.582 20.083,9.588 20.072,9.599C20.061,9.609 20.055,9.624 20.054,9.639C20.054,9.649 20.057,9.659 20.062,9.668C20.068,9.677 20.075,9.685 20.084,9.69C20.097,9.697 20.869,10.104 20.926,10.135C20.968,10.158 20.969,10.198 20.955,10.267C20.948,10.298 20.415,12.642 20.416,12.644C20.419,12.647 20.435,12.655 20.515,12.655L20.551,12.655C21.446,12.619 21.934,11.561 21.952,10.534C21.961,9.979 21.772,9.638 21.429,9.588L21.358,9.582L20.112,9.582Z"/></svg>GSAP</span></div>
-        </div>
-        <div class="ts">
-          <p class="label">트러블슈팅</p>
-          <h3>깨진 파일이 '변환 성공'으로 통과하던 문제</h3>
-          <div class="steps">
-            <div class="step"><span class="k">문제</span><p>실패 경로를 테스트하다가, 확장자만 docx이고 내용은 깨진 파일을 올렸는데 서버가 성공 응답을 돌려줬습니다. 의미 없는 글자가 그대로 AI 카드 초안 단계로 넘어갈 수 있는 상태였습니다.</p></div>
-            <div class="step"><span class="k">원인</span><p>MarkItDown은 형식을 읽지 못하면 오류를 내는 대신 파일을 일반 텍스트로 읽고 넘어갑니다. 실패가 성공처럼 보였습니다.</p></div>
-            <div class="step"><span class="k">해결</span><p>변환 전에 파일 앞부분의 시그니처를 확장자와 대조해 맞지 않으면 <code>corrupt_file</code>로 거절했습니다. 같은 기준으로 글자 수가 0인 스캔본은 <code>no_text</code>, 지원하지 않는 형식은 <code>unsupported_type</code>으로 나눠, n8n이 이유별로 사용자에게 안내하게 했습니다.</p></div>
-            <div class="step"><span class="k">배운 점</span><p>AI 자동화에서 더 위험한 것은 멈추는 실패가 아니라 조용히 통과하는 실패라는 것을 알게 됐습니다. AI 앞단에서 입력을 먼저 걸러야 결과를 믿을 수 있습니다.</p></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="result">
-        <div><b>팀 기본안 채택</b>제가 만든 입고 워크플로우</div>
-        <div><b>4가지 실패 응답</b>스캔본 · 미지원 형식 · 깨진 파일 · 서버 다운</div>
-      </div>
-      <div class="linkrow">
-        <a class="chip" href="https://www.youtube.com/watch?v=HB-bQzTXlkQ" target="_blank" rel="noopener">소개 영상 보기 ↗</a>
+  <!-- Jabis -->
+  <section class="sheet" id="jabis">
+    <div class="ph"><h2>Jabis</h2><span class="award">자율 우수상</span></div>
+    <p class="sum">음성 명령을 듣고 두 팔로 물건을 집는 데스크 로봇입니다. 로봇 상태를 보여주는 웹 대시보드를 혼자 맡았습니다.</p>
+    <div class="meta"><span><b>기간</b>2026.04.08 – 05.21</span><span><b>팀</b>6명 (FE 1)</span><span><b>역할</b>FE 전담</span></div>
+    <div class="media">
+      <figure><a href="https://github.com/mm-sj/S14P31D101" target="_blank" rel="noopener"><video data-src="../assets/jabis-dashboard.mp4" poster="../assets/jabis-dashboard.jpg" muted loop playsinline aria-label="디지털 트윈 대시보드 영상"></video></a><figcaption>실측 기반 책상·양팔 로봇 디지털 트윈</figcaption></figure>
+      <div class="two">
+        <figure><video data-src="../assets/jabis-robot.mp4" poster="../assets/jabis-robot.jpg" muted loop playsinline aria-label="실제 로봇 영상"></video><figcaption>실제 양팔 데스크 로봇</figcaption></figure>
+        <figure><img src="../assets/jabis-panels.jpg" alt="카메라와 관절 상태 패널" loading="lazy" width="1280" height="694"><figcaption>카메라 4대·관절 상태 모니터링 패널</figcaption></figure>
       </div>
     </div>
-  </article>
-
-
-  <footer id="contact">
-    <h2>Contact</h2>
-    <div class="contact" style="margin-top:0">
-      <button class="chip" type="button" data-copy="dhckdals1104@naver.com">dhckdals1104@naver.com</button>
-      <a class="chip" href="https://github.com/mm-sj" target="_blank" rel="noopener">github.com/mm-sj ↗</a>
-        <a class="chip" href="../portfolio.pdf" target="_blank" rel="noopener">PDF ↓</a>
+    <div class="cols">
+      <div>
+        <p>로봇은 관절 각도, 인식 결과, 카메라 영상, 로그를 계속 내보내는데, 숫자만 봐서는 로봇이 지금 뭘 하는지 알기 어렵습니다. <b>그래서 실제 책상 크기(1200×600mm) 그대로 웹에 책상과 로봇을 3D로 만들고, 그 위에 실시간 데이터를 얹었습니다.</b></p>
+        <p>집중, 게임, 영화, 외출 모드마다 보여줄 패널을 다르게 했습니다. 인식 박스가 깜빡이는 문제는 실제 로봇에서 인식이 끊기는 구간을 보고, 박스 유지 시간을 800ms에서 2초로 늘려 잡았습니다.</p>
+        <p>팀에 FE가 저 혼자라서, 백엔드·로봇 쪽과 맞출 FE API 명세와 타입부터 먼저 정리했습니다.</p>
+      </div>
+      <aside>
+        <h4><span class="ms">task_alt</span>맡은 일</h4>
+        <ul>
+          <li>대시보드 구성, 모드별 레이아웃, 자세 리포트</li>
+          <li>로봇 3D 모델에 관절 데이터 실시간 반영</li>
+          <li>인식 결과 3D 박스, 카메라, 로그, 비상정지</li>
+          <li>FE API 명세, 폴더 구조, 타입 정의</li>
+        </ul>
+        <div class="tech"><span class="chip"><svg viewBox="0 0 24 24" aria-hidden="true" fill="#61DAFB"><path d="M14.23 12.004a2.236 2.236 0 0 1-2.235 2.236 2.236 2.236 0 0 1-2.236-2.236 2.236 2.236 0 0 1 2.235-2.236 2.236 2.236 0 0 1 2.236 2.236zm2.648-10.69c-1.346 0-3.107.96-4.888 2.622-1.78-1.653-3.542-2.602-4.887-2.602-.41 0-.783.093-1.106.278-1.375.793-1.683 3.264-.973 6.365C1.98 8.917 0 10.42 0 12.004c0 1.59 1.99 3.097 5.043 4.03-.704 3.113-.39 5.588.988 6.38.32.187.69.275 1.102.275 1.345 0 3.107-.96 4.888-2.624 1.78 1.654 3.542 2.603 4.887 2.603.41 0 .783-.09 1.106-.275 1.374-.792 1.683-3.263.973-6.365C22.02 15.096 24 13.59 24 12.004c0-1.59-1.99-3.097-5.043-4.032.704-3.11.39-5.587-.988-6.38-.318-.184-.688-.277-1.092-.278zm-.005 1.09v.006c.225 0 .406.044.558.127.666.382.955 1.835.73 3.704-.054.46-.142.945-.25 1.44-.96-.236-2.006-.417-3.107-.534-.66-.905-1.345-1.727-2.035-2.447 1.592-1.48 3.087-2.292 4.105-2.295zm-9.77.02c1.012 0 2.514.808 4.11 2.28-.686.72-1.37 1.537-2.02 2.442-1.107.117-2.154.298-3.113.538-.112-.49-.195-.964-.254-1.42-.23-1.868.054-3.32.714-3.707.19-.09.4-.127.563-.132zm4.882 3.05c.455.468.91.992 1.36 1.564-.44-.02-.89-.034-1.345-.034-.46 0-.915.01-1.36.034.44-.572.895-1.096 1.345-1.565zM12 8.1c.74 0 1.477.034 2.202.093.406.582.802 1.203 1.183 1.86.372.64.71 1.29 1.018 1.946-.308.655-.646 1.31-1.013 1.95-.38.66-.773 1.288-1.18 1.87-.728.063-1.466.098-2.21.098-.74 0-1.477-.035-2.202-.093-.406-.582-.802-1.204-1.183-1.86-.372-.64-.71-1.29-1.018-1.946.303-.657.646-1.313 1.013-1.954.38-.66.773-1.286 1.18-1.868.728-.064 1.466-.098 2.21-.098zm-3.635.254c-.24.377-.48.763-.704 1.16-.225.39-.435.782-.635 1.174-.265-.656-.49-1.31-.676-1.947.64-.15 1.315-.283 2.015-.386zm7.26 0c.695.103 1.365.23 2.006.387-.18.632-.405 1.282-.66 1.933-.2-.39-.41-.783-.64-1.174-.225-.392-.465-.774-.705-1.146zm3.063.675c.484.15.944.317 1.375.498 1.732.74 2.852 1.708 2.852 2.476-.005.768-1.125 1.74-2.857 2.475-.42.18-.88.342-1.355.493-.28-.958-.646-1.956-1.1-2.98.45-1.017.81-2.01 1.085-2.964zm-13.395.004c.278.96.645 1.957 1.1 2.98-.45 1.017-.812 2.01-1.086 2.964-.484-.15-.944-.318-1.37-.5-1.732-.737-2.852-1.706-2.852-2.474 0-.768 1.12-1.742 2.852-2.476.42-.18.88-.342 1.356-.494zm11.678 4.28c.265.657.49 1.312.676 1.948-.64.157-1.316.29-2.016.39.24-.375.48-.762.705-1.158.225-.39.435-.788.636-1.18zm-9.945.02c.2.392.41.783.64 1.175.23.39.465.772.705 1.143-.695-.102-1.365-.23-2.006-.386.18-.63.406-1.282.66-1.933zM17.92 16.32c.112.493.2.968.254 1.423.23 1.868-.054 3.32-.714 3.708-.147.09-.338.128-.563.128-1.012 0-2.514-.807-4.11-2.28.686-.72 1.37-1.536 2.02-2.44 1.107-.118 2.154-.3 3.113-.54zm-11.83.01c.96.234 2.006.415 3.107.532.66.905 1.345 1.727 2.035 2.446-1.595 1.483-3.092 2.295-4.11 2.295-.22-.005-.406-.05-.553-.132-.666-.38-.955-1.834-.73-3.703.054-.46.142-.944.25-1.438zm4.56.64c.44.02.89.034 1.345.034.46 0 .915-.01 1.36-.034-.44.572-.895 1.095-1.345 1.565-.455-.47-.91-.993-1.36-1.565z"/></svg>React</span><span class="chip"><svg viewBox="0 0 24 24" aria-hidden="true" fill="#3178C6"><path d="M1.125 0C.502 0 0 .502 0 1.125v21.75C0 23.498.502 24 1.125 24h21.75c.623 0 1.125-.502 1.125-1.125V1.125C24 .502 23.498 0 22.875 0zm17.363 9.75c.612 0 1.154.037 1.627.111a6.38 6.38 0 0 1 1.306.34v2.458a3.95 3.95 0 0 0-.643-.361 5.093 5.093 0 0 0-.717-.26 5.453 5.453 0 0 0-1.426-.2c-.3 0-.573.028-.819.086a2.1 2.1 0 0 0-.623.242c-.17.104-.3.229-.393.374a.888.888 0 0 0-.14.49c0 .196.053.373.156.529.104.156.252.304.443.444s.423.276.696.41c.273.135.582.274.926.416.47.197.892.407 1.266.628.374.222.695.473.963.753.268.279.472.598.614.957.142.359.214.776.214 1.253 0 .657-.125 1.21-.373 1.656a3.033 3.033 0 0 1-1.012 1.085 4.38 4.38 0 0 1-1.487.596c-.566.12-1.163.18-1.79.18a9.916 9.916 0 0 1-1.84-.164 5.544 5.544 0 0 1-1.512-.493v-2.63a5.033 5.033 0 0 0 3.237 1.2c.333 0 .624-.03.872-.09.249-.06.456-.144.623-.25.166-.108.29-.234.373-.38a1.023 1.023 0 0 0-.074-1.089 2.12 2.12 0 0 0-.537-.5 5.597 5.597 0 0 0-.807-.444 27.72 27.72 0 0 0-1.007-.436c-.918-.383-1.602-.852-2.053-1.405-.45-.553-.676-1.222-.676-2.005 0-.614.123-1.141.369-1.582.246-.441.58-.804 1.004-1.089a4.494 4.494 0 0 1 1.47-.629 7.536 7.536 0 0 1 1.77-.201zm-15.113.188h9.563v2.166H9.506v9.646H6.789v-9.646H3.375z"/></svg>TypeScript</span><span class="chip"><svg viewBox="0 0 24 24" aria-hidden="true" fill="#61DAFB"><path d="M14.23 12.004a2.236 2.236 0 0 1-2.235 2.236 2.236 2.236 0 0 1-2.236-2.236 2.236 2.236 0 0 1 2.235-2.236 2.236 2.236 0 0 1 2.236 2.236zm2.648-10.69c-1.346 0-3.107.96-4.888 2.622-1.78-1.653-3.542-2.602-4.887-2.602-.41 0-.783.093-1.106.278-1.375.793-1.683 3.264-.973 6.365C1.98 8.917 0 10.42 0 12.004c0 1.59 1.99 3.097 5.043 4.03-.704 3.113-.39 5.588.988 6.38.32.187.69.275 1.102.275 1.345 0 3.107-.96 4.888-2.624 1.78 1.654 3.542 2.603 4.887 2.603.41 0 .783-.09 1.106-.275 1.374-.792 1.683-3.263.973-6.365C22.02 15.096 24 13.59 24 12.004c0-1.59-1.99-3.097-5.043-4.032.704-3.11.39-5.587-.988-6.38-.318-.184-.688-.277-1.092-.278zm-.005 1.09v.006c.225 0 .406.044.558.127.666.382.955 1.835.73 3.704-.054.46-.142.945-.25 1.44-.96-.236-2.006-.417-3.107-.534-.66-.905-1.345-1.727-2.035-2.447 1.592-1.48 3.087-2.292 4.105-2.295zm-9.77.02c1.012 0 2.514.808 4.11 2.28-.686.72-1.37 1.537-2.02 2.442-1.107.117-2.154.298-3.113.538-.112-.49-.195-.964-.254-1.42-.23-1.868.054-3.32.714-3.707.19-.09.4-.127.563-.132zm4.882 3.05c.455.468.91.992 1.36 1.564-.44-.02-.89-.034-1.345-.034-.46 0-.915.01-1.36.034.44-.572.895-1.096 1.345-1.565zM12 8.1c.74 0 1.477.034 2.202.093.406.582.802 1.203 1.183 1.86.372.64.71 1.29 1.018 1.946-.308.655-.646 1.31-1.013 1.95-.38.66-.773 1.288-1.18 1.87-.728.063-1.466.098-2.21.098-.74 0-1.477-.035-2.202-.093-.406-.582-.802-1.204-1.183-1.86-.372-.64-.71-1.29-1.018-1.946.303-.657.646-1.313 1.013-1.954.38-.66.773-1.286 1.18-1.868.728-.064 1.466-.098 2.21-.098zm-3.635.254c-.24.377-.48.763-.704 1.16-.225.39-.435.782-.635 1.174-.265-.656-.49-1.31-.676-1.947.64-.15 1.315-.283 2.015-.386zm7.26 0c.695.103 1.365.23 2.006.387-.18.632-.405 1.282-.66 1.933-.2-.39-.41-.783-.64-1.174-.225-.392-.465-.774-.705-1.146zm3.063.675c.484.15.944.317 1.375.498 1.732.74 2.852 1.708 2.852 2.476-.005.768-1.125 1.74-2.857 2.475-.42.18-.88.342-1.355.493-.28-.958-.646-1.956-1.1-2.98.45-1.017.81-2.01 1.085-2.964zm-13.395.004c.278.96.645 1.957 1.1 2.98-.45 1.017-.812 2.01-1.086 2.964-.484-.15-.944-.318-1.37-.5-1.732-.737-2.852-1.706-2.852-2.474 0-.768 1.12-1.742 2.852-2.476.42-.18.88-.342 1.356-.494zm11.678 4.28c.265.657.49 1.312.676 1.948-.64.157-1.316.29-2.016.39.24-.375.48-.762.705-1.158.225-.39.435-.788.636-1.18zm-9.945.02c.2.392.41.783.64 1.175.23.39.465.772.705 1.143-.695-.102-1.365-.23-2.006-.386.18-.63.406-1.282.66-1.933zM17.92 16.32c.112.493.2.968.254 1.423.23 1.868-.054 3.32-.714 3.708-.147.09-.338.128-.563.128-1.012 0-2.514-.807-4.11-2.28.686-.72 1.37-1.536 2.02-2.44 1.107-.118 2.154-.3 3.113-.54zm-11.83.01c.96.234 2.006.415 3.107.532.66.905 1.345 1.727 2.035 2.446-1.595 1.483-3.092 2.295-4.11 2.295-.22-.005-.406-.05-.553-.132-.666-.38-.955-1.834-.73-3.703.054-.46.142-.944.25-1.438zm4.56.64c.44.02.89.034 1.345.034.46 0 .915-.01 1.36-.034-.44.572-.895 1.095-1.345 1.565-.455-.47-.91-.993-1.36-1.565z"/></svg>React Three Fiber</span><span class="chip"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M11.9362.0137a12.1694 12.1694 0 00-2.9748.378C4.2816 1.5547.5678 5.7944.0918 10.6012c-.59 4.5488 1.7079 9.2856 5.6437 11.6345 3.8608 2.4179 9.0926 2.3199 12.8734-.223 3.3969-2.206 5.5118-6.2277 5.3858-10.2845-.058-4.0159-2.31-7.9167-5.7588-9.9796C16.354.5876 14.1431.0047 11.9362.0137zm-.063 1.696c4.9448-.007 9.7886 3.8137 10.2815 8.9245.945 5.6597-3.7528 11.4125-9.4875 11.5795-5.4538.544-10.7245-4.0798-10.8795-9.5566-.407-4.4338 2.5159-8.8346 6.6977-10.2995a9.1126 9.1126 0 013.3878-.647zm5.0908 3.2248c-2.6869 2.0849-5.2598 4.3078-7.8886 6.4567 1.2029.017 2.4118.016 3.6208.01 1.41-2.165 2.8589-4.3008 4.2678-6.4667zm-5.6647 7.6536c-1.41 2.166-2.86 4.3088-4.2699 6.4737 2.693-2.0799 5.2548-4.3198 7.9017-6.4557a255.4132 255.4132 0 00-3.6318-.018z"/></svg>WebSocket</span></div>
+        <div class="links">
+          <a class="btn btn--line" href="https://github.com/mm-sj/S14P31D101" target="_blank" rel="noopener"><span><svg class="brand" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>시연 원본 화면·상세 설명</span></a>
+          <a class="btn btn--line" href="https://www.youtube.com/watch?v=pIx2FC31FqI" target="_blank" rel="noopener"><span><svg class="brand brand--yt" viewBox="0 0 24 24" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>홍보 영상</span></a>
+        </div>
+      </aside>
     </div>
-    <p class="toast" aria-live="polite" id="toast-foot"></p>
-  </footer>
-</div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">오창민 · dhckdals1104@naver.com · <a href="https://github.com/mm-sj" target="_blank" rel="noopener">github.com/mm-sj</a></div>
+</footer>
 
 <script>
-/* copy email */
-document.querySelectorAll('[data-copy]').forEach(function(btn){
-  btn.addEventListener('click',function(){
-    var text=btn.getAttribute('data-copy');
-    var toast=btn.closest('footer')?document.getElementById('toast-foot'):document.getElementById('toast-hero');
-    function done(msg){toast.textContent=msg;setTimeout(function(){toast.textContent=''},2400)}
-    try{
-      navigator.clipboard.writeText(text).then(function(){done('이메일 주소를 복사했습니다.')},function(){sel()});
-    }catch(e){sel()}
-    function sel(){var r=document.createRange();r.selectNodeContents(btn);var s=getSelection();s.removeAllRanges();s.addRange(r);done('주소를 선택했습니다. 복사해서 사용하세요.')}
-  });
-});
-
-/* lazy play videos only while visible */
-(function(){
-  var vids=[].slice.call(document.querySelectorAll('video[data-src]'));
-  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
-  function load(v){if(!v.src){v.src=v.getAttribute('data-src');}}
-  if(!('IntersectionObserver' in window)){vids.forEach(function(v){load(v);if(!reduce)v.play().catch(function(){})});return;}
-  var io=new IntersectionObserver(function(es){es.forEach(function(e){var v=e.target;
-    if(e.isIntersecting){load(v);if(!reduce){var p=v.play();if(p)p.catch(function(){})}}else{v.pause()}
-  })},{rootMargin:'200px 0px',threshold:0.15});
-  vids.forEach(function(v){io.observe(v)});
-})();
-
+/* 이메일 복사 */
+document.querySelectorAll('[data-copy]').forEach(function (btn) {
+  btn.addEventListener('click', function () {
+    var t = document.getElementById('toast')
+    function done(m) { t.textContent = m; setTimeout(function () { t.textContent = '' }, 2200) }
+    try { navigator.clipboard.writeText(btn.getAttribute('data-copy')).then(function () { done('주소를 복사했습니다') }, function () { done('주소를 직접 선택해 주세요') }) }
+    catch (e) { done('주소를 직접 선택해 주세요') }
+  })
+})
+/* 영상은 화면에 보일 때만 불러와서 재생 */
+;(function () {
+  var vids = [].slice.call(document.querySelectorAll('video[data-src]'))
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches
+  function load(v) { if (!v.getAttribute('src')) v.src = v.getAttribute('data-src') }
+  if (!('IntersectionObserver' in window)) { vids.forEach(function (v) { load(v); if (!reduce) v.play().catch(function () {}) }); return }
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { var v = e.target; if (e.isIntersecting) { load(v); if (!reduce) { var p = v.play(); if (p) p.catch(function () {}) } } else v.pause() })
+  }, { rootMargin: '200px 0px', threshold: 0.15 })
+  vids.forEach(function (v) { io.observe(v) })
+})()
 </script>
 <script>
-  // 방문 통계 — 3D 사이트의 모달 안(?embed)에서 열린 건 따로 세지 않는다
+  // 방문 통계 — 첫 화면의 모달 안(?embed)에서 열린 건 따로 세지 않는다
   if (!document.documentElement.classList.contains('embed')) {
     var g = document.createElement('script'); g.async = true; g.src = '//gc.zgo.at/count.js'
     g.setAttribute('data-goatcounter', 'https://mm-sj.goatcounter.com/count'); document.body.appendChild(g)

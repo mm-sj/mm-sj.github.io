@@ -4,7 +4,7 @@ const QUICK = (import.meta.env.VITE_QUICK_URL as string | undefined) ?? './quick
 
 export const PROFILE = {
   name: '오창민',
-  role: 'Frontend Developer · Web 3D & Interaction',
+  role: '서비스 기획 · 프론트엔드',
   email: 'dhckdals1104@naver.com',
   github: 'https://github.com/mm-sj',
   // 문서형 정적 버전(전체 보기). 배포 시엔 같은 사이트의 quick/ 폴더, 필요하면 VITE_QUICK_URL로 교체
@@ -12,7 +12,7 @@ export const PROFILE = {
 }
 
 /** 수상 프로젝트와 따로 두는 AX 프로젝트 — 3D 장면 없이 전체 보기(quick)의 04 시트로만 연결 */
-export const AX_PROJECT = { id: 'fridge', no: '04', title: '데이터 냉장고' }
+export const AX_PROJECT = { id: 'fridge', no: '01', title: '데이터 냉장고' }
 
 export type Project = {
   id: string
@@ -35,14 +35,14 @@ export type Project = {
 export const PROJECTS: Project[] = [
   {
     id: 'docq',
-    no: '01',
+    no: '02',
     title: 'DocQ',
     award: 'SSAFY 공통 최우수상',
     stamp: { rank: '최우수상', track: '공통 프로젝트' },
     period: '2026.01 – 02',
     team: '6명 · FE 3',
-    role: 'FE · UX 방향 · 3D 에셋',
-    line: '읽은 PDF를 정말 이해했는지, 친구들과 보드게임으로 확인해 보는 서비스',
+    role: 'UX 방향 · FE · 3D 에셋',
+    line: 'PDF를 AI 퀴즈로 바꿔 최대 4명이 보드게임처럼 푸는 학습 서비스. UX 방향과 게임 밖 화면 전반을 맡았습니다.',
     points: [
       '동화책 같은 분위기를 잡고 로비·대기실·커뮤니티 화면을 만들었습니다',
       'Blender로 보드 맵을 만들고 캐릭터와 룰렛 위치를 하나하나 다시 잡았습니다',
@@ -55,14 +55,14 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'wyd',
-    no: '02',
+    no: '03',
     title: 'Would You Draw',
     award: 'SSAFY 특화 우수상',
     stamp: { rank: '우수상', track: '특화 프로젝트' },
     period: '2026.03',
     team: '5명 · FE 2',
     role: 'FE 팀장',
-    line: '하루의 감정을 그림으로 남기면 별이 되고, 일주일이면 별자리, 한 달이면 은하가 됩니다',
+    line: '그린 감정이 별, 별자리, 은하로 쌓이는 감정 기록 앱. FE 팀장으로 드로잉과 우주 인터랙션을 맡았습니다.',
     points: [
       '팀원이 만든 우주 화면 위에 별자리가 이어지고 별이 태어나는 연출을 더했습니다',
       'AI 분석을 기다리지 않도록 임시 별을 먼저 띄우고, 결과가 오면 바꿔 끼웠습니다',
@@ -75,14 +75,14 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'jabis',
-    no: '03',
+    no: '04',
     title: 'Jabis',
     award: 'SSAFY 자율 우수상',
     stamp: { rank: '우수상', track: '자율 프로젝트' },
     period: '2026.04 – 05',
     team: '6명 · FE 1',
     role: 'FE 전담',
-    line: '말을 알아듣고 책상 위 물건을 두 팔로 집는 로봇. 그 로봇이 보고 움직이는 것을 보여주는 대시보드',
+    line: '양팔 데스크 로봇의 상태를 3D로 보여주는 웹 대시보드. 팀의 유일한 FE로 대시보드 전체를 맡았습니다.',
     points: [
       '로봇 팔 두 개를 URDF로 불러와 실제 관절 각도대로 움직이게 했습니다',
       '자꾸 깜빡이던 인식 박스는 React 렌더링 밖으로 빼서 잡았습니다',
