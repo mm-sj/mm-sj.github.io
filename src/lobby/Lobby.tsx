@@ -365,7 +365,6 @@ export function Lobby() {
       <div className="grain" aria-hidden="true" />
 
       <a className="docbtn" href={PROFILE.quick} target="_blank" rel="noopener" onClick={modalClick()}>
-        <Icon name="description" />
         포트폴리오
       </a>
 

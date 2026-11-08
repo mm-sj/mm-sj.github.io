@@ -48,7 +48,7 @@
 /* ── 상단 ── */
 .docbtn {
   position: absolute; top: 18px; left: 50%; transform: translateX(-50%); z-index: 60;
-  display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 38px; padding: 0 34px;
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 38px; padding: 0 38px;
   border-radius: 8px; color: var(--ink); text-decoration: none; font-size: 13.5px; font-weight: 500;
   background: rgba(251, 250, 247, 0.7); box-shadow: inset 0 0 0 1px #cbc6bc; transition: box-shadow 0.15s, background 0.15s;
 }
