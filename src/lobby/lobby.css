@@ -141,7 +141,6 @@ h1.wood { margin: 0; font-family: var(--sans); font-weight: 600; font-size: 2rem
 .flow__step[data-key] { background: var(--ink); color: #fff; box-shadow: 0 2px 0 #000; }
 .flow__step:not(:last-child)::after { content: '→'; position: absolute; right: -13px; top: 50%; transform: translateY(-50%); color: var(--muted); font-size: 11px; }
 
-.body--contact { text-align: center; justify-items: center; }
 .mail {
   display: inline-flex; align-items: center; gap: 14px; height: 44px; padding: 0 16px; margin: 4px 0;
   border: none; border-radius: 8px; background: transparent; box-shadow: inset 0 0 0 1px #cbc6bc; cursor: pointer;
@@ -149,7 +148,6 @@ h1.wood { margin: 0; font-family: var(--sans); font-weight: 600; font-size: 2rem
 }
 .mail i { font-style: normal; font-family: var(--sans); font-size: 12px; color: var(--muted); }
 .mail:hover { box-shadow: inset 0 0 0 1px var(--ink); }
-.body--contact .actions { width: 100%; }
 
 /* ── 룰렛: 모형 턴테이블 — 흰 원판 + 발사나무 테두리 + 얇은 눈금 ── */
 .roulette { position: absolute; z-index: 5; width: var(--R); height: var(--R); left: 50%; bottom: calc(var(--show) - var(--R)); transform: translateX(-50%); }
@@ -218,3 +216,24 @@ h1.wood { margin: 0; font-family: var(--sans); font-weight: 600; font-size: 2rem
 .tags .msym { font-size: 15px; color: var(--muted); }
 .cbtn .msym { font-size: 18px; }
 .mail .msym { font-size: 18px; color: var(--muted); }
+
+/* 첫 카드(소개): 먹색 명판처럼 다른 카드와 구분 */
+.body--about .mail { grid-column: 1 / -1; justify-self: stretch; justify-content: space-between; margin: 2px 0 0; }
+.panel--main.panel--about {
+  background: #1f1e1c; color: #f3f1ec;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.3), 0 5px 0 #141311, 0 6px 0 #000, 0 14px 16px -8px rgba(20, 15, 10, 0.5), 0 40px 60px -30px rgba(20, 15, 10, 0.45);
+}
+.panel--about h1.wood, .panel--about .lede { color: #fff; }
+.panel--about .role { color: #a39e94; }
+.panel--about .desc { color: #d6d2c9; }
+.panel--about .tags > span { background: rgba(255, 255, 255, 0.07); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.14); color: #d6d2c9; }
+.panel--about .tags .msym, .panel--about .mail .msym, .panel--about .mail i { color: #a39e94; }
+.panel--about .portrait { box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.12), 0 8px 14px -8px rgba(0, 0, 0, 0.7); }
+.panel--about .cbtn:not(.cbtn--line) { background: #fbfaf7; color: var(--ink); }
+.panel--about .cbtn:not(.cbtn--line):hover { background: #fff; }
+.panel--about .cbtn--line { color: #f3f1ec; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.3); }
+.panel--about .cbtn--line:hover { background: rgba(255, 255, 255, 0.07); box-shadow: inset 0 0 0 1px #fff; }
+.panel--about .mail { color: #f3f1ec; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.3); }
+.panel--about .mail:hover { box-shadow: inset 0 0 0 1px #fff; }
+.panel--about:not(.panel--main) { background: linear-gradient(160deg, rgba(31, 30, 28, 0.9), rgba(31, 30, 28, 0.78)); color: #f3f1ec; box-shadow: 0 18px 30px -18px rgba(20, 15, 10, 0.5); }
+.panel--about:not(.panel--main) .mini { color: #e8e5de; }

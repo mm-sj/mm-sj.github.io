@@ -114,12 +114,16 @@ function CardBody({ item, active }: { item: LobbyItem; active: boolean }) {
             ))}
           </div>
         </div>
+        <Copy text={PROFILE.email} />
         <div className="actions">
           <Btn onClick={modalClick()} href={PROFILE.quick} go="in" icon="description">
             포트폴리오
           </Btn>
+          <Btn line href={PROFILE.github} brand="github">
+            GitHub
+          </Btn>
           <Btn line href="./portfolio.pdf" go="down" download icon="picture_as_pdf">
-            PDF 다운로드
+            PDF
           </Btn>
         </div>
       </div>
@@ -156,8 +160,7 @@ function CardBody({ item, active }: { item: LobbyItem; active: boolean }) {
     )
   }
 
-  if (item.kind === 'fridge')
-    return (
+  return (
       <div className="body">
         <div className="flow" aria-label="데이터 냉장고 흐름">
           {FRIDGE.flow.map((f, i) => (
@@ -186,19 +189,6 @@ function CardBody({ item, active }: { item: LobbyItem; active: boolean }) {
       </div>
     )
 
-  return (
-    <div className="body body--contact">
-      <h1 className="wood">연락처</h1>
-      <p className="desc">끝까지 봐 주셔서 고맙습니다.</p>
-      <Copy text={PROFILE.email} />
-      <div className="actions">
-        <Btn href={PROFILE.github} brand="github">GitHub</Btn>
-        <Btn line href="./portfolio.pdf" go="down" download icon="picture_as_pdf">
-          PDF 다운로드
-        </Btn>
-      </div>
-    </div>
-  )
 }
 
 export function Lobby() {
@@ -379,7 +369,7 @@ export function Lobby() {
               onPointerEnter={center ? () => (hovering.current = true) : undefined}
               onPointerLeave={center ? () => (hovering.current = false) : undefined}
             >
-              <div className={`panel ${center ? 'panel--main' : 'panel--side'}`}>
+              <div className={`panel ${center ? 'panel--main' : 'panel--side'} ${item.kind === 'about' ? 'panel--about' : ''}`}>
                 <CardBody item={item} active={center} />
                 <div className="mini">
                   <Icon name={item.icon} />

@@ -5,7 +5,6 @@ export type LobbyItem =
   | { kind: 'about'; id: string; label: string; icon: string; color: string; dark: string }
   | { kind: 'fridge'; id: string; label: string; icon: string; color: string; dark: string }
   | { kind: 'project'; id: string; label: string; icon: string; color: string; dark: string; project: Project }
-  | { kind: 'contact'; id: string; label: string; icon: string; color: string; dark: string }
 
 const P = Object.fromEntries(PROJECTS.map((p) => [p.id, p]))
 
@@ -15,7 +14,6 @@ export const ITEMS: LobbyItem[] = [
   { kind: 'project', id: 'docq', label: 'DocQ', icon: 'casino', color: '#9bae7c', dark: '#6b7d4f', project: P.docq },
   { kind: 'project', id: 'wyd', label: 'Would You Draw', icon: 'auto_awesome', color: '#7d78a6', dark: '#55507d', project: P.wyd },
   { kind: 'project', id: 'jabis', label: 'Jabis', icon: 'precision_manufacturing', color: '#66748a', dark: '#434f62', project: P.jabis },
-  { kind: 'contact', id: 'contact', label: '연락처', icon: 'mail', color: '#c2a07c', dark: '#8f6f4e' },
 ]
 
 export const ABOUT = {
