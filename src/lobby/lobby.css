@@ -136,8 +136,8 @@ h1.wood { margin: 0; font-family: var(--sans); font-weight: 600; font-size: 2rem
 .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
 .tags > span { display: inline-flex; align-items: center; gap: 6px; padding: 4px 9px; border-radius: 4px; background: #f1efea; box-shadow: inset 0 0 0 1px var(--board-edge); font-size: 12.5px; color: var(--ink-2); }
 
-.flow { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 14px; padding: 26px 10px; border-radius: 3px; background: #f1efea; box-shadow: inset 0 0 0 1px var(--board-edge); }
-.flow__step { position: relative; padding: 7px 9px; border-radius: 4px; background: var(--board); font-size: 13px; white-space: nowrap; box-shadow: 0 0 0 1px var(--board-edge), 0 2px 0 #d9d4ca; }
+.flow { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 14px; }
+.flow__step { position: relative; padding: 5px 9px; border-radius: 4px; background: var(--board); font-size: 13px; white-space: nowrap; box-shadow: 0 0 0 1px var(--board-edge), 0 2px 0 #d9d4ca; }
 .flow__step[data-key] { background: var(--ink); color: #fff; box-shadow: 0 2px 0 #000; }
 .flow__step:not(:last-child)::after { content: '→'; position: absolute; right: -13px; top: 50%; transform: translateY(-50%); color: var(--muted); font-size: 11px; }
 
@@ -223,6 +223,15 @@ h1.wood { margin: 0; font-family: var(--sans); font-weight: 600; font-size: 2rem
   .cbtn { padding: 0 8px; font-size: 13.5px; gap: 6px; }
   .cbtn i, .cbtn .msym { display: none; }
   .actions { min-width: 0; }
+  /* 소개 카드: 축소하지 않고 세로로 다시 배치 */
+  .body--about { grid-template-columns: 76px 1fr; column-gap: 14px; align-items: start; }
+  .body--about > div:not(.actions) { display: contents; }
+  .body--about .portrait { grid-row: span 2; width: 76px; height: 96px; }
+  .body--about h1.wood { align-self: end; }
+  .body--about .role { align-self: start; }
+  .body--about .lede, .body--about .desc, .body--about .tags { grid-column: 1 / -1; }
+  .flow { gap: 12px 14px; }
+  .flow__step { font-size: 12px; }
 }
 @media (max-height: 760px) {
   .clip { aspect-ratio: 21 / 9; }

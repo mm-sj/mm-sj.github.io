@@ -169,6 +169,7 @@ function CardBody({ item, active }: { item: LobbyItem; active: boolean }) {
 
   return (
       <div className="body">
+        <img className="clip" src="./assets/fridge-card.jpg" alt="데이터 냉장고 3D 냉장고 메인 화면" loading="lazy" />
         <div className="flow" aria-label="데이터 냉장고 흐름">
           {FRIDGE.flow.map((f, i) => (
             <span key={f} className="flow__step" data-key={i === 2 ? '' : undefined}>
