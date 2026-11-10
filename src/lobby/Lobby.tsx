@@ -146,6 +146,10 @@ function CardBody({ item, active }: { item: LobbyItem; active: boolean }) {
             지금 이 페이지의 룰렛 메뉴는 DocQ 메인 화면의 구조를 가져온 것입니다
           </p>
         )}
+        <p className="fact">
+          <Icon name="check_circle" />
+          {p.fact}
+        </p>
         <p className="meta">
           {p.period} · {p.team} · <b>{p.role}</b>
         </p>
@@ -182,6 +186,10 @@ function CardBody({ item, active }: { item: LobbyItem; active: boolean }) {
           <span className="award">팀 우수상 · 1위</span>
         </div>
         <p className="desc">{FRIDGE.line}</p>
+        <p className="fact">
+          <Icon name="check_circle" />
+          {FRIDGE.fact}
+        </p>
         <p className="meta">
           {FRIDGE.tag} · 4명 · <b>{FRIDGE.role}</b>
         </p>

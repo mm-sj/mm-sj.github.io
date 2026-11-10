@@ -28,6 +28,7 @@ export const FRIDGE = {
   title: '데이터 냉장고',
   tag: '2026.10 – 11',
   line: '저장한 이유가 다시 필요해질 때 AI가 자료를 꺼내주는 사내 지식 서비스. 자료 입고 흐름과 웹 화면을 맡았습니다.',
+  fact: '변환 서버 하나로 n8n 노드와 LLM 토큰 사용량을 줄임',
   role: '자료 입고 워크플로우 · 웹 화면',
   flow: ['이유와 함께 저장', 'AI 정리', '사람이 확정', '필요할 때 꺼내줌'],
   video: 'https://www.youtube.com/watch?v=HB-bQzTXlkQ',

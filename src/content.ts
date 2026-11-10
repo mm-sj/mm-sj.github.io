@@ -23,6 +23,8 @@ export type Project = {
   team: string
   role: string
   line: string
+  /** 카드에 한 줄로 보여줄 숫자 근거 — 문서 페이지 본문에 있는 사실만 */
+  fact: string
   video: string
   poster: string
   detail: string
@@ -40,6 +42,7 @@ export const PROJECTS: Project[] = [
     team: '6명 · FE 3',
     role: 'UX 방향 · FE · 3D 에셋',
     line: 'PDF를 AI 퀴즈로 바꿔 최대 4명이 보드게임처럼 푸는 학습 서비스. UX 방향과 게임 밖 화면 전반을 맡았습니다.',
+    fact: '팀이 받은 유저 피드백 24건 중 22건 반영',
     video: './assets/docq-board.mp4',
     poster: './assets/docq-board.jpg',
     detail: `${QUICK}#docq`,
@@ -54,6 +57,7 @@ export const PROJECTS: Project[] = [
     team: '5명 · FE 2',
     role: 'FE 팀장',
     line: '그린 감정이 별, 별자리, 은하로 쌓이는 감정 기록 앱. FE 팀장으로 드로잉과 우주 인터랙션을 맡았습니다.',
+    fact: '테스트 피드백 37건을 받아 튜토리얼과 알림 모달 추가',
     video: './assets/wyd-universe.mp4',
     poster: './assets/wyd-universe.jpg',
     detail: `${QUICK}#wyd`,
@@ -68,6 +72,7 @@ export const PROJECTS: Project[] = [
     team: '6명 · FE 1',
     role: 'FE 전담',
     line: '양팔 데스크 로봇의 상태를 3D로 보여주는 웹 대시보드. 팀의 유일한 FE로 대시보드 전체를 맡았습니다.',
+    fact: '인식 박스 유지 시간을 800ms에서 2초로 늘려 깜빡임 해결',
     video: './assets/jabis-dashboard.mp4',
     poster: './assets/jabis-dashboard.jpg',
     detail: `${QUICK}#jabis`,
