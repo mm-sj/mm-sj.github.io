@@ -48,6 +48,12 @@
 /* ── 상단 ── */
 
 /* ── 캐러셀 ── */
+.backdrops { position: absolute; z-index: 2; left: 50%; top: calc((28px + 100vh - var(--show) - 90px) / 2); width: 0; height: 0; pointer-events: none; }
+.bd { position: absolute; left: 0; top: 0; width: 1600px; height: 800px; opacity: 0; visibility: hidden; will-change: transform, opacity; color: #a39b8d; --bd-bg: #efeee9; }
+.bd svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.bd__t { fill: currentColor; font-family: var(--mono); letter-spacing: 0.02em; }
+.bd__accent { color: var(--accent); }
+.bd__accent-fill { fill: var(--accent); }
 .stage { position: absolute; z-index: 30; left: 50%; top: calc((28px + 100vh - var(--show) - 90px) / 2); width: 0; height: 0; perspective: 1100px; }
 .citem { position: absolute; left: 0; top: 0; width: 500px; transform-style: preserve-3d; will-change: transform, opacity; }
 .citem.is-side { cursor: pointer; }

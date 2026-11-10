@@ -2,6 +2,7 @@ import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react
 import { PROFILE } from '../content'
 import { openFolio, modalClick } from '../ui/Modal'
 import { ABOUT, FRIDGE, ITEMS, type LobbyItem } from './items'
+import { BACKDROPS } from './Backdrops'
 
 
 /*
@@ -217,6 +218,7 @@ export function Lobby() {
   const hovering = useRef(false)
   const modalOpen = useRef(false)
   const cards = useRef<(HTMLElement | null)[]>([])
+  const backs = useRef<(HTMLElement | null)[]>([])
   const nat = useRef<number[]>([]) // 카드별 원래 높이
   const fit = useRef<number[]>([]) // 카드별 화면 맞춤 배율
   const apply = useRef<(p: number) => void>(() => {})
@@ -447,6 +449,14 @@ export function Lobby() {
         part.plate.style.opacity = String(m)
         part.body.style.opacity = String(clamp(1 - m * 1.8))
         part.mini.style.opacity = String(clamp((m - 0.45) * 2.2))
+        // 뒤 도면: 카드보다 1/3 느리게 밀리고, 가운데에서 벗어나면 사라진다
+        const bd = backs.current[i]
+        if (bd) {
+          const bo = clamp(1 - a * 1.25) * (narrow ? 0.7 : 1)
+          bd.style.transform = `translate(calc(-50% + ${o * (narrow ? 40 : 130)}px), -50%) scale(${fit.current[i] || 1})`
+          bd.style.opacity = String(bo)
+          bd.style.visibility = bo < 0.01 ? 'hidden' : 'visible'
+        }
       }
     }
 
@@ -485,6 +495,23 @@ export function Lobby() {
       </div>
       <div className="grain" aria-hidden="true" />
 
+
+      <div className="backdrops" aria-hidden="true">
+        {ITEMS.map((item, i) => {
+          const Draw = BACKDROPS[item.id]
+          return (
+            <div
+              key={item.id}
+              className="bd"
+              ref={(el) => {
+                backs.current[i] = el
+              }}
+            >
+              {Draw ? <Draw /> : null}
+            </div>
+          )
+        })}
+      </div>
 
       <main className="stage" aria-roledescription="carousel" aria-label="프로젝트 메뉴">
         {ITEMS.map((item, i) => {
