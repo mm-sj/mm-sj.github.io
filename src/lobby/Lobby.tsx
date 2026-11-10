@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { PROFILE } from '../content'
 import { openFolio, modalClick } from '../ui/Modal'
 import { ABOUT, FRIDGE, ITEMS, type LobbyItem } from './items'
@@ -216,6 +216,10 @@ export function Lobby() {
   const idle = useRef(0)
   const hovering = useRef(false)
   const modalOpen = useRef(false)
+  const cards = useRef<(HTMLElement | null)[]>([])
+  const nat = useRef<number[]>([]) // 카드별 원래 높이
+  const fit = useRef<number[]>([]) // 카드별 화면 맞춤 배율
+  const apply = useRef<(p: number) => void>(() => {})
 
   const go = useCallback((index: number) => {
     touched.current = true
@@ -255,13 +259,26 @@ export function Lobby() {
       )
     }
     let last = performance.now()
+    let vel = 0
+    let cp = 0 // 카드가 서 있는 위치(칸 단위)
+    let cv = 0
     const loop = (now: number) => {
       // 프레임 속도와 상관없이 같은 빠르기로 움직이도록 경과 시간 기준으로 계산
-      const dt = Math.min(0.1, (now - last) / 1000)
+      const dt = Math.min(0.05, (now - last) / 1000)
       last = now
       if (now > idle.current && !hovering.current && !modalOpen.current && !REDUCED) target.current -= 3.6 * dt
       const diff = target.current - cur.current
-      cur.current += diff * (1 - Math.exp(-5 * dt))
+      // 임계 감쇠 스프링: 출발이 부드럽고 도착에서 튕기지 않는다
+      const W = 8
+      const h = dt / 2
+      for (let k = 0; k < 2; k++) {
+        vel += ((target.current - cur.current) * W * W - vel * 2 * W) * h
+        cur.current += vel * h
+      }
+      if (Math.abs(target.current - cur.current) < 0.004 && Math.abs(vel) < 0.02) {
+        cur.current = target.current
+        vel = 0
+      }
       if (Math.abs(diff) > 0.01) lastDelta = diff
       if (wheel.current) wheel.current.style.transform = `rotate(${cur.current}deg)`
       const pin = Math.floor((Math.abs(cur.current) + 2) / PIN)
@@ -269,7 +286,22 @@ export function Lobby() {
         tick(lastDelta)
         lastPin = pin
       }
-      // 카드는 룰렛이 도착할 칸(target) 기준으로 바로 출발해서 룰렛과 같이 움직인다
+      // 카드는 룰렛이 가리키는 '칸'으로만 이동한다. 혼자 천천히 돌 때는 카드가 슬금슬금 밀리지 않고, 칸이 바뀔 때만 같은 스프링으로 넘어간다
+      const goal = Math.round(-target.current / STEP)
+      if (REDUCED) cp = goal
+      else {
+        const CW = 9
+        for (let k = 0; k < 2; k++) {
+          cv += ((goal - cp) * CW * CW - cv * 2 * CW) * h
+          cp += cv * h
+        }
+        if (Math.abs(goal - cp) < 0.0005 && Math.abs(cv) < 0.002) {
+          cp = goal
+          cv = 0
+        }
+      }
+      apply.current(cp)
+      // 지금 가운데로 가는 칸(내용 재생·점 표시용)
       const idx = mod(Math.round(-target.current / STEP))
       setActive((a) => (a === idx ? a : idx))
       raf = requestAnimationFrame(loop)
@@ -368,29 +400,82 @@ export function Lobby() {
 
   // 화면이 낮으면 가운데 카드를 줄여서 룰렛 위에 들어가게 한다
   const root = useRef<HTMLDivElement>(null)
-  useEffect(() => {
-    const fit = () => {
-      const el = root.current
-      const panel = el?.querySelector<HTMLElement>('.pos-center .panel')
-      if (!el || !panel) return
+
+  // 카드 위치는 연속값 p(= 룰렛 각도 ÷ 한 칸)로 계산한다.
+  // o = 카드가 가운데에서 얼마나 떨어졌는지(칸 단위). 0 가운데, ±1 옆, ±2 뒤.
+  useLayoutEffect(() => {
+    const mq = window.matchMedia('(max-width: 760px)')
+    const clamp = (v: number, lo = 0, hi = 1) => Math.min(hi, Math.max(lo, v))
+    const parts: { panel: HTMLElement; board: HTMLElement; plate: HTMLElement; body: HTMLElement; mini: HTMLElement; h: number }[] = []
+    let lastP = 0
+
+    const draw = (p: number) => {
+      lastP = p
+      const narrow = mq.matches
+      for (let i = 0; i < TOTAL; i++) {
+        const el = cards.current[i]
+        if (!el) continue
+        const part = (parts[i] ||= {
+          panel: el.querySelector('.panel') as HTMLElement,
+          board: el.querySelector('.panel__board') as HTMLElement,
+          plate: el.querySelector('.panel__plate') as HTMLElement,
+          body: el.querySelector('.panel__in') as HTMLElement,
+          mini: el.querySelector('.mini') as HTMLElement,
+          h: -1,
+        })
+        let o = (i - p) % TOTAL
+        if (o > TOTAL / 2) o -= TOTAL
+        if (o < -TOTAL / 2) o += TOTAL
+        const a = Math.abs(o)
+        const m = Math.min(a, 1)
+        const s = a <= 1 ? 1 - 0.38 * a : Math.max(0.45, 0.62 - 0.17 * (a - 1))
+        const op = narrow ? clamp(1 - a * 1.3) : a <= 1 ? 1 : clamp(2 - a)
+        el.style.transform = `translate(${-50 + 78 * o}%, -50%) scale(${(fit.current[i] || 1) * s}) rotateY(${-25 * clamp(o, -1, 1)}deg)`
+        el.style.opacity = String(op)
+        el.style.visibility = op < 0.01 ? 'hidden' : 'visible'
+        el.style.zIndex = String(Math.round(40 - a * 10))
+        el.style.pointerEvents = op < 0.3 ? 'none' : ''
+        const n = nat.current[i]
+        if (n) {
+          const h = Math.round(n + (300 - n) * m)
+          if (h !== part.h) {
+            part.h = h
+            part.panel.style.height = `${h}px`
+          }
+        }
+        part.board.style.opacity = String(1 - m)
+        part.plate.style.opacity = String(m)
+        part.body.style.opacity = String(clamp(1 - m * 1.8))
+        part.mini.style.opacity = String(clamp((m - 0.45) * 2.2))
+      }
+    }
+
+    const measure = () => {
       const show = Math.min(300, Math.max(190, window.innerHeight * 0.3))
       const low = window.innerHeight < 760
       const room = window.innerHeight - show - 28 - (low ? 80 : 100)
-      const f = Math.min(1, room / panel.offsetHeight, (window.innerWidth - 24) / panel.offsetWidth)
-      el.style.setProperty('--fit', String(Math.max(0.55, f)))
+      for (let i = 0; i < TOTAL; i++) {
+        const el = cards.current[i]
+        const inner = el?.querySelector<HTMLElement>('.panel__in')
+        if (!el || !inner) continue
+        nat.current[i] = inner.offsetHeight
+        const f = Math.min(1, room / inner.offsetHeight, (window.innerWidth - 24) / el.offsetWidth)
+        fit.current[i] = Math.max(0.55, f)
+      }
+      draw(lastP)
     }
-    fit()
-    window.addEventListener('resize', fit)
-    return () => window.removeEventListener('resize', fit)
-  }, [active])
 
-  const pos = (i: number) => {
-    const d = (i - active + TOTAL) % TOTAL
-    if (d === 0) return 'pos-center'
-    if (d === 1) return 'pos-right'
-    if (d === TOTAL - 1) return 'pos-left'
-    return 'pos-hidden'
-  }
+    apply.current = draw
+    measure()
+    const ro = new ResizeObserver(measure)
+    cards.current.forEach((el) => el?.querySelector('.panel__in') && ro.observe(el.querySelector('.panel__in')!))
+    window.addEventListener('resize', measure)
+    return () => {
+      ro.disconnect()
+      window.removeEventListener('resize', measure)
+      apply.current = () => {}
+    }
+  }, [])
 
   return (
     <div className="lobby" ref={root}>
@@ -403,20 +488,29 @@ export function Lobby() {
 
       <main className="stage" aria-roledescription="carousel" aria-label="프로젝트 메뉴">
         {ITEMS.map((item, i) => {
-          const p = pos(i)
-          const center = p === 'pos-center'
+          const center = i === active
           return (
             <section
               key={item.id}
-              className={`citem ${p}`}
+              ref={(el) => {
+                cards.current[i] = el
+              }}
+              className={`citem ${center ? 'is-center' : 'is-side'}`}
+              style={REDUCED ? { transition: 'opacity 0.2s' } : undefined}
               aria-hidden={!center}
               aria-label={item.label}
               onClick={center ? undefined : () => go(i)}
               onPointerEnter={center ? () => (hovering.current = true) : undefined}
               onPointerLeave={center ? () => (hovering.current = false) : undefined}
             >
-              <div className={`panel ${center ? 'panel--main' : 'panel--side'} ${item.kind === 'about' ? 'panel--about' : ''}`}>
-                <CardBody item={item} active={center} />
+              <div className={`panel ${item.kind === 'about' ? 'panel--about' : ''}`}>
+                <div className="panel__board" />
+                <div className="panel__plate" />
+                <div className="panel__clip">
+                  <div className="panel__in">
+                    <CardBody item={item} active={center} />
+                  </div>
+                </div>
                 <div className="mini">
                   <Icon name={item.icon} />
                   <span>{item.label}</span>
