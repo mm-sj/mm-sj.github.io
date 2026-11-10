@@ -2,7 +2,6 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { PROFILE } from '../content'
 import { openFolio, modalClick } from '../ui/Modal'
 import { ABOUT, FRIDGE, ITEMS, type LobbyItem } from './items'
-import { wheelState } from './wheelState'
 
 
 /*
@@ -255,8 +254,6 @@ export function Lobby() {
       if (now > idle.current && !hovering.current && !modalOpen.current && !REDUCED) target.current -= 3.6 * dt
       const diff = target.current - cur.current
       cur.current += diff * (1 - Math.exp(-5 * dt))
-      const sp = Math.abs(diff) * 0.8
-      wheelState.speed = sp < 0.05 ? 0 : 0.5 + sp
       if (Math.abs(diff) > 0.01) lastDelta = diff
       if (wheel.current) wheel.current.style.transform = `rotate(${cur.current}deg)`
       const pin = Math.floor((Math.abs(cur.current) + 2) / PIN)
@@ -326,6 +323,39 @@ export function Lobby() {
 
   useEffect(() => {
     document.fonts?.ready.then(() => window.dispatchEvent(new Event('folio:ready')))
+  }, [])
+
+  // 첫 방문 연출: 룰렛이 한 바퀴 돌면서 카드 다섯 장을 차례로 보여주고 소개 카드로 돌아온다.
+  // 사용자가 먼저 만지면 바로 멈춘다. 같은 탭에서는 한 번만.
+  useEffect(() => {
+    if (REDUCED) return
+    try {
+      if (sessionStorage.getItem('folio:intro')) return
+      sessionStorage.setItem('folio:intro', '1')
+    } catch {
+      /* 저장소를 못 쓰는 환경이면 매번 보여준다 */
+    }
+    let n = 0
+    let timer = 0
+    const stop = () => {
+      clearTimeout(timer)
+      window.removeEventListener('wheel', stop)
+      window.removeEventListener('keydown', stop)
+      window.removeEventListener('pointerdown', stop)
+    }
+    const next = () => {
+      if (modalOpen.current) return stop()
+      target.current = Math.round(target.current / STEP) * STEP - STEP
+      idle.current = performance.now() + 1600
+      if (++n < TOTAL) timer = window.setTimeout(next, 620)
+      else stop()
+    }
+    idle.current = performance.now() + 2600
+    timer = window.setTimeout(next, 900)
+    window.addEventListener('wheel', stop, { passive: true })
+    window.addEventListener('keydown', stop)
+    window.addEventListener('pointerdown', stop)
+    return stop
   }, [])
 
   // 화면이 낮으면 가운데 카드를 줄여서 룰렛 위에 들어가게 한다

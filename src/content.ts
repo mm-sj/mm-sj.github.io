@@ -19,12 +19,10 @@ export type Project = {
   no: string
   title: string
   award: string
-  stamp: { rank: string; track: string }
   period: string
   team: string
   role: string
   line: string
-  points: string[]
   video: string
   poster: string
   detail: string
@@ -38,16 +36,10 @@ export const PROJECTS: Project[] = [
     no: '02',
     title: 'DocQ',
     award: 'SSAFY 공통 최우수상',
-    stamp: { rank: '최우수상', track: '공통 프로젝트' },
     period: '2026.01 – 02',
     team: '6명 · FE 3',
     role: 'UX 방향 · FE · 3D 에셋',
     line: 'PDF를 AI 퀴즈로 바꿔 최대 4명이 보드게임처럼 푸는 학습 서비스. UX 방향과 게임 밖 화면 전반을 맡았습니다.',
-    points: [
-      '동화책 같은 분위기를 잡고 로비·대기실·커뮤니티 화면을 만들었습니다',
-      'Blender로 보드 맵을 만들고 캐릭터와 룰렛 위치를 하나하나 다시 잡았습니다',
-      '엉뚱한 축으로 빙글빙글 돌던 룰렛은 모델 원점을 옮겨 바로잡았습니다',
-    ],
     video: './assets/docq-board.mp4',
     poster: './assets/docq-board.jpg',
     detail: `${QUICK}#docq`,
@@ -58,16 +50,10 @@ export const PROJECTS: Project[] = [
     no: '03',
     title: 'Would You Draw',
     award: 'SSAFY 특화 우수상',
-    stamp: { rank: '우수상', track: '특화 프로젝트' },
     period: '2026.03',
     team: '5명 · FE 2',
     role: 'FE 팀장',
     line: '그린 감정이 별, 별자리, 은하로 쌓이는 감정 기록 앱. FE 팀장으로 드로잉과 우주 인터랙션을 맡았습니다.',
-    points: [
-      '팀원이 만든 우주 화면 위에 별자리가 이어지고 별이 태어나는 연출을 더했습니다',
-      'AI 분석을 기다리지 않도록 임시 별을 먼저 띄우고, 결과가 오면 바꿔 끼웠습니다',
-      '유독 빛나지 않던 색의 별들, 원인은 색마다 다른 밝기였습니다 (Bloom 임계값 조정)',
-    ],
     video: './assets/wyd-universe.mp4',
     poster: './assets/wyd-universe.jpg',
     detail: `${QUICK}#wyd`,
@@ -78,16 +64,10 @@ export const PROJECTS: Project[] = [
     no: '04',
     title: 'Jabis',
     award: 'SSAFY 자율 우수상',
-    stamp: { rank: '우수상', track: '자율 프로젝트' },
     period: '2026.04 – 05',
     team: '6명 · FE 1',
     role: 'FE 전담',
     line: '양팔 데스크 로봇의 상태를 3D로 보여주는 웹 대시보드. 팀의 유일한 FE로 대시보드 전체를 맡았습니다.',
-    points: [
-      '로봇 팔 두 개를 URDF로 불러와 실제 관절 각도대로 움직이게 했습니다',
-      '자꾸 깜빡이던 인식 박스는 React 렌더링 밖으로 빼서 잡았습니다',
-      '초당 20번 들어오는 관절 값을 사이사이 채워 움직임을 부드럽게 했습니다',
-    ],
     video: './assets/jabis-dashboard.mp4',
     poster: './assets/jabis-dashboard.jpg',
     detail: `${QUICK}#jabis`,
